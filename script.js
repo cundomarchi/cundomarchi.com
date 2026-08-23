@@ -729,7 +729,7 @@ async function loadBgOpacities() {
 function applyBgOpacities() {
   document.querySelectorAll('.page, #quote').forEach(p => {
     const id = p.id.replace('page-', '');
-    const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 100;
+    const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 80;
     p.style.setProperty('--bg-opacity', val / 100);
   });
 }
@@ -868,7 +868,7 @@ function syncBgSlider() {
   const target = getBgTargetEl();
   if (!target) return;
   const id = target.id.replace('page-', '');
-  const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 100;
+  const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 80;
   document.getElementById('bgOpacitySlider').value = val;
 }
 
@@ -1109,7 +1109,7 @@ const MURALS = {
 "down_ocean": {
       title: 'Down the Ocean', titleEs: 'Bajo el Océano', loc: 'Bicentennial Tunnel, Tigre, Buenos Aires, Argentina', year: '2019', size: '150 m²',
       desc: 'A full underwater world painted along a public tunnel, an octopus stretches across the entrance while a sea turtle drifts past jellyfish further inside.', tags: ['Commission Work', 'Mix Media'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/down_ocean/down_ocean_1.jpg', key:'down_ocean_1'},{type:"image", src:'images/down_ocean/down_ocean_1_before.jpg', key:'down_ocean_1_before'},{type:"image", src:'images/down_ocean/down_ocean_2.jpg', key:'down_ocean_2'},{type:"image", src:'images/down_ocean/down_ocean_3.jpg', key:'down_ocean_3'},{type:"image", src:'images/down_ocean/down_ocean_4.jpg', key:'down_ocean_4'},{type:"image", src:'images/down_ocean/down_ocean_5.jpg', key:'down_ocean_5'},{type:"image", src:'images/down_ocean/down_ocean_6.jpg', key:'down_ocean_6'}]
+      gallery: [{type:"image", src:'images/down_ocean/down_ocean_6.jpg', key:'down_ocean_6'},{type:"image", src:'images/down_ocean/down_ocean_1_before.jpg', key:'down_ocean_1_before'},{type:"image", src:'images/down_ocean/down_ocean_4.jpg', key:'down_ocean_4'}]
     },
 "flower_octopus": {
       title: 'Flower Octopus', titleEs: 'Pulpo Flor', loc: 'Buenos Aires, Argentina', year: '2018', size: '3.5m x 2.5m',
@@ -1139,7 +1139,7 @@ const MURALS = {
 "tlaloc": {
       title: 'Tlaloc', titleEs: 'Tlaloc', loc: 'Playa del Carmen, Quintana Roo, Mexico', year: '2022', size: '2.5m x 2.5m',
       desc: 'The Mesoamerican rain deity reimagined in acid color on a corner wall.', tags: ['Street Art', 'Spray Paint'], flag: '🇲🇽',
-      gallery: [{type:"image", src:'images/tlaloc/tlaloc.jpg', key:'tlaloc'},{type:"image", src:'images/tlaloc/tlaloc_extra1.jpg', key:'tlaloc_extra1'},{type:"image", src:'images/tlaloc/tlaloc_extra2.jpg', key:'tlaloc_extra2'},{type:"image", src:'images/tlaloc/tlaloc_extra3.jpg', key:'tlaloc_extra3'},{type:"image", src:'images/tlaloc/tlaloc_extra4.jpg', key:'tlaloc_extra4'},{type:"image", src:'images/tlaloc/tlaloc_extra5.jpg', key:'tlaloc_extra5'},{type:"image", src:'images/tlaloc/tlaloc_extra6.jpg', key:'tlaloc_extra6'},{type:"image", src:'images/tlaloc/tlaloc_extra7.jpg', key:'tlaloc_extra7'}]
+      gallery: [{type:"image", src:'images/tlaloc/tlaloc_extra5.jpg', key:'tlaloc_extra5'},{type:"image", src:'images/tlaloc/tlaloc_extra6.jpg', key:'tlaloc_extra6'},{type:"image", src:'images/tlaloc/tlaloc_extra7.jpg', key:'tlaloc_extra7'}]
     },
 "circle_of_nature": {
       title: 'The Circle of Nature', titleEs: 'El Círculo de la Naturaleza', loc: 'Buenos Aires, Argentina', year: '2022', size: '2.2m x 3m',

@@ -70,7 +70,7 @@ html { scroll-behavior: smooth; }
 .page-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 body.edit-mode .page-bg img { pointer-events: auto; cursor: grab; }
 body.edit-mode .page-bg img.bg-dragging { cursor: grabbing; }
-.page-bg img, .page-bg video, .section-bg img, .section-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--bg-opacity, 1); object-position: var(--bg-pos-x, 50%) var(--bg-pos-y, 50%); transform: scale(var(--bg-scale, 1)); transition: opacity .2s; }
+.page-bg img, .page-bg video, .section-bg img, .section-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--bg-opacity, 0.8); object-position: var(--bg-pos-x, 50%) var(--bg-pos-y, 50%); transform: scale(var(--bg-scale, 1)); transition: opacity .2s; }
 
 #quote { position: relative; overflow: hidden; }
 .section-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
@@ -474,6 +474,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .brands-row span { font-family: var(--display); font-size: 15px; letter-spacing: 0.5px; color: #5a5a55; text-transform: uppercase; }
 .brand-logo { display: flex; align-items: center; justify-content: center; height: 76px; opacity: 0.85; transition: opacity .2s; }
 .brand-logo:hover { opacity: 1; }
+.brand-logo:has(img[alt="Farola"]) { opacity: 1; }
 .brand-logo img { height: 100%; width: auto; max-width: 220px; object-fit: contain; display: block; filter: none; }
 .social-icons { display: flex; gap: 22px; justify-content: center; margin-bottom: 28px; }
 .social-icons a { color: var(--gray); transition: color .15s, transform .15s; display: flex; }
