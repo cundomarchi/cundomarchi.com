@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cundo Marchi, Visual Artist &amp; Muralist</title>
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=69">
+<link rel="stylesheet" href="style.css?v=70">
 </head>
 <body oncontextmenu="return false;">
 
@@ -897,7 +897,7 @@
 <div class="bg-opacity-panel" id="bgOpacityPanel">
   <div class="bg-target-label"><span><span data-en="Editing:" data-es="Editando:">Editing:</span> <strong id="bgTargetName">—</strong></span><button class="bg-none-btn" onclick="clearSectionBg()" data-en="No photo" data-es="Sin foto">No photo</button></div>
   <button class="bg-video-btn" id="bgVideoBtn" onclick="document.getElementById('bgVideoInput').click()">📷 <span data-en="Change photo/video" data-es="Cambiar foto/video">Change photo/video</span></button>
-  <div class="bg-adjust-row"><span data-en="Transparency" data-es="Transparencia">Transparency</span><input type="range" id="bgOpacitySlider" min="1" max="100" value="80" oninput="setBgOpacity(this.value)"></div>
+  <div class="bg-adjust-row"><span data-en="Transparency" data-es="Transparencia">Transparency</span><input type="range" id="bgOpacitySlider" min="1" max="100" value="50" oninput="setBgOpacity(this.value)"></div>
   <div class="bg-adjust-row"><span data-en="Zoom" data-es="Zoom">Zoom</span><input type="range" id="bgZoomSlider" min="100" max="250" value="100" oninput="setBgZoom(this.value)"></div>
   <div class="bg-pos-controls">
     <span data-en="Position" data-es="Posición">Position</span>
@@ -912,7 +912,7 @@
 <div class="edit-toast" id="editToast"></div>
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
 
-<script src="script.js?v=59"></script>
+<script src="script.js?v=60"></script>
 
 </body>
 </html>

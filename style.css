@@ -70,7 +70,7 @@ html { scroll-behavior: smooth; }
 .page-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 body.edit-mode .page-bg img { pointer-events: auto; cursor: grab; }
 body.edit-mode .page-bg img.bg-dragging { cursor: grabbing; }
-.page-bg img, .page-bg video, .section-bg img, .section-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--bg-opacity, 0.8); object-position: var(--bg-pos-x, 50%) var(--bg-pos-y, 50%); transform: scale(var(--bg-scale, 1)); transition: opacity .2s; }
+.page-bg img, .page-bg video, .section-bg img, .section-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--bg-opacity, 0.5); object-position: var(--bg-pos-x, 50%) var(--bg-pos-y, 50%); transform: scale(var(--bg-scale, 1)); transition: opacity .2s; }
 
 #quote { position: relative; overflow: hidden; }
 .section-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }

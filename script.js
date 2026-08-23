@@ -729,7 +729,7 @@ async function loadBgOpacities() {
 function applyBgOpacities() {
   document.querySelectorAll('.page, #quote').forEach(p => {
     const id = p.id.replace('page-', '');
-    const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 80;
+    const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 50;
     p.style.setProperty('--bg-opacity', val / 100);
   });
 }
@@ -868,7 +868,7 @@ function syncBgSlider() {
   const target = getBgTargetEl();
   if (!target) return;
   const id = target.id.replace('page-', '');
-  const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 80;
+  const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 50;
   document.getElementById('bgOpacitySlider').value = val;
 }
 
