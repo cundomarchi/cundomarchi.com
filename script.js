@@ -1096,7 +1096,7 @@ const MURALS = {
 "city_of_fury": {
       title: 'The City of the Fury', titleEs: 'La Ciudad de la Furia', loc: 'Buenos Aires, Argentina', year: '2021', size: '4.5m x 2.8m',
       desc: 'Inspired by Gustavo Cerati. A face dissolving into color above a sleeping skyline.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury.jpg', key:'city_of_fury'},{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'}]
+      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'}]
     },
 "el_nino": {
       title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: 'TBC', size: 'TBC',
@@ -1111,7 +1111,7 @@ const MURALS = {
 "down_ocean": {
       title: 'Down the Ocean', titleEs: 'Bajo el Océano', loc: 'Bicentennial Tunnel, Tigre, Buenos Aires, Argentina', year: '2019', size: '150 m²',
       desc: 'A full underwater world painted along a public tunnel, an octopus stretches across the entrance while a sea turtle drifts past jellyfish further inside.', tags: ['Commission Work', 'Mix Media'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/down_ocean/down_ocean_6.jpg', key:'down_ocean_6'},{type:"image", src:'images/down_ocean/down_ocean_1_before.jpg', key:'down_ocean_1_before'},{type:"image", src:'images/down_ocean/down_ocean_4.jpg', key:'down_ocean_4'}]
+      gallery: [{type:"image", src:'images/down_ocean/down_ocean.jpg', key:'down_ocean_6'},{type:"image", src:'images/down_ocean/down_ocean_1_before.jpg', key:'down_ocean_1_before'},{type:"image", src:'images/down_ocean/down_ocean_4.jpg', key:'down_ocean_4'}]
     },
 "flower_octopus": {
       title: 'Flower Octopus', titleEs: 'Pulpo Flor', loc: 'Buenos Aires, Argentina', year: '2018', size: '3.5m x 2.5m',
@@ -1131,7 +1131,7 @@ const MURALS = {
 "el_eternauta": {
       title: 'El Eternauta', titleEs: 'El Eternauta', loc: 'Buenos Aires, Argentina', year: '2024', size: '2m x 2.5m',
       desc: "Argentina's iconic sci-fi hero, rendered in cold monochrome, holding a single flower against the void.", tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/el_eternauta/el_eternauta.jpg', key:'el_eternauta'},{type:"image", src:'images/el_eternauta_extra1.jpg', key:'el_eternauta_extra1'},{type:"image", src:'images/el_eternauta/el_eternauta_extra2.jpg', key:'el_eternauta_extra2'},{type:"image", src:'images/el_eternauta/el_eternauta_extra3.jpg', key:'el_eternauta_extra3'},{type:"image", src:'images/el_eternauta/el_eternauta_extra4.jpg', key:'el_eternauta_extra4'}]
+      gallery: [{type:"image", src:'images/el_eternauta/el_eternauta.jpg', key:'el_eternauta'},{type:"image", src:'images/el_eternauta/el_eternauta_extra2.jpg', key:'el_eternauta_extra2'},{type:"image", src:'images/el_eternauta/el_eternauta_extra3.jpg', key:'el_eternauta_extra3'},{type:"image", src:'images/el_eternauta/el_eternauta_extra4.jpg', key:'el_eternauta_extra4'}]
     },
 "laos_california": {
       title: 'Laos & California', titleEs: 'Laos & California', loc: 'California, USA', year: '2022', size: '8m x 2.8m',
