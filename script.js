@@ -1,5 +1,7 @@
 document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
+document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+
 // ---- storage: real Cowork storage when available, always mirrored to the
 // browser's own localStorage so edits survive reloads outside Cowork too ----
 const appStorage = {
@@ -729,7 +731,7 @@ async function loadBgOpacities() {
 function applyBgOpacities() {
   document.querySelectorAll('.page, #quote').forEach(p => {
     const id = p.id.replace('page-', '');
-    const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 50;
+    const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 30;
     p.style.setProperty('--bg-opacity', val / 100);
   });
 }
@@ -868,7 +870,7 @@ function syncBgSlider() {
   const target = getBgTargetEl();
   if (!target) return;
   const id = target.id.replace('page-', '');
-  const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 50;
+  const val = bgOpacities[id] !== undefined ? bgOpacities[id] : 30;
   document.getElementById('bgOpacitySlider').value = val;
 }
 

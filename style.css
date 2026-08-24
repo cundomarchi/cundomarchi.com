@@ -70,7 +70,7 @@ html { scroll-behavior: smooth; }
 .page-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 body.edit-mode .page-bg img { pointer-events: auto; cursor: grab; }
 body.edit-mode .page-bg img.bg-dragging { cursor: grabbing; }
-.page-bg img, .page-bg video, .section-bg img, .section-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--bg-opacity, 0.5); object-position: var(--bg-pos-x, 50%) var(--bg-pos-y, 50%); transform: scale(var(--bg-scale, 1)); transition: opacity .2s; }
+.page-bg img, .page-bg video, .section-bg img, .section-bg video { width: 100%; height: 100%; object-fit: cover; opacity: var(--bg-opacity, 0.3); object-position: var(--bg-pos-x, 50%) var(--bg-pos-y, 50%); transform: scale(var(--bg-scale, 1)); transition: opacity .2s; }
 
 #quote { position: relative; overflow: hidden; }
 .section-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
@@ -431,7 +431,7 @@ body.edit-mode .compare-handle { pointer-events: none; opacity: .35; }
 /* QUOTE FORM */
 .quote-layout { display: flex; align-items: flex-start; justify-content: center; gap: 56px; }
 .quote-content { flex: 1 1 auto; min-width: 0; }
-.quote-photo-wrap { order: -1; flex: 0 0 380px; width: 380px; aspect-ratio: 4/5; overflow: hidden; position: relative; border: 1px solid #2a2a2a; }
+.quote-photo-wrap { order: -1; flex: 0 0 380px; width: 380px; aspect-ratio: 4/5; overflow: hidden; position: relative; }
 .quote-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 900px) { .quote-layout { flex-direction: column-reverse; align-items: stretch; gap: 32px; } .quote-photo-wrap { width: 100%; max-width: 380px; margin: 0 auto; flex-basis: auto; aspect-ratio: 4/5; position: static; } }
 .quote-intro { text-align: center; max-width: 620px; margin: 0 auto 44px; }
