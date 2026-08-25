@@ -1015,15 +1015,12 @@ function formatDateInput(el) {
   else if (v.length >= 3) v = v.slice(0, 2) + '/' + v.slice(2);
   el.value = v;
 }
-function chooseArtType(btn, type) {
-  btn.parentElement.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
+function chooseArtTypeSelect(selectEl) {
+  const type = selectEl.value;
   wallAnswers.artType = type;
   document.getElementById('artMuralBlock').style.display = type === 'mural' ? 'block' : 'none';
   document.getElementById('artLiveBlock').style.display = type === 'live' ? 'block' : 'none';
   document.getElementById('artWorkshopBlock').style.display = type === 'workshop' ? 'block' : 'none';
-  const shownBlock = document.getElementById(type === 'mural' ? 'artMuralBlock' : type === 'live' ? 'artLiveBlock' : 'artWorkshopBlock');
-  shownBlock.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 function chooseWall(btn, field) {
   btn.parentElement.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
@@ -1297,6 +1294,21 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_5.jpg', key: 'shop_buff_5' },
     { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_6.jpg', key: 'shop_buff_6' },
     { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_7.jpg', key: 'shop_buff_7' }
+  ],
+  shop_hoodie_bsas: [
+    { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_bsas_extra1.jpg', key: 'shop_hoodie_bsas_extra1' },
+    { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_bsas_extra2.jpg', key: 'shop_hoodie_bsas_extra2' },
+    { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_bsas_extra3.jpg', key: 'shop_hoodie_bsas_extra3' }
+  ],
+  shop_hoodie_miami: [
+    { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra1.jpg', key: 'shop_hoodie_miami_extra1' },
+    { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra2.jpg', key: 'shop_hoodie_miami_extra2' }
+  ],
+  shop_tee_sugar2: [
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra1.jpg', key: 'shop_tee_sugar2_extra1' }
+  ],
+  shop_tee_player: [
+    { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra1.jpg', key: 'shop_tee_player_extra1' }
   ]
 };
 function buildProductGallery(id) {
@@ -1466,8 +1478,8 @@ document.addEventListener('keydown', function(e) {
 });
 
 function requestArt(type) {
-  const btn = document.querySelector(`#wallFormStep .opt-grid .opt-btn[onclick="chooseArtType(this,'${type}')"]`);
-  if (btn) chooseArtType(btn, type);
+  const select = document.querySelector('#wallFormStep select[onchange="chooseArtTypeSelect(this)"]');
+  if (select) { select.value = type; chooseArtTypeSelect(select); }
   setTimeout(() => document.getElementById('wallFormStep').scrollIntoView({ block: 'center', behavior: 'smooth' }), 50);
 }
 

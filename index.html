@@ -595,7 +595,6 @@
           <figure><img src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Sketching the palace on site</figcaption></figure>
           <figure><img src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3"><figcaption data-en="Building the composition" data-es="Armando la composición">Building the composition</figcaption></figure>
           <figure><img src="images/live-painting/live_otamendi_final.jpg" alt="Otamendi Palace finished piece" data-key="live_otamendi_final"><figcaption data-en="Finished canvas, opening night" data-es="Lienzo terminado, noche de apertura">Finished canvas, opening night</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_final2.jpg" alt="Cundo Marchi with the finished piece" data-key="live_otamendi_final2"><figcaption data-en="With the finished piece" data-es="Con la obra terminada">With the finished piece</figcaption></figure>
         </div>
       </div>
 
@@ -781,19 +780,21 @@
         <input class="field" id="w-company" data-en-ph="Company / Organization (if applicable)" data-es-ph="Empresa / Organización (si corresponde)" placeholder="Company / Organization (if applicable)">
 
         <p class="step-label" style="margin-top:14px;" data-en="Type of Art *" data-es="Tipo de Arte *">Type of Art *</p>
-        <div class="opt-grid budget-grid">
-          <button class="opt-btn radio" onclick="chooseArtType(this,'mural')"><span class="radio-dot"></span><span data-en="Mural" data-es="Mural">Mural</span></button>
-          <button class="opt-btn radio" onclick="chooseArtType(this,'live')"><span class="radio-dot"></span><span data-en="Live Painting" data-es="Pintura en Vivo">Live Painting</span></button>
-          <button class="opt-btn radio" onclick="chooseArtType(this,'workshop')"><span class="radio-dot"></span><span data-en="Paint Workshop" data-es="Taller de Pintura">Paint Workshop</span></button>
-        </div>
+        <select class="field" onchange="chooseArtTypeSelect(this)">
+          <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
+          <option value="mural" data-en="Mural" data-es="Mural">Mural</option>
+          <option value="live" data-en="Live Painting" data-es="Pintura en Vivo">Live Painting</option>
+          <option value="workshop" data-en="Paint Workshop" data-es="Taller de Pintura">Paint Workshop</option>
+        </select>
 
         <div id="artMuralBlock" style="display:none;">
-          <p class="step-label" style="margin-top:14px;" data-en="Type of Wall" data-es="Tipo de Pared">Type of Wall</p>
-          <div class="opt-grid budget-grid">
-            <button class="opt-btn radio" onclick="chooseWall(this,'wallType')"><span class="radio-dot"></span><span data-en="Home Interior" data-es="Interior de Casa">Home Interior</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'wallType')"><span class="radio-dot"></span><span data-en="Commercial Space" data-es="Espacio Comercial">Commercial Space</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'wallType')"><span class="radio-dot"></span><span data-en="Exterior Wall / Public Space" data-es="Pared Exterior / Espacio Público">Exterior Wall / Public Space</span></button>
-          </div>
+          <p class="step-label" style="margin-top:14px;" data-en="Type of Wall *" data-es="Tipo de Pared *">Type of Wall *</p>
+          <select class="field" onchange="chooseWallSelect(this,'wallType')">
+            <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
+            <option data-en="Home Interior" data-es="Interior de Casa">Home Interior</option>
+            <option data-en="Commercial Space" data-es="Espacio Comercial">Commercial Space</option>
+            <option data-en="Exterior Wall / Public Space" data-es="Pared Exterior / Espacio Público">Exterior Wall / Public Space</option>
+          </select>
           <p class="step-label" style="margin-top:14px;" data-en="Approximate Size (ft/m) *" data-es="Medidas Aproximadas (ft/m) *">Approximate Size (ft/m) *</p>
           <input class="field" id="w-size" data-en-ph="e.g. 6m x 3m (or ft)" data-es-ph="ej. 6m x 3m (o ft)" placeholder="e.g. 6m x 3m (or ft)">
           <p class="step-label" style="margin-top:14px;" data-en="Photo of Your Wall *" data-es="Foto de tu Pared *">Photo of Your Wall *</p>
@@ -919,7 +920,7 @@
 <div class="edit-toast" id="editToast"></div>
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
 
-<script src="script.js?v=66"></script>
+<script src="script.js?v=67"></script>
 
 </body>
 </html>
