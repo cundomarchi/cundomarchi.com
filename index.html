@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cundo Marchi, Visual Artist &amp; Muralist</title>
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=72">
+<link rel="stylesheet" href="style.css?v=75">
 </head>
 <body oncontextmenu="return false;">
 
@@ -595,7 +595,7 @@
           <figure><img src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Sketching the palace on site</figcaption></figure>
           <figure><img src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3"><figcaption data-en="Building the composition" data-es="Armando la composición">Building the composition</figcaption></figure>
           <figure><img src="images/live-painting/live_otamendi_final.jpg" alt="Otamendi Palace finished piece" data-key="live_otamendi_final"><figcaption data-en="Finished canvas, opening night" data-es="Lienzo terminado, noche de apertura">Finished canvas, opening night</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_final.jpg" alt="Cundo Marchi with the finished piece" data-key="live_otamendi_final2"><figcaption data-en="With the finished piece" data-es="Con la obra terminada">With the finished piece</figcaption></figure>
+          <figure><img src="images/live-painting/live_otamendi_final2.jpg" alt="Cundo Marchi with the finished piece" data-key="live_otamendi_final2"><figcaption data-en="With the finished piece" data-es="Con la obra terminada">With the finished piece</figcaption></figure>
         </div>
       </div>
 
@@ -760,7 +760,7 @@
 </div><!-- /page-shop -->
 
 <section class="section" id="quote">
-  <div class="section-bg" id="bg-quote"><img src="images/el_eternauta/el_eternauta.jpg" alt="" data-key="bg_quote"></div>
+  <div class="section-bg" id="bg-quote"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="" data-key="bg_quote"></div>
   <button class="section-bg-edit-btn" id="quoteBgEditBtn" onclick="editSectionBg('quote', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
   <div class="wrap">
     <div class="quote-intro">
@@ -798,42 +798,50 @@
           </div>
           <p class="step-label" style="margin-top:14px;" data-en="Approximate Size (ft/m) *" data-es="Medidas Aproximadas (ft/m) *">Approximate Size (ft/m) *</p>
           <input class="field" id="w-size" data-en-ph="e.g. 6m x 3m (or ft)" data-es-ph="ej. 6m x 3m (o ft)" placeholder="e.g. 6m x 3m (or ft)">
+          <p class="step-label" style="margin-top:14px;" data-en="Photo of Your Wall *" data-es="Foto de tu Pared *">Photo of Your Wall *</p>
+          <p style="color:var(--gray); font-size:13px; margin-top:-8px; margin-bottom:10px;" data-en="Upload a photo of the space so we can plan the piece" data-es="Subí una foto del espacio para poder planear la obra">Upload a photo of the space so we can plan the piece</p>
+          <input class="field" id="w-photo" type="file" accept="image/*" style="padding:10px;" onchange="handleWallPhotoChange(this)">
+          <p id="w-photo-name" style="color:var(--gray); font-size:12px; margin-top:6px; margin-bottom:10px; display:none;"></p>
         </div>
 
         <div id="artLiveBlock" style="display:none;">
           <p class="step-label" style="margin-top:14px;" data-en="How many people will attend?" data-es="¿Cuántas personas asisten?">How many people will attend?</p>
-          <div class="opt-grid">
-            <button class="opt-btn radio" onclick="chooseWall(this,'attendance')"><span class="radio-dot"></span><span data-en="1 – 50" data-es="1 – 50">1 – 50</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'attendance')"><span class="radio-dot"></span><span data-en="51 – 150" data-es="51 – 150">51 – 150</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'attendance')"><span class="radio-dot"></span><span data-en="151 – 400" data-es="151 – 400">151 – 400</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'attendance')"><span class="radio-dot"></span><span data-en="400+" data-es="400+">400+</span></button>
-          </div>
+          <select class="field" onchange="chooseWallSelect(this,'attendance')">
+            <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
+            <option data-en="1 – 50" data-es="1 – 50">1 – 50</option>
+            <option data-en="51 – 150" data-es="51 – 150">51 – 150</option>
+            <option data-en="151 – 400" data-es="151 – 400">151 – 400</option>
+            <option data-en="400+" data-es="400+">400+</option>
+          </select>
         </div>
 
         <div id="artWorkshopBlock" style="display:none;">
           <p class="step-label" style="margin-top:14px;" data-en="What kind of workshop?" data-es="¿Qué tipo de taller?">What kind of workshop?</p>
-          <div class="opt-grid">
-            <button class="opt-btn radio" onclick="chooseWall(this,'workshopType')"><span class="radio-dot"></span><span data-en="Community Mural" data-es="Mural Comunitario">Community Mural</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'workshopType')"><span class="radio-dot"></span><span data-en="Individual Canvas" data-es="Lienzo Individual">Individual Canvas</span></button>
-          </div>
+          <select class="field" onchange="chooseWallSelect(this,'workshopType')">
+            <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
+            <option data-en="Community Mural" data-es="Mural Comunitario">Community Mural</option>
+            <option data-en="Individual Canvas" data-es="Lienzo Individual">Individual Canvas</option>
+          </select>
           <p class="step-label" style="margin-top:14px;" data-en="Group size" data-es="Tamaño del grupo">Group size</p>
-          <div class="opt-grid">
-            <button class="opt-btn radio" onclick="chooseWall(this,'groupSize')"><span class="radio-dot"></span><span data-en="1 – 10" data-es="1 – 10">1 – 10</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'groupSize')"><span class="radio-dot"></span><span data-en="11 – 25" data-es="11 – 25">11 – 25</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'groupSize')"><span class="radio-dot"></span><span data-en="26 – 50" data-es="26 – 50">26 – 50</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'groupSize')"><span class="radio-dot"></span><span data-en="50+" data-es="50+">50+</span></button>
-          </div>
+          <select class="field" onchange="chooseWallSelect(this,'groupSize')">
+            <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
+            <option data-en="1 – 10" data-es="1 – 10">1 – 10</option>
+            <option data-en="11 – 25" data-es="11 – 25">11 – 25</option>
+            <option data-en="26 – 50" data-es="26 – 50">26 – 50</option>
+            <option data-en="50+" data-es="50+">50+</option>
+          </select>
         </div>
 
-        <div id="wallBudgetBlock" style="display:none;">
+        <div id="wallBudgetBlock">
           <p class="step-label" style="margin-top:14px;" data-en="Budget" data-es="Presupuesto">Budget</p>
-          <div class="opt-grid budget-grid">
-            <button class="opt-btn radio" onclick="chooseWall(this,'budget')"><span class="radio-dot"></span><span class="price-range" data-range-type="under" data-usd-min="0" data-usd-max="1766.78">&lt; $1,767 USD</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'budget')"><span class="radio-dot"></span><span class="price-range" data-range-type="between" data-usd-min="1766.78" data-usd-max="3533.57">$1,767 – $3,534 USD</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'budget')"><span class="radio-dot"></span><span class="price-range" data-range-type="between" data-usd-min="3533.57" data-usd-max="7067.14">$3,534 – $7,067 USD</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'budget')"><span class="radio-dot"></span><span class="price-range" data-range-type="over" data-usd-min="7067.14" data-usd-max="0">&gt; $7,067 USD</span></button>
-            <button class="opt-btn radio" onclick="chooseWall(this,'budget')"><span class="radio-dot"></span><span data-en="Not sure yet" data-es="Todavía no sé">Not sure yet</span></button>
-          </div>
+          <select class="field" onchange="chooseWallSelect(this,'budget')">
+            <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
+            <option class="price-range" data-range-type="under" data-usd-min="0" data-usd-max="1766.78">&lt; $1,767 USD</option>
+            <option class="price-range" data-range-type="between" data-usd-min="1766.78" data-usd-max="3533.57">$1,767 – $3,534 USD</option>
+            <option class="price-range" data-range-type="between" data-usd-min="3533.57" data-usd-max="7067.14">$3,534 – $7,067 USD</option>
+            <option class="price-range" data-range-type="over" data-usd-min="7067.14" data-usd-max="0">&gt; $7,067 USD</option>
+            <option data-en="Not sure yet" data-es="Todavía no sé">Not sure yet</option>
+          </select>
         </div>
 
         <p class="step-label" style="margin-top:14px;" data-en="Preferred Date" data-es="Fecha Preferida">Preferred Date</p>
@@ -870,6 +878,7 @@
       <span class="brand-logo"><img src="images/site/inac_hospitality.png" alt="INAC Hospitality"></span>
       <span class="brand-logo"><img src="images/site/meeting_of_styles_sweden.png" alt="Meeting of Styles Sweden"></span>
       <span class="brand-logo"><img src="images/site/farola.png" alt="Farola"></span>
+      <span class="brand-logo"><img src="images/site/hotel_sayab.png" alt="Hotel Sayab"></span>
     </div>
   </div>
 </section>
@@ -912,7 +921,7 @@
 <div class="edit-toast" id="editToast"></div>
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
 
-<script src="script.js?v=62"></script>
+<script src="script.js?v=65"></script>
 
 </body>
 </html>

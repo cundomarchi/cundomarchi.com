@@ -1022,7 +1022,6 @@ function chooseArtType(btn, type) {
   document.getElementById('artMuralBlock').style.display = type === 'mural' ? 'block' : 'none';
   document.getElementById('artLiveBlock').style.display = type === 'live' ? 'block' : 'none';
   document.getElementById('artWorkshopBlock').style.display = type === 'workshop' ? 'block' : 'none';
-  document.getElementById('wallBudgetBlock').style.display = 'none';
   const shownBlock = document.getElementById(type === 'mural' ? 'artMuralBlock' : type === 'live' ? 'artLiveBlock' : 'artWorkshopBlock');
   shownBlock.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
@@ -1030,12 +1029,18 @@ function chooseWall(btn, field) {
   btn.parentElement.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   wallAnswers[field] = btn.textContent;
-  if (field === 'wallType' || field === 'attendance' || field === 'groupSize') {
-    const budgetBlock = document.getElementById('wallBudgetBlock');
-    if (budgetBlock && budgetBlock.style.display === 'none') {
-      budgetBlock.style.display = 'block';
-      budgetBlock.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    }
+}
+function chooseWallSelect(selectEl, field) {
+  const opt = selectEl.options[selectEl.selectedIndex];
+  wallAnswers[field] = opt.value === '' ? '' : opt.textContent.trim();
+}
+function handleWallPhotoChange(input) {
+  const label = document.getElementById('w-photo-name');
+  if (input.files && input.files[0]) {
+    label.textContent = input.files[0].name;
+    label.style.display = 'block';
+  } else {
+    label.style.display = 'none';
   }
 }
 function submitWallForm() {
@@ -1045,10 +1050,12 @@ function submitWallForm() {
   const location = document.getElementById('w-location').value.trim();
   const details = document.getElementById('w-details').value.trim();
   const size = document.getElementById('w-size').value.trim();
+  const photoInput = document.getElementById('w-photo');
+  const hasPhoto = !!(photoInput.files && photoInput.files[0]);
   const errorMsg = document.getElementById('wallFormError');
   const type = wallAnswers.artType;
   let valid = !!(first && last && email && location && details && type && wallAnswers.budget);
-  if (type === 'mural') valid = valid && !!(wallAnswers.wallType && size);
+  if (type === 'mural') valid = valid && !!(wallAnswers.wallType && size && hasPhoto);
   if (type === 'live') valid = valid && !!wallAnswers.attendance;
   if (type === 'workshop') valid = valid && !!(wallAnswers.workshopType && wallAnswers.groupSize);
   if (!valid) {
@@ -1065,6 +1072,7 @@ function submitWallForm() {
   wallAnswers.phone = document.getElementById('w-phone').value.trim();
   wallAnswers.date = document.getElementById('w-date').value;
   wallAnswers.details = details;
+  wallAnswers.photoName = hasPhoto ? photoInput.files[0].name : '';
   document.getElementById('wallFormStep').classList.remove('active');
   document.getElementById('wallFormConfirm').classList.add('active');
 }
@@ -1146,7 +1154,7 @@ const MURALS = {
 "circle_of_nature": {
       title: 'The Circle of Nature', titleEs: 'El Círculo de la Naturaleza', loc: 'Buenos Aires, Argentina', year: '2022', size: '2.2m x 3m',
       desc: 'A parrot at rest inside a golden spiral, framed by moonlight and jungle leaves.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/circle_of_nature/circle_of_nature.jpg', key:'circle_of_nature'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra1.jpg', key:'circle_of_nature_extra1'}]
+      gallery: [{type:"image", src:'images/circle_of_nature/circle_of_nature.jpg', key:'circle_of_nature'},{type:"image", src:'images/circle_of_nature/circle_of_nature_before.jpg', key:'circle_of_nature_before'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra1.jpg', key:'circle_of_nature_extra1'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra2.jpg', key:'circle_of_nature_extra2'}]
     },
 "the_seesaw": {
       title: 'The Seesaw', titleEs: 'El Subibaja', loc: 'Buenos Aires, Argentina', year: '2022', size: '5m x 2.2m',
@@ -1275,6 +1283,22 @@ function initShopGallery() {
     wrap.onclick = () => openProduct(wrap.getAttribute('data-product-id'));
   });
 }
+const STATIC_PRODUCT_EXTRAS = {
+  shop_mug_golo: [
+    { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_2.jpg', key: 'shop_mug_2' },
+    { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_3.jpg', key: 'shop_mug_3' },
+    { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_4.jpg', key: 'shop_mug_4' },
+    { type: 'video', src: 'images/shop/shop_mug_golo/shop_mug_video1.mp4', key: 'shop_mug_video1' }
+  ],
+  shop_buff_psycho: [
+    { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_2.jpg', key: 'shop_buff_2' },
+    { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_3.jpg', key: 'shop_buff_3' },
+    { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_4.jpg', key: 'shop_buff_4' },
+    { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_5.jpg', key: 'shop_buff_5' },
+    { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_6.jpg', key: 'shop_buff_6' },
+    { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_7.jpg', key: 'shop_buff_7' }
+  ]
+};
 function buildProductGallery(id) {
   const wrap = document.querySelector(`.shop-card-img[data-product-id="${id}"]`);
   if (!wrap) return [];
@@ -1283,6 +1307,7 @@ function buildProductGallery(id) {
   let items = [];
   if (!removedKeys.has(id)) items.push({ type: 'image', src: overrides[id] || baseSrc, key: id });
   (productGalleries[id] || []).forEach(k => { if (!removedKeys.has(k)) items.push({ type: 'image', src: overrides[k] || 'images/placeholder.jpg', key: k }); });
+  (STATIC_PRODUCT_EXTRAS[id] || []).forEach(v => { if (!removedKeys.has(v.key)) items.push(v); });
   if (items.length === 0) items.push({ type: 'image', src: overrides[id] || baseSrc, key: id });
   const order = galleryOrder[id];
   if (order) {
@@ -1332,6 +1357,8 @@ function renderGalleryItem() {
           <span class="compare-label after">After</span>
         </div>`;
       setTimeout(initSlider, 30);
+    } else if (it.type === 'video') {
+      media.innerHTML = `<div class="lightbox-single"><video src="${it.src}" data-key="${it.key}" autoplay loop muted playsinline onclick="galleryNext()"></video></div>`;
     } else {
       media.innerHTML = `<div class="lightbox-single"><img src="${it.src}" alt="${altText}" data-key="${it.key}" onclick="galleryNext()"></div>`;
     }
@@ -1352,7 +1379,7 @@ function renderThumbs() {
     const key = it.type === 'compare' ? it.afterKey : it.key;
     return `<div class="lb-thumb-wrap" ${canReorder ? `draggable="true" ondragstart="thumbDragStart(event,${i})" ondragover="thumbDragOver(event)" ondragleave="thumbDragLeave(event)" ondrop="thumbDrop(event,${i})" ondragend="thumbDragEnd(event)"` : ''}>
       ${canReorder ? `<button class="thumb-move-btn left" onclick="event.stopPropagation(); moveGalleryItem(${i},-1)">‹</button>` : ''}
-      <img src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" onclick="event.stopPropagation(); goToGalleryItem(${i})">
+      ${it.type === 'video' ? `<video src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" muted onclick="event.stopPropagation(); goToGalleryItem(${i})"></video>` : `<img src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" onclick="event.stopPropagation(); goToGalleryItem(${i})">`}
       ${canReorder ? `<button class="thumb-move-btn right" onclick="event.stopPropagation(); moveGalleryItem(${i},1)">›</button>` : ''}
       ${editMode && gallery.length > 1 ? `<button class="thumb-remove-btn" onclick="event.stopPropagation(); removeGalleryPhoto(${i})" title="Quitar foto">✕</button>` : ''}
     </div>`;
