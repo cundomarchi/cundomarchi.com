@@ -1154,7 +1154,7 @@ const MURALS = {
 "circle_of_nature": {
       title: 'The Circle of Nature', titleEs: 'El Círculo de la Naturaleza', loc: 'Buenos Aires, Argentina', year: '2022', size: '2.2m x 3m',
       desc: 'A parrot at rest inside a golden spiral, framed by moonlight and jungle leaves.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/circle_of_nature/circle_of_nature.jpg', key:'circle_of_nature'},{type:"image", src:'images/circle_of_nature/circle_of_nature_before.jpg', key:'circle_of_nature_before'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra1.jpg', key:'circle_of_nature_extra1'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra2.jpg', key:'circle_of_nature_extra2'}]
+      gallery: [{type:"image", src:'images/circle_of_nature/circle_of_nature.jpg', key:'circle_of_nature'},{type:"image", src:'images/circle_of_nature/circle_of_nature_before.jpg', key:'circle_of_nature_before'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra1.jpg', key:'circle_of_nature_extra1'}]
     },
 "the_seesaw": {
       title: 'The Seesaw', titleEs: 'El Subibaja', loc: 'Buenos Aires, Argentina', year: '2022', size: '5m x 2.2m',
