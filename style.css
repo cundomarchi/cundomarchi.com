@@ -225,7 +225,7 @@ body.edit-mode .edit-photo-group { display: flex; }
 .carousel-toggle-btn { position: absolute; bottom: 8px; left: 8px; right: 8px; z-index: 5; background: rgba(0,0,0,0.75); color: var(--gray); border: 1px solid rgba(255,255,255,0.3); padding: 6px 8px; font-family: var(--mono); font-size: 11px; cursor: pointer; border-radius: 4px; }
 .carousel-toggle-btn.is-on { color: var(--white); border-color: var(--red); background: rgba(190,20,20,0.55); }
 .photo-removed { background: repeating-linear-gradient(45deg, #1a1a1a, #1a1a1a 10px, #222 10px, #222 20px); min-height: 120px; }
-.photo-removed::after { content: 'Sin foto — click en 📷 Cambiar'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 30px; color: var(--gray); font-family: var(--mono); font-size: 12px; z-index: 2; pointer-events: none; }
+.photo-removed::after { content: ''; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 30px; color: var(--gray); font-family: var(--mono); font-size: 12px; z-index: 2; pointer-events: none; }
 .edit-zoom-controls { position: absolute; bottom: 8px; left: 8px; right: 8px; z-index: 5; display: none; gap: 6px; align-items: center; background: rgba(0,0,0,0.75); padding: 6px 8px; border-radius: 4px; }
 body.edit-mode .edit-zoom-controls { display: flex; }
 .edit-zoom-controls input[type="range"] { flex: 1; }
@@ -482,3 +482,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .social-icons { display: flex; gap: 22px; justify-content: center; margin-bottom: 28px; }
 .social-icons a { color: var(--gray); transition: color .15s, transform .15s; display: flex; }
 .social-icons a:hover { color: var(--white); transform: translateY(-2px); }
+
+/* indice de murales en el footer: da a Google un camino real para llegar a cada ficha */
+.mural-index { max-width: 900px; margin: 0 auto 26px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; }
+.mural-index a { color: var(--gray); font-family: var(--mono); font-size: 12px; text-decoration: none; }
+.mural-index a:hover { color: var(--white); }

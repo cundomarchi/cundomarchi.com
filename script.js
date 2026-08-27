@@ -1031,14 +1031,39 @@ function chooseWallSelect(selectEl, field) {
   const opt = selectEl.options[selectEl.selectedIndex];
   wallAnswers[field] = opt.value === '' ? '' : opt.textContent.trim();
 }
+let wallPhotoReady = null;
 function handleWallPhotoChange(input) {
   const label = document.getElementById('w-photo-name');
-  if (input.files && input.files[0]) {
-    label.textContent = input.files[0].name;
-    label.style.display = 'block';
-  } else {
-    label.style.display = 'none';
-  }
+  wallPhotoReady = null;
+  const file = input.files && input.files[0];
+  if (!file) { label.style.display = 'none'; return; }
+  label.textContent = file.name;
+  label.style.display = 'block';
+  // Phone photos are often 5-15MB; the inbox delivery caps at 10MB total, so downscale first.
+  shrinkImage(file, 1800, 0.82).then(f => { wallPhotoReady = f; }).catch(() => { wallPhotoReady = file; });
+}
+function shrinkImage(file, maxDim, quality) {
+  return new Promise((resolve, reject) => {
+    if (!/^image\//.test(file.type)) return resolve(file);
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxDim / Math.max(img.naturalWidth, img.naturalHeight));
+      if (scale === 1 && file.size <= 3 * 1024 * 1024) { URL.revokeObjectURL(url); return resolve(file); }
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.naturalWidth * scale);
+      c.height = Math.round(img.naturalHeight * scale);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(b => {
+        URL.revokeObjectURL(url);
+        if (!b) return reject(new Error('no blob'));
+        const name = file.name.replace(/\.[^.]+$/, '') + '.jpg';
+        resolve(new File([b], name, { type: 'image/jpeg' }));
+      }, 'image/jpeg', quality);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('bad image')); };
+    img.src = url;
+  });
 }
 function submitWallForm() {
   const first = document.getElementById('w-first').value.trim();
@@ -1070,8 +1095,62 @@ function submitWallForm() {
   wallAnswers.date = document.getElementById('w-date').value;
   wallAnswers.details = details;
   wallAnswers.photoName = hasPhoto ? photoInput.files[0].name : '';
-  document.getElementById('wallFormStep').classList.remove('active');
-  document.getElementById('wallFormConfirm').classList.add('active');
+  sendQuoteRequest(hasPhoto ? (wallPhotoReady || photoInput.files[0]) : null);
+}
+
+// ---- quote form delivery (FormSubmit.co, sends straight to the inbox) ----
+const QUOTE_ENDPOINT = 'https://formsubmit.co/ajax/cundomarchi@gmail.com';
+const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' };
+
+function sendQuoteRequest(photoFile) {
+  const btn = document.getElementById('wallSubmitBtn');
+  const errorMsg = document.getElementById('wallFormError');
+  const a = wallAnswers;
+  const type = TYPE_LABEL[a.artType] || a.artType || '';
+
+  const fd = new FormData();
+  fd.append('_subject', `New ${type} request from ${a.first} ${a.last} (${a.location})`);
+  fd.append('_captcha', 'false');
+  fd.append('_template', 'table');
+  fd.append('name', `${a.first} ${a.last}`);
+  fd.append('email', a.email);
+  fd.append('Phone', a.phone || '-');
+  fd.append('Location', a.location);
+  fd.append('Company', a.company || '-');
+  fd.append('Type of Art', type);
+  if (a.artType === 'mural') {
+    fd.append('Type of Wall', a.wallType || '-');
+    fd.append('Approximate Size', a.size || '-');
+  }
+  if (a.artType === 'live') fd.append('Attendance', a.attendance || '-');
+  if (a.artType === 'workshop') {
+    fd.append('Workshop Type', a.workshopType || '-');
+    fd.append('Group Size', a.groupSize || '-');
+  }
+  fd.append('Budget', a.budget || '-');
+  fd.append('Preferred Date', a.date || '-');
+  fd.append('Details', a.details || '-');
+  if (photoFile) fd.append('Wall Photo', photoFile, photoFile.name);
+
+  if (btn) { btn.disabled = true; btn.dataset.oldText = btn.textContent; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
+  errorMsg.style.display = 'none';
+
+  fetch(QUOTE_ENDPOINT, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+    .then(r => r.json().catch(() => ({})).then(j => ({ ok: r.ok, j })))
+    .then(({ ok }) => {
+      if (!ok) throw new Error('send failed');
+      document.getElementById('wallFormStep').classList.remove('active');
+      document.getElementById('wallFormConfirm').classList.add('active');
+    })
+    .catch(() => {
+      errorMsg.textContent = lang === 'es'
+        ? 'No se pudo enviar. Revisá tu conexión o escribime a cundomarchi@gmail.com'
+        : "Couldn't send. Check your connection or email me at cundomarchi@gmail.com";
+      errorMsg.style.display = 'block';
+    })
+    .finally(() => {
+      if (btn) { btn.disabled = false; btn.textContent = btn.dataset.oldText || 'Submit'; }
+    });
 }
 
 // ---- lightbox ----
@@ -1517,12 +1596,13 @@ window.addEventListener('resize', () => {
 });
 sizeHomePreviewGrid();
 
-let lang = 'en';
+let lang = (typeof window !== 'undefined' && window.__forceLang) ? window.__forceLang : 'en';
 function toggleLangMenu() {
   document.getElementById('langMenu').classList.toggle('open');
 }
 function setLang(l) {
   lang = l;
+  document.documentElement.lang = l;
   if (l === 'es') setCurrency('ARS');
   else if (l === 'en') setCurrency(geoDetectedCurrency);
   document.getElementById('langMenu').classList.remove('open');

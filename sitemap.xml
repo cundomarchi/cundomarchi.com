@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/</loc><lastmod>2026-08-27</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cundomarchi.github.io/cundomarchi.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cundomarchi.github.io/cundomarchi.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cundomarchi.github.io/cundomarchi.com/"/>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/site/og_image.jpg</image:loc><image:title>Cundo Marchi mural</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/es/</loc><lastmod>2026-08-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cundomarchi.github.io/cundomarchi.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cundomarchi.github.io/cundomarchi.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cundomarchi.github.io/cundomarchi.com/"/>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/meeting-of-styles.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/meeting_of_styles/meeting_of_styles_after.jpg</image:loc><image:title>Meeting of Styles mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/bulll-hit.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/bullshit_turin/bullshit_turin.jpg</image:loc><image:title>BULLL$HIT mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/zeus.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/zeus_athens/zeus_athens.jpg</image:loc><image:title>Zeus mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/the-king-of-kings.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/king_of_kings/king_of_kings.jpg</image:loc><image:title>The King of Kings mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/the-city-of-the-fury.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/city_of_fury/city_of_fury_extra1.jpg</image:loc><image:title>The City of the Fury mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/el-nino.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/el_nino/el_nino.jpg</image:loc><image:title>El Niño mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/the-fusion-of-life.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/fusion_of_life/fusion_of_life.jpg</image:loc><image:title>The Fusion of Life mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/down-the-ocean.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/down_ocean/down_ocean.jpg</image:loc><image:title>Down the Ocean mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/flower-octopus.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/flower_octopus/flower_octopus.jpg</image:loc><image:title>Flower Octopus mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/ocean-heart.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/ocean_heart/ocean_heart.jpg</image:loc><image:title>Ocean Heart mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/the-eyes.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/the_eyes/the_eyes.jpg</image:loc><image:title>The Eyes mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/el-eternauta.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/el_eternauta/el_eternauta.jpg</image:loc><image:title>El Eternauta mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/laos-california.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/laos_california/laos_california.jpg</image:loc><image:title>Laos &amp; California mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/tlaloc.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/tlaloc/tlaloc_extra5.jpg</image:loc><image:title>Tlaloc mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/the-circle-of-nature.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/circle_of_nature/circle_of_nature.jpg</image:loc><image:title>The Circle of Nature mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/the-seesaw.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/the_seesaw/the_seesaw.jpg</image:loc><image:title>The Seesaw mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/you-are-what-you-see.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/you_see/you_see.jpg</image:loc><image:title>You Are What You See mural by Cundo Marchi</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://cundomarchi.github.io/cundomarchi.com/mural/bear-with-shades.html</loc><lastmod>2026-08-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <image:image><image:loc>https://cundomarchi.github.io/cundomarchi.com/images/bear_virreyes/bear_virreyes.jpg</image:loc><image:title>Bear with Shades mural by Cundo Marchi</image:title></image:image>
+  </url>
+</urlset>
