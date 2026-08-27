@@ -1,0 +1,21 @@
+# basura de macOS
+.DS_Store
+._*
+Thumbs.db
+
+# fotos y videos originales sin procesar.
+# Cuando copies material nuevo a images/, corre:  python3 optimize-media.py
+# El script genera la version liviana y podes borrar el original tranquilo.
+originales/
+*.heic
+*.HEIC
+*.heif
+*.HEIF
+*.mov
+*.MOV
+*.tif
+*.TIF
+*.tiff
+*.psd
+*.ai
+*.zip
