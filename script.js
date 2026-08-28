@@ -1335,6 +1335,18 @@ let currentProductGallery = [];
 function curGallery() {
   return currentMode === 'product' ? currentProductGallery : MURALS[currentMuralId].gallery;
 }
+// Las tarjetas del portfolio son links reales a mural/<slug>.html: asi Google las
+// encuentra y se pueden abrir en pestana nueva. Con click normal, sin embargo,
+// preferimos el visor rapido en vez de recargar toda la pagina.
+const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "zeus", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "bear-with-shades"};
+
+function muralCardClick(e, id) {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return true;
+  e.preventDefault();
+  openLightbox(id);
+  return false;
+}
+
 function openLightbox(id) {
   pauseCarousel();
   currentMode = 'mural';
@@ -1348,6 +1360,8 @@ function openLightbox(id) {
   document.getElementById('lb-pills').innerHTML = m.tags.map(t => `<span class="pill tag-outline">${t}</span>`).join('');
   renderGalleryItem();
   renderThumbs();
+  const fl = document.getElementById('lb-full-link');
+  if (fl) { fl.href = 'mural/' + (MURAL_SLUGS[id] || '') + '.html'; fl.style.display = MURAL_SLUGS[id] ? '' : 'none'; }
   document.getElementById('lightbox').classList.add('open');
 }
 function initShopGallery() {

@@ -72,12 +72,21 @@ PAGE = '''<!DOCTYPE html>
 </script>
 <link rel="stylesheet" href="../style.css?v={ver}">
 <style>
-  .m-hero {{ width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#000; }}
+  /* contain, nunca cover: el mural entra entero y centrado, sea vertical u horizontal */
+  .m-hero {{ width:100%; max-height:80vh; object-fit:contain; display:block; background:#000; }}
   .m-body {{ max-width:760px; }}
   .m-body p {{ color:#d8d8d3; font-size:16px; line-height:1.75; }}
   .m-meta {{ color:var(--gray); font-family:var(--mono); font-size:14px; }}
   .m-grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-top:32px; }}
-  .m-grid img {{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:#000; }}
+  .m-grid img {{ width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }}
+  .m-ba {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }}
+  .m-ba figure {{ margin:0; }}
+  .m-ba img {{ width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }}
+  .m-ba figcaption {{
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gray); margin-top:8px;
+  }}
+  @media (max-width:560px) {{ .m-ba {{ grid-template-columns:1fr; }} }}
   .m-title {{ font-family:var(--display); font-size:clamp(30px,5vw,52px); line-height:1.05; margin:14px 0; }}
   .m-nav {{ display:flex; justify-content:space-between; gap:16px; margin-top:56px;
             border-top:1px solid #232323; padding-top:24px; font-family:var(--mono); font-size:13px; }}
@@ -129,26 +138,38 @@ for i, mid in enumerate(ids):
     title, loc, year = m['title'], m['loc'], m['year']
     size = m.get('size', '')
     gal = m.get('gallery', [])
-    imgs = []
+    compares, imgs = [], []
     for it in gal:
         if it.get('type') == 'compare':
-            imgs += [it.get('before'), it.get('after')]
-        elif it.get('type') == 'image':
-            imgs.append(it.get('src'))
-    imgs = [x for x in imgs if x]
-    hero = '../' + imgs[0] if imgs else '../images/site/og_image.jpg'
-    hero_abs = BASE + (imgs[0] if imgs else 'images/site/og_image.jpg')
+            if it.get('before') and it.get('after'):
+                compares.append((it['before'], it['after']))
+        elif it.get('type') == 'image' and it.get('src'):
+            imgs.append(it['src'])
+    # la portada siempre es el mural terminado, nunca la pared en blanco
+    cover = compares[0][1] if compares else (imgs[0] if imgs else 'images/site/og_image.jpg')
+    hero = '../' + cover
+    hero_abs = BASE + cover
+    # el resto de la galeria: lo que no se uso de portada
+    rest = [s for s in imgs if s != cover]
     hero_alt = f'{title}, mural by Cundo Marchi, {loc}, {year}'
 
     body = m.get('story') or m.get('desc') or ''
     desc_meta = (m.get('desc') or body)[:300]
 
     gallery_html = ''
-    if len(imgs) > 1:
+    # 1) el antes y despues primero, que es lo que mejor cuenta el trabajo
+    for before, after in compares:
+        gallery_html += (
+            '<div class="m-ba">\n'
+            f'    <figure><img src="../{before}" alt="{esc(title)} wall before the mural, {esc(loc)}" loading="lazy"><figcaption>Before</figcaption></figure>\n'
+            f'    <figure><img src="../{after}" alt="{esc(title)} finished mural by Cundo Marchi, {esc(loc)}" loading="lazy"><figcaption>After</figcaption></figure>\n'
+            '  </div>\n  ')
+    # 2) despues el resto de las fotos
+    if rest:
         cells = '\n'.join(
             f'    <img src="../{s}" alt="{esc(title)} mural by Cundo Marchi in {esc(loc)}, view {n+2}" loading="lazy">'
-            for n, s in enumerate(imgs[1:]))
-        gallery_html = f'<div class="m-grid">\n{cells}\n  </div>'
+            for n, s in enumerate(rest))
+        gallery_html += f'<div class="m-grid">\n{cells}\n  </div>'
 
     jsonld = json.dumps({
         "@context": "https://schema.org",
