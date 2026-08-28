@@ -902,7 +902,17 @@ function showPage(id) {
 
 // ---- carousel ----
 let slideIdx = 0;
-let carouselExcluded = { el_nino: true };
+// Fuera del carrusel del home: el banner es casi 2:1 y estas fotos son verticales,
+// asi que ahi se cortarian feo. Siguen apareciendo completas en el portfolio y en su ficha.
+let carouselExcluded = {
+  el_nino: true,
+  el_eternauta: true,
+  flower_octopus: true,
+  bear_virreyes: true,
+  meeting_of_styles: true,
+  the_seesaw: true,
+  king_of_kings: true
+};
 function muralCoverImage(id) {
   const m = MURALS[id];
   if (!m || !m.gallery || !m.gallery.length) return null;

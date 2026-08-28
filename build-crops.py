@@ -22,6 +22,7 @@ os.chdir(ROOT)
 
 CARD_ASPECT = 4 / 3      # .mural-photo en el portfolio
 HERO_ASPECT = 16 / 10    # .m-hero en la ficha del mural
+CAROUSEL_ASPECT = 2.0    # .carousel-slide del home, casi 2:1
 MARK = '/* === encuadres calculados por build-crops.py, no editar a mano === */'
 
 
@@ -107,13 +108,29 @@ for mid, src in sorted(hero_src.items()):
     if ph is not None and ph != 50:
         hero_rules.append(f'.m-hero[data-key="{mid}"] {{ object-position: center {ph}%; }}')
 
-block = MARK + '\n' + '\n'.join(card_rules + hero_rules) + '\n'
+# el carrusel del home es casi 2:1: encuadre propio para ese marco
+carousel_rules, too_tall = [], []
+for key, src in sorted(covers.items()):
+    if not os.path.isfile(src):
+        continue
+    W, H = Image.open(src).size
+    if W / H < 1.15:
+        too_tall.append((key, round(W / H, 2)))   # una foto vertical no entra en un banner ancho
+    pc = position_y(src, CAROUSEL_ASPECT)
+    if pc is not None and pc != 50:
+        carousel_rules.append(f'.carousel-slide img[data-key="{key}"] {{ object-position: center {pc}%; }}')
+
+block = MARK + '\n' + '\n'.join(card_rules + hero_rules + carousel_rules) + '\n'
 
 css = open('style.css', encoding='utf-8').read()
 css = re.sub(re.escape(MARK) + r'.*?(?=\n/\*|\Z)', '', css, flags=re.S).rstrip() + '\n\n' + block
 open('style.css', 'w', encoding='utf-8').write(css)
 
-print(f'{len(card_rules)} encuadres de tarjeta + {len(hero_rules)} de portada')
+print(f'{len(card_rules)} tarjeta + {len(hero_rules)} portada + {len(carousel_rules)} carrusel')
+print()
+print('DEMASIADO VERTICALES para el carrusel del home (marco 2:1):')
+for k, r in too_tall:
+    print(f'  {k:<24} ratio {r}')
 print()
 for key, p, fn in report:
     nota = ''
