@@ -46,18 +46,23 @@
  "width": "1.7m x 3.5m"
 }
 </script>
-<link rel="stylesheet" href="../style.css?v=80">
+<link rel="stylesheet" href="../style.css?v=81">
 <style>
-  /* contain, nunca cover: el mural entra entero y centrado, sea vertical u horizontal */
-  .m-hero { width:100%; max-height:80vh; object-fit:contain; display:block; background:#000; }
+  /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
+     proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
+     altura para que una foto muy vertical no ocupe toda la pantalla. */
+  .m-hero { display:block; margin:0 auto; max-width:100%; max-height:82vh; width:auto; height:auto; }
   .m-body { max-width:760px; }
   .m-body p { color:#d8d8d3; font-size:16px; line-height:1.75; }
   .m-meta { color:var(--gray); font-family:var(--mono); font-size:14px; }
-  .m-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-top:32px; }
-  .m-grid img { width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }
+  /* columnas tipo albañileria: cada foto conserva su alto real, sin recortes */
+  .m-grid { columns:2; column-gap:14px; margin-top:32px; }
+  .m-grid img { margin-bottom:14px; break-inside:avoid; }
+  @media (max-width:640px) { .m-grid { columns:1; } }
+  .m-grid img { width:100%; height:auto; display:block; border-radius:2px; }
   .m-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }
   .m-ba figure { margin:0; }
-  .m-ba img { width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }
+  .m-ba img { width:100%; height:auto; display:block; border-radius:2px; }
   .m-ba figcaption {
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -84,7 +89,7 @@
   <p class="m-meta">🇦🇷 Ushuaia, Tierra del Fuego, Argentina &middot; 2023 &middot; 1.7m x 3.5m</p>
   <div class="pills" style="margin-top:14px;"><span class="pill tag-outline">Mural Event</span><span class="pill tag-outline">Exterior Paint &amp; Brush</span></div>
 
-  <img class="m-hero" src="../images/king_of_kings/king_of_kings.jpg" alt="The King of Kings, mural by Cundo Marchi, Ushuaia, Tierra del Fuego, Argentina, 2023" style="margin-top:28px;">
+  <img class="m-hero" src="../images/king_of_kings/king_of_kings.jpg" data-key="king_of_kings" alt="The King of Kings, mural by Cundo Marchi, Ushuaia, Tierra del Fuego, Argentina, 2023" style="margin-top:28px;">
 
   <div class="m-body" style="margin-top:32px;">
     <p>Painted for the Emush Mural Event at the end of the world, Ushuaia, Tierra del Fuego, the southernmost tip of Argentina. The brief started as a local penguin, but I wanted to make it uniquely Argentinian: a king. In the Spanish deck used for Truco, Argentina&#x27;s classic card game, the king card is the 12, so the penguin became the 12, crowned, wrapped in a cape in the colors of the Argentine flag, holding a coin stamped with a baby penguin. The name, &quot;The King of Kings,&quot; is a nod to the year before the mural was painted, when Argentina became world champions of football. And on the morning I started painting, an Emperor Penguin, a species almost never seen this far from Antarctica, appeared in the bay of Ushuaia, as if the wall already knew what it wanted to become.</p>

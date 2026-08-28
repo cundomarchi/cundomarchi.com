@@ -72,16 +72,21 @@ PAGE = '''<!DOCTYPE html>
 </script>
 <link rel="stylesheet" href="../style.css?v={ver}">
 <style>
-  /* contain, nunca cover: el mural entra entero y centrado, sea vertical u horizontal */
-  .m-hero {{ width:100%; max-height:80vh; object-fit:contain; display:block; background:#000; }}
+  /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
+     proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
+     altura para que una foto muy vertical no ocupe toda la pantalla. */
+  .m-hero {{ display:block; margin:0 auto; max-width:100%; max-height:82vh; width:auto; height:auto; }}
   .m-body {{ max-width:760px; }}
   .m-body p {{ color:#d8d8d3; font-size:16px; line-height:1.75; }}
   .m-meta {{ color:var(--gray); font-family:var(--mono); font-size:14px; }}
-  .m-grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-top:32px; }}
-  .m-grid img {{ width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }}
+  /* columnas tipo albañileria: cada foto conserva su alto real, sin recortes */
+  .m-grid {{ columns:2; column-gap:14px; margin-top:32px; }}
+  .m-grid img {{ margin-bottom:14px; break-inside:avoid; }}
+  @media (max-width:640px) {{ .m-grid {{ columns:1; }} }}
+  .m-grid img {{ width:100%; height:auto; display:block; border-radius:2px; }}
   .m-ba {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }}
   .m-ba figure {{ margin:0; }}
-  .m-ba img {{ width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }}
+  .m-ba img {{ width:100%; height:auto; display:block; border-radius:2px; }}
   .m-ba figcaption {{
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -103,7 +108,7 @@ PAGE = '''<!DOCTYPE html>
   <p class="m-meta">{flag} {loc} &middot; {year} &middot; {size}</p>
   <div class="pills" style="margin-top:14px;">{pills}</div>
 
-  <img class="m-hero" src="{hero}" alt="{hero_alt}" style="margin-top:28px;">
+  <img class="m-hero" src="{hero}" data-key="{hero_key}" alt="{hero_alt}" style="margin-top:28px;">
 
   <div class="m-body" style="margin-top:32px;">
     <p>{body}</p>
@@ -199,7 +204,7 @@ for i, mid in enumerate(ids):
         og_title=esc(f'{title}, mural by Cundo Marchi'),
         desc=esc(desc_meta),
         url=BASE + f'mural/{slugs[mid]}.html',
-        hero=esc(hero), hero_abs=esc(hero_abs), hero_alt=esc(hero_alt),
+        hero=esc(hero), hero_abs=esc(hero_abs), hero_alt=esc(hero_alt), hero_key=esc(mid),
         jsonld=jsonld, ver=ver, nav=NAV,
         title=esc(title), flag=m.get('flag', ''), loc=esc(loc), year=esc(year), size=esc(size),
         pills=''.join(f'<span class="pill tag-outline">{esc(t)}</span>' for t in m.get('tags', [])),

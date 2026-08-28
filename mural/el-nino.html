@@ -46,18 +46,23 @@
  "width": "TBC"
 }
 </script>
-<link rel="stylesheet" href="../style.css?v=80">
+<link rel="stylesheet" href="../style.css?v=81">
 <style>
-  /* contain, nunca cover: el mural entra entero y centrado, sea vertical u horizontal */
-  .m-hero { width:100%; max-height:80vh; object-fit:contain; display:block; background:#000; }
+  /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
+     proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
+     altura para que una foto muy vertical no ocupe toda la pantalla. */
+  .m-hero { display:block; margin:0 auto; max-width:100%; max-height:82vh; width:auto; height:auto; }
   .m-body { max-width:760px; }
   .m-body p { color:#d8d8d3; font-size:16px; line-height:1.75; }
   .m-meta { color:var(--gray); font-family:var(--mono); font-size:14px; }
-  .m-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; margin-top:32px; }
-  .m-grid img { width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }
+  /* columnas tipo albañileria: cada foto conserva su alto real, sin recortes */
+  .m-grid { columns:2; column-gap:14px; margin-top:32px; }
+  .m-grid img { margin-bottom:14px; break-inside:avoid; }
+  @media (max-width:640px) { .m-grid { columns:1; } }
+  .m-grid img { width:100%; height:auto; display:block; border-radius:2px; }
   .m-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }
   .m-ba figure { margin:0; }
-  .m-ba img { width:100%; aspect-ratio:4/3; object-fit:contain; display:block; background:#000; }
+  .m-ba img { width:100%; height:auto; display:block; border-radius:2px; }
   .m-ba figcaption {
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -84,7 +89,7 @@
   <p class="m-meta">🇦🇷 San Fernando, Buenos Aires, Argentina &middot; TBC &middot; TBC</p>
   <div class="pills" style="margin-top:14px;"><span class="pill tag-outline">Street Art</span><span class="pill tag-outline">Exterior Paint &amp; Brush</span></div>
 
-  <img class="m-hero" src="../images/el_nino/el_nino.jpg" alt="El Niño, mural by Cundo Marchi, San Fernando, Buenos Aires, Argentina, TBC" style="margin-top:28px;">
+  <img class="m-hero" src="../images/el_nino/el_nino.jpg" data-key="el_nino" alt="El Niño, mural by Cundo Marchi, San Fernando, Buenos Aires, Argentina, TBC" style="margin-top:28px;">
 
   <div class="m-body" style="margin-top:32px;">
     <p>Cuando sea grande quiero ser un niño, a kid in a monkey hoodie and lightning-bolt sunglasses, a reminder to hold on to your inner child.</p>
