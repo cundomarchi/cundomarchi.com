@@ -148,8 +148,11 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .hero .sub { font-size: 15px; color: var(--gray); max-width: 520px; margin-bottom: 32px; }
 .hero .sub strong { color: var(--white); }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-.btn-primary { background: var(--red); color: var(--white); padding: 15px 34px; font-family: var(--mono); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; border: none; cursor: pointer; }
-.btn-primary:hover { background: #ff4a3f; }
+/* Botones en blanco y negro: el color lo pone la obra, no la interfaz.
+   Al pasar el mouse se invierte a fondo blanco con letra negra. */
+.btn-primary { background: transparent; color: var(--white); padding: 15px 34px; font-family: var(--mono); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; border: 1px solid #3a3a38; cursor: pointer; transition: background .18s, color .18s, border-color .18s; display: inline-block; }
+.btn-primary:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.btn-primary:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
 .btn-secondary { border: 1px solid #333; color: var(--white); padding: 15px 34px; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; background: transparent; cursor: pointer; }
 .btn-secondary:hover { border-color: var(--white); }
 
