@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found | Cundo Marchi</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<style>
+  .nf-wrap{min-height:78vh;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:40px 22px;}
+  .nf-code{font-family:var(--display);font-size:clamp(72px,18vw,150px);line-height:1;
+    color:var(--red);margin:0;}
+  .nf-title{font-family:var(--display);font-size:clamp(22px,4vw,34px);margin:14px 0 0;}
+  .nf-text{color:var(--gray);font-family:var(--mono);font-size:15px;margin:16px 0 30px;
+    max-width:46ch;line-height:1.7;}
+  .nf-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .nf-ghost{border:1px solid #333;color:var(--white);padding:15px 30px;font-family:var(--mono);
+    font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1.5px;
+    text-decoration:none;}
+  .nf-ghost:hover{border-color:var(--white);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
+    <a href="/"><img src="/images/site/cmz_logo.png" alt="Cundo Marchi" style="height:34px;display:block;"></a>
+    <a href="/#quote" class="btn-primary" style="padding:11px 22px;font-size:11px;">Get a Quote</a>
+  </div>
+</nav>
+
+<main class="nf-wrap">
+  <p class="nf-code">404</p>
+  <h1 class="nf-title" id="t">This wall is still blank</h1>
+  <p class="nf-text" id="d">
+    The page you were looking for is not here. It may have moved, or the link was mistyped.
+  </p>
+  <div class="nf-links">
+    <a href="/" class="btn-primary">Go to the site</a>
+    <a href="/#work" class="nf-ghost">See the murals</a>
+  </div>
+</main>
+
+<script>
+  // Mostrarlo en espanol si el visitante navega en espanol o venia de /es/
+  var es = (navigator.language || '').toLowerCase().indexOf('es') === 0
+        || location.pathname.indexOf('/es/') === 0;
+  if (es) {
+    document.documentElement.lang = 'es';
+    document.title = 'Pagina no encontrada | Cundo Marchi';
+    document.getElementById('t').textContent = 'Esta pared todavia esta en blanco';
+    document.getElementById('d').textContent =
+      'La pagina que buscabas no esta aca. Puede que se haya movido, o que el link este mal escrito.';
+    document.querySelector('.btn-primary.nf-links, .nf-links .btn-primary').textContent = 'Ir al sitio';
+    document.querySelector('.nf-ghost').textContent = 'Ver los murales';
+  }
+</script>
+</body>
+</html>

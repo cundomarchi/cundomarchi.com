@@ -104,7 +104,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=91">
+<link rel="stylesheet" href="style.css?v=92">
 </head>
 <body oncontextmenu="return false;">
 
@@ -113,7 +113,7 @@
   <div class="wrap">
     <div class="menu-dropdown" id="menuDropdown" style="display:flex; align-items:center; gap:16px; position:relative;">
       <button class="hamburger-btn" onclick="toggleFullMenu()" aria-label="Menu"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
-      <img src="images/site/cmz_logo.png" alt="CMZ logo" class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">
+      <img src="images/site/cmz_logo.png" alt="CMZ logo" class="nav-logo" onclick="showPage('home')" style="cursor:pointer;" width="1239" height="516">
       <div class="full-menu" id="fullMenu">
         <a onclick="navGo('home')" data-en="Home" data-es="Home">Home</a>
         <a onclick="navGo('bio')" data-en="Bio" data-es="Bio">Bio</a>
@@ -153,10 +153,10 @@
 
 
 <div class="page active" id="page-home">
-<div class="page-bg" id="bg-home"><img src="images/site/bg_home_maanso.jpg" alt="" data-key="bg_home"></div><button class="page-bg-edit-btn" onclick="editSectionBg('home', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
+<div class="page-bg" id="bg-home"><img src="images/site/bg_home_maanso.jpg" alt="" data-key="bg_home" width="2000" height="1325"></div><button class="page-bg-edit-btn" onclick="editSectionBg('home', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
 
 <section class="hero">
-  <img src="images/site/cmz_logo.png" alt="Cundo Marchi logo" class="hero-logo">
+  <img src="images/site/cmz_logo.png" alt="Cundo Marchi logo" class="hero-logo" width="1239" height="516">
   <h1 class="sr-only" data-en="Cundo Marchi, Muralist and Visual Artist painting murals worldwide" data-es="Cundo Marchi, Muralista y Artista Visual pintando murales en todo el mundo">Cundo Marchi, Muralist and Visual Artist painting murals worldwide</h1>
   <p class="sub" data-text-key="hero-sub" data-en="Visual Artist & Urban Artist, Argentinian, painting murals across 5 continents since 2012." data-es="Artista Visual y Urbano, Argentino, pintando murales en 5 continentes desde 2012.">Visual Artist &amp; Urban Artist, <strong>Argentinian</strong>, painting murals across 5 continents since 2012.</p>
   <div class="hero-ctas">
@@ -168,7 +168,7 @@
 <section class="about" id="bio">
   <div class="wrap about-grid">
     <div class="polaroid">
-      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi portrait" data-key="hero_bio_portrait">
+      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi portrait" data-key="hero_bio_portrait" width="850" height="1124">
       <div class="caption">Have a creative day!</div>
     </div>
     <div class="about-text">
@@ -198,7 +198,7 @@
     <div class="mural-grid preview-grid" id="homePreviewGrid">
       
     <article class="mural-card" data-mural-id="meeting_of_styles">
-      <a class="mural-photo" href="mural/meeting-of-styles.html" onclick="return muralCardClick(event,'meeting_of_styles')"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles, mural by Cundo Marchi, Malmö, Sweden, 2025" loading="lazy" data-key="meeting_of_styles_after"></a>
+      <a class="mural-photo" href="mural/meeting-of-styles.html" onclick="return muralCardClick(event,'meeting_of_styles')"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles, mural by Cundo Marchi, Malmö, Sweden, 2025" loading="lazy" data-key="meeting_of_styles_after" width="900" height="1200"></a>
       <a class="mural-info" href="mural/meeting-of-styles.html" onclick="return muralCardClick(event,'meeting_of_styles')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Meeting of Styles&quot;" data-es="&quot;Meeting of Styles&quot;">&quot;Meeting of Styles&quot;</h3>
@@ -207,7 +207,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="bullshit_turin">
-      <a class="mural-photo" href="mural/bulll-hit.html" onclick="return muralCardClick(event,'bullshit_turin')"><img src="images/bullshit_turin/bullshit_turin.jpg" alt="BULLL$HIT, mural by Cundo Marchi, Turin, Italy, 2025" loading="lazy" data-key="bullshit_turin"></a>
+      <a class="mural-photo" href="mural/bulll-hit.html" onclick="return muralCardClick(event,'bullshit_turin')"><img src="images/bullshit_turin/bullshit_turin.jpg" alt="BULLL$HIT, mural by Cundo Marchi, Turin, Italy, 2025" loading="lazy" data-key="bullshit_turin" width="900" height="850"></a>
       <a class="mural-info" href="mural/bulll-hit.html" onclick="return muralCardClick(event,'bullshit_turin')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;BULLL$HIT&quot;" data-es="&quot;BULLL$HIT&quot;">&quot;BULLL$HIT&quot;</h3>
@@ -216,7 +216,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="zeus_athens">
-      <a class="mural-photo" href="mural/zeus.html" onclick="return muralCardClick(event,'zeus_athens')"><img src="images/zeus_athens/zeus_athens.jpg" alt="Zeus, mural by Cundo Marchi, Athens, Greece, 2025" loading="lazy" data-key="zeus_athens"></a>
+      <a class="mural-photo" href="mural/zeus.html" onclick="return muralCardClick(event,'zeus_athens')"><img src="images/zeus_athens/zeus_athens.jpg" alt="Zeus, mural by Cundo Marchi, Athens, Greece, 2025" loading="lazy" data-key="zeus_athens" width="900" height="675"></a>
       <a class="mural-info" href="mural/zeus.html" onclick="return muralCardClick(event,'zeus_athens')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Zeus&quot;" data-es="&quot;Zeus&quot;">&quot;Zeus&quot;</h3>
@@ -225,7 +225,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="king_of_kings">
-      <a class="mural-photo" href="mural/the-king-of-kings.html" onclick="return muralCardClick(event,'king_of_kings')"><img src="images/king_of_kings/king_of_kings.jpg" alt="The King of Kings, mural by Cundo Marchi, Ushuaia, Tierra del Fuego, Argentina, 2023" loading="lazy" data-key="king_of_kings"></a>
+      <a class="mural-photo" href="mural/the-king-of-kings.html" onclick="return muralCardClick(event,'king_of_kings')"><img src="images/king_of_kings/king_of_kings.jpg" alt="The King of Kings, mural by Cundo Marchi, Ushuaia, Tierra del Fuego, Argentina, 2023" loading="lazy" data-key="king_of_kings" width="900" height="1101"></a>
       <a class="mural-info" href="mural/the-king-of-kings.html" onclick="return muralCardClick(event,'king_of_kings')">
         <div class="pills"><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;The King of Kings&quot;" data-es="&quot;El Rey de Reyes&quot;">&quot;The King of Kings&quot;</h3>
@@ -234,7 +234,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="city_of_fury">
-      <a class="mural-photo" href="mural/the-city-of-the-fury.html" onclick="return muralCardClick(event,'city_of_fury')"><img src="images/city_of_fury/city_of_fury_extra1.jpg" alt="The City of the Fury, mural by Cundo Marchi, Buenos Aires, Argentina, 2021" loading="lazy" data-key="city_of_fury_extra1"></a>
+      <a class="mural-photo" href="mural/the-city-of-the-fury.html" onclick="return muralCardClick(event,'city_of_fury')"><img src="images/city_of_fury/city_of_fury_extra1.jpg" alt="The City of the Fury, mural by Cundo Marchi, Buenos Aires, Argentina, 2021" loading="lazy" data-key="city_of_fury_extra1" width="1600" height="1600"></a>
       <a class="mural-info" href="mural/the-city-of-the-fury.html" onclick="return muralCardClick(event,'city_of_fury')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;The City of the Fury&quot;" data-es="&quot;La Ciudad de la Furia&quot;">&quot;The City of the Fury&quot;</h3>
@@ -243,7 +243,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="fusion_of_life">
-      <a class="mural-photo" href="mural/the-fusion-of-life.html" onclick="return muralCardClick(event,'fusion_of_life')"><img src="images/fusion_of_life/fusion_of_life.jpg" alt="The Fusion of Life, mural by Cundo Marchi, San Juan, Argentina, Maanso Meeting II, 2018" loading="lazy" data-key="fusion_of_life"></a>
+      <a class="mural-photo" href="mural/the-fusion-of-life.html" onclick="return muralCardClick(event,'fusion_of_life')"><img src="images/fusion_of_life/fusion_of_life.jpg" alt="The Fusion of Life, mural by Cundo Marchi, San Juan, Argentina, Maanso Meeting II, 2018" loading="lazy" data-key="fusion_of_life" width="900" height="402"></a>
       <a class="mural-info" href="mural/the-fusion-of-life.html" onclick="return muralCardClick(event,'fusion_of_life')">
         <div class="pills"><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Mix Media</span></div>
         <h3 data-en="&quot;The Fusion of Life&quot;" data-es="&quot;La Fusión de la Vida&quot;">&quot;The Fusion of Life&quot;</h3>
@@ -252,7 +252,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="down_ocean">
-      <a class="mural-photo" href="mural/down-the-ocean.html" onclick="return muralCardClick(event,'down_ocean')"><img src="images/down_ocean/down_ocean.jpg" alt="Down the Ocean, mural by Cundo Marchi, Bicentennial Tunnel, Tigre, Buenos Aires, Argentina, 2019" loading="lazy" data-key="down_ocean_1"></a>
+      <a class="mural-photo" href="mural/down-the-ocean.html" onclick="return muralCardClick(event,'down_ocean')"><img src="images/down_ocean/down_ocean.jpg" alt="Down the Ocean, mural by Cundo Marchi, Bicentennial Tunnel, Tigre, Buenos Aires, Argentina, 2019" loading="lazy" data-key="down_ocean_1" width="1600" height="1600"></a>
       <a class="mural-info" href="mural/down-the-ocean.html" onclick="return muralCardClick(event,'down_ocean')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Mix Media</span></div>
         <h3 data-en="&quot;Down the Ocean&quot;" data-es="&quot;Bajo el Océano&quot;">&quot;Down the Ocean&quot;</h3>
@@ -261,7 +261,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="flower_octopus">
-      <a class="mural-photo" href="mural/flower-octopus.html" onclick="return muralCardClick(event,'flower_octopus')"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus, mural by Cundo Marchi, Buenos Aires, Argentina, 2018" loading="lazy" data-key="flower_octopus"></a>
+      <a class="mural-photo" href="mural/flower-octopus.html" onclick="return muralCardClick(event,'flower_octopus')"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus, mural by Cundo Marchi, Buenos Aires, Argentina, 2018" loading="lazy" data-key="flower_octopus" width="1066" height="1600"></a>
       <a class="mural-info" href="mural/flower-octopus.html" onclick="return muralCardClick(event,'flower_octopus')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;Flower Octopus&quot;" data-es="&quot;Pulpo Flor&quot;">&quot;Flower Octopus&quot;</h3>
@@ -270,7 +270,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="ocean_heart">
-      <a class="mural-photo" href="mural/ocean-heart.html" onclick="return muralCardClick(event,'ocean_heart')"><img src="images/ocean_heart/ocean_heart.jpg" alt="Ocean Heart, mural by Cundo Marchi, Bonfil Urban Mural Fest, Acapulco, Mexico, 2022" loading="lazy" data-key="ocean_heart"></a>
+      <a class="mural-photo" href="mural/ocean-heart.html" onclick="return muralCardClick(event,'ocean_heart')"><img src="images/ocean_heart/ocean_heart.jpg" alt="Ocean Heart, mural by Cundo Marchi, Bonfil Urban Mural Fest, Acapulco, Mexico, 2022" loading="lazy" data-key="ocean_heart" width="900" height="625"></a>
       <a class="mural-info" href="mural/ocean-heart.html" onclick="return muralCardClick(event,'ocean_heart')">
         <div class="pills"><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Ocean Heart&quot;" data-es="&quot;Corazón del Océano&quot;">&quot;Ocean Heart&quot;</h3>
@@ -279,7 +279,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="the_eyes">
-      <a class="mural-photo" href="mural/the-eyes.html" onclick="return muralCardClick(event,'the_eyes')"><img src="images/the_eyes/the_eyes.jpg" alt="The Eyes, mural by Cundo Marchi, Buenos Aires, Argentina, 2023" loading="lazy" data-key="the_eyes"></a>
+      <a class="mural-photo" href="mural/the-eyes.html" onclick="return muralCardClick(event,'the_eyes')"><img src="images/the_eyes/the_eyes.jpg" alt="The Eyes, mural by Cundo Marchi, Buenos Aires, Argentina, 2023" loading="lazy" data-key="the_eyes" width="900" height="639"></a>
       <a class="mural-info" href="mural/the-eyes.html" onclick="return muralCardClick(event,'the_eyes')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;The Eyes&quot;" data-es="&quot;Los Ojos&quot;">&quot;The Eyes&quot;</h3>
@@ -288,7 +288,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="el_eternauta">
-      <a class="mural-photo" href="mural/el-eternauta.html" onclick="return muralCardClick(event,'el_eternauta')"><img src="images/el_eternauta/el_eternauta.jpg" alt="El Eternauta, mural by Cundo Marchi, Buenos Aires, Argentina, 2024" loading="lazy" data-key="el_eternauta"></a>
+      <a class="mural-photo" href="mural/el-eternauta.html" onclick="return muralCardClick(event,'el_eternauta')"><img src="images/el_eternauta/el_eternauta.jpg" alt="El Eternauta, mural by Cundo Marchi, Buenos Aires, Argentina, 2024" loading="lazy" data-key="el_eternauta" width="900" height="1600"></a>
       <a class="mural-info" href="mural/el-eternauta.html" onclick="return muralCardClick(event,'el_eternauta')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;El Eternauta&quot;" data-es="&quot;El Eternauta&quot;">&quot;El Eternauta&quot;</h3>
@@ -297,7 +297,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="laos_california">
-      <a class="mural-photo" href="mural/laos-california.html" onclick="return muralCardClick(event,'laos_california')"><img src="images/laos_california/laos_california.jpg" alt="Laos & California, mural by Cundo Marchi, California, USA, 2022" loading="lazy" data-key="laos_california"></a>
+      <a class="mural-photo" href="mural/laos-california.html" onclick="return muralCardClick(event,'laos_california')"><img src="images/laos_california/laos_california.jpg" alt="Laos & California, mural by Cundo Marchi, California, USA, 2022" loading="lazy" data-key="laos_california" width="900" height="472"></a>
       <a class="mural-info" href="mural/laos-california.html" onclick="return muralCardClick(event,'laos_california')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Mix Media</span></div>
         <h3 data-en="&quot;Laos & California&quot;" data-es="&quot;Laos & California&quot;">&quot;Laos & California&quot;</h3>
@@ -306,7 +306,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="tlaloc">
-      <a class="mural-photo" href="mural/tlaloc.html" onclick="return muralCardClick(event,'tlaloc')"><img src="images/tlaloc/tlaloc.jpg" alt="Tlaloc, mural by Cundo Marchi, Playa del Carmen, Quintana Roo, Mexico, 2022" loading="lazy" data-key="tlaloc"></a>
+      <a class="mural-photo" href="mural/tlaloc.html" onclick="return muralCardClick(event,'tlaloc')"><img src="images/tlaloc/tlaloc.jpg" alt="Tlaloc, mural by Cundo Marchi, Playa del Carmen, Quintana Roo, Mexico, 2022" loading="lazy" data-key="tlaloc" width="900" height="506"></a>
       <a class="mural-info" href="mural/tlaloc.html" onclick="return muralCardClick(event,'tlaloc')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Tlaloc&quot;" data-es="&quot;Tlaloc&quot;">&quot;Tlaloc&quot;</h3>
@@ -315,7 +315,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="circle_of_nature">
-      <a class="mural-photo" href="mural/the-circle-of-nature.html" onclick="return muralCardClick(event,'circle_of_nature')"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="The Circle of Nature, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="circle_of_nature"></a>
+      <a class="mural-photo" href="mural/the-circle-of-nature.html" onclick="return muralCardClick(event,'circle_of_nature')"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="The Circle of Nature, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="circle_of_nature" width="1600" height="1066"></a>
       <a class="mural-info" href="mural/the-circle-of-nature.html" onclick="return muralCardClick(event,'circle_of_nature')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;The Circle of Nature&quot;" data-es="&quot;El Círculo de la Naturaleza&quot;">&quot;The Circle of Nature&quot;</h3>
@@ -324,7 +324,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="the_seesaw">
-      <a class="mural-photo" href="mural/the-seesaw.html" onclick="return muralCardClick(event,'the_seesaw')"><img src="images/the_seesaw/the_seesaw.jpg" alt="The Seesaw, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="the_seesaw"></a>
+      <a class="mural-photo" href="mural/the-seesaw.html" onclick="return muralCardClick(event,'the_seesaw')"><img src="images/the_seesaw/the_seesaw.jpg" alt="The Seesaw, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="the_seesaw" width="900" height="1200"></a>
       <a class="mural-info" href="mural/the-seesaw.html" onclick="return muralCardClick(event,'the_seesaw')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;The Seesaw&quot;" data-es="&quot;El Subibaja&quot;">&quot;The Seesaw&quot;</h3>
@@ -333,7 +333,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="you_see">
-      <a class="mural-photo" href="mural/you-are-what-you-see.html" onclick="return muralCardClick(event,'you_see')"><img src="images/you_see/you_see.jpg" alt="You Are What You See, mural by Cundo Marchi, Sierre, Switzerland, 2025" loading="lazy" data-key="you_see"></a>
+      <a class="mural-photo" href="mural/you-are-what-you-see.html" onclick="return muralCardClick(event,'you_see')"><img src="images/you_see/you_see.jpg" alt="You Are What You See, mural by Cundo Marchi, Sierre, Switzerland, 2025" loading="lazy" data-key="you_see" width="900" height="640"></a>
       <a class="mural-info" href="mural/you-are-what-you-see.html" onclick="return muralCardClick(event,'you_see')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;You Are What You See&quot;" data-es="&quot;Sos Lo Que Ves&quot;">&quot;You Are What You See&quot;</h3>
@@ -342,7 +342,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="bear_virreyes">
-      <a class="mural-photo" href="mural/bear-with-shades.html" onclick="return muralCardClick(event,'bear_virreyes')"><img src="images/bear_virreyes/bear_virreyes.jpg" alt="Bear with Shades, mural by Cundo Marchi, Virreyes, Buenos Aires, Argentina, 2025" loading="lazy" data-key="bear_virreyes"></a>
+      <a class="mural-photo" href="mural/bear-with-shades.html" onclick="return muralCardClick(event,'bear_virreyes')"><img src="images/bear_virreyes/bear_virreyes.jpg" alt="Bear with Shades, mural by Cundo Marchi, Virreyes, Buenos Aires, Argentina, 2025" loading="lazy" data-key="bear_virreyes" width="900" height="1200"></a>
       <a class="mural-info" href="mural/bear-with-shades.html" onclick="return muralCardClick(event,'bear_virreyes')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Bear with Shades&quot;" data-es="&quot;Oso con Lentes&quot;">&quot;Bear with Shades&quot;</h3>
@@ -359,11 +359,11 @@
 
 </div><!-- /page-home -->
 <div class="page" id="page-bio">
-<div class="page-bg" id="bg-bio"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles mural, Malmo, Sweden" data-key="bg_bio"></div><button class="page-bg-edit-btn" onclick="editSectionBg('bio', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
+<div class="page-bg" id="bg-bio"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles mural, Malmo, Sweden" data-key="bg_bio" width="900" height="1200"></div><button class="page-bg-edit-btn" onclick="editSectionBg('bio', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
 <section class="section about-full" id="bio-full">
   <div class="wrap about-grid">
     <div class="polaroid">
-      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi portrait" data-key="hero_bio_portrait">
+      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi portrait" data-key="hero_bio_portrait" width="850" height="1124">
       <div class="caption">Have a creative day!</div>
     </div>
     <div class="about-text">
@@ -431,7 +431,7 @@
 
 
 <div class="page" id="page-work">
-<div class="page-bg" id="bg-work"><img src="images/bullshit_turin/bullshit_turin.jpg" alt="" data-key="bg_work"></div><button class="page-bg-edit-btn" onclick="editSectionBg('work', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
+<div class="page-bg" id="bg-work"><img src="images/bullshit_turin/bullshit_turin.jpg" alt="" data-key="bg_work" width="900" height="850"></div><button class="page-bg-edit-btn" onclick="editSectionBg('work', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
 <section class="section" id="work">
   <div class="wrap">
     <span class="eyebrow" data-en="Selected Work" data-es="Trabajos Seleccionados">Selected Work</span>
@@ -441,7 +441,7 @@
     <div class="mural-grid">
       
     <article class="mural-card" data-mural-id="meeting_of_styles">
-      <a class="mural-photo" href="mural/meeting-of-styles.html" onclick="return muralCardClick(event,'meeting_of_styles')"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles, mural by Cundo Marchi, Malmö, Sweden, 2025" loading="lazy" data-key="meeting_of_styles_after"></a>
+      <a class="mural-photo" href="mural/meeting-of-styles.html" onclick="return muralCardClick(event,'meeting_of_styles')"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles, mural by Cundo Marchi, Malmö, Sweden, 2025" loading="lazy" data-key="meeting_of_styles_after" width="900" height="1200"></a>
       <a class="mural-info" href="mural/meeting-of-styles.html" onclick="return muralCardClick(event,'meeting_of_styles')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Meeting of Styles&quot;" data-es="&quot;Meeting of Styles&quot;">&quot;Meeting of Styles&quot;</h3>
@@ -450,7 +450,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="bullshit_turin">
-      <a class="mural-photo" href="mural/bulll-hit.html" onclick="return muralCardClick(event,'bullshit_turin')"><img src="images/bullshit_turin/bullshit_turin.jpg" alt="BULLL$HIT, mural by Cundo Marchi, Turin, Italy, 2025" loading="lazy" data-key="bullshit_turin"></a>
+      <a class="mural-photo" href="mural/bulll-hit.html" onclick="return muralCardClick(event,'bullshit_turin')"><img src="images/bullshit_turin/bullshit_turin.jpg" alt="BULLL$HIT, mural by Cundo Marchi, Turin, Italy, 2025" loading="lazy" data-key="bullshit_turin" width="900" height="850"></a>
       <a class="mural-info" href="mural/bulll-hit.html" onclick="return muralCardClick(event,'bullshit_turin')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;BULLL$HIT&quot;" data-es="&quot;BULLL$HIT&quot;">&quot;BULLL$HIT&quot;</h3>
@@ -459,7 +459,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="zeus_athens">
-      <a class="mural-photo" href="mural/zeus.html" onclick="return muralCardClick(event,'zeus_athens')"><img src="images/zeus_athens/zeus_athens.jpg" alt="Zeus, mural by Cundo Marchi, Athens, Greece, 2025" loading="lazy" data-key="zeus_athens"></a>
+      <a class="mural-photo" href="mural/zeus.html" onclick="return muralCardClick(event,'zeus_athens')"><img src="images/zeus_athens/zeus_athens.jpg" alt="Zeus, mural by Cundo Marchi, Athens, Greece, 2025" loading="lazy" data-key="zeus_athens" width="900" height="675"></a>
       <a class="mural-info" href="mural/zeus.html" onclick="return muralCardClick(event,'zeus_athens')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Zeus&quot;" data-es="&quot;Zeus&quot;">&quot;Zeus&quot;</h3>
@@ -468,7 +468,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="king_of_kings">
-      <a class="mural-photo" href="mural/the-king-of-kings.html" onclick="return muralCardClick(event,'king_of_kings')"><img src="images/king_of_kings/king_of_kings.jpg" alt="The King of Kings, mural by Cundo Marchi, Ushuaia, Tierra del Fuego, Argentina, 2023" loading="lazy" data-key="king_of_kings"></a>
+      <a class="mural-photo" href="mural/the-king-of-kings.html" onclick="return muralCardClick(event,'king_of_kings')"><img src="images/king_of_kings/king_of_kings.jpg" alt="The King of Kings, mural by Cundo Marchi, Ushuaia, Tierra del Fuego, Argentina, 2023" loading="lazy" data-key="king_of_kings" width="900" height="1101"></a>
       <a class="mural-info" href="mural/the-king-of-kings.html" onclick="return muralCardClick(event,'king_of_kings')">
         <div class="pills"><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;The King of Kings&quot;" data-es="&quot;El Rey de Reyes&quot;">&quot;The King of Kings&quot;</h3>
@@ -477,7 +477,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="city_of_fury">
-      <a class="mural-photo" href="mural/the-city-of-the-fury.html" onclick="return muralCardClick(event,'city_of_fury')"><img src="images/city_of_fury/city_of_fury_extra1.jpg" alt="The City of the Fury, mural by Cundo Marchi, Buenos Aires, Argentina, 2021" loading="lazy" data-key="city_of_fury_extra1"></a>
+      <a class="mural-photo" href="mural/the-city-of-the-fury.html" onclick="return muralCardClick(event,'city_of_fury')"><img src="images/city_of_fury/city_of_fury_extra1.jpg" alt="The City of the Fury, mural by Cundo Marchi, Buenos Aires, Argentina, 2021" loading="lazy" data-key="city_of_fury_extra1" width="1600" height="1600"></a>
       <a class="mural-info" href="mural/the-city-of-the-fury.html" onclick="return muralCardClick(event,'city_of_fury')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;The City of the Fury&quot;" data-es="&quot;La Ciudad de la Furia&quot;">&quot;The City of the Fury&quot;</h3>
@@ -486,7 +486,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="fusion_of_life">
-      <a class="mural-photo" href="mural/the-fusion-of-life.html" onclick="return muralCardClick(event,'fusion_of_life')"><img src="images/fusion_of_life/fusion_of_life.jpg" alt="The Fusion of Life, mural by Cundo Marchi, San Juan, Argentina, Maanso Meeting II, 2018" loading="lazy" data-key="fusion_of_life"></a>
+      <a class="mural-photo" href="mural/the-fusion-of-life.html" onclick="return muralCardClick(event,'fusion_of_life')"><img src="images/fusion_of_life/fusion_of_life.jpg" alt="The Fusion of Life, mural by Cundo Marchi, San Juan, Argentina, Maanso Meeting II, 2018" loading="lazy" data-key="fusion_of_life" width="900" height="402"></a>
       <a class="mural-info" href="mural/the-fusion-of-life.html" onclick="return muralCardClick(event,'fusion_of_life')">
         <div class="pills"><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Mix Media</span></div>
         <h3 data-en="&quot;The Fusion of Life&quot;" data-es="&quot;La Fusión de la Vida&quot;">&quot;The Fusion of Life&quot;</h3>
@@ -495,7 +495,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="down_ocean">
-      <a class="mural-photo" href="mural/down-the-ocean.html" onclick="return muralCardClick(event,'down_ocean')"><img src="images/down_ocean/down_ocean.jpg" alt="Down the Ocean, mural by Cundo Marchi, Bicentennial Tunnel, Tigre, Buenos Aires, Argentina, 2019" loading="lazy" data-key="down_ocean_1"></a>
+      <a class="mural-photo" href="mural/down-the-ocean.html" onclick="return muralCardClick(event,'down_ocean')"><img src="images/down_ocean/down_ocean.jpg" alt="Down the Ocean, mural by Cundo Marchi, Bicentennial Tunnel, Tigre, Buenos Aires, Argentina, 2019" loading="lazy" data-key="down_ocean_1" width="1600" height="1600"></a>
       <a class="mural-info" href="mural/down-the-ocean.html" onclick="return muralCardClick(event,'down_ocean')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Mix Media</span></div>
         <h3 data-en="&quot;Down the Ocean&quot;" data-es="&quot;Bajo el Océano&quot;">&quot;Down the Ocean&quot;</h3>
@@ -504,7 +504,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="flower_octopus">
-      <a class="mural-photo" href="mural/flower-octopus.html" onclick="return muralCardClick(event,'flower_octopus')"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus, mural by Cundo Marchi, Buenos Aires, Argentina, 2018" loading="lazy" data-key="flower_octopus"></a>
+      <a class="mural-photo" href="mural/flower-octopus.html" onclick="return muralCardClick(event,'flower_octopus')"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus, mural by Cundo Marchi, Buenos Aires, Argentina, 2018" loading="lazy" data-key="flower_octopus" width="1066" height="1600"></a>
       <a class="mural-info" href="mural/flower-octopus.html" onclick="return muralCardClick(event,'flower_octopus')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;Flower Octopus&quot;" data-es="&quot;Pulpo Flor&quot;">&quot;Flower Octopus&quot;</h3>
@@ -513,7 +513,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="ocean_heart">
-      <a class="mural-photo" href="mural/ocean-heart.html" onclick="return muralCardClick(event,'ocean_heart')"><img src="images/ocean_heart/ocean_heart.jpg" alt="Ocean Heart, mural by Cundo Marchi, Bonfil Urban Mural Fest, Acapulco, Mexico, 2022" loading="lazy" data-key="ocean_heart"></a>
+      <a class="mural-photo" href="mural/ocean-heart.html" onclick="return muralCardClick(event,'ocean_heart')"><img src="images/ocean_heart/ocean_heart.jpg" alt="Ocean Heart, mural by Cundo Marchi, Bonfil Urban Mural Fest, Acapulco, Mexico, 2022" loading="lazy" data-key="ocean_heart" width="900" height="625"></a>
       <a class="mural-info" href="mural/ocean-heart.html" onclick="return muralCardClick(event,'ocean_heart')">
         <div class="pills"><span class="pill tag-fill">Mural Event</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Ocean Heart&quot;" data-es="&quot;Corazón del Océano&quot;">&quot;Ocean Heart&quot;</h3>
@@ -522,7 +522,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="the_eyes">
-      <a class="mural-photo" href="mural/the-eyes.html" onclick="return muralCardClick(event,'the_eyes')"><img src="images/the_eyes/the_eyes.jpg" alt="The Eyes, mural by Cundo Marchi, Buenos Aires, Argentina, 2023" loading="lazy" data-key="the_eyes"></a>
+      <a class="mural-photo" href="mural/the-eyes.html" onclick="return muralCardClick(event,'the_eyes')"><img src="images/the_eyes/the_eyes.jpg" alt="The Eyes, mural by Cundo Marchi, Buenos Aires, Argentina, 2023" loading="lazy" data-key="the_eyes" width="900" height="639"></a>
       <a class="mural-info" href="mural/the-eyes.html" onclick="return muralCardClick(event,'the_eyes')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;The Eyes&quot;" data-es="&quot;Los Ojos&quot;">&quot;The Eyes&quot;</h3>
@@ -531,7 +531,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="el_eternauta">
-      <a class="mural-photo" href="mural/el-eternauta.html" onclick="return muralCardClick(event,'el_eternauta')"><img src="images/el_eternauta/el_eternauta.jpg" alt="El Eternauta, mural by Cundo Marchi, Buenos Aires, Argentina, 2024" loading="lazy" data-key="el_eternauta"></a>
+      <a class="mural-photo" href="mural/el-eternauta.html" onclick="return muralCardClick(event,'el_eternauta')"><img src="images/el_eternauta/el_eternauta.jpg" alt="El Eternauta, mural by Cundo Marchi, Buenos Aires, Argentina, 2024" loading="lazy" data-key="el_eternauta" width="900" height="1600"></a>
       <a class="mural-info" href="mural/el-eternauta.html" onclick="return muralCardClick(event,'el_eternauta')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;El Eternauta&quot;" data-es="&quot;El Eternauta&quot;">&quot;El Eternauta&quot;</h3>
@@ -540,7 +540,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="laos_california">
-      <a class="mural-photo" href="mural/laos-california.html" onclick="return muralCardClick(event,'laos_california')"><img src="images/laos_california/laos_california.jpg" alt="Laos & California, mural by Cundo Marchi, California, USA, 2022" loading="lazy" data-key="laos_california"></a>
+      <a class="mural-photo" href="mural/laos-california.html" onclick="return muralCardClick(event,'laos_california')"><img src="images/laos_california/laos_california.jpg" alt="Laos & California, mural by Cundo Marchi, California, USA, 2022" loading="lazy" data-key="laos_california" width="900" height="472"></a>
       <a class="mural-info" href="mural/laos-california.html" onclick="return muralCardClick(event,'laos_california')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Mix Media</span></div>
         <h3 data-en="&quot;Laos & California&quot;" data-es="&quot;Laos & California&quot;">&quot;Laos & California&quot;</h3>
@@ -549,7 +549,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="tlaloc">
-      <a class="mural-photo" href="mural/tlaloc.html" onclick="return muralCardClick(event,'tlaloc')"><img src="images/tlaloc/tlaloc.jpg" alt="Tlaloc, mural by Cundo Marchi, Playa del Carmen, Quintana Roo, Mexico, 2022" loading="lazy" data-key="tlaloc"></a>
+      <a class="mural-photo" href="mural/tlaloc.html" onclick="return muralCardClick(event,'tlaloc')"><img src="images/tlaloc/tlaloc.jpg" alt="Tlaloc, mural by Cundo Marchi, Playa del Carmen, Quintana Roo, Mexico, 2022" loading="lazy" data-key="tlaloc" width="900" height="506"></a>
       <a class="mural-info" href="mural/tlaloc.html" onclick="return muralCardClick(event,'tlaloc')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Tlaloc&quot;" data-es="&quot;Tlaloc&quot;">&quot;Tlaloc&quot;</h3>
@@ -558,7 +558,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="circle_of_nature">
-      <a class="mural-photo" href="mural/the-circle-of-nature.html" onclick="return muralCardClick(event,'circle_of_nature')"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="The Circle of Nature, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="circle_of_nature"></a>
+      <a class="mural-photo" href="mural/the-circle-of-nature.html" onclick="return muralCardClick(event,'circle_of_nature')"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="The Circle of Nature, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="circle_of_nature" width="1600" height="1066"></a>
       <a class="mural-info" href="mural/the-circle-of-nature.html" onclick="return muralCardClick(event,'circle_of_nature')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Exterior Paint & Brush</span></div>
         <h3 data-en="&quot;The Circle of Nature&quot;" data-es="&quot;El Círculo de la Naturaleza&quot;">&quot;The Circle of Nature&quot;</h3>
@@ -567,7 +567,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="the_seesaw">
-      <a class="mural-photo" href="mural/the-seesaw.html" onclick="return muralCardClick(event,'the_seesaw')"><img src="images/the_seesaw/the_seesaw.jpg" alt="The Seesaw, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="the_seesaw"></a>
+      <a class="mural-photo" href="mural/the-seesaw.html" onclick="return muralCardClick(event,'the_seesaw')"><img src="images/the_seesaw/the_seesaw.jpg" alt="The Seesaw, mural by Cundo Marchi, Buenos Aires, Argentina, 2022" loading="lazy" data-key="the_seesaw" width="900" height="1200"></a>
       <a class="mural-info" href="mural/the-seesaw.html" onclick="return muralCardClick(event,'the_seesaw')">
         <div class="pills"><span class="pill tag-fill">Commission Work</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;The Seesaw&quot;" data-es="&quot;El Subibaja&quot;">&quot;The Seesaw&quot;</h3>
@@ -576,7 +576,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="you_see">
-      <a class="mural-photo" href="mural/you-are-what-you-see.html" onclick="return muralCardClick(event,'you_see')"><img src="images/you_see/you_see.jpg" alt="You Are What You See, mural by Cundo Marchi, Sierre, Switzerland, 2025" loading="lazy" data-key="you_see"></a>
+      <a class="mural-photo" href="mural/you-are-what-you-see.html" onclick="return muralCardClick(event,'you_see')"><img src="images/you_see/you_see.jpg" alt="You Are What You See, mural by Cundo Marchi, Sierre, Switzerland, 2025" loading="lazy" data-key="you_see" width="900" height="640"></a>
       <a class="mural-info" href="mural/you-are-what-you-see.html" onclick="return muralCardClick(event,'you_see')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;You Are What You See&quot;" data-es="&quot;Sos Lo Que Ves&quot;">&quot;You Are What You See&quot;</h3>
@@ -585,7 +585,7 @@
     </article>
 
     <article class="mural-card" data-mural-id="bear_virreyes">
-      <a class="mural-photo" href="mural/bear-with-shades.html" onclick="return muralCardClick(event,'bear_virreyes')"><img src="images/bear_virreyes/bear_virreyes.jpg" alt="Bear with Shades, mural by Cundo Marchi, Virreyes, Buenos Aires, Argentina, 2025" loading="lazy" data-key="bear_virreyes"></a>
+      <a class="mural-photo" href="mural/bear-with-shades.html" onclick="return muralCardClick(event,'bear_virreyes')"><img src="images/bear_virreyes/bear_virreyes.jpg" alt="Bear with Shades, mural by Cundo Marchi, Virreyes, Buenos Aires, Argentina, 2025" loading="lazy" data-key="bear_virreyes" width="900" height="1200"></a>
       <a class="mural-info" href="mural/bear-with-shades.html" onclick="return muralCardClick(event,'bear_virreyes')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Spray Paint</span></div>
         <h3 data-en="&quot;Bear with Shades&quot;" data-es="&quot;Oso con Lentes&quot;">&quot;Bear with Shades&quot;</h3>
@@ -593,7 +593,7 @@
       </a>
     </article>
     <article class="mural-card" data-mural-id="el_nino">
-      <a class="mural-photo" href="mural/el-nino.html" onclick="return muralCardClick(event,'el_nino')"><img src="images/el_nino/el_nino.jpg" alt="El Niño, mural by Cundo Marchi, San Fernando, Buenos Aires, Argentina, TBC" loading="lazy" data-key="el_nino"></a>
+      <a class="mural-photo" href="mural/el-nino.html" onclick="return muralCardClick(event,'el_nino')"><img src="images/el_nino/el_nino.jpg" alt="El Niño, mural by Cundo Marchi, San Fernando, Buenos Aires, Argentina, TBC" loading="lazy" data-key="el_nino" width="1600" height="1204"></a>
       <a class="mural-info" href="mural/el-nino.html" onclick="return muralCardClick(event,'el_nino')">
         <div class="pills"><span class="pill tag-fill">Street Art</span><span class="pill tag-outline">Exterior Paint &amp; Brush</span></div>
         <h3 data-en="&quot;El Niño&quot;" data-es="&quot;El Niño&quot;">&quot;El Niño&quot;</h3>
@@ -625,7 +625,7 @@
 
 
 <div class="page" id="page-live">
-<div class="page-bg" id="bg-live"><img src="images/live-painting/bg_live.jpg" alt="" data-key="bg_live"></div><button class="page-bg-edit-btn" onclick="editSectionBg('live', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
+<div class="page-bg" id="bg-live"><img src="images/live-painting/bg_live.jpg" alt="" data-key="bg_live" width="900" height="599"></div><button class="page-bg-edit-btn" onclick="editSectionBg('live', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
 <section class="section" id="live">
   <div class="wrap">
     <span class="eyebrow" data-en="What I Offer" data-es="Lo Que Ofrezco">What I Offer</span>
@@ -655,16 +655,16 @@
       <p class="step-label" style="margin-top:8px;" data-en="Real examples, before &amp; after" data-es="Ejemplos reales, antes y después">Real examples, before &amp; after</p>
       <div class="mural-compare-preview" onclick="openLightbox('flower_octopus')">
         <div class="mcp-imgs">
-          <div class="mcp-img"><img src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
+          <div class="mcp-img"><img src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before" width="1600" height="1212"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
+          <div class="mcp-img"><img src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus" width="1066" height="1600"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
         </div>
         <p class="mcp-caption" data-en="&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;Pulpo Flor&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after</p>
       </div>
 
       <div class="mural-compare-preview" style="margin-top:24px;" onclick="openLightbox('circle_of_nature')">
         <div class="mcp-imgs">
-          <div class="mcp-img"><img src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
+          <div class="mcp-img"><img src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before" width="1600" height="1066"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
+          <div class="mcp-img"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature" width="1600" height="1066"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
         </div>
         <p class="mcp-caption" data-en="&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;El Círculo de la Naturaleza&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after</p>
       </div>
@@ -681,9 +681,9 @@
         <h3 style="font-size:16px;" data-en="Art Basel Week, Wynwood, Miami" data-es="Art Basel Week, Wynwood, Miami">Art Basel Week, Wynwood, Miami</h3>
         <p class="live-event-meta" data-en="Live painting canvas for Fume Vapors, 1-800 Lucky · 2024" data-es="Lienzo en vivo para Fume Vapors, 1-800 Lucky · 2024">Live painting canvas for Fume Vapors, 1-800 Lucky · 2024</p>
         <div class="live-gallery">
-          <figure><img src="images/live-painting/live_basel_night1.jpg" alt="Cundo Marchi painting live under blacklight, Art Basel Week, Miami" data-key="live_basel_night1"><figcaption data-en="Painting live under blacklight" data-es="Pintando en vivo con luz negra">Painting live under blacklight</figcaption></figure>
-          <figure><img src="images/live-painting/live_basel_night2.jpg" alt="Art Basel live painting 2" data-key="live_basel_night2"><figcaption data-en="Canvas in progress" data-es="Lienzo en proceso">Canvas in progress</figcaption></figure>
-          <figure><img src="images/live-painting/live_basel_night3.jpg" alt="Art Basel live painting 3" data-key="live_basel_night3"><figcaption data-en="Finished piece for Fume Vapors" data-es="Pieza terminada para Fume Vapors">Finished piece for Fume Vapors</figcaption></figure>
+          <figure><img src="images/live-painting/live_basel_night1.jpg" alt="Cundo Marchi painting live under blacklight, Art Basel Week, Miami" data-key="live_basel_night1" width="900" height="599"><figcaption data-en="Painting live under blacklight" data-es="Pintando en vivo con luz negra">Painting live under blacklight</figcaption></figure>
+          <figure><img src="images/live-painting/live_basel_night2.jpg" alt="Art Basel live painting 2" data-key="live_basel_night2" width="698" height="1047"><figcaption data-en="Canvas in progress" data-es="Lienzo en proceso">Canvas in progress</figcaption></figure>
+          <figure><img src="images/live-painting/live_basel_night3.jpg" alt="Art Basel live painting 3" data-key="live_basel_night3" width="900" height="1200"><figcaption data-en="Finished piece for Fume Vapors" data-es="Pieza terminada para Fume Vapors">Finished piece for Fume Vapors</figcaption></figure>
         </div>
         <p class="live-event-meta" style="margin-top:14px;" data-en="Also on the same trip: Chiquita Day for Chiquita Banana, and the Tik Tok Live Fest, both live painting murals in Miami, 2024." data-es="También en el mismo viaje: Chiquita Day para Chiquita Banana, y el Tik Tok Live Fest, ambos murales pintados en vivo en Miami, 2024.">Also on the same trip: Chiquita Day for Chiquita Banana, and the Tik Tok Live Fest, both live painting murals in Miami, 2024.</p>
       </div>
@@ -692,9 +692,9 @@
         <h3 style="font-size:16px;" data-en="Otamendi Palace, Opening" data-es="Apertura Palacio Otamendi">Otamendi Palace, Opening</h3>
         <p class="live-event-meta" data-en="Buenos Aires, Argentina · 2023" data-es="Buenos Aires, Argentina · 2023">Buenos Aires, Argentina · 2023</p>
         <div class="live-gallery">
-          <figure><img src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Sketching the palace on site</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3"><figcaption data-en="Building the composition" data-es="Armando la composición">Building the composition</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_final.jpg" alt="Otamendi Palace finished piece" data-key="live_otamendi_final"><figcaption data-en="Finished canvas, opening night" data-es="Lienzo terminado, noche de apertura">Finished canvas, opening night</figcaption></figure>
+          <figure><img src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1" width="626" height="783"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Sketching the palace on site</figcaption></figure>
+          <figure><img src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3" width="626" height="782"><figcaption data-en="Building the composition" data-es="Armando la composición">Building the composition</figcaption></figure>
+          <figure><img src="images/live-painting/live_otamendi_final.jpg" alt="Otamendi Palace finished piece" data-key="live_otamendi_final" width="618" height="773"><figcaption data-en="Finished canvas, opening night" data-es="Lienzo terminado, noche de apertura">Finished canvas, opening night</figcaption></figure>
         </div>
       </div>
 
@@ -710,15 +710,15 @@
       <div class="workshop-gallery" style="display:none;">
         <p class="step-label" style="margin-top:18px;">Chiquita Banana, House of Prints &amp; Arts</p>
         <div class="workshop-photo-row">
-          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_houseofprints_1"></div>
-          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_houseofprints_2"></div>
-          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_houseofprints_3"></div>
+          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_houseofprints_1" width="800" height="600"></div>
+          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_houseofprints_2" width="800" height="600"></div>
+          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_houseofprints_3" width="800" height="600"></div>
         </div>
         <p class="step-label" style="margin-top:18px;">TikTok Live Fest 2023, Ice Palace Films, Downtown Miami</p>
         <div class="workshop-photo-row">
-          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_icepalace_1"></div>
-          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_icepalace_2"></div>
-          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_icepalace_3"></div>
+          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_icepalace_1" width="800" height="600"></div>
+          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_icepalace_2" width="800" height="600"></div>
+          <div class="workshop-photo"><img src="images/placeholder.jpg" alt="" data-key="workshop_icepalace_3" width="800" height="600"></div>
         </div>
       </div>
 
@@ -729,7 +729,7 @@
 </div><!-- /page-live -->
 
 <div class="page" id="page-shop">
-<div class="page-bg" id="bg-shop"><img src="images/site/bg_shop_hollywood.jpg" alt="" data-key="bg_shop"></div><button class="page-bg-edit-btn" onclick="editSectionBg('shop', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
+<div class="page-bg" id="bg-shop"><img src="images/site/bg_shop_hollywood.jpg" alt="" data-key="bg_shop" width="1500" height="2000"></div><button class="page-bg-edit-btn" onclick="editSectionBg('shop', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Edit this background</button>
 <section class="section shop">
   <div class="wrap">
     <span class="eyebrow" data-en="Wearable Murals" data-es="Murales Para Vestir">Wearable Murals</span>
@@ -740,7 +740,7 @@
       <h3 class="shop-category-title" data-en="Hoodies" data-es="Buzos">Hoodies</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_hoodie_miami/shop_hoodie_1.jpg" alt="Miami Bitch Hoodie by Cundo Marchi" data-key="shop_hoodie_miami"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_hoodie_miami/shop_hoodie_1.jpg" alt="Miami Bitch Hoodie by Cundo Marchi" data-key="shop_hoodie_miami" width="1200" height="1600"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Miami Bitch Hoodie</h4>
             <p class="shop-card-meta">2024</p>
@@ -748,7 +748,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg" alt="Buenos Aires Hoodie by Cundo Marchi" data-key="shop_hoodie_bsas"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg" alt="Buenos Aires Hoodie by Cundo Marchi" data-key="shop_hoodie_bsas" width="1159" height="1600"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Buenos Aires Hoodie</h4>
             <p class="shop-card-meta">2023</p>
@@ -756,7 +756,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg" alt="Sugar Hoodie by Cundo Marchi" data-key="shop_hoodie_sugar"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg" alt="Sugar Hoodie by Cundo Marchi" data-key="shop_hoodie_sugar" width="700" height="700"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Sugar Hoodie</h4>
             <p class="shop-card-meta">2023</p>
@@ -770,7 +770,7 @@
       <h3 class="shop-category-title" data-en="T-Shirts" data-es="Remeras">T-Shirts</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_sugar2/shop_tee_1.jpg" alt="Sugar Shirt Vol II by Cundo Marchi" data-key="shop_tee_sugar2"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_tee_sugar2/shop_tee_1.jpg" alt="Sugar Shirt Vol II by Cundo Marchi" data-key="shop_tee_sugar2" width="1600" height="1117"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Sugar Shirt Vol II</h4>
             <p class="shop-card-meta">2024</p>
@@ -778,7 +778,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_player/shop_tee_2.jpg" alt="Player T-Shirt by Cundo Marchi" data-key="shop_tee_player"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_tee_player/shop_tee_2.jpg" alt="Player T-Shirt by Cundo Marchi" data-key="shop_tee_player" width="1200" height="1600"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Player T Shirt</h4>
             <p class="shop-card-meta">2024</p>
@@ -786,7 +786,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_sugar1/shop_tee_3.jpg" alt="Sugar Shirt by Cundo Marchi" data-key="shop_tee_sugar1"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_tee_sugar1/shop_tee_3.jpg" alt="Sugar Shirt by Cundo Marchi" data-key="shop_tee_sugar1" width="700" height="700"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Sugar Shirt</h4>
             <p class="shop-card-meta">2023</p>
@@ -800,7 +800,7 @@
       <h3 class="shop-category-title" data-en="Buffs" data-es="Buffs">Buffs</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_buff_psycho/shop_buff_1.jpg" alt="Psycho Buff neck gaiter by Cundo Marchi" data-key="shop_buff_psycho"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_buff_psycho/shop_buff_1.jpg" alt="Psycho Buff neck gaiter by Cundo Marchi" data-key="shop_buff_psycho" width="1539" height="1539"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>Psycho Buff</h4>
             <p class="shop-card-meta">2025</p>
@@ -808,7 +808,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_buff_bsas/shop_buff_2.jpg" alt="Buenos Aires Buff neck gaiter by Cundo Marchi" data-key="shop_buff_bsas"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_buff_bsas/shop_buff_2.jpg" alt="Buenos Aires Buff neck gaiter by Cundo Marchi" data-key="shop_buff_bsas" width="700" height="700"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>BsAs Buff</h4>
             <p class="shop-card-meta">2026</p>
@@ -822,7 +822,7 @@
       <h3 class="shop-category-title" data-en="Mugs" data-es="Tazas">Mugs</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_mug_golo/shop_mug_1.jpg" alt="GoloTaza mug by Cundo Marchi" data-key="shop_mug_golo"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
+          <div class="shop-card-img"><img src="images/shop/shop_mug_golo/shop_mug_1.jpg" alt="GoloTaza mug by Cundo Marchi" data-key="shop_mug_golo" width="1600" height="1066"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Sold Out</span></div>
           <div class="shop-card-body">
             <h4>GoloTaza</h4>
             <span class="price" data-usd="20">$20 USD</span>
@@ -838,7 +838,7 @@
 <section class="section instagram-feed">
   <div class="wrap">
     <div class="ig-profile">
-      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi" class="ig-profile-pic" data-key="ig_profile_pic">
+      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi" class="ig-profile-pic" data-key="ig_profile_pic" width="850" height="1124">
       <div class="ig-profile-info">
         <span class="ig-handle">@cundomarchi</span>
         <p class="ig-bio" data-en="Visual &amp; Urban Artist, murals in 15+ countries" data-es="Artista Visual y Urbano, murales en más de 15 países">Visual &amp; Urban Artist, murals in 15+ countries</p>
@@ -846,14 +846,14 @@
       </div>
     </div>
     <div class="ig-feed-grid">
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/king_of_kings/king_of_kings.jpg" alt="The King of Kings mural, Ushuaia, Argentina" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles mural, Malmo, Sweden" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/zeus_athens/zeus_athens.jpg" alt="Zeus mural, Athens, Greece" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/ocean_heart/ocean_heart.jpg" alt="Ocean Heart mural by Cundo Marchi" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/tlaloc/tlaloc.jpg" alt="Tlaloc mural, Tulum, Mexico" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/the_eyes/the_eyes.jpg" alt="The Eyes mural, San Fernando, Argentina" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus mural, Buenos Aires, Argentina" loading="lazy"></a>
-      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/laos_california/laos_california.jpg" alt="Laos California mural by Cundo Marchi" loading="lazy"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/king_of_kings/king_of_kings.jpg" alt="The King of Kings mural, Ushuaia, Argentina" loading="lazy" width="900" height="1101"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Meeting of Styles mural, Malmo, Sweden" loading="lazy" width="900" height="1200"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/zeus_athens/zeus_athens.jpg" alt="Zeus mural, Athens, Greece" loading="lazy" width="900" height="675"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/ocean_heart/ocean_heart.jpg" alt="Ocean Heart mural by Cundo Marchi" loading="lazy" width="900" height="625"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/tlaloc/tlaloc.jpg" alt="Tlaloc mural, Tulum, Mexico" loading="lazy" width="900" height="506"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/the_eyes/the_eyes.jpg" alt="The Eyes mural, San Fernando, Argentina" loading="lazy" width="900" height="639"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus mural, Buenos Aires, Argentina" loading="lazy" width="1066" height="1600"></a>
+      <a href="https://instagram.com/cundomarchi" target="_blank" rel="noopener" class="ig-feed-item"><img src="images/laos_california/laos_california.jpg" alt="Laos California mural by Cundo Marchi" loading="lazy" width="900" height="472"></a>
     </div>
   </div>
 </section>
@@ -961,7 +961,7 @@
       </div>
     </div>
     </div>
-    <div class="quote-photo-wrap"><img src="images/site/quote_photo.jpg" alt="Cundo Marchi painting the Coral Heart mural" data-key="quote_photo"></div>
+    <div class="quote-photo-wrap"><img src="images/site/quote_photo.jpg" alt="Cundo Marchi painting the Coral Heart mural" data-key="quote_photo" width="1200" height="1600"></div>
    </div>
   </div>
 </section>
@@ -970,15 +970,15 @@
   <div class="wrap">
     <span class="eyebrow" style="text-align:center; display:block;" data-en="Brands I've Worked With" data-es="Marcas con las que Trabajé">Brands I've Worked With</span>
     <div class="brands-row">
-      <span class="brand-logo"><img src="images/site/fume_vapes.png" alt="Fume Vapes"></span>
-      <span class="brand-logo"><img src="images/site/tigre_municipio.png" alt="Tigre Municipio"></span>
-      <span class="brand-logo"><img src="images/site/chiquita_banana.png" alt="Chiquita Banana"></span>
-      <span class="brand-logo"><img src="images/site/tiktok.png" alt="TikTok"></span>
-      <span class="brand-logo"><img src="images/site/municipio_de_san_fernando.png" alt="Municipio de San Fernando"></span>
-      <span class="brand-logo"><img src="images/site/inac_hospitality.png" alt="INAC Hospitality"></span>
-      <span class="brand-logo"><img src="images/site/meeting_of_styles_sweden.png" alt="Meeting of Styles Sweden"></span>
-      <span class="brand-logo"><img src="images/site/farola.png" alt="Farola"></span>
-      <span class="brand-logo"><img src="images/site/hotel_sayab.png" alt="Hotel Sayab"></span>
+      <span class="brand-logo"><img src="images/site/fume_vapes.png" alt="Fume Vapes" width="348" height="348"></span>
+      <span class="brand-logo"><img src="images/site/tigre_municipio.png" alt="Tigre Municipio" width="293" height="125"></span>
+      <span class="brand-logo"><img src="images/site/chiquita_banana.png" alt="Chiquita Banana" width="743" height="900"></span>
+      <span class="brand-logo"><img src="images/site/tiktok.png" alt="TikTok" width="423" height="143"></span>
+      <span class="brand-logo"><img src="images/site/municipio_de_san_fernando.png" alt="Municipio de San Fernando" width="900" height="525"></span>
+      <span class="brand-logo"><img src="images/site/inac_hospitality.png" alt="INAC Hospitality" width="447" height="447"></span>
+      <span class="brand-logo"><img src="images/site/meeting_of_styles_sweden.png" alt="Meeting of Styles Sweden" width="800" height="533"></span>
+      <span class="brand-logo"><img src="images/site/farola.png" alt="Farola" width="964" height="516"></span>
+      <span class="brand-logo"><img src="images/site/hotel_sayab.png" alt="Hotel Sayab" width="395" height="238"></span>
     </div>
   </div>
 </section>
