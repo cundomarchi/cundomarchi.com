@@ -5,18 +5,20 @@
     "Si quedo muy arriba, BAJALO. Despues corre: python3 build-crops.py"
   ],
   "card": {
-    "king_of_kings": 30,
-    "down_ocean_1": 55,
+    "king_of_kings": 55,
+    "down_ocean_1": 72,
     "flower_octopus": 55,
     "the_seesaw": 40,
-    "meeting_of_styles_after": 35
+    "meeting_of_styles_after": 40,
+    "ocean_heart": 30
   },
   "hero": {
-    "king_of_kings": 25,
-    "down_ocean": 50,
+    "king_of_kings": 50,
+    "down_ocean": 65,
     "flower_octopus": 50,
     "the_seesaw": 35,
-    "meeting_of_styles": 30
+    "meeting_of_styles": 35,
+    "ocean_heart": 28
   },
   "carousel": {}
 }

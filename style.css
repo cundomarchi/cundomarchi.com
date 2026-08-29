@@ -376,7 +376,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .live-event-meta { font-size: 13px; color: var(--gray); margin-bottom: 18px; }
 .live-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 6px; }
 .live-gallery figure { margin: 0; overflow: hidden; position: relative; }
-.live-gallery img { width: 100%; height: 220px; object-fit: contain; background: #000; display: block; }
+.live-gallery img { width: 100%; height: 220px; object-fit: cover; object-position: center; display: block; }
 .live-gallery figcaption { font-size: 11px; color: var(--gray); margin-top: 8px; }
 .live-event.workshop { background: var(--black-2); padding: 32px; border: 1px dashed #333; border-bottom: 1px dashed #333; }
 @media (max-width: 700px) { .live-gallery { grid-template-columns: 1fr 1fr; } .live-gallery img { height: 160px; } }
@@ -496,18 +496,19 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img[data-key="bg_work"] { object-position: center 0%; }
 .mural-photo img[data-key="bullshit_turin"] { object-position: center 0%; }
 .mural-photo img[data-key="city_of_fury_extra1"] { object-position: center 76%; }
-.mural-photo img[data-key="down_ocean_1"] { object-position: center 55%; }
+.mural-photo img[data-key="down_ocean_1"] { object-position: center 72%; }
 .mural-photo img[data-key="el_nino"] { object-position: center 0%; }
 .mural-photo img[data-key="flower_octopus"] { object-position: center 55%; }
 .mural-photo img[data-key="flower_octopus_before"] { object-position: center 0%; }
 .mural-photo img[data-key="hero_bio_portrait"] { object-position: center 0%; }
 .mural-photo img[data-key="ig_profile_pic"] { object-position: center 0%; }
-.mural-photo img[data-key="king_of_kings"] { object-position: center 30%; }
+.mural-photo img[data-key="king_of_kings"] { object-position: center 55%; }
 .mural-photo img[data-key="live_basel_night3"] { object-position: center 44%; }
 .mural-photo img[data-key="live_otamendi_day3"] { object-position: center 0%; }
 .mural-photo img[data-key="live_otamendi_final"] { object-position: center 29%; }
 .mural-photo img[data-key="live_painting_1"] { object-position: center 85%; }
-.mural-photo img[data-key="meeting_of_styles_after"] { object-position: center 35%; }
+.mural-photo img[data-key="meeting_of_styles_after"] { object-position: center 40%; }
+.mural-photo img[data-key="ocean_heart"] { object-position: center 30%; }
 .mural-photo img[data-key="quote_photo"] { object-position: center 47%; }
 .mural-photo img[data-key="shop_buff_psycho"] { object-position: center 28%; }
 .mural-photo img[data-key="shop_hoodie_bsas"] { object-position: center 0%; }
@@ -516,10 +517,10 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .m-hero[data-key="bear_virreyes"] { object-position: center 70%; }
 .m-hero[data-key="bullshit_turin"] { object-position: center 20%; }
 .m-hero[data-key="city_of_fury"] { object-position: center 78%; }
+.m-hero[data-key="down_ocean"] { object-position: center 65%; }
 .m-hero[data-key="el_nino"] { object-position: center 25%; }
-.m-hero[data-key="king_of_kings"] { object-position: center 25%; }
-.m-hero[data-key="meeting_of_styles"] { object-position: center 30%; }
-.m-hero[data-key="ocean_heart"] { object-position: center 0%; }
+.m-hero[data-key="meeting_of_styles"] { object-position: center 35%; }
+.m-hero[data-key="ocean_heart"] { object-position: center 28%; }
 .m-hero[data-key="the_seesaw"] { object-position: center 35%; }
 .m-hero[data-key="you_see"] { object-position: center 65%; }
 .m-hero[data-key="zeus_athens"] { object-position: center 0%; }
@@ -537,11 +538,11 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .carousel-slide img[data-key="hero_bio_portrait"] { object-position: center 13%; }
 .carousel-slide img[data-key="ig_profile_pic"] { object-position: center 13%; }
 .carousel-slide img[data-key="laos_california"] { object-position: center 0%; }
+.carousel-slide img[data-key="live_basel_night1"] { object-position: center 59%; }
 .carousel-slide img[data-key="live_basel_night3"] { object-position: center 46%; }
 .carousel-slide img[data-key="live_otamendi_day3"] { object-position: center 0%; }
 .carousel-slide img[data-key="live_otamendi_final"] { object-position: center 36%; }
 .carousel-slide img[data-key="live_painting_1"] { object-position: center 74%; }
-.carousel-slide img[data-key="live_painting_2"] { object-position: center 53%; }
 .carousel-slide img[data-key="meeting_of_styles_after"] { object-position: center 27%; }
 .carousel-slide img[data-key="ocean_heart"] { object-position: center 28%; }
 .carousel-slide img[data-key="quote_photo"] { object-position: center 48%; }
@@ -554,3 +555,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .carousel-slide img[data-key="tlaloc"] { object-position: center 92%; }
 .carousel-slide img[data-key="you_see"] { object-position: center 56%; }
 .carousel-slide img[data-key="zeus_athens"] { object-position: center 20%; }
+.live-gallery img[data-key="live_basel_night3"] { object-position: center 42%; }
+.live-gallery img[data-key="live_otamendi_day3"] { object-position: center 0%; }
+.live-gallery img[data-key="live_otamendi_final"] { object-position: center 22%; }
+.live-gallery img[data-key="live_painting_1"] { object-position: center 97%; }

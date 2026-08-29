@@ -23,3 +23,6 @@ originales/
 # material crudo esperando que lo procese, no va al sitio
 "PARA SUBIR"/
 PARA SUBIR/
+
+# herramienta interna de encuadre, no va al sitio publico
+encuadrar.html

@@ -23,6 +23,7 @@ os.chdir(ROOT)
 CARD_ASPECT = 4 / 3      # .mural-photo en el portfolio
 HERO_ASPECT = 16 / 10    # .m-hero en la ficha del mural
 CAROUSEL_ASPECT = 2.0    # .carousel-slide del home, casi 2:1
+LIVE_ASPECT = 1.15       # .live-gallery img, recuadro de 220px de alto
 MARK = '/* === encuadres calculados por build-crops.py, no editar a mano === */'
 OVERRIDES_FILE = 'crops.json'   # ajustes a mano, mandan sobre el calculo automatico
 
@@ -135,7 +136,18 @@ for key, src in sorted(covers.items()):
     if pc is not None and pc != 50:
         carousel_rules.append(f'.carousel-slide img[data-key="{key}"] {{ object-position: center {pc}%; }}')
 
-block = MARK + '\n' + '\n'.join(card_rules + hero_rules + carousel_rules) + '\n'
+# galeria de Live Painting: mismo criterio
+live_rules = []
+for key, src in sorted(covers.items()):
+    if not os.path.isfile(src) or not key.startswith('live_'):
+        continue
+    pl = position_y(src, LIVE_ASPECT)
+    if key in OV.get('live', {}):
+        pl = OV['live'][key]
+    if pl is not None and pl != 50:
+        live_rules.append(f'.live-gallery img[data-key="{key}"] {{ object-position: center {pl}%; }}')
+
+block = MARK + '\n' + '\n'.join(card_rules + hero_rules + carousel_rules + live_rules) + '\n'
 
 css = open('style.css', encoding='utf-8').read()
 css = re.sub(re.escape(MARK) + r'.*?(?=\n/\*|\Z)', '', css, flags=re.S).rstrip() + '\n\n' + block
