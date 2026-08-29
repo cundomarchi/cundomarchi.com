@@ -1,24 +1,27 @@
 {
   "_leeme": [
-    "0 = se ve la parte de ARRIBA de la foto. 100 = la parte de ABAJO.",
-    "Si un mural quedo muy abajo y no se ve bien, SUBI el numero.",
-    "Si quedo muy arriba, BAJALO. Despues corre: python3 build-crops.py"
+    "Solo hace falta ajustar 'card'. Usa la herramienta encuadrar.html.",
+    "'hero' y 'carousel' se calculan solos a partir de 'card', traduciendo",
+    "el punto elegido a la proporcion de cada marco. Solo poner algo ahi",
+    "si un marco puntual necesita una excepcion."
   ],
   "card": {
-    "king_of_kings": 55,
-    "down_ocean_1": 72,
-    "flower_octopus": 55,
-    "the_seesaw": 40,
-    "meeting_of_styles_after": 40,
-    "ocean_heart": 30
+    "meeting_of_styles_after": 42,
+    "bullshit_turin": 36,
+    "zeus_athens": 26,
+    "city_of_fury_extra1": 66,
+    "king_of_kings": 4,
+    "fusion_of_life": 31,
+    "flower_octopus": 54,
+    "down_ocean_1": 69,
+    "el_eternauta": 54,
+    "circle_of_nature": 29,
+    "tlaloc": 51,
+    "the_seesaw": 66,
+    "bear_virreyes": 67,
+    "you_see": 44,
+    "el_nino": 17
   },
-  "hero": {
-    "king_of_kings": 50,
-    "down_ocean": 65,
-    "flower_octopus": 50,
-    "the_seesaw": 35,
-    "meeting_of_styles": 35,
-    "ocean_heart": 28
-  },
+  "hero": {},
   "carousel": {}
 }

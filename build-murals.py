@@ -13,7 +13,7 @@ Correr despues de tocar los murales en script.js:
 import json, os, re, html, subprocess, unicodedata
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-BASE = 'https://cundomarchi.github.io/cundomarchi.com/'
+BASE = 'https://www.cundomarchi.com/'
 OUT_DIR = os.path.join(ROOT, 'mural')
 
 # ---------- sacar MURALS de script.js ----------

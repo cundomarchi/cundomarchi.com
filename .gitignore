@@ -26,3 +26,6 @@ PARA SUBIR/
 
 # herramienta interna de encuadre, no va al sitio publico
 encuadrar.html
+
+# config local del servidor de preview
+.claude/

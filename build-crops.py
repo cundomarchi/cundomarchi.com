@@ -51,6 +51,27 @@ def mural_band(path, sample_w=200):
     return on[0] / sh, (on[-1] + 1) / sh
 
 
+def is_horizontal(path, aspect):
+    """True si la foto es mas ancha que el marco: ahi el recorte va de lado."""
+    W, H = Image.open(path).size
+    return W / H > aspect + 0.01
+
+
+def translate(path, pct_from, aspect_from, aspect_to):
+    """Pasa un encuadre elegido en un marco al equivalente en otro marco,
+    manteniendo el mismo punto de la foto en el centro."""
+    W, H = Image.open(path).size
+    ch_from = W / aspect_from
+    ch_to = W / aspect_to
+    slack_from = H - ch_from
+    slack_to = H - ch_to
+    if slack_from <= 1 or slack_to <= 1:
+        return None
+    center = (pct_from / 100) * slack_from + ch_from / 2
+    top = center - ch_to / 2
+    return round(max(0.0, min(1.0, top / slack_to)) * 100)
+
+
 def position_y(path, aspect):
     """Porcentaje de object-position vertical para que el mural quede centrado."""
     W, H = Image.open(path).size
@@ -109,7 +130,8 @@ for key, src in sorted(covers.items()):
     if key in OV.get('card', {}):
         p = OV['card'][key]
     if p is not None and p != 50:
-        card_rules.append(f'.mural-photo img[data-key="{key}"] {{ object-position: center {p}%; }}')
+        axis = f'{p}% center' if is_horizontal(src, CARD_ASPECT) else f'center {p}%'
+        card_rules.append(f'.mural-photo img[data-key="{key}"] {{ object-position: {axis}; }}')
     if p is not None:
         report.append((key, p, os.path.basename(src)))
 
@@ -117,6 +139,11 @@ for mid, src in sorted(hero_src.items()):
     if not os.path.isfile(src):
         continue
     ph = position_y(src, HERO_ASPECT)
+    card_key = next((k for k, v in covers.items() if v == src and k in OV.get('card', {})), None)
+    if card_key:
+        t = translate(src, OV['card'][card_key], CARD_ASPECT, HERO_ASPECT)
+        if t is not None:
+            ph = t
     if mid in OV.get('hero', {}):
         ph = OV['hero'][mid]
     if ph is not None and ph != 50:
@@ -131,6 +158,10 @@ for key, src in sorted(covers.items()):
     if W / H < 1.15:
         too_tall.append((key, round(W / H, 2)))   # una foto vertical no entra en un banner ancho
     pc = position_y(src, CAROUSEL_ASPECT)
+    if key in OV.get('card', {}):
+        t = translate(src, OV['card'][key], CARD_ASPECT, CAROUSEL_ASPECT)
+        if t is not None:
+            pc = t
     if key in OV.get('carousel', {}):
         pc = OV['carousel'][key]
     if pc is not None and pc != 50:

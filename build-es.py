@@ -58,7 +58,7 @@ s = re.sub(r'alt="([^"]+)"', fix_alt, s)
 s = s.replace('<html lang="en">', '<html lang="es">', 1)
 
 # ---------- 4. head en espanol ----------
-BASE = 'https://cundomarchi.github.io/cundomarchi.com/'
+BASE = 'https://www.cundomarchi.com/'
 TITLE_ES = 'Cundo Marchi, Muralista y Artista Visual | Murales por Encargo'
 DESC_ES = ('Cundo Marchi es un muralista y artista visual argentino que pinta murales de gran escala '
            'en 5 continentes desde 2012. Murales por encargo, pintura en vivo y talleres de pintura, '

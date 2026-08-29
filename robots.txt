@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cundomarchi.github.io/cundomarchi.com/sitemap.xml
+Sitemap: https://www.cundomarchi.com/sitemap.xml
