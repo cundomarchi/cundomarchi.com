@@ -564,7 +564,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .carousel-slide img[data-key="tlaloc"] { object-position: center 92%; }
 .carousel-slide img[data-key="you_see"] { object-position: center 56%; }
 .carousel-slide img[data-key="zeus_athens"] { object-position: center 20%; }
-.live-gallery img[data-key="live_basel_night3"] { object-position: center 42%; }
-.live-gallery img[data-key="live_otamendi_day3"] { object-position: center 0%; }
-.live-gallery img[data-key="live_otamendi_final"] { object-position: center 22%; }
-.live-gallery img[data-key="live_painting_1"] { object-position: center 97%; }
+.live-gallery img[data-key="live_basel_night2"] { object-position: center 35%; }
+.live-gallery img[data-key="live_basel_night3"] { object-position: center 35%; }
+.live-gallery img[data-key="live_otamendi_day3"] { object-position: center 40%; }
+.live-gallery img[data-key="live_otamendi_final"] { object-position: center 40%; }
+.live-gallery img[data-key="live_painting_1"] { object-position: center 35%; }

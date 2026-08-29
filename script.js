@@ -886,9 +886,17 @@ function navGo(id) {
   showPage(id);
 }
 
-function showPage(id) {
+function showPage(id, fromHistory) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
+  // Dejar la seccion en la URL: asi el boton Atras del navegador y el link
+  // "Back to Portfolio" devuelven al usuario a donde estaba, no al inicio.
+  if (!fromHistory) {
+    try {
+      const url = (id === 'home') ? location.pathname : location.pathname + '#' + id;
+      if (location.hash.slice(1) !== id) history.pushState({ page: id }, '', url);
+    } catch (e) {}
+  }
   window.scrollTo(0,0);
   const quoteSection = document.getElementById('quote');
   if (quoteSection) quoteSection.style.display = (id === 'shop') ? 'none' : '';
@@ -902,16 +910,21 @@ function showPage(id) {
 
 // ---- carousel ----
 let slideIdx = 0;
-// Fuera del carrusel del home: el banner es casi 2:1 y estas fotos son verticales,
-// asi que ahi se cortarian feo. Siguen apareciendo completas en el portfolio y en su ficha.
+// Fuera del carrusel del home. El banner es un rectangulo casi 2:1, asi que solo
+// las fotos bien apaisadas entran enteras. Las cuadradas o verticales se verian
+// recortadas a la mitad. Igual aparecen completas en el portfolio y en su ficha.
 let carouselExcluded = {
-  el_nino: true,
-  el_eternauta: true,
-  flower_octopus: true,
-  bear_virreyes: true,
-  meeting_of_styles: true,
-  the_seesaw: true,
-  king_of_kings: true
+  el_eternauta: true,     // 0.56, se veria el 28%
+  flower_octopus: true,   // 0.67
+  bear_virreyes: true,    // 0.75
+  meeting_of_styles: true,// 0.75
+  the_seesaw: true,       // 0.75
+  king_of_kings: true,    // 0.82
+  city_of_fury: true,     // 1.00
+  down_ocean: true,       // 1.00
+  bullshit_turin: true,   // 1.06, se veria el 53%
+  el_nino: true,          // 1.33
+  zeus_athens: true       // 1.33
 };
 function muralCoverImage(id) {
   const m = MURALS[id];
@@ -1802,3 +1815,16 @@ sweepBrokenImages();
 window.addEventListener('load', sweepBrokenImages);
 buildCarousel();
 resumeCarousel();
+
+
+// ---- volver a la seccion correcta ----
+// Si la direccion trae #work, #shop, etc, abrir esa seccion en vez del inicio.
+function openPageFromUrl(fromHistory) {
+  const id = (location.hash || '').slice(1);
+  const valid = ['home','bio','work','live','shop'];
+  showPage(valid.indexOf(id) >= 0 ? id : 'home', fromHistory !== false);
+}
+window.addEventListener('popstate', () => openPageFromUrl(true));
+document.addEventListener('DOMContentLoaded', () => {
+  if (location.hash && location.hash !== '#quote') openPageFromUrl(true);
+});

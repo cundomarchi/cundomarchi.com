@@ -23,5 +23,12 @@
     "el_nino": 17
   },
   "hero": {},
-  "carousel": {}
+  "carousel": {},
+  "live": {
+    "live_painting_1": 35,
+    "live_otamendi_day3": 40,
+    "live_otamendi_final": 40,
+    "live_basel_night2": 35,
+    "live_basel_night3": 35
+  }
 }

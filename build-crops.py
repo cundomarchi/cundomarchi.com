@@ -172,9 +172,10 @@ live_rules = []
 for key, src in sorted(covers.items()):
     if not os.path.isfile(src) or not key.startswith('live_'):
         continue
-    pl = position_y(src, LIVE_ASPECT)
-    if key in OV.get('live', {}):
-        pl = OV['live'][key]
+    # Ojo: en Live Painting el sujeto es una persona con un cuadro, no una pared
+    # pintada, asi que la deteccion por saturacion no sirve y da encuadres malos.
+    # Centro por defecto, y ajuste a mano en crops.json si hace falta.
+    pl = OV.get('live', {}).get(key)
     if pl is not None and pl != 50:
         live_rules.append(f'.live-gallery img[data-key="{key}"] {{ object-position: center {pl}%; }}')
 

@@ -102,7 +102,7 @@ PAGE = '''<!DOCTYPE html>
 <body>
 {nav}
 <main class="wrap" style="padding-top:40px;padding-bottom:80px;">
-  <a href="../index.html" style="color:var(--gray);font-family:var(--mono);font-size:13px;text-decoration:none;">&lsaquo; Back to Portfolio</a>
+  <a href="../index.html#work" style="color:var(--gray);font-family:var(--mono);font-size:13px;text-decoration:none;">&lsaquo; Back to Portfolio</a>
   <span class="eyebrow" style="margin-top:24px;">Mural</span>
   <h1 class="m-title">{title}</h1>
   <p class="m-meta">{flag} {loc} &middot; {year} &middot; {size}</p>
