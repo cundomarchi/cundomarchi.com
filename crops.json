@@ -1,0 +1,22 @@
+{
+  "_leeme": [
+    "0 = se ve la parte de ARRIBA de la foto. 100 = la parte de ABAJO.",
+    "Si un mural quedo muy abajo y no se ve bien, SUBI el numero.",
+    "Si quedo muy arriba, BAJALO. Despues corre: python3 build-crops.py"
+  ],
+  "card": {
+    "king_of_kings": 30,
+    "down_ocean_1": 55,
+    "flower_octopus": 55,
+    "the_seesaw": 40,
+    "meeting_of_styles_after": 35
+  },
+  "hero": {
+    "king_of_kings": 25,
+    "down_ocean": 50,
+    "flower_octopus": 50,
+    "the_seesaw": 35,
+    "meeting_of_styles": 30
+  },
+  "carousel": {}
+}

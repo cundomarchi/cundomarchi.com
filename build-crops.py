@@ -24,6 +24,15 @@ CARD_ASPECT = 4 / 3      # .mural-photo en el portfolio
 HERO_ASPECT = 16 / 10    # .m-hero en la ficha del mural
 CAROUSEL_ASPECT = 2.0    # .carousel-slide del home, casi 2:1
 MARK = '/* === encuadres calculados por build-crops.py, no editar a mano === */'
+OVERRIDES_FILE = 'crops.json'   # ajustes a mano, mandan sobre el calculo automatico
+
+# 0 = mostrar la parte de ARRIBA de la foto
+# 100 = mostrar la parte de ABAJO
+# Si un mural "quedo muy abajo" y no se ve, SUBI el numero.
+# Si "quedo muy arriba", BAJALO.
+OV = {}
+if os.path.exists(OVERRIDES_FILE):
+    OV = json.load(open(OVERRIDES_FILE, encoding='utf-8'))
 
 
 def mural_band(path, sample_w=200):
@@ -96,6 +105,8 @@ for key, src in sorted(covers.items()):
     if not os.path.isfile(src):
         continue
     p = position_y(src, CARD_ASPECT)
+    if key in OV.get('card', {}):
+        p = OV['card'][key]
     if p is not None and p != 50:
         card_rules.append(f'.mural-photo img[data-key="{key}"] {{ object-position: center {p}%; }}')
     if p is not None:
@@ -105,6 +116,8 @@ for mid, src in sorted(hero_src.items()):
     if not os.path.isfile(src):
         continue
     ph = position_y(src, HERO_ASPECT)
+    if mid in OV.get('hero', {}):
+        ph = OV['hero'][mid]
     if ph is not None and ph != 50:
         hero_rules.append(f'.m-hero[data-key="{mid}"] {{ object-position: center {ph}%; }}')
 
@@ -117,6 +130,8 @@ for key, src in sorted(covers.items()):
     if W / H < 1.15:
         too_tall.append((key, round(W / H, 2)))   # una foto vertical no entra en un banner ancho
     pc = position_y(src, CAROUSEL_ASPECT)
+    if key in OV.get('carousel', {}):
+        pc = OV['carousel'][key]
     if pc is not None and pc != 50:
         carousel_rules.append(f'.carousel-slide img[data-key="{key}"] {{ object-position: center {pc}%; }}')
 

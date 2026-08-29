@@ -937,8 +937,9 @@ function buildCarousel() {
     if (!cover) return;
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
+    slide.style.cursor = 'pointer';
     slide.setAttribute('data-mural-id', id);
-    slide.addEventListener('click', () => openLightbox(id));
+    slide.addEventListener('click', () => { window.location.href = 'mural/' + (MURAL_SLUGS[id] || '') + '.html'; });
     const img = document.createElement('img');
     img.src = cover.src;
     img.alt = m.title;
@@ -1042,6 +1043,14 @@ function chooseWallSelect(selectEl, field) {
   wallAnswers[field] = opt.value === '' ? '' : opt.textContent.trim();
 }
 let wallPhotoReady = null;
+// El campo de detalles crece solo a medida que se escribe. Sin manija para
+// estirarlo a mano, que descuadra el formulario.
+function autoGrow(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 420) + 'px';
+  el.style.overflowY = el.scrollHeight > 420 ? 'auto' : 'hidden';
+}
+
 function handleWallPhotoChange(input) {
   const label = document.getElementById('w-photo-name');
   wallPhotoReady = null;
@@ -1351,10 +1360,9 @@ function curGallery() {
 const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "zeus", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "bear-with-shades"};
 
 function muralCardClick(e, id) {
-  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return true;
-  e.preventDefault();
-  openLightbox(id);
-  return false;
+  // Cada mural tiene su propia pagina, con la foto grande arriba y el resto
+  // abajo. Dejamos que el link navegue normalmente en vez de abrir el visor.
+  return true;
 }
 
 function openLightbox(id) {
