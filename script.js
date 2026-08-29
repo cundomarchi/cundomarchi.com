@@ -910,22 +910,10 @@ function showPage(id, fromHistory) {
 
 // ---- carousel ----
 let slideIdx = 0;
-// Fuera del carrusel del home. El banner es un rectangulo casi 2:1, asi que solo
-// las fotos bien apaisadas entran enteras. Las cuadradas o verticales se verian
-// recortadas a la mitad. Igual aparecen completas en el portfolio y en su ficha.
-let carouselExcluded = {
-  el_eternauta: true,     // 0.56, se veria el 28%
-  flower_octopus: true,   // 0.67
-  bear_virreyes: true,    // 0.75
-  meeting_of_styles: true,// 0.75
-  the_seesaw: true,       // 0.75
-  king_of_kings: true,    // 0.82
-  city_of_fury: true,     // 1.00
-  down_ocean: true,       // 1.00
-  bullshit_turin: true,   // 1.06, se veria el 53%
-  el_nino: true,          // 1.33
-  zeus_athens: true       // 1.33
-};
+// Ya no hace falta excluir murales del carrusel: ahora se muestran enteros
+// y centrados, con el fondo desenfocado acompaniando. Solo queda afuera el
+// que tiene la foto en baja calidad.
+let carouselExcluded = { el_nino: true };
 function muralCoverImage(id) {
   const m = MURALS[id];
   if (!m || !m.gallery || !m.gallery.length) return null;
@@ -953,9 +941,19 @@ function buildCarousel() {
     slide.style.cursor = 'pointer';
     slide.setAttribute('data-mural-id', id);
     slide.addEventListener('click', () => { window.location.href = 'mural/' + (MURAL_SLUGS[id] || '') + '.html'; });
+    // capa de atras: la misma foto ampliada y desenfocada, para que el mural
+    // pueda verse entero sin que queden franjas negras a los costados
+    const blur = document.createElement('img');
+    blur.src = cover.src;
+    blur.alt = '';
+    blur.setAttribute('aria-hidden', 'true');
+    blur.className = 'carousel-blur';
+    slide.appendChild(blur);
+    // capa de adelante: el mural completo y centrado
     const img = document.createElement('img');
     img.src = cover.src;
     img.alt = m.title;
+    img.className = 'carousel-main';
     img.setAttribute('data-key', cover.key);
     slide.appendChild(img);
     const cap = document.createElement('div');

@@ -157,13 +157,8 @@ for key, src in sorted(covers.items()):
     W, H = Image.open(src).size
     if W / H < 1.15:
         too_tall.append((key, round(W / H, 2)))   # una foto vertical no entra en un banner ancho
-    pc = position_y(src, CAROUSEL_ASPECT)
-    if key in OV.get('card', {}):
-        t = translate(src, OV['card'][key], CARD_ASPECT, CAROUSEL_ASPECT)
-        if t is not None:
-            pc = t
-    if key in OV.get('carousel', {}):
-        pc = OV['carousel'][key]
+    # El carrusel muestra el mural entero (contain), asi que no hay nada que encuadrar.
+    pc = None
     if pc is not None and pc != 50:
         carousel_rules.append(f'.carousel-slide img[data-key="{key}"] {{ object-position: center {pc}%; }}')
 
