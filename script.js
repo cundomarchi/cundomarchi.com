@@ -1275,7 +1275,7 @@ const MURALS = {
 "bear_virreyes": {
       title: 'Bear with Shades', titleEs: 'Oso con Lentes', loc: 'Virreyes, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
       desc: 'A friendly bear in green sunglasses, painted under a crescent moon.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/bear_virreyes/bear_virreyes.jpg', key:'bear_virreyes'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra1.jpg', key:'bear_virreyes_extra1'}]
+      gallery: [{type:"image", src:'images/bear_virreyes/bear_virreyes.jpg', key:'bear_virreyes'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra2.jpg', key:'bear_virreyes_extra2'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra1.jpg', key:'bear_virreyes_extra1'}]
     }
 };
 const MURAL_ORDER = Object.keys(MURALS);
