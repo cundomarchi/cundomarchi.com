@@ -1193,7 +1193,7 @@ const MURALS = {
 "bullshit_turin": {
       title: 'BULLL$HIT', titleEs: 'BULLL$HIT', loc: 'Turin, Italy', year: '2025', size: '5m x 2.2m',
       desc: 'A charging bull rendered in electric magenta and teal. Collab with Ades (Italy).', tags: ['Street Art', 'Spray Paint'], flag: '🇮🇹',
-      gallery: [{type:"image", src:'images/bullshit_turin/bullshit_turin.jpg', key:'bullshit_turin'},{type:"image", src:'images/bullshit_turin/bullshit_turin_before.jpg', key:'bullshit_turin_before'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra1.jpg', key:'bullshit_turin_extra1'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra2.jpg', key:'bullshit_turin_extra2'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra3.jpg', key:'bullshit_turin_extra3'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra4.jpg', key:'bullshit_turin_extra4'}]
+      gallery: [{type:"image", src:'images/bullshit_turin/bullshit_turin.jpg', key:'bullshit_turin'},{type:"image", src:'images/bullshit_turin/bullshit_turin_before.jpg', key:'bullshit_turin_before'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra1.jpg', key:'bullshit_turin_extra1'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra2.jpg', key:'bullshit_turin_extra2'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra3.jpg', key:'bullshit_turin_extra3'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra4.jpg', key:'bullshit_turin_extra4'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra5.jpg', key:'bullshit_turin_extra5'}]
     },
 "zeus_athens": {
       title: 'Zeus', titleEs: 'Zeus', loc: 'Athens, Greece', year: '2025', size: '5m x 2.2m',
@@ -1250,7 +1250,7 @@ const MURALS = {
 "laos_california": {
       title: 'Laos & California', titleEs: 'Laos & California', loc: 'California, USA', year: '2022', size: '8m x 2.8m',
       desc: "Two garage doors, two worlds: Laos's nature and spirituality on the left, California's wild energy on the right.", tags: ['Commission Work', 'Mix Media'], flag: '🇺🇸',
-      gallery: [{type:"image", src:'images/laos_california/laos_california.jpg', key:'laos_california'},{type:"image", src:'images/laos_california/laos_california_extra1.jpg', key:'laos_california_extra1'},{type:"image", src:'images/laos_california/laos_california_extra2.jpg', key:'laos_california_extra2'},{type:"image", src:'images/laos_california/laos_california_extra3.jpg', key:'laos_california_extra3'},{type:"image", src:'images/laos_california/laos_california_extra4.jpg', key:'laos_california_extra4'}]
+      gallery: [{type:"image", src:'images/laos_california/laos_california.jpg', key:'laos_california'},{type:"image", src:'images/laos_california/laos_california_extra3.jpg', key:'laos_california_extra3'},{type:"image", src:'images/laos_california/laos_california_extra4.jpg', key:'laos_california_extra4'}]
     },
 "tlaloc": {
       title: 'Tlaloc', titleEs: 'Tlaloc', loc: 'Playa del Carmen, Quintana Roo, Mexico', year: '2022', size: '2.5m x 2.5m',
