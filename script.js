@@ -1107,7 +1107,8 @@ function submitWallForm() {
   const errorMsg = document.getElementById('wallFormError');
   const type = wallAnswers.artType;
   let valid = !!(first && last && email && location && details && type && wallAnswers.budget);
-  if (type === 'mural') valid = valid && !!(wallAnswers.wallType && size && hasPhoto);
+  // la foto de la pared es opcional: ayuda a cotizar, pero no frena la consulta
+  if (type === 'mural') valid = valid && !!(wallAnswers.wallType && size);
   if (type === 'live') valid = valid && !!wallAnswers.attendance;
   if (type === 'workshop') valid = valid && !!(wallAnswers.workshopType && wallAnswers.groupSize);
   if (!valid) {
@@ -1128,60 +1129,89 @@ function submitWallForm() {
   sendQuoteRequest(hasPhoto ? (wallPhotoReady || photoInput.files[0]) : null);
 }
 
-// ---- quote form delivery (FormSubmit.co, sends straight to the inbox) ----
-const QUOTE_ENDPOINT = 'https://formsubmit.co/ajax/cundomarchi@gmail.com';
+// ---- envio del formulario de presupuesto ----
+// IMPORTANTE: FormSubmit solo adjunta archivos con un envio de formulario real
+// (multipart/form-data). Con el modo AJAX los campos de texto llegan pero la
+// foto de la pared se pierde. Por eso armamos y enviamos un <form> de verdad.
+const QUOTE_ENDPOINT = 'https://formsubmit.co/cundomarchi@gmail.com';
 const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' };
 
 function sendQuoteRequest(photoFile) {
   const btn = document.getElementById('wallSubmitBtn');
-  const errorMsg = document.getElementById('wallFormError');
   const a = wallAnswers;
   const type = TYPE_LABEL[a.artType] || a.artType || '';
 
-  const fd = new FormData();
-  fd.append('_subject', `New ${type} request from ${a.first} ${a.last} (${a.location})`);
-  fd.append('_captcha', 'false');
-  fd.append('_template', 'table');
-  fd.append('name', `${a.first} ${a.last}`);
-  fd.append('email', a.email);
-  fd.append('Phone', a.phone || '-');
-  fd.append('Location', a.location);
-  fd.append('Company', a.company || '-');
-  fd.append('Type of Art', type);
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = QUOTE_ENDPOINT;
+  form.enctype = 'multipart/form-data';
+  form.style.display = 'none';
+
+  function campo(nombre, valor) {
+    const i = document.createElement('input');
+    i.type = 'hidden';
+    i.name = nombre;
+    i.value = valor;
+    form.appendChild(i);
+  }
+
+  campo('_subject', `Nueva consulta de ${type}: ${a.first} ${a.last} (${a.location})`);
+  campo('_captcha', 'false');
+  campo('_template', 'box');
+  // al terminar, volver al sitio con la marca de exito
+  campo('_next', location.origin + location.pathname + '?enviado=1');
+
+  campo('Nombre', `${a.first} ${a.last}`);
+  campo('Email', a.email);
+  campo('Telefono', a.phone || '-');
+  campo('Ubicacion', a.location);
+  campo('Empresa', a.company || '-');
+  campo('Tipo de trabajo', type);
   if (a.artType === 'mural') {
-    fd.append('Type of Wall', a.wallType || '-');
-    fd.append('Approximate Size', a.size || '-');
+    campo('Tipo de pared', a.wallType || '-');
+    campo('Medidas aproximadas', a.size || '-');
   }
-  if (a.artType === 'live') fd.append('Attendance', a.attendance || '-');
+  if (a.artType === 'live') campo('Cantidad de personas', a.attendance || '-');
   if (a.artType === 'workshop') {
-    fd.append('Workshop Type', a.workshopType || '-');
-    fd.append('Group Size', a.groupSize || '-');
+    campo('Tipo de taller', a.workshopType || '-');
+    campo('Tamano del grupo', a.groupSize || '-');
   }
-  fd.append('Budget', a.budget || '-');
-  fd.append('Preferred Date', a.date || '-');
-  fd.append('Details', a.details || '-');
-  if (photoFile) fd.append('Wall Photo', photoFile, photoFile.name);
+  campo('Presupuesto', a.budget || '-');
+  campo('Fecha preferida', a.date || '-');
+  campo('Detalles', a.details || '-');
 
-  if (btn) { btn.disabled = true; btn.dataset.oldText = btn.textContent; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
-  errorMsg.style.display = 'none';
+  // la foto va como archivo real, no como texto
+  if (photoFile) {
+    const dt = new DataTransfer();
+    dt.items.add(photoFile);
+    const fi = document.createElement('input');
+    fi.type = 'file';
+    fi.name = 'Foto de la pared';
+    fi.files = dt.files;
+    form.appendChild(fi);
+  }
 
-  fetch(QUOTE_ENDPOINT, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
-    .then(r => r.json().catch(() => ({})).then(j => ({ ok: r.ok, j })))
-    .then(({ ok }) => {
-      if (!ok) throw new Error('send failed');
-      document.getElementById('wallFormStep').classList.remove('active');
-      document.getElementById('wallFormConfirm').classList.add('active');
-    })
-    .catch(() => {
-      errorMsg.textContent = lang === 'es'
-        ? 'No se pudo enviar. Revisá tu conexión o escribime a cundomarchi@gmail.com'
-        : "Couldn't send. Check your connection or email me at cundomarchi@gmail.com";
-      errorMsg.style.display = 'block';
-    })
-    .finally(() => {
-      if (btn) { btn.disabled = false; btn.textContent = btn.dataset.oldText || 'Submit'; }
-    });
+  if (btn) { btn.disabled = true; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
+  document.body.appendChild(form);
+  form.submit();
 }
+
+// Al volver de FormSubmit con ?enviado=1, mostrar el mensaje de gracias.
+document.addEventListener('DOMContentLoaded', function () {
+  if (location.search.indexOf('enviado=1') === -1) return;
+  const paso = document.getElementById('wallFormStep');
+  const listo = document.getElementById('wallFormConfirm');
+  if (paso && listo) {
+    paso.classList.remove('active');
+    listo.classList.add('active');
+    setTimeout(function () {
+      document.getElementById('quote').scrollIntoView({ block: 'center' });
+    }, 120);
+  }
+  // limpiar la direccion para que al recargar no vuelva a mostrarlo
+  try { history.replaceState({}, '', location.pathname); } catch (e) {}
+});
+
 
 // ---- lightbox ----
 const MURALS = {

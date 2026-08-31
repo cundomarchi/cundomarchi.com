@@ -153,8 +153,11 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .btn-primary { background: transparent; color: var(--white); padding: 15px 34px; font-family: var(--mono); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; border: 1px solid #3a3a38; cursor: pointer; transition: background .18s, color .18s, border-color .18s; display: inline-block; }
 .btn-primary:hover { background: var(--white); color: var(--black); border-color: var(--white); }
 .btn-primary:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
-.btn-secondary { border: 1px solid #333; color: var(--white); padding: 15px 34px; font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; background: transparent; cursor: pointer; }
-.btn-secondary:hover { border-color: var(--white); }
+/* Mismo efecto que .btn-primary: al pasar el mouse se invierte a fondo blanco
+   con letra negra. Los dos botones del hero se comportan igual. */
+.btn-secondary { border: 1px solid #3a3a38; color: var(--white); padding: 15px 34px; font-family: var(--mono); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: none; background: transparent; cursor: pointer; transition: background .18s, color .18s, border-color .18s; display: inline-block; }
+.btn-secondary:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.btn-secondary:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
 
 /* BIO / QUIEN SOY */
 .about { padding: 70px 0; }
@@ -518,6 +521,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img[data-key="live_basel_night3"] { object-position: center 44%; }
 .mural-photo img[data-key="live_otamendi_day3"] { object-position: center 0%; }
 .mural-photo img[data-key="live_otamendi_final"] { object-position: center 29%; }
+.mural-photo img[data-key="live_otamendi_final2"] { object-position: center 100%; }
 .mural-photo img[data-key="live_painting_1"] { object-position: center 85%; }
 .mural-photo img[data-key="meeting_of_styles_after"] { object-position: center 42%; }
 .mural-photo img[data-key="quote_photo"] { object-position: center 47%; }
@@ -526,6 +530,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img[data-key="shop_hoodie_miami"] { object-position: center 77%; }
 .mural-photo img[data-key="the_seesaw"] { object-position: center 66%; }
 .mural-photo img[data-key="tlaloc"] { object-position: 51% center; }
+.mural-photo img[data-key="workshop_tiktok_3"] { object-position: center 47%; }
 .mural-photo img[data-key="zeus_athens"] { object-position: center 26%; }
 .m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
 .m-hero[data-key="bullshit_turin"] { object-position: center 41%; }
