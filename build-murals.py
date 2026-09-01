@@ -48,6 +48,14 @@ PAGE = '''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MPKTK5PNK7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-MPKTK5PNK7', {{ anonymize_ip: true }});
+</script>
 <title>{title_tag}</title>
 <meta name="description" content="{desc}">
 <meta name="author" content="Cundo Marchi">
