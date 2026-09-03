@@ -1068,8 +1068,10 @@ function cargarSlide(slide) {
   // solo cuando la foto CARGO de verdad. Si fallara, la diapositiva queda
   // negra en vez de quedar toda borrosa, que es lo que se veia mal.
   main.addEventListener('load', pedirFondo, { once: true });
-  // el carrusel se ve a 380px de alto, no hacen falta 1600px de archivo
-  usarVarianteConRespaldo(main, src, 1200);
+  // El carrusel se ve a 380px de alto: en una pantalla de celular con 800px
+  // de archivo ya sobra, y son unos 600 KB menos por visita.
+  const anchoFoto = window.innerWidth < 700 ? 800 : 1200;
+  usarVarianteConRespaldo(main, src, anchoFoto);
 }
 function goToSlide(i) {
   const slides = document.querySelectorAll('#carousel .carousel-slide');
