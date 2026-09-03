@@ -206,6 +206,9 @@ PAGE = '''<!DOCTYPE html>
 <script type="application/ld+json">
 {jsonld}
 </script>
+<script type="application/ld+json">
+{migas}
+</script>
 <link rel="stylesheet" href="style.css?v={ver}">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
@@ -342,6 +345,19 @@ for cfg in IDIOMAS:
         url_es = BASE + 'es/mural/' + slugs[mid] + '.html'
         url = url_es if es else url_en
 
+        # Migas de pan: le dicen a Google donde vive esta pagina dentro del
+        # sitio, y suele mostrarlas debajo del titulo en los resultados.
+        migas = {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1,
+                 "name": "Cundo Marchi", "item": BASE + ('es/' if es else '')},
+                {"@type": "ListItem", "position": 2,
+                 "name": "Portfolio", "item": BASE + ('es/' if es else '') + '#work'},
+                {"@type": "ListItem", "position": 3, "name": title, "item": url},
+            ]
+        }
         jsonld = json.dumps({
             "@context": "https://schema.org",
             "@type": "VisualArtwork",
@@ -376,7 +392,7 @@ for cfg in IDIOMAS:
             desc=esc(desc_meta),
             url=url, url_en=url_en, url_es=url_es,
             hero=esc(hero), hero_abs=esc(hero_abs), hero_alt=esc(hero_alt), hero_key=esc(mid),
-            jsonld=jsonld, ver=ver,
+            jsonld=jsonld, migas=json.dumps(migas, ensure_ascii=False, indent=1), ver=ver,
             title=esc(title), flag=m.get('flag', ''), loc=esc(loc), year=esc(year), size=esc(size),
             pills=''.join(f'<span class="pill tag-outline">{esc(ETIQUETAS_ES.get(t, t) if es else t)}</span>' for t in m.get('tags', [])),
             body=esc(body), gallery=gallery_html, linea_idioma=linea,

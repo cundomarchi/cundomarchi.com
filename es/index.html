@@ -116,7 +116,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=123">
+<link rel="stylesheet" href="style.css?v=126">
 </head>
 <body oncontextmenu="return false;">
 
@@ -125,7 +125,7 @@
   <div class="wrap">
     <div class="menu-dropdown" id="menuDropdown" style="display:flex; align-items:center; gap:16px; position:relative;">
       <button class="hamburger-btn" onclick="toggleFullMenu()" aria-label="Menu"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
-      <img src="images/site/cmz_logo.png" alt="CMZ logo" class="nav-logo" onclick="showPage('home')" style="cursor:pointer;" width="1239" height="516">
+      <img src="images/site/cmz_logo.png" alt="CMZ logo" class="nav-logo" onclick="showPage('home')" style="cursor:pointer;" width="1239" height="516" srcset="images/site/cmz_logo-120.png 120w, images/site/cmz_logo-400.png 400w, images/site/cmz_logo-700.png 700w, images/site/cmz_logo.png 1239w" sizes="110px">
       <div class="full-menu" id="fullMenu">
         <a onclick="navGo('home')" data-en="Home" data-es="Inicio">Inicio</a>
         <a onclick="navGo('bio')" data-en="Bio" data-es="Bio">Bio</a>
@@ -165,10 +165,10 @@
 
 
 <div class="page active" id="page-home">
-<div class="page-bg" id="bg-home"><img src="images/site/bg_home_maanso.jpg" alt="" data-key="bg_home" width="2000" height="1325"></div><button class="page-bg-edit-btn" onclick="editSectionBg('home', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
+<div class="page-bg" id="bg-home"><img src="images/site/bg_home_maanso.jpg" alt="" data-key="bg_home" width="2000" height="1325" srcset="images/site/bg_home_maanso-600.jpg 600w, images/site/bg_home_maanso-800.jpg 800w, images/site/bg_home_maanso-1200.jpg 1200w, images/site/bg_home_maanso.jpg 2000w" sizes="100vw"></div><button class="page-bg-edit-btn" onclick="editSectionBg('home', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
 
 <section class="hero">
-  <img src="images/site/cmz_logo.png" alt="Cundo Marchi logo" class="hero-logo" width="1239" height="516">
+  <img src="images/site/cmz_logo.png" alt="Cundo Marchi logo" class="hero-logo" width="1239" height="516" srcset="images/site/cmz_logo-400.png 400w, images/site/cmz_logo-700.png 700w, images/site/cmz_logo-900.png 900w, images/site/cmz_logo.png 1239w" sizes="(max-width:700px) 70vw, 420px">
   <h1 class="sr-only" data-en="Cundo Marchi, Muralist and Visual Artist painting murals worldwide" data-es="Cundo Marchi, Muralista y Artista Visual pintando murales en todo el mundo">Cundo Marchi, Muralista y Artista Visual pintando murales en todo el mundo</h1>
   <p class="sub" data-text-key="hero-sub" data-en="Visual Artist & Urban Artist, Argentinian, painting murals across 5 continents since 2012." data-es="Artista Visual y Urbano, Argentino, pintando murales en 5 continentes desde 2012.">Artista Visual y Urbano, Argentino, pintando murales en 5 continentes desde 2012.</p>
   <div class="hero-ctas">
@@ -427,11 +427,11 @@
 
 </div><!-- /page-home -->
 <div class="page" id="page-bio">
-<div class="page-bg" id="bg-bio"><img loading="lazy" decoding="async" src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Mural Meeting of Styles, Malmo, Sweden" data-key="bg_bio" width="1200" height="1600"></div><button class="page-bg-edit-btn" onclick="editSectionBg('bio', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
+<div class="page-bg" id="bg-bio"><img loading="lazy" decoding="async" src="images/meeting_of_styles/meeting_of_styles_after.jpg" alt="Mural Meeting of Styles, Malmo, Sweden" data-key="bg_bio" width="1200" height="1600" srcset="images/meeting_of_styles/meeting_of_styles_after-600.jpg 600w, images/meeting_of_styles/meeting_of_styles_after-800.jpg 800w, images/meeting_of_styles/meeting_of_styles_after.jpg 1200w" sizes="100vw"></div><button class="page-bg-edit-btn" onclick="editSectionBg('bio', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
 <section class="section about-full" id="bio-full">
   <div class="wrap about-grid">
     <div class="polaroid">
-      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi portrait" data-key="hero_bio_portrait" width="850" height="1124">
+      <img loading="lazy" decoding="async" src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi portrait" data-key="hero_bio_portrait" width="850" height="1124">
       <div class="caption">Have a creative day!</div>
     </div>
     <div class="about-text">
@@ -499,7 +499,7 @@
 
 
 <div class="page" id="page-work">
-<div class="page-bg" id="bg-work"><img loading="lazy" decoding="async" src="images/bullshit_turin/bullshit_turin.jpg" alt="" data-key="bg_work" width="900" height="850"></div><button class="page-bg-edit-btn" onclick="editSectionBg('work', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
+<div class="page-bg" id="bg-work"><img loading="lazy" decoding="async" src="images/bullshit_turin/bullshit_turin.jpg" alt="" data-key="bg_work" width="900" height="850" srcset="images/bullshit_turin/bullshit_turin-600.jpg 600w, images/bullshit_turin/bullshit_turin-800.jpg 800w, images/bullshit_turin/bullshit_turin.jpg 900w" sizes="100vw"></div><button class="page-bg-edit-btn" onclick="editSectionBg('work', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
 <section class="section" id="work">
   <div class="wrap">
     <span class="eyebrow" data-en="Selected Work" data-es="Trabajos Seleccionados">Trabajos Seleccionados</span>
@@ -779,16 +779,16 @@
       <p class="step-label" style="margin-top:8px;" data-en="Real examples, before &amp; after" data-es="Ejemplos reales, antes y después">Ejemplos reales, antes y después</p>
       <div class="mural-compare-preview" onclick="openLightbox('flower_octopus')">
         <div class="mcp-imgs">
-          <div class="mcp-img"><img src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before" width="1600" height="1212"><span class="mcp-tag" data-en="Before" data-es="Antes">Antes</span></div>
-          <div class="mcp-img"><img src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus" width="1066" height="1600"><span class="mcp-tag" data-en="After" data-es="Después">Después</span></div>
+          <div class="mcp-img"><img loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before" width="1600" height="1212" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Antes</span></div>
+          <div class="mcp-img"><img loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus" width="1066" height="1600" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus.jpg 1066w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">Después</span></div>
         </div>
         <p class="mcp-caption" data-en="&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;Pulpo Flor&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;Pulpo Flor&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo</p>
       </div>
 
       <div class="mural-compare-preview" style="margin-top:24px;" onclick="openLightbox('circle_of_nature')">
         <div class="mcp-imgs">
-          <div class="mcp-img"><img src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before" width="1600" height="1066"><span class="mcp-tag" data-en="Before" data-es="Antes">Antes</span></div>
-          <div class="mcp-img"><img src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature" width="1600" height="1066"><span class="mcp-tag" data-en="After" data-es="Después">Después</span></div>
+          <div class="mcp-img"><img loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature_before-600.jpg 600w, images/circle_of_nature/circle_of_nature_before-800.jpg 800w, images/circle_of_nature/circle_of_nature_before-1200.jpg 1200w, images/circle_of_nature/circle_of_nature_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Antes</span></div>
+          <div class="mcp-img"><img loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature-600.jpg 600w, images/circle_of_nature/circle_of_nature-800.jpg 800w, images/circle_of_nature/circle_of_nature-1200.jpg 1200w, images/circle_of_nature/circle_of_nature.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">Después</span></div>
         </div>
         <p class="mcp-caption" data-en="&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;El Círculo de la Naturaleza&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;El Círculo de la Naturaleza&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo</p>
       </div>
@@ -805,9 +805,9 @@
         <h3 style="font-size:16px;" data-en="Art Basel Week, Wynwood, Miami" data-es="Art Basel Week, Wynwood, Miami">Art Basel Week, Wynwood, Miami</h3>
         <p class="live-event-meta" data-en="Live painting canvas for Fume Vapors, 1-800 Lucky · 2024" data-es="Lienzo en vivo para Fume Vapors, 1-800 Lucky · 2024">Lienzo en vivo para Fume Vapors, 1-800 Lucky · 2024</p>
         <div class="live-gallery">
-          <figure><img src="images/live-painting/live_basel_night1.jpg" alt="Cundo Marchi painting live under blacklight, Art Basel Week, Miami" data-key="live_basel_night1" width="900" height="599"><figcaption data-en="Painting live under blacklight" data-es="Pintando en vivo con luz negra">Pintando en vivo con luz negra</figcaption></figure>
-          <figure><img src="images/live-painting/live_basel_night2.jpg" alt="Art Basel live painting 2" data-key="live_basel_night2" width="698" height="1047"><figcaption data-en="Canvas in progress" data-es="Lienzo en proceso">Lienzo en proceso</figcaption></figure>
-          <figure><img src="images/live-painting/live_basel_night3.jpg" alt="Art Basel live painting 3" data-key="live_basel_night3" width="900" height="1200"><figcaption data-en="Finished piece for Fume Vapors" data-es="Pieza terminada para Fume Vapors">Pieza terminada para Fume Vapors</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_basel_night1.jpg" alt="Cundo Marchi painting live under blacklight, Art Basel Week, Miami" data-key="live_basel_night1" width="900" height="599"><figcaption data-en="Painting live under blacklight" data-es="Pintando en vivo con luz negra">Pintando en vivo con luz negra</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_basel_night2.jpg" alt="Art Basel live painting 2" data-key="live_basel_night2" width="698" height="1047"><figcaption data-en="Canvas in progress" data-es="Lienzo en proceso">Lienzo en proceso</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_basel_night3.jpg" alt="Art Basel live painting 3" data-key="live_basel_night3" width="900" height="1200"><figcaption data-en="Finished piece for Fume Vapors" data-es="Pieza terminada para Fume Vapors">Pieza terminada para Fume Vapors</figcaption></figure>
         </div>
         <p class="live-event-meta" style="margin-top:14px;" data-en="Also on the same trip: Chiquita Day for Chiquita Banana, and the Tik Tok Live Fest, both live painting murals in Miami, 2024." data-es="También en el mismo viaje: Chiquita Day para Chiquita Banana, y el Tik Tok Live Fest, ambos murales pintados en vivo en Miami, 2024.">También en el mismo viaje: Chiquita Day para Chiquita Banana, y el Tik Tok Live Fest, ambos murales pintados en vivo en Miami, 2024.</p>
       </div>
@@ -816,10 +816,10 @@
         <h3 style="font-size:16px;" data-en="Otamendi Palace, Opening" data-es="Apertura Palacio Otamendi">Apertura Palacio Otamendi</h3>
         <p class="live-event-meta" data-en="Buenos Aires, Argentina · 2023" data-es="Buenos Aires, Argentina · 2023">Buenos Aires, Argentina · 2023</p>
         <div class="live-gallery">
-          <figure><img src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1" width="626" height="783"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Bocetando el palacio en el lugar</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3" width="626" height="782"><figcaption data-en="Building the composition" data-es="Armando la composición">Armando la composición</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_final.jpg" alt="Otamendi Palace finished piece" data-key="live_otamendi_final" width="618" height="773"><figcaption data-en="Finished canvas, opening night" data-es="Lienzo terminado, noche de apertura">Lienzo terminado, noche de apertura</figcaption></figure>
-          <figure><img src="images/live-painting/live_otamendi_final2.jpg" alt="Cundo Marchi with the finished piece, Otamendi Palace behind" data-key="live_otamendi_final2" width="1284" height="1600"><figcaption data-en="With the finished piece, palace behind" data-es="Con la obra terminada, el palacio detrás">Con la obra terminada, el palacio detrás</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1" width="626" height="783"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Bocetando el palacio en el lugar</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3" width="626" height="782"><figcaption data-en="Building the composition" data-es="Armando la composición">Armando la composición</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_otamendi_final.jpg" alt="Otamendi Palace finished piece" data-key="live_otamendi_final" width="618" height="773"><figcaption data-en="Finished canvas, opening night" data-es="Lienzo terminado, noche de apertura">Lienzo terminado, noche de apertura</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_otamendi_final2.jpg" srcset="images/live-painting/live_otamendi_final2-600.jpg 600w, images/live-painting/live_otamendi_final2-800.jpg 800w, images/live-painting/live_otamendi_final2-1200.jpg 1200w, images/live-painting/live_otamendi_final2.jpg 1284w" sizes="(max-width:700px) 92vw, 31vw" alt="Cundo Marchi with the finished piece, Otamendi Palace behind" data-key="live_otamendi_final2" width="1284" height="1600"><figcaption data-en="With the finished piece, palace behind" data-es="Con la obra terminada, el palacio detrás">Con la obra terminada, el palacio detrás</figcaption></figure>
         </div>
       </div>
 
@@ -836,9 +836,9 @@
       <div class="workshop-gallery">
         <p class="step-label" style="margin-top:18px;">TikTok Live Fest 2023, Ice Palace Films, Downtown Miami</p>
         <div class="workshop-photo-row">
-          <div class="workshop-photo"><img src="images/live-painting/workshop_tiktok_1.jpg" alt="Cundo Marchi painting live at TikTok Live Fest, Ice Palace Films, Miami" data-key="workshop_tiktok_1" width="1200" height="1600" srcset="images/live-painting/workshop_tiktok_1-800.jpg 800w, images/live-painting/workshop_tiktok_1.jpg 1200w" sizes="(max-width:700px) 92vw, 45vw"></div>
-          <div class="workshop-photo"><img src="images/live-painting/workshop_tiktok_2.jpg" alt="Finished workshop canvas with TikTok Live Fest attendees, Miami" data-key="workshop_tiktok_2" width="1200" height="1600" srcset="images/live-painting/workshop_tiktok_2-800.jpg 800w, images/live-painting/workshop_tiktok_2.jpg 1200w" sizes="(max-width:700px) 92vw, 45vw"></div>
-          <div class="workshop-photo"><img src="images/live-painting/workshop_tiktok_3.jpg" alt="TikTok Live Fest stage, Ice Palace Films, Miami" data-key="workshop_tiktok_3" width="739" height="1600"></div>
+          <div class="workshop-photo"><img loading="lazy" decoding="async" src="images/live-painting/workshop_tiktok_1.jpg" alt="Cundo Marchi painting live at TikTok Live Fest, Ice Palace Films, Miami" data-key="workshop_tiktok_1" width="1200" height="1600" srcset="images/live-painting/workshop_tiktok_1-800.jpg 800w, images/live-painting/workshop_tiktok_1.jpg 1200w" sizes="(max-width:700px) 92vw, 45vw"></div>
+          <div class="workshop-photo"><img loading="lazy" decoding="async" src="images/live-painting/workshop_tiktok_2.jpg" alt="Finished workshop canvas with TikTok Live Fest attendees, Miami" data-key="workshop_tiktok_2" width="1200" height="1600" srcset="images/live-painting/workshop_tiktok_2-800.jpg 800w, images/live-painting/workshop_tiktok_2.jpg 1200w" sizes="(max-width:700px) 92vw, 45vw"></div>
+          <div class="workshop-photo"><img loading="lazy" decoding="async" src="images/live-painting/workshop_tiktok_3.jpg" alt="TikTok Live Fest stage, Ice Palace Films, Miami" data-key="workshop_tiktok_3" width="739" height="1600"></div>
         </div>
       </div>
 
@@ -849,7 +849,7 @@
 </div><!-- /page-live -->
 
 <div class="page" id="page-shop">
-<div class="page-bg" id="bg-shop"><img loading="lazy" decoding="async" src="images/site/bg_shop_hollywood.jpg" alt="" data-key="bg_shop" width="1500" height="2000"></div><button class="page-bg-edit-btn" onclick="editSectionBg('shop', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
+<div class="page-bg" id="bg-shop"><img loading="lazy" decoding="async" src="images/site/bg_shop_hollywood.jpg" alt="" data-key="bg_shop" width="1500" height="2000" srcset="images/site/bg_shop_hollywood-600.jpg 600w, images/site/bg_shop_hollywood-800.jpg 800w, images/site/bg_shop_hollywood-1200.jpg 1200w, images/site/bg_shop_hollywood.jpg 1500w" sizes="100vw"></div><button class="page-bg-edit-btn" onclick="editSectionBg('shop', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
 <section class="section shop">
   <div class="wrap">
     <span class="eyebrow" data-en="Wearable Murals" data-es="Murales Para Vestir">Murales Para Vestir</span>
@@ -860,7 +860,7 @@
       <h3 class="shop-category-title" data-en="Hoodies" data-es="Buzos">Buzos</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_hoodie_miami/shop_hoodie_1.jpg" alt="Miami Bitch Hoodie de Cundo Marchi" data-key="shop_hoodie_miami" width="1200" height="1600" srcset="images/shop/shop_hoodie_miami/shop_hoodie_1-600.jpg 600w, images/shop/shop_hoodie_miami/shop_hoodie_1-800.jpg 800w, images/shop/shop_hoodie_miami/shop_hoodie_1.jpg 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_hoodie_miami/shop_hoodie_1.jpg" alt="Miami Bitch Hoodie de Cundo Marchi" data-key="shop_hoodie_miami" width="1200" height="1600" srcset="images/shop/shop_hoodie_miami/shop_hoodie_1-600.jpg 600w, images/shop/shop_hoodie_miami/shop_hoodie_1-800.jpg 800w, images/shop/shop_hoodie_miami/shop_hoodie_1.jpg 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Miami Bitch Hoodie</h4>
             <p class="shop-card-meta">2024</p>
@@ -868,7 +868,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg" alt="Buenos Aires Hoodie de Cundo Marchi" data-key="shop_hoodie_bsas" width="1159" height="1600" srcset="images/shop/shop_hoodie_bsas/shop_hoodie_2-600.jpg 600w, images/shop/shop_hoodie_bsas/shop_hoodie_2-800.jpg 800w, images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg 1159w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg" alt="Buenos Aires Hoodie de Cundo Marchi" data-key="shop_hoodie_bsas" width="1159" height="1600" srcset="images/shop/shop_hoodie_bsas/shop_hoodie_2-600.jpg 600w, images/shop/shop_hoodie_bsas/shop_hoodie_2-800.jpg 800w, images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg 1159w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Buenos Aires Hoodie</h4>
             <p class="shop-card-meta">2023</p>
@@ -876,7 +876,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg" alt="Sugar Hoodie de Cundo Marchi" data-key="shop_hoodie_sugar" width="700" height="700" srcset="images/shop/shop_hoodie_sugar/shop_hoodie_3-600.jpg 600w, images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg 700w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg" alt="Sugar Hoodie de Cundo Marchi" data-key="shop_hoodie_sugar" width="700" height="700" srcset="images/shop/shop_hoodie_sugar/shop_hoodie_3-600.jpg 600w, images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg 700w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Sugar Hoodie</h4>
             <p class="shop-card-meta">2023</p>
@@ -890,7 +890,7 @@
       <h3 class="shop-category-title" data-en="T-Shirts" data-es="Remeras">Remeras</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_sugar2/shop_tee_1.jpg" alt="Sugar Shirt Vol II de Cundo Marchi" data-key="shop_tee_sugar2" width="1600" height="1117" srcset="images/shop/shop_tee_sugar2/shop_tee_1-600.jpg 600w, images/shop/shop_tee_sugar2/shop_tee_1-800.jpg 800w, images/shop/shop_tee_sugar2/shop_tee_1.jpg 1600w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_tee_sugar2/shop_tee_1.jpg" alt="Sugar Shirt Vol II de Cundo Marchi" data-key="shop_tee_sugar2" width="1600" height="1117" srcset="images/shop/shop_tee_sugar2/shop_tee_1-600.jpg 600w, images/shop/shop_tee_sugar2/shop_tee_1-800.jpg 800w, images/shop/shop_tee_sugar2/shop_tee_1.jpg 1600w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Sugar Shirt Vol II</h4>
             <p class="shop-card-meta">2024</p>
@@ -898,7 +898,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_player/shop_tee_2.jpg" alt="Player T-Shirt de Cundo Marchi" data-key="shop_tee_player" width="1200" height="1600" srcset="images/shop/shop_tee_player/shop_tee_2-600.jpg 600w, images/shop/shop_tee_player/shop_tee_2-800.jpg 800w, images/shop/shop_tee_player/shop_tee_2.jpg 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_tee_player/shop_tee_2.jpg" alt="Player T-Shirt de Cundo Marchi" data-key="shop_tee_player" width="1200" height="1600" srcset="images/shop/shop_tee_player/shop_tee_2-600.jpg 600w, images/shop/shop_tee_player/shop_tee_2-800.jpg 800w, images/shop/shop_tee_player/shop_tee_2.jpg 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Player T Shirt</h4>
             <p class="shop-card-meta">2024</p>
@@ -906,7 +906,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_miami/shop_tee_miami.jpg" alt="Miami T-Shirt de Cundo Marchi, Dade County print" data-key="shop_tee_miami" width="1131" height="1600" srcset="images/shop/shop_tee_miami/shop_tee_miami-600.jpg 600w, images/shop/shop_tee_miami/shop_tee_miami-800.jpg 800w, images/shop/shop_tee_miami/shop_tee_miami.jpg 1131w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_tee_miami/shop_tee_miami.jpg" alt="Miami T-Shirt de Cundo Marchi, Dade County print" data-key="shop_tee_miami" width="1131" height="1600" srcset="images/shop/shop_tee_miami/shop_tee_miami-600.jpg 600w, images/shop/shop_tee_miami/shop_tee_miami-800.jpg 800w, images/shop/shop_tee_miami/shop_tee_miami.jpg 1131w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Miami T Shirt</h4>
             <p class="shop-card-meta">2025</p>
@@ -914,7 +914,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_tee_sugar1/shop_tee_3.jpg" alt="Sugar Shirt de Cundo Marchi" data-key="shop_tee_sugar1" width="700" height="700" srcset="images/shop/shop_tee_sugar1/shop_tee_3-600.jpg 600w, images/shop/shop_tee_sugar1/shop_tee_3.jpg 700w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_tee_sugar1/shop_tee_3.jpg" alt="Sugar Shirt de Cundo Marchi" data-key="shop_tee_sugar1" width="700" height="700" srcset="images/shop/shop_tee_sugar1/shop_tee_3-600.jpg 600w, images/shop/shop_tee_sugar1/shop_tee_3.jpg 700w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Sugar Shirt</h4>
             <p class="shop-card-meta">2023</p>
@@ -928,7 +928,7 @@
       <h3 class="shop-category-title" data-en="Buffs" data-es="Buffs">Buffs</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_buff_psycho/shop_buff_1.jpg" alt="Psycho Buff buff de cuello de Cundo Marchi" data-key="shop_buff_psycho" width="1539" height="1539" srcset="images/shop/shop_buff_psycho/shop_buff_1-600.jpg 600w, images/shop/shop_buff_psycho/shop_buff_1-800.jpg 800w, images/shop/shop_buff_psycho/shop_buff_1.jpg 1539w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_buff_psycho/shop_buff_1.jpg" alt="Psycho Buff buff de cuello de Cundo Marchi" data-key="shop_buff_psycho" width="1539" height="1539" srcset="images/shop/shop_buff_psycho/shop_buff_1-600.jpg 600w, images/shop/shop_buff_psycho/shop_buff_1-800.jpg 800w, images/shop/shop_buff_psycho/shop_buff_1.jpg 1539w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>Psycho Buff</h4>
             <p class="shop-card-meta">2025</p>
@@ -936,7 +936,7 @@
           </div>
         </div>
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_buff_bsas/shop_buff_2.jpg" alt="Buenos Aires Buff buff de cuello de Cundo Marchi" data-key="shop_buff_bsas" width="700" height="700" srcset="images/shop/shop_buff_bsas/shop_buff_2-600.jpg 600w, images/shop/shop_buff_bsas/shop_buff_2.jpg 700w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_buff_bsas/shop_buff_2.jpg" alt="Buenos Aires Buff buff de cuello de Cundo Marchi" data-key="shop_buff_bsas" width="700" height="700" srcset="images/shop/shop_buff_bsas/shop_buff_2-600.jpg 600w, images/shop/shop_buff_bsas/shop_buff_2.jpg 700w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>BsAs Buff</h4>
             <p class="shop-card-meta">2026</p>
@@ -950,7 +950,7 @@
       <h3 class="shop-category-title" data-en="Mugs" data-es="Tazas">Tazas</h3>
       <div class="shop-grid">
         <div class="shop-card sold-out">
-          <div class="shop-card-img"><img src="images/shop/shop_mug_golo/shop_mug_1.jpg" alt="GoloTaza mug de Cundo Marchi" data-key="shop_mug_golo" width="1600" height="1066" srcset="images/shop/shop_mug_golo/shop_mug_1-600.jpg 600w, images/shop/shop_mug_golo/shop_mug_1-800.jpg 800w, images/shop/shop_mug_golo/shop_mug_1.jpg 1600w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
+          <div class="shop-card-img"><img loading="lazy" decoding="async" src="images/shop/shop_mug_golo/shop_mug_1.jpg" alt="GoloTaza mug de Cundo Marchi" data-key="shop_mug_golo" width="1600" height="1066" srcset="images/shop/shop_mug_golo/shop_mug_1-600.jpg 600w, images/shop/shop_mug_golo/shop_mug_1-800.jpg 800w, images/shop/shop_mug_golo/shop_mug_1.jpg 1600w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="sold-out-badge" data-en="Sold Out" data-es="Agotado">Agotado</span></div>
           <div class="shop-card-body">
             <h4>GoloTaza</h4>
             <span class="price" data-usd="20">$20 USD</span>
@@ -966,7 +966,7 @@
 <section class="section instagram-feed">
   <div class="wrap">
     <div class="ig-profile">
-      <img src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi" class="ig-profile-pic" data-key="ig_profile_pic" width="850" height="1124">
+      <img loading="lazy" decoding="async" src="images/site/hero_bio_portrait.jpg" alt="Cundo Marchi" class="ig-profile-pic" data-key="ig_profile_pic" width="850" height="1124">
       <div class="ig-profile-info">
         <span class="ig-handle">@cundomarchi</span>
         <p class="ig-bio" data-en="Visual &amp; Urban Artist, murals in 15+ countries" data-es="Artista Visual y Urbano, murales en más de 15 países">Artista Visual y Urbano, murales en más de 15 países</p>
@@ -1089,7 +1089,7 @@
       </div>
     </div>
     </div>
-    <div class="quote-photo-wrap"><img src="images/site/quote_photo.jpg" alt="Cundo Marchi pintando el mural Coral Heart" data-key="quote_photo" width="1200" height="1600"></div>
+    <div class="quote-photo-wrap"><img loading="lazy" decoding="async" src="images/site/quote_photo.jpg" alt="Cundo Marchi pintando el mural Coral Heart" data-key="quote_photo" width="1200" height="1600" srcset="images/site/quote_photo-600.jpg 600w, images/site/quote_photo-800.jpg 800w, images/site/quote_photo.jpg 1200w" sizes="(max-width:700px) 92vw, 420px"></div>
    </div>
   </div>
 </section>
@@ -1098,15 +1098,15 @@
   <div class="wrap">
     <span class="eyebrow" style="text-align:center; display:block;" data-en="Brands I've Worked With" data-es="Marcas con las que Trabajé">Marcas con las que Trabajé</span>
     <div class="brands-row">
-      <span class="brand-logo"><img src="images/site/fume_vapes.png" alt="Fume Vapes" width="240" height="240"></span>
-      <span class="brand-logo"><img src="images/site/tigre_municipio.png" alt="Tigre Municipio" width="293" height="125"></span>
-      <span class="brand-logo"><img src="images/site/chiquita_banana.png" alt="Chiquita Banana" width="198" height="240"></span>
-      <span class="brand-logo"><img src="images/site/tiktok.png" alt="TikTok" width="423" height="143"></span>
-      <span class="brand-logo"><img src="images/site/municipio_de_san_fernando.png" alt="Municipio de San Fernando" width="411" height="240"></span>
-      <span class="brand-logo"><img src="images/site/inac_hospitality.png" alt="INAC Hospitality" width="240" height="240"></span>
-      <span class="brand-logo"><img src="images/site/meeting_of_styles_sweden.png" alt="Meeting of Styles Sweden" width="360" height="240"></span>
-      <span class="brand-logo"><img src="images/site/farola.png" alt="Farola" width="448" height="240"></span>
-      <span class="brand-logo"><img src="images/site/hotel_sayab.png" alt="Hotel Sayab" width="395" height="238"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/fume_vapes.png" alt="Fume Vapes" width="240" height="240"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/tigre_municipio.png" alt="Tigre Municipio" width="293" height="125"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/chiquita_banana.png" alt="Chiquita Banana" width="198" height="240"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/tiktok.png" alt="TikTok" width="423" height="143"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/municipio_de_san_fernando.png" alt="Municipio de San Fernando" width="411" height="240"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/inac_hospitality.png" alt="INAC Hospitality" width="240" height="240"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/meeting_of_styles_sweden.png" alt="Meeting of Styles Sweden" width="360" height="240"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/farola.png" alt="Farola" width="448" height="240"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/hotel_sayab.png" alt="Hotel Sayab" width="395" height="238"></span>
     </div>
   </div>
 </section>
