@@ -132,6 +132,11 @@ PAISES_ES = {
     'California': 'California', 'Gold Coast': 'Gold Coast',
     'Bicentennial Tunnel': 'Túnel del Bicentenario',
     'Bonfil Urban Mural Fest': 'Bonfil Urban Mural Fest',
+    'Brazil': 'Brasil', 'Peru': 'Perú', 'Spain': 'España',
+    'Germany': 'Alemania', 'France': 'Francia', 'Bolivia': 'Bolivia',
+    'Ecuador': 'Ecuador', 'Indonesia': 'Indonesia',
+    'Downtown Miami': 'Downtown Miami', 'Street Art Tour': 'Gira de Arte Urbano',
+    'Colón Theater': 'Teatro Colón', 'Colon Theater': 'Teatro Colón',
 }
 def _meta(m):
     txt = m.group(2)
@@ -140,6 +145,51 @@ def _meta(m):
     txt = txt.replace('size TBC', 'medida a confirmar').replace('TBC', 'a confirmar')
     return m.group(1) + txt + '</p>'
 s = re.sub(r'(<p class="meta">)([^<]+)</p>', _meta, s)
+
+# Los eventos se traducen uno por uno, con la frase entera. Hacerlo por
+# pedazos dejaba cosas como "Pinto Tigre Encuentro de Muralismo": los nombres
+# propios hay que dejarlos donde estan.
+EVENTOS_ES = {
+    "Meeting Maaanso, Int'l Festival of Murals": 'Meeting Maaanso, Festival Internacional de Murales',
+    'Otamendi Palace Opening, Live Painting': 'Apertura del Palacio Otamendi, Pintura en Vivo',
+    'Art Basel Week, Live Painting': 'Art Basel Week, Pintura en Vivo',
+    'Chiquita Day, Live Painting': 'Chiquita Day, Pintura en Vivo',
+    'Tik Tok Live Fest, Live Painting': 'Tik Tok Live Fest, Pintura en Vivo',
+    'Emush Mural Event': 'Emush Mural Event',
+    'Pinto Tigre Mural Event': 'Pinto Tigre',
+    'Urban Street Event': 'Urban Street Event',
+    'Urban Street Event, Bonfil Beach': 'Urban Street Event, Bonfil Beach',
+    'Street Art Tour': 'Gira de Arte Urbano',
+    'Street Art Tour Mexico': 'Gira de Arte Urbano, México',
+    'Jam of Draw': 'Jam of Draw',
+    'MOS, Meeting of Styles': 'MOS, Meeting of Styles',
+    'You Are What You See': 'Sos Lo Que Ves',
+    'Australia': 'Australia',
+    'Indonesia': 'Indonesia',
+}
+def _evento(m):
+    bandera_y_texto = m.group(2)
+    # separar la bandera (si la hay) del nombre
+    mm = re.match(r'^(\s*[^\w\s]*\s*)(.*)$', bandera_y_texto, re.S)
+    pre, nombre = (mm.group(1), mm.group(2).strip()) if mm else ('', bandera_y_texto.strip())
+    return m.group(1) + pre + EVENTOS_ES.get(nombre, nombre) + '</span>'
+s = re.sub(r'(<span class="event-name">)([^<]+)</span>', _evento, s)
+
+# la columna del lugar del evento tambien lleva paises y sitios en ingles
+LUGARES_EVENTO_ES = dict(PAISES_ES)
+LUGARES_EVENTO_ES.update({'Brazil': 'Brasil', 'Colon Theater': 'Teatro Colón',
+                          'Colón Theater': 'Teatro Colón', 'State of Mexico': 'Estado de México'})
+def _evloc(m):
+    txt = m.group(2)
+    for en_, es_ in LUGARES_EVENTO_ES.items():
+        txt = re.sub(r'\b%s\b' % re.escape(en_), es_, txt)
+    return m.group(1) + txt + '</span>'
+s = re.sub(r'(<span class="event-loc">)([^<]+)</span>', _evloc, s)
+
+# La lista de paises del mapa tambien va en espanol.
+def _pais(m):
+    return m.group(1) + PAISES_ES.get(m.group(2).strip(), m.group(2)) + '</span>'
+s = re.sub(r'(<span class="country-item-name">)([^<]+)</span>', _pais, s)
 
 # el unico link interno que hay que reanclar a esta misma pagina
 s = s.replace('href="#quote"', 'href="es/#quote"')
