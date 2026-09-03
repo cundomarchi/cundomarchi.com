@@ -158,8 +158,15 @@ for i, mid in enumerate(ids):
                 compares.append((it['before'], it['after']))
         elif it.get('type') == 'image' and it.get('src'):
             imgs.append(it['src'])
-    # la portada siempre es el mural terminado, nunca la pared en blanco
-    cover = compares[0][1] if compares else (imgs[0] if imgs else 'images/site/og_image.jpg')
+    # la portada es la primera foto elegida a mano en la galeria; si el mural
+    # solo tiene un antes/despues, se usa el despues. Nunca la pared en blanco.
+    primera = gal[0] if gal else None
+    if primera and primera.get('type') == 'image' and primera.get('src'):
+        cover = primera['src']
+    elif compares:
+        cover = compares[0][1]
+    else:
+        cover = imgs[0] if imgs else 'images/site/og_image.jpg'
     hero = '../' + cover
     hero_abs = BASE + cover
     # el resto de la galeria: lo que no se uso de portada

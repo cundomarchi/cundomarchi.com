@@ -952,7 +952,8 @@ function buildCarousel() {
     // capa de adelante: el mural completo y centrado
     const img = document.createElement('img');
     img.src = cover.src;
-    img.alt = m.title;
+    // alt descriptivo: titulo + autor + lugar + anio, igual que en las tarjetas
+    img.alt = `${m.title}, mural by Cundo Marchi, ${m.loc}, ${m.year}`;
     img.className = 'carousel-main';
     img.setAttribute('data-key', cover.key);
     slide.appendChild(img);
@@ -1226,8 +1227,8 @@ const MURALS = {
       gallery: [{type:"image", src:'images/bullshit_turin/bullshit_turin.jpg', key:'bullshit_turin'},{type:"image", src:'images/bullshit_turin/bullshit_turin_before.jpg', key:'bullshit_turin_before'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra1.jpg', key:'bullshit_turin_extra1'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra2.jpg', key:'bullshit_turin_extra2'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra3.jpg', key:'bullshit_turin_extra3'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra4.jpg', key:'bullshit_turin_extra4'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra5.jpg', key:'bullshit_turin_extra5'}]
     },
 "zeus_athens": {
-      title: 'Zeus', titleEs: 'Zeus', loc: 'Athens, Greece', year: '2025', size: '5m x 2.2m',
-      desc: 'Zeus commanding the waves, painted in collaboration with Noless (Greece).', tags: ['Street Art', 'Spray Paint'], flag: '🇬🇷',
+      title: 'Hercules', titleEs: 'Hércules', loc: 'Athens, Greece', year: '2025', size: '5m x 2.2m',
+      desc: 'Hercules rising from the waves, painted in collaboration with Noless (Greece).', tags: ['Street Art', 'Spray Paint'], flag: '🇬🇷',
       gallery: [{type:"image", src:'images/zeus_athens/zeus_athens.jpg', key:'zeus_athens'},{type:"image", src:'images/zeus_athens/zeus_athens_extra1.jpg', key:'zeus_athens_extra1'},{type:"image", src:'images/zeus_athens/zeus_athens_extra2.jpg', key:'zeus_athens_extra2'},{type:"image", src:'images/zeus_athens/zeus_athens_extra3.jpg', key:'zeus_athens_extra3'}]
     },
 "king_of_kings": {
@@ -1306,6 +1307,41 @@ const MURALS = {
       title: 'Bear with Shades', titleEs: 'Oso con Lentes', loc: 'Virreyes, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
       desc: 'A friendly bear in green sunglasses, painted under a crescent moon.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/bear_virreyes/bear_virreyes.jpg', key:'bear_virreyes'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra2.jpg', key:'bear_virreyes_extra2'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra1.jpg', key:'bear_virreyes_extra1'}]
+    },
+"bailarina": {
+      title: 'The Ballerina', titleEs: 'La Bailarina', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: '2.5m x 1.2m',
+      desc: 'A ballerina painted in soft pastels on a shopfront wall, caught mid-turn with her tutu open like a flower.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
+      gallery: [{type:"image", src:'images/bailarina/bailarina.jpg', key:'bailarina'},{type:"image", src:'images/bailarina/bailarina_extra1.jpg', key:'bailarina_extra1'},{type:"image", src:'images/bailarina/bailarina_extra2.jpg', key:'bailarina_extra2'},{type:"image", src:'images/bailarina/bailarina_extra3.jpg', key:'bailarina_extra3'}]
+    },
+"dinamarca_hostel": {
+      title: "It's More Fun", titleEs: "It's More Fun", loc: 'Denmark', year: '2025', size: '3.5m x 1.2m',
+      desc: 'A sheep in sunglasses carrying the Danish flag, painted across the welcome wall of a hostel common room.', tags: ['Commission Work', 'Spray Paint'], flag: '🇩🇰',
+      gallery: [{type:"image", src:'images/dinamarca_hostel/dinamarca_hostel.jpg', key:'dinamarca_hostel'},{type:"image", src:'images/dinamarca_hostel/dinamarca_hostel_extra1.jpg', key:'dinamarca_hostel_extra1'},{type:"image", src:'images/dinamarca_hostel/dinamarca_hostel_extra2.jpg', key:'dinamarca_hostel_extra2'}]
+    },
+"parma_medusa": {
+      title: 'Medusa', titleEs: 'Medusa', loc: 'Parma, Italy', year: '2025', size: '3.5m x 2.5m',
+      desc: 'Medusa with hair of blue serpents, painted in collaboration with Andrea (Italy) alongside a wall of graffiti letters.', tags: ['Street Art', 'Spray Paint'], flag: '🇮🇹',
+      gallery: [{type:"image", src:'images/parma_medusa/parma_medusa.jpg', key:'parma_medusa'},{type:"image", src:'images/parma_medusa/parma_medusa_extra1.jpg', key:'parma_medusa_extra1'},{type:"image", src:'images/parma_medusa/parma_medusa_extra2.jpg', key:'parma_medusa_extra2'}]
+    },
+"viking_malmo": {
+      title: 'The Viking', titleEs: 'El Vikingo', loc: 'Malmö, Sweden', year: '2025', size: 'size TBC',
+      desc: 'A Swedish viking raising a spray can and a glass, painted as a collaboration in Malmö.', tags: ['Street Art', 'Spray Paint'], flag: '🇸🇪',
+      gallery: [{type:"image", src:'images/viking_malmo/viking_malmo.jpg', key:'viking_malmo'},{type:"image", src:'images/viking_malmo/viking_malmo_extra1.jpg', key:'viking_malmo_extra1'}]
+    },
+"kangaroo": {
+      title: 'The Boxing Kangaroo', titleEs: 'El Canguro Boxeador', loc: 'Gold Coast, Queensland, Australia', year: '2026', size: '2.5m x 2.5m',
+      desc: 'Australia\'s boxing kangaroo in blue shorts and red gloves, standing in front of a burst of purple and green rays on a legal graffiti wall on the Gold Coast.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇺',
+      gallery: [{type:"image", src:'images/kangaroo/kangaroo.jpg', key:'kangaroo'},{type:"image", src:'images/kangaroo/kangaroo_extra1.jpg', key:'kangaroo_extra1'},{type:"image", src:'images/kangaroo/kangaroo_extra2.jpg', key:'kangaroo_extra2'},{type:"image", src:'images/kangaroo/kangaroo_extra3.jpg', key:'kangaroo_extra3'}]
+    },
+"nino_interior": {
+      title: 'Inner Child', titleEs: 'Niño Interior', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
+      desc: 'A child with eyes closed and hands together, a light breaking open between his palms, painted across the shutters of a shopfront in San Fernando.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
+      gallery: [{type:"image", src:'images/nino_interior/nino_interior.jpg', key:'nino_interior'},{type:"image", src:'images/nino_interior/nino_interior_extra1.jpg', key:'nino_interior_extra1'},{type:"image", src:'images/nino_interior/nino_interior_extra2.jpg', key:'nino_interior_extra2'}]
+    },
+"inac_hospitality": {
+      title: 'The Chef', titleEs: 'El Chef', loc: 'Broadbeach, Queensland, Australia', year: '2026', size: '2m x 2m',
+      desc: 'A chef lifting the lid off a pot, painted in cobalt blue and greys on the white wall of the INAC Hospitality office in Broadbeach.', tags: ['Commission Work', 'Interior Mural'], flag: '🇦🇺',
+      gallery: [{type:"image", src:'images/inac_hospitality/inac_hospitality.jpg', key:'inac_hospitality'},{type:"compare", before:'images/inac_hospitality/inac_hospitality_before.jpg', after:'images/inac_hospitality/inac_hospitality_after.jpg', key:'inac_hospitality_ba'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra1.jpg', key:'inac_hospitality_extra1'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra2.jpg', key:'inac_hospitality_extra2'}]
     }
 };
 const MURAL_ORDER = Object.keys(MURALS);
@@ -1398,7 +1434,7 @@ function curGallery() {
 // Las tarjetas del portfolio son links reales a mural/<slug>.html: asi Google las
 // encuentra y se pueden abrir en pestana nueva. Con click normal, sin embargo,
 // preferimos el visor rapido en vez de recargar toda la pagina.
-const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "zeus", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "bear-with-shades"};
+const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "hercules", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "bear-with-shades", "bailarina": "the-ballerina", "dinamarca_hostel": "it-s-more-fun", "parma_medusa": "medusa", "viking_malmo": "the-viking", "kangaroo": "the-boxing-kangaroo", "nino_interior": "inner-child", "inac_hospitality": "the-chef"};
 
 function muralCardClick(e, id) {
   // Cada mural tiene su propia pagina, con la foto grande arriba y el resto
@@ -1676,8 +1712,6 @@ function toggleLangMenu() {
 function setLang(l) {
   lang = l;
   document.documentElement.lang = l;
-  if (l === 'es') setCurrency('ARS');
-  else if (l === 'en') setCurrency(geoDetectedCurrency);
   document.getElementById('langMenu').classList.remove('open');
   document.getElementById('langCurrentBtn').innerHTML = (lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES') + ' <span class="lang-arrow">▾</span>';
   document.querySelectorAll('[data-en]').forEach(el => {
@@ -1736,7 +1770,7 @@ function setCurrency(c, skipSave) {
   document.getElementById('currencyMenu').classList.remove('open');
   document.getElementById('currencyCurrentBtn').innerHTML = c + ' <span class="lang-arrow">▾</span>';
   renderPrices();
-  if (!skipSave) { try { localStorage.setItem('cmz_currency', c); } catch (e) {} }
+  if (!skipSave) { try { localStorage.setItem('cmz_currency_manual_v2', c); } catch (e) {} }
 }
 document.addEventListener('click', function(e) {
   const dd = document.getElementById('currencyDropdown');
@@ -1745,7 +1779,7 @@ document.addEventListener('click', function(e) {
 let geoDetectedCurrency = 'USD';
 async function initCurrency() {
   let saved = null;
-  try { saved = localStorage.getItem('cmz_currency'); } catch (e) {}
+  try { saved = localStorage.getItem('cmz_currency_manual_v2'); } catch (e) {}
   try {
     const res = await fetch('https://get.geojs.io/v1/ip/country.json', { signal: AbortSignal.timeout(2500) });
     const data = await res.json();
