@@ -58,6 +58,54 @@ def slugify(t):
     t = re.sub(r'[^a-zA-Z0-9]+', '-', t.lower()).strip('-')
     return re.sub(r'-+', '-', t)
 
+def loc_corta(loc):
+    """Google corta el titulo a los 70 caracteres. Para eso alcanza con la
+    ciudad y el pais; el resto de la direccion queda en el cuerpo."""
+    partes = [x.strip() for x in str(loc).split(',') if x.strip()]
+    # algunos lugares traen el nombre del evento mezclado ("Bonfil Urban Mural
+    # Fest, Acapulco, Mexico"): para el titulo interesa la ciudad, no el evento
+    eventos = ('fest', 'meeting', 'festival', 'tunnel', 'expo')
+    lugares = [x for x in partes if not any(e in x.lower() for e in eventos)]
+    if len(lugares) < 2:
+        lugares = partes
+    if len(lugares) <= 2:
+        return ', '.join(lugares)
+    # la ciudad y el pais: lo del medio (provincia, barrio) no se busca
+    return f'{lugares[0]}, {lugares[-1]}'
+
+def titulo_seo(title, loc, year):
+    """El titulo tiene que entrar en los 70 caracteres que muestra Google,
+    y conviene que quede el lugar antes que el ano: la gente busca por lugar."""
+    partes = [x.strip() for x in str(loc).split(',') if x.strip()]
+    lugares = []
+    for l in (loc_corta(loc),
+              ', '.join(partes[-2:]) if len(partes) > 2 else None,
+              partes[-1] if partes else None):
+        if l and l not in lugares:
+            lugares.append(l)
+    cands = []
+    for l in lugares:
+        cands.append(f'{title}, mural by Cundo Marchi in {l} ({year})')
+        cands.append(f'{title}, mural by Cundo Marchi in {l}')
+    for l in lugares:
+        cands.append(f'{title} mural by Cundo Marchi, {l}')
+        cands.append(f'{title} mural, {l}')
+    cands.append(f'{title}, mural by Cundo Marchi')
+    for c in cands:
+        if len(c) <= 70:
+            return c
+    return f'{title}, mural by Cundo Marchi'[:70]
+
+def descripcion(texto, limite=155):
+    """Un resumen entero, cortado en un espacio y no en la mitad de una palabra."""
+    t = ' '.join(str(texto).split())
+    if len(t) <= limite:
+        return t
+    corte = t[:limite]
+    if ' ' in corte:
+        corte = corte[:corte.rfind(' ')]
+    return corte.rstrip(' ,.;:') + '...'
+
 NAV = '''<nav>
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
     <a href="../index.html"><img src="../images/site/cmz_logo.png" alt="Cundo Marchi" style="height:34px;display:block;"></a>
@@ -196,7 +244,7 @@ for i, mid in enumerate(ids):
     hero_alt = f'{title}, mural by Cundo Marchi, {loc}, {year}'
 
     body = m.get('story') or m.get('desc') or ''
-    desc_meta = (m.get('desc') or body)[:300]
+    desc_meta = descripcion(body or m.get('desc') or '')
 
     gallery_html = ''
     # 1) el antes y despues primero, que es lo que mejor cuenta el trabajo
@@ -237,7 +285,7 @@ for i, mid in enumerate(ids):
     next_id = ids[(i + 1) % len(ids)]
 
     page = PAGE.format(
-        title_tag=esc(f'{title}, mural by Cundo Marchi in {loc} ({year})'),
+        title_tag=esc(titulo_seo(title, loc, year)),
         og_title=esc(f'{title}, mural by Cundo Marchi'),
         desc=esc(desc_meta),
         url=BASE + f'mural/{slugs[mid]}.html',
