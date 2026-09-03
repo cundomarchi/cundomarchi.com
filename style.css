@@ -508,9 +508,6 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 /* === encuadres calculados por build-crops.py, no editar a mano === */
 .mural-photo img[data-key="bailarina"] { object-position: center 30%; }
 .mural-photo img[data-key="bear_virreyes"] { object-position: center 67%; }
-.mural-photo img[data-key="bg_bio"] { object-position: center 16%; }
-.mural-photo img[data-key="bg_shop"] { object-position: center 51%; }
-.mural-photo img[data-key="bg_work"] { object-position: center 0%; }
 .mural-photo img[data-key="bullshit_turin"] { object-position: center 36%; }
 .mural-photo img[data-key="circle_of_nature"] { object-position: 29% center; }
 .mural-photo img[data-key="city_of_fury_extra1"] { object-position: center 66%; }

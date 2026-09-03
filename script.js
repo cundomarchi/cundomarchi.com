@@ -1197,36 +1197,56 @@ function sendQuoteRequest(photoFile) {
 
   campo('_subject', `Nueva consulta de ${type}: ${a.first} ${a.last} (${a.location})`);
   campo('_captcha', 'false');
-  campo('_template', 'box');
+  // "table" arma una tabla de dos columnas; con 13 campos se lee mucho mejor
+  // que "box", que apila una caja gris por campo.
+  campo('_template', 'table');
+  // asi podes apretar Responder en el mail y le contestas al cliente directo
+  campo('_replyto', a.email);
   // al terminar, volver al sitio con la marca de exito
   campo('_next', location.origin + location.pathname + '?enviado=1');
 
-  campo('Nombre', `${a.first} ${a.last}`);
-  campo('Email', a.email);
-  campo('Telefono', a.phone || '-');
-  campo('Ubicacion', a.location);
-  campo('Empresa', a.company || '-');
-  campo('Tipo de trabajo', type);
-  if (a.artType === 'mural') {
-    campo('Tipo de pared', a.wallType || '-');
-    campo('Medidas aproximadas', a.size || '-');
-  }
-  if (a.artType === 'live') campo('Cantidad de personas', a.attendance || '-');
-  if (a.artType === 'workshop') {
-    campo('Tipo de taller', a.workshopType || '-');
-    campo('Tamano del grupo', a.groupSize || '-');
-  }
-  campo('Presupuesto', a.budget || '-');
-  campo('Fecha preferida', a.date || '-');
-  campo('Detalles', a.details || '-');
+  // Respuesta automatica al cliente: le llega al instante, con tu voz, y te
+  // saca la presion de contestar en el momento.
+  campo('_autoresponse',
+    (lang === 'es'
+      ? 'Gracias por escribir. Recibi tu consulta y la estoy mirando. '
+        + 'Te contesto personalmente dentro de las proximas 48 horas con una '
+        + 'propuesta y un presupuesto.\n\nCundo Marchi\ncundomarchi.com'
+      : 'Thanks for reaching out. I got your enquiry and I am looking at it. '
+        + 'I will get back to you personally within 48 hours with a proposal '
+        + 'and a quote.\n\nCundo Marchi\ncundomarchi.com'));
 
-  // la foto va como archivo real, no como texto
+  // El orden importa: la plantilla los muestra en este orden, y lo primero
+  // que necesitas ver es que trabajo es y donde queda.
+  campo('01. Tipo de trabajo', type);
+  campo('02. Ubicacion', a.location);
+  if (a.artType === 'mural') {
+    campo('03. Tipo de pared', a.wallType || '-');
+    campo('04. Medidas aproximadas', a.size || '-');
+  }
+  if (a.artType === 'live') campo('03. Cantidad de personas', a.attendance || '-');
+  if (a.artType === 'workshop') {
+    campo('03. Tipo de taller', a.workshopType || '-');
+    campo('04. Tamano del grupo', a.groupSize || '-');
+  }
+  campo('05. Presupuesto', a.budget || '-');
+  campo('06. Fecha preferida', a.date || '-');
+  campo('07. Foto de la pared', a.photoName ? ('adjunta: ' + a.photoName) : 'no adjunto foto');
+  campo('08. Detalles', a.details || '-');
+  campo('09. Nombre', `${a.first} ${a.last}`);
+  campo('10. Email', a.email);
+  campo('11. Telefono', a.phone || '-');
+  campo('12. Empresa', a.company || '-');
+
+  // La foto va como archivo real. OJO: FormSubmit solo la adjunta si el campo
+  // se llama exactamente "attachment"; con cualquier otro nombre (por ejemplo
+  // "Foto de la pared") el mail llega igual pero sin la foto.
   if (photoFile) {
     const dt = new DataTransfer();
     dt.items.add(photoFile);
     const fi = document.createElement('input');
     fi.type = 'file';
-    fi.name = 'Foto de la pared';
+    fi.name = 'attachment';
     fi.files = dt.files;
     form.appendChild(fi);
   }
@@ -1291,9 +1311,9 @@ const MURALS = {
       gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'}]
     },
 "el_nino": {
-      title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: 'TBC', size: 'TBC',
+      title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: '2017', size: '4m x 7.5m',
       desc: 'Cuando sea grande quiero ser un niño, a kid in a monkey hoodie and lightning-bolt sunglasses, a reminder to hold on to your inner child.', descEs: 'Cuando sea grande quiero ser un niño, un nene con capucha de mono y lentes de rayo, un recordatorio de no perder al niño interior.',
-      story: "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush in San Fernando, in the north of Greater Buenos Aires, Argentina. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
+      story: "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
      tags: ['Street Art', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/el_nino/el_nino.jpg', key:'el_nino'}]
     },
@@ -1375,9 +1395,9 @@ const MURALS = {
       gallery: [{type:"image", src:'images/you_see/you_see.jpg', key:'you_see'},{type:"image", src:'images/you_see/you_see_before.jpg', key:'you_see_before'},{type:"image", src:'images/you_see/you_see_extra1.jpg', key:'you_see_extra1'},{type:"image", src:'images/you_see/you_see_extra2.jpg', key:'you_see_extra2'},{type:"image", src:'images/you_see/you_see_extra3.jpg', key:'you_see_extra3'},{type:"image", src:'images/you_see/you_see_extra4.jpg', key:'you_see_extra4'}]
     },
 "bear_virreyes": {
-      title: 'Bear with Shades', titleEs: 'Oso con Lentes', loc: 'Virreyes, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
+      title: 'California Bear', titleEs: 'Oso de California', loc: 'Virreyes, Buenos Aires, Argentina', year: '2025', size: '3m x 2.5m',
       desc: 'A friendly bear in green sunglasses, painted under a crescent moon.',
-      story: "A friendly bear in green sunglasses under a crescent moon, sprayed in Virreyes, San Fernando, in the north of Greater Buenos Aires, Argentina. The mural sits on a street wall in the neighbourhood and is painted in a flat, cartoon-leaning style, with the moon doubling as the light source for the whole scene.",
+      story: "A friendly bear in green sunglasses under a crescent moon, sprayed three metres wide by 2.5 metres high in Virreyes, San Fernando, in the north of Greater Buenos Aires, Argentina. The mural sits on a street wall in the neighbourhood and is painted in a flat, cartoon-leaning style, with the moon doubling as the light source for the whole scene.",
      tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/bear_virreyes/bear_virreyes.jpg', key:'bear_virreyes'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra2.jpg', key:'bear_virreyes_extra2'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra1.jpg', key:'bear_virreyes_extra1'}]
     },
@@ -1417,9 +1437,9 @@ const MURALS = {
       gallery: [{type:"image", src:'images/kangaroo/kangaroo.jpg', key:'kangaroo'},{type:"image", src:'images/kangaroo/kangaroo_extra1.jpg', key:'kangaroo_extra1'},{type:"image", src:'images/kangaroo/kangaroo_extra2.jpg', key:'kangaroo_extra2'},{type:"image", src:'images/kangaroo/kangaroo_extra3.jpg', key:'kangaroo_extra3'}]
     },
 "nino_interior": {
-      title: 'Inner Child', titleEs: 'Niño Interior', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
+      title: 'Inner Child', titleEs: 'Niño Interior', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: '2.5m x 2m',
       desc: 'A child with eyes closed and hands together, a light breaking open between his palms, painted across the shutters of a shopfront in San Fernando.',
-      story: "A child with his eyes closed and his hands together, a light breaking open between his palms, sprayed across the shutters of a shopfront in San Fernando, Buenos Aires, Argentina. Rays of red and blue radiate from the figure to the edges of the metal, and lines of yellow light run out from his hands along the bottom of the wall. Like the other shutter murals, it is only fully visible when the shop is closed.",
+      story: "A child with his eyes closed and his hands together, a light breaking open between his palms, sprayed 2.5 metres wide by two metres high across the shutters of a shopfront in San Fernando, Buenos Aires, Argentina. Rays of red and blue radiate from the figure to the edges of the metal, and lines of yellow light run out from his hands along the bottom of the wall. Like the other shutter murals, it is only fully visible when the shop is closed.",
      tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/nino_interior/nino_interior.jpg', key:'nino_interior'},{type:"image", src:'images/nino_interior/nino_interior_extra1.jpg', key:'nino_interior_extra1'},{type:"image", src:'images/nino_interior/nino_interior_extra2.jpg', key:'nino_interior_extra2'}]
     },
@@ -1521,7 +1541,7 @@ function curGallery() {
 // Las tarjetas del portfolio son links reales a mural/<slug>.html: asi Google las
 // encuentra y se pueden abrir en pestana nueva. Con click normal, sin embargo,
 // preferimos el visor rapido en vez de recargar toda la pagina.
-const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "hercules", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "bear-with-shades", "bailarina": "the-ballerina", "dinamarca_hostel": "it-s-more-fun", "parma_medusa": "medusa", "viking_malmo": "the-viking", "kangaroo": "the-boxing-kangaroo", "nino_interior": "inner-child", "inac_hospitality": "the-chef"};
+const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "hercules", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "california-bear", "bailarina": "the-ballerina", "dinamarca_hostel": "it-s-more-fun", "parma_medusa": "medusa", "viking_malmo": "the-viking", "kangaroo": "the-boxing-kangaroo", "nino_interior": "inner-child", "inac_hospitality": "the-chef"};
 
 function muralCardClick(e, id) {
   // Cada mural tiene su propia pagina, con la foto grande arriba y el resto
@@ -1584,12 +1604,14 @@ const STATIC_PRODUCT_EXTRAS = {
   ],
   shop_tee_sugar2: [
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra1.jpg', key: 'shop_tee_sugar2_extra1' },
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra5.jpg', key: 'shop_tee_sugar2_extra5' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra2.jpg', key: 'shop_tee_sugar2_extra2' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra3.jpg', key: 'shop_tee_sugar2_extra3' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra4.jpg', key: 'shop_tee_sugar2_extra4' }
   ],
   shop_tee_player: [
-    { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra1.jpg', key: 'shop_tee_player_extra1' }
+    { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra1.jpg', key: 'shop_tee_player_extra1' },
+    { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra2.jpg', key: 'shop_tee_player_extra2' }
   ]
 };
 function buildProductGallery(id) {
