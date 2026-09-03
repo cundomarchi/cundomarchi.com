@@ -15,6 +15,9 @@ OUT = os.path.join(OUT_DIR, 'index.html')
 s = open(SRC, encoding='utf-8').read()
 
 # ---------- 1. texto: poner el data-es como contenido visible ----------
+# Segunda pasada: elementos cuyo contenido lleva etiquetas adentro (por
+# ejemplo el subtitulo del inicio, que tiene <strong> alrededor de una
+# palabra). El patron de texto plano no los tocaba y quedaban en ingles.
 pair = re.compile(
     r'(data-en="([^"]*)"\s+data-es="([^"]*)"[^>]*>)([^<]*)'
 )
@@ -27,6 +30,22 @@ def swap(m):
         return head + es
     return m.group(0)
 s = pair.sub(swap, s)
+
+# Elementos con etiquetas adentro: se compara el texto sin etiquetas y, si
+# coincide con el data-en, se reemplaza todo el contenido por el data-es.
+con_hijos = re.compile(
+    r'(<(\w+)[^>]*data-en="([^"]*)"\s+data-es="([^"]*)"[^>]*>)(.*?)(</\2>)', re.S)
+def swap_hijos(m):
+    global swapped
+    head, tag, en, es, content, close = m.groups()
+    plano = htmlmod.unescape(re.sub(r'<[^>]+>', '', content)).strip()
+    plano = re.sub(r'\s+', ' ', plano)
+    esperado = re.sub(r'\s+', ' ', htmlmod.unescape(en).strip())
+    if '<' in content and plano and plano == esperado:
+        swapped += 1
+        return head + htmlmod.escape(htmlmod.unescape(es), quote=False) + close
+    return m.group(0)
+s = con_hijos.sub(swap_hijos, s)
 
 # ---------- 2. placeholders ----------
 ph = re.compile(r'data-en-ph="([^"]*)"\s+data-es-ph="([^"]*)"([^>]*?)placeholder="([^"]*)"')
@@ -99,6 +118,28 @@ ETIQUETAS_ES = {
 def _pill(m):
     return m.group(1) + ETIQUETAS_ES.get(m.group(2), m.group(2)) + '</span>'
 s = re.sub(r'(<span class="pill tag-(?:fill|outline)">)([^<]+)</span>', _pill, s)
+
+# Ubicaciones, medidas y titulos de mural: en las tarjetas van como texto
+# suelto, asi que se traducen aca para que la version en espanol no quede con
+# "Sweden" ni "size TBC".
+PAISES_ES = {
+    'Sweden': 'Suecia', 'Italy': 'Italia', 'Greece': 'Grecia',
+    'Denmark': 'Dinamarca', 'Switzerland': 'Suiza', 'Mexico': 'México',
+    'Australia': 'Australia', 'USA': 'Estados Unidos', 'Argentina': 'Argentina',
+    'Queensland': 'Queensland', 'Tierra del Fuego': 'Tierra del Fuego',
+    # ciudades que en espanol se escriben distinto
+    'Turin': 'Turín', 'Athens': 'Atenas', 'Florence': 'Florencia',
+    'California': 'California', 'Gold Coast': 'Gold Coast',
+    'Bicentennial Tunnel': 'Túnel del Bicentenario',
+    'Bonfil Urban Mural Fest': 'Bonfil Urban Mural Fest',
+}
+def _meta(m):
+    txt = m.group(2)
+    for en_, es_ in PAISES_ES.items():
+        txt = re.sub(r'\b%s\b' % re.escape(en_), es_, txt)
+    txt = txt.replace('size TBC', 'medida a confirmar').replace('TBC', 'a confirmar')
+    return m.group(1) + txt + '</p>'
+s = re.sub(r'(<p class="meta">)([^<]+)</p>', _meta, s)
 
 # el unico link interno que hay que reanclar a esta misma pagina
 s = s.replace('href="#quote"', 'href="es/#quote"')

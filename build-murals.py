@@ -18,6 +18,23 @@ BASE = 'https://www.cundomarchi.com/'
 # Todo lo que la pagina dice en texto fijo, en los dos idiomas. Sin esto la
 # version en espanol quedaria con la mitad de los carteles en ingles.
 # Las etiquetas de tecnica y tipo de trabajo, traducidas.
+# Ubicaciones en espanol: la gente busca "Atenas" y "Suecia", no "Athens".
+LUGARES_ES = {
+    'Sweden': 'Suecia', 'Italy': 'Italia', 'Greece': 'Grecia',
+    'Denmark': 'Dinamarca', 'Switzerland': 'Suiza', 'Mexico': 'México',
+    'USA': 'Estados Unidos', 'Turin': 'Turín', 'Athens': 'Atenas',
+    'Bicentennial Tunnel': 'Túnel del Bicentenario',
+}
+def lugar_es(loc):
+    import re as _re
+    t = str(loc)
+    for en_, es_ in LUGARES_ES.items():
+        t = _re.sub(r'\b%s\b' % _re.escape(en_), es_, t)
+    return t
+
+def medida_es(size):
+    return str(size).replace('size TBC', 'medida a confirmar').replace('TBC', 'a confirmar')
+
 ETIQUETAS_ES = {
     'Street Art': 'Arte urbano',
     'Mural Event': 'Encuentro de muralismo',
@@ -280,8 +297,9 @@ for cfg in IDIOMAS:
         m = MURALS[mid]
         es = (L == 'es')
         title = (m.get('titleEs') or m['title']) if es else m['title']
-        loc, year = m['loc'], m['year']
-        size = m.get('size', '')
+        loc = lugar_es(m['loc']) if es else m['loc']
+        year = m['year']
+        size = medida_es(m.get('size', '')) if es else m.get('size', '')
         gal = m.get('gallery', [])
         compares, imgs = [], []
         for it in gal:

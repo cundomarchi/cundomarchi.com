@@ -956,7 +956,9 @@ function buildCarousel() {
     img.decoding = 'async';
     blur.decoding = 'async';
     // alt descriptivo: titulo + autor + lugar + anio, igual que en las tarjetas
-    img.alt = `${m.title}, mural by Cundo Marchi, ${m.loc}, ${m.year}`;
+    img.alt = (typeof lang !== 'undefined' && lang === 'es')
+      ? `${m.titleEs || m.title}, mural de Cundo Marchi, ${lugarSegunIdioma(m.loc)}, ${m.year}`
+      : `${m.title}, mural by Cundo Marchi, ${m.loc}, ${m.year}`;
     img.className = 'carousel-main';
     img.setAttribute('data-key', cover.key);
     slide.appendChild(img);
@@ -973,7 +975,7 @@ function buildCarousel() {
     cap.appendChild(titleSpan);
     const locSpan = document.createElement('span');
     locSpan.className = 'carousel-loc';
-    locSpan.textContent = `${m.loc}, ${m.year}`;
+    locSpan.textContent = `${lugarSegunIdioma(m.loc)}, ${m.year}`;
     cap.appendChild(locSpan);
     slide.appendChild(cap);
     const rmBtn = document.createElement('button');
@@ -1001,6 +1003,28 @@ function buildCarousel() {
 // La version chica (-800) de una foto. Se usa donde la imagen se muestra
 // pequena o borrosa: ahi la resolucion grande es peso tirado a la basura.
 // Si el archivo chico no existe, el onerror vuelve al original.
+// Los lugares se guardan en ingles. En la version en espanol conviene
+// mostrarlos traducidos: la gente busca "Atenas" y "Suecia", no "Athens".
+const LUGARES_ES = {
+  'Sweden': 'Suecia', 'Italy': 'Italia', 'Greece': 'Grecia',
+  'Denmark': 'Dinamarca', 'Switzerland': 'Suiza', 'Mexico': 'México',
+  'USA': 'Estados Unidos', 'Turin': 'Turín', 'Athens': 'Atenas',
+  'Bicentennial Tunnel': 'Túnel del Bicentenario'
+};
+function lugarSegunIdioma(loc) {
+  if (typeof lang === 'undefined' || lang !== 'es') return loc;
+  let t = String(loc);
+  for (const [en, es] of Object.entries(LUGARES_ES)) {
+    t = t.replace(new RegExp('\\b' + en + '\\b', 'g'), es);
+  }
+  return t;
+}
+function medidaSegunIdioma(size) {
+  const t = String(size || '');
+  if (typeof lang === 'undefined' || lang !== 'es') return t;
+  return t.replace('size TBC', 'medida a confirmar').replace(/\bTBC\b/, 'a confirmar');
+}
+
 function fotoVariante(src, ancho) {
   return src.replace(/(\.[a-z]+)$/i, '-' + ancho + '$1');
 }
