@@ -182,7 +182,10 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 /* CAROUSEL - big, full-bleed */
 .carousel-wrap { position: relative; width: 100%; height: 86vh; min-height: 520px; overflow: hidden; background: var(--black); }
 .carousel-track { position: relative; width: 100%; height: 100%; }
-.carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 2.5s ease; cursor: pointer; pointer-events: none; }
+.carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 2.5s ease; cursor: pointer; pointer-events: none;
+  /* fondo propio: mientras la foto todavia no llego, la diapositiva se ve
+     negra y no en blanco ni con el fondo desenfocado solo */
+  background: var(--black); }
 .carousel-slide.active { opacity: 1; pointer-events: auto; }
 /* El mural se muestra ENTERO y centrado (contain), con margenes simetricos.
    Para que no queden franjas negras, detras va la misma foto ampliada y

@@ -1019,17 +1019,33 @@ function cargarSlidesCercanas(centro) {
   if (!slides.length) return;
   for (let d = -1; d <= 1; d++) {
     const n = ((centro + d) % slides.length + slides.length) % slides.length;
-    slides[n].querySelectorAll('img[data-src]').forEach(img => {
-      const src = img.dataset.src;
-      delete img.dataset.src;
-      if (img.classList.contains('carousel-blur')) {
-        usarVarianteConRespaldo(img, src, 800);    // va desenfocado: alcanza la chica
-      } else {
-        // el carrusel se ve a 380px de alto, no hacen falta 1600px de archivo
-        usarVarianteConRespaldo(img, src, 1200);
-      }
-    });
+    cargarSlide(slides[n]);
   }
+}
+
+// El fondo desenfocado pesa menos que la foto, asi que si los dos arrancan
+// juntos el fondo gana la carrera y por unos segundos se ve el mural TODO
+// borroso. Por eso se carga primero la foto y recien cuando esta lista se
+// pide el fondo. Mientras tanto la diapositiva queda en negro, nunca borrosa.
+function cargarSlide(slide) {
+  if (!slide) return;
+  const main = slide.querySelector('.carousel-main[data-src]');
+  const blur = slide.querySelector('.carousel-blur[data-src]');
+  if (!main) return;
+  const src = main.dataset.src;
+  delete main.dataset.src;
+
+  const pedirFondo = () => {
+    if (!blur || !blur.dataset.src) return;
+    const bsrc = blur.dataset.src;
+    delete blur.dataset.src;
+    usarVarianteConRespaldo(blur, bsrc, 800);   // va desenfocado: alcanza la chica
+  };
+  // solo cuando la foto CARGO de verdad. Si fallara, la diapositiva queda
+  // negra en vez de quedar toda borrosa, que es lo que se veia mal.
+  main.addEventListener('load', pedirFondo, { once: true });
+  // el carrusel se ve a 380px de alto, no hacen falta 1600px de archivo
+  usarVarianteConRespaldo(main, src, 1200);
 }
 function goToSlide(i) {
   const slides = document.querySelectorAll('#carousel .carousel-slide');
