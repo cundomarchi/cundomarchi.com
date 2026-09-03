@@ -60,9 +60,9 @@ s = s.replace('<html lang="en">', '<html lang="es">', 1)
 # ---------- 4. head en espanol ----------
 BASE = 'https://www.cundomarchi.com/'
 TITLE_ES = 'Cundo Marchi, Muralista y Artista Visual | Murales por Encargo'
-DESC_ES = ('Cundo Marchi es un muralista y artista visual argentino que pinta murales de gran escala '
-           'en 5 continentes desde 2012. Murales por encargo, pintura en vivo y talleres de pintura, '
-           'en cualquier parte del mundo.')
+# Google muestra unos 160 caracteres: mas largo que eso se corta.
+DESC_ES = ('Muralista y artista visual argentino, pintando murales de gran escala en 5 continentes '
+           'desde 2012. Murales, pintura en vivo y talleres, en todo el mundo.')
 
 s = re.sub(r'<title>.*?</title>', f'<title>{TITLE_ES}</title>', s, count=1, flags=re.S)
 s = re.sub(r'(<meta name="description" content=")[^"]*(")', rf'\g<1>{DESC_ES}\g<2>', s, count=1)
@@ -85,8 +85,28 @@ s = s.replace(f'<link rel="alternate" hreflang="es" href="{BASE}?lang=es">',
 # <base> hace que TODA ruta relativa resuelva desde la raiz del sitio, incluidas
 # las imagenes que inyecta el JavaScript (lightbox, galerias, carrusel).
 s = s.replace('<head>', '<head>\n<base href="../">', 1)
+# Las etiquetas de las tarjetas son texto suelto sin data-es, asi que se
+# traducen aca para que la home en espanol no quede con las pastillas en ingles.
+ETIQUETAS_ES = {
+    'Street Art': 'Arte urbano',
+    'Mural Event': 'Encuentro de muralismo',
+    'Commission Work': 'Obra por encargo',
+    'Interior Mural': 'Mural de interior',
+    'Spray Paint': 'Aerosol',
+    'Exterior Paint & Brush': 'Pintura de exterior y pincel',
+    'Mix Media': 'Técnica mixta',
+}
+def _pill(m):
+    return m.group(1) + ETIQUETAS_ES.get(m.group(2), m.group(2)) + '</span>'
+s = re.sub(r'(<span class="pill tag-(?:fill|outline)">)([^<]+)</span>', _pill, s)
+
 # el unico link interno que hay que reanclar a esta misma pagina
 s = s.replace('href="#quote"', 'href="es/#quote"')
+
+# Las tarjetas de mural apuntaban a la version en ingles. Con <base> en la raiz,
+# "mural/x.html" es la pagina en ingles: hay que mandarlas a "es/mural/x.html".
+s = re.sub(r'href="mural/([^"]+)\.html"', r'href="es/mural/\1.html"', s)
+s = re.sub(r"muralCardClick\(event,'([^']+)'\)", r"muralCardClick(event,'\1')", s)
 
 # ---------- 6. arrancar en espanol ----------
 s = s.replace('<script src="script.js', '<script>window.__forceLang="es";</script>\n<script src="script.js', 1)
