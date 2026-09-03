@@ -1218,17 +1218,23 @@ document.addEventListener('DOMContentLoaded', function () {
 const MURALS = {
 "meeting_of_styles": {
       title: 'Meeting of Styles', titleEs: 'Meeting of Styles', loc: 'Malmö, Sweden', year: '2025', size: '5m x 3m',
-      desc: "A surrealist face fused with layered eyes and a butterfly, painted live at one of the world's most recognized street art gatherings.", tags: ['Street Art', 'Mural Event', 'Spray Paint'], flag: '🇸🇪',
+      desc: "A surrealist face fused with layered eyes and a butterfly, painted live at one of the world's most recognized street art gatherings.",
+      story: "A surrealist face fused with layered eyes and a butterfly, sprayed across a 5 by 3 metre wall in Malmö, Sweden. It was painted live at Meeting of Styles, the international graffiti and street art festival that has been bringing writers and muralists together since the 1990s. The face is built from overlapping planes of colour rather than outlines, so the eyes read as several faces at once depending on how far back you stand.",
+     tags: ['Street Art', 'Mural Event', 'Spray Paint'], flag: '🇸🇪',
       gallery: [{type:"image", src:'images/meeting_of_styles/meeting_of_styles_after.jpg', key:'meeting_of_styles_after'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_before.jpg', key:'meeting_of_styles_before'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra5.jpg', key:'meeting_of_styles_extra5'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra1.jpg', key:'meeting_of_styles_extra1'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra2.jpg', key:'meeting_of_styles_extra2'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra3.jpg', key:'meeting_of_styles_extra3'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra4.jpg', key:'meeting_of_styles_extra4'}]
     },
 "bullshit_turin": {
       title: 'BULLL$HIT', titleEs: 'BULLL$HIT', loc: 'Turin, Italy', year: '2025', size: '5m x 2.2m',
-      desc: 'A charging bull rendered in electric magenta and teal. Collab with Ades (Italy).', tags: ['Street Art', 'Spray Paint'], flag: '🇮🇹',
+      desc: 'A charging bull rendered in electric magenta and teal. Collab with Ades (Italy).',
+      story: "A bull charging out of a wall in electric magenta and teal, five metres wide and 2.2 metres high, painted with spray paint in Turin, in the Piedmont region of northern Italy. The piece was made as a collaboration with the Italian artist Ades, whose lettering runs alongside the animal. The bull is built almost entirely from complementary colours, with no black outline holding the shape together.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇮🇹',
       gallery: [{type:"image", src:'images/bullshit_turin/bullshit_turin.jpg', key:'bullshit_turin'},{type:"image", src:'images/bullshit_turin/bullshit_turin_before.jpg', key:'bullshit_turin_before'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra1.jpg', key:'bullshit_turin_extra1'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra2.jpg', key:'bullshit_turin_extra2'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra3.jpg', key:'bullshit_turin_extra3'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra4.jpg', key:'bullshit_turin_extra4'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra5.jpg', key:'bullshit_turin_extra5'}]
     },
 "zeus_athens": {
       title: 'Hercules', titleEs: 'Hércules', loc: 'Athens, Greece', year: '2025', size: '5m x 2.2m',
-      desc: 'Hercules rising from the waves, painted in collaboration with Noless (Greece).', tags: ['Street Art', 'Spray Paint'], flag: '🇬🇷',
+      desc: 'Hercules rising from the waves, painted in collaboration with Noless (Greece).',
+      story: "Hercules rising out of the waves, sprayed five metres wide across a wall in Athens, Greece, in collaboration with the Greek artist Noless. The figure is painted in the tradition of classical Greek heroes but rendered with spray paint and a street art palette, hair and water blending into the same movement. Athens is one of Europe's most active cities for legal and independent wall painting.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇬🇷',
       gallery: [{type:"image", src:'images/zeus_athens/zeus_athens.jpg', key:'zeus_athens'},{type:"image", src:'images/zeus_athens/zeus_athens_extra1.jpg', key:'zeus_athens_extra1'},{type:"image", src:'images/zeus_athens/zeus_athens_extra2.jpg', key:'zeus_athens_extra2'},{type:"image", src:'images/zeus_athens/zeus_athens_extra3.jpg', key:'zeus_athens_extra3'}]
     },
 "king_of_kings": {
@@ -1240,107 +1246,149 @@ const MURALS = {
     },
 "city_of_fury": {
       title: 'The City of the Fury', titleEs: 'La Ciudad de la Furia', loc: 'Buenos Aires, Argentina', year: '2021', size: '4.5m x 2.8m',
-      desc: 'Inspired by Gustavo Cerati. A face dissolving into color above a sleeping skyline.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
+      desc: 'Inspired by Gustavo Cerati. A face dissolving into color above a sleeping skyline.',
+      story: "A face dissolving into colour above a sleeping skyline, 4.5 by 2.8 metres, painted with exterior paint and brush in Buenos Aires, Argentina. The mural takes its name and its imagery from Gustavo Cerati and the song that gave Buenos Aires its nickname, the city of fury. The skyline along the bottom of the wall is painted in near monochrome so the colour of the face carries the whole composition.",
+     tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'}]
     },
 "el_nino": {
       title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: 'TBC', size: 'TBC',
-      desc: 'Cuando sea grande quiero ser un niño, a kid in a monkey hoodie and lightning-bolt sunglasses, a reminder to hold on to your inner child.', descEs: 'Cuando sea grande quiero ser un niño, un nene con capucha de mono y lentes de rayo, un recordatorio de no perder al niño interior.', tags: ['Street Art', 'Exterior Paint & Brush'], flag: '🇦🇷',
+      desc: 'Cuando sea grande quiero ser un niño, a kid in a monkey hoodie and lightning-bolt sunglasses, a reminder to hold on to your inner child.', descEs: 'Cuando sea grande quiero ser un niño, un nene con capucha de mono y lentes de rayo, un recordatorio de no perder al niño interior.',
+      story: "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush in San Fernando, in the north of Greater Buenos Aires, Argentina. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
+     tags: ['Street Art', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/el_nino/el_nino.jpg', key:'el_nino'}]
     },
 "fusion_of_life": {
       title: 'The Fusion of Life', titleEs: 'La Fusión de la Vida', loc: 'San Juan, Argentina, Maanso Meeting II', year: '2018', size: '9m x 2.5m',
-      desc: 'Represents the fusion of heart and brain, love and reason working toward one purpose. 50% love, 50% reason, 100% dedication.', tags: ['Mural Event', 'Mix Media'], flag: '🇦🇷',
+      desc: 'Represents the fusion of heart and brain, love and reason working toward one purpose. 50% love, 50% reason, 100% dedication.',
+      story: "Nine metres wide by 2.5 metres high, painted in mixed media for the second Maanso Meeting in San Juan, Argentina, in 2018. The mural represents the fusion of heart and brain, love and reason working towards a single purpose: fifty per cent love, fifty per cent reason, one hundred per cent dedication. It is one of the largest walls in the portfolio and was painted as part of a group mural event.",
+     tags: ['Mural Event', 'Mix Media'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/fusion_of_life/fusion_of_life.jpg', key:'fusion_of_life'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra1.jpg', key:'fusion_of_life_extra1'}]
     },
 "down_ocean": {
       title: 'Down the Ocean', titleEs: 'Bajo el Océano', loc: 'Bicentennial Tunnel, Tigre, Buenos Aires, Argentina', year: '2019', size: '150 m²',
-      desc: 'A full underwater world painted along a public tunnel, an octopus stretches across the entrance while a sea turtle drifts past jellyfish further inside.', tags: ['Commission Work', 'Mix Media'], flag: '🇦🇷',
+      desc: 'A full underwater world painted along a public tunnel, an octopus stretches across the entrance while a sea turtle drifts past jellyfish further inside.',
+      story: "A full underwater world covering roughly 150 square metres along the Bicentennial Tunnel in Tigre, Buenos Aires Province, Argentina. An octopus stretches across the entrance and a sea turtle drifts past jellyfish further inside, so the scene unfolds as you walk through rather than being read from a single point. It was a commissioned public work, painted in mixed media on the tunnel walls.",
+     tags: ['Commission Work', 'Mix Media'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/down_ocean/down_ocean.jpg', key:'down_ocean_6'},{type:"image", src:'images/down_ocean/down_ocean_1_before.jpg', key:'down_ocean_1_before'},{type:"image", src:'images/down_ocean/down_ocean_4.jpg', key:'down_ocean_4'}]
     },
 "flower_octopus": {
       title: 'Flower Octopus', titleEs: 'Pulpo Flor', loc: 'Buenos Aires, Argentina', year: '2018', size: '3.5m x 2.5m',
-      desc: 'A red octopus wrapped in tropical leaves, wrapping around a rooftop window.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
+      desc: 'A red octopus wrapped in tropical leaves, wrapping around a rooftop window.',
+      story: "A red octopus wrapped in tropical leaves, its arms curling around a rooftop window in Buenos Aires, Argentina. The mural is 3.5 by 2.5 metres, painted with exterior paint and brush as a private commission, and it uses the existing architecture as part of the drawing: the window opening becomes the space the octopus holds on to.",
+     tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"compare", before:'images/flower_octopus/flower_octopus_before.jpg', after:'images/flower_octopus/flower_octopus.jpg', beforeKey:'flower_octopus_before', afterKey:'flower_octopus'}]
     },
 "ocean_heart": {
       title: 'Ocean Heart', titleEs: 'Corazón del Océano', loc: 'Bonfil Urban Mural Fest, Acapulco, Mexico', year: '2022', size: '7m x 2.5m',
-      desc: 'A heart made of coral rests on the ocean floor, a reminder that reefs are the actual heart of the sea.', tags: ['Mural Event', 'Spray Paint'], flag: '🇲🇽',
+      desc: 'A heart made of coral rests on the ocean floor, a reminder that reefs are the actual heart of the sea.',
+      story: "A heart made of coral resting on the ocean floor, seven metres wide by 2.5 metres high, sprayed for the Bonfil Urban Mural Fest in Acapulco, Guerrero, Mexico. The image is a reminder that reefs are the actual heart of the sea, painted in a coastal city where the health of the water is part of daily life. Bonfil is a neighbourhood mural festival that brings artists to paint the walls of the community.",
+     tags: ['Mural Event', 'Spray Paint'], flag: '🇲🇽',
       gallery: [{type:"image", src:'images/ocean_heart/ocean_heart.jpg', key:'ocean_heart'},{type:"image", src:'images/ocean_heart/ocean_heart_extra1.jpg', key:'ocean_heart_extra1'},{type:"image", src:'images/ocean_heart/ocean_heart_extra2.jpg', key:'ocean_heart_extra2'},{type:"image", src:'images/ocean_heart/ocean_heart_extra3.jpg', key:'ocean_heart_extra3'},{type:"image", src:'images/ocean_heart/ocean_heart_extra4.jpg', key:'ocean_heart_extra4'},{type:"image", src:'images/ocean_heart/ocean_heart_extra5.jpg', key:'ocean_heart_extra5'},{type:"image", src:'images/ocean_heart/ocean_heart_extra6.jpg', key:'ocean_heart_extra6'},{type:"image", src:'images/ocean_heart/ocean_heart_extra7.jpg', key:'ocean_heart_extra7'},{type:"image", src:'images/ocean_heart/ocean_heart_extra8.jpg', key:'ocean_heart_extra8'},{type:"image", src:'images/ocean_heart/ocean_heart_extra9.jpg', key:'ocean_heart_extra9'},{type:"image", src:'images/ocean_heart/ocean_heart_extra10.jpg', key:'ocean_heart_extra10'},{type:"image", src:'images/ocean_heart/ocean_heart_extra11.jpg', key:'ocean_heart_extra11'},{type:"image", src:'images/ocean_heart/ocean_heart_extra12.jpg', key:'ocean_heart_extra12'}]
     },
 "the_eyes": {
       title: 'The Eyes', titleEs: 'Los Ojos', loc: 'Buenos Aires, Argentina', year: '2023', size: '4.2m x 1.2m',
-      desc: 'Two enormous painted eyes watch the street from a storefront shutter.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
+      desc: 'Two enormous painted eyes watch the street from a storefront shutter.',
+      story: "Two enormous eyes watching the street from a storefront shutter in Buenos Aires, Argentina, 4.2 metres wide and only 1.2 metres high. The extreme horizontal format is set by the shutter itself, and the mural only exists as a complete image when the shop is closed, which makes it a piece that appears and disappears with the working day.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/the_eyes/the_eyes.jpg', key:'the_eyes'},{type:"image", src:'images/the_eyes/the_eyes_extra1.jpg', key:'the_eyes_extra1'},{type:"image", src:'images/the_eyes/the_eyes_extra2.jpg', key:'the_eyes_extra2'},{type:"image", src:'images/the_eyes/the_eyes_extra3.jpg', key:'the_eyes_extra3'},{type:"image", src:'images/the_eyes/the_eyes_extra4.jpg', key:'the_eyes_extra4'},{type:"image", src:'images/the_eyes/the_eyes_extra5.jpg', key:'the_eyes_extra5'},{type:"image", src:'images/the_eyes/the_eyes_extra6.jpg', key:'the_eyes_extra6'},{type:"image", src:'images/the_eyes/the_eyes_extra7.jpg', key:'the_eyes_extra7'},{type:"image", src:'images/the_eyes/the_eyes_extra8.jpg', key:'the_eyes_extra8'}]
     },
 "el_eternauta": {
       title: 'El Eternauta', titleEs: 'El Eternauta', loc: 'Buenos Aires, Argentina', year: '2024', size: '2m x 2.5m',
-      desc: "Argentina's iconic sci-fi hero, rendered in cold monochrome, holding a single flower against the void.", tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
+      desc: "Argentina's iconic sci-fi hero, rendered in cold monochrome, holding a single flower against the void.",
+      story: "Argentina's iconic science fiction hero, rendered in cold monochrome and holding a single flower against the void. Sprayed two metres wide by 2.5 metres high in Buenos Aires, Argentina. El Eternauta, created by Héctor Germán Oesterheld, is one of the most recognised figures in Argentine comics, and the mural keeps his snow suit and mask almost colourless so the flower is the only warm thing on the wall.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/el_eternauta/el_eternauta.jpg', key:'el_eternauta'},{type:"image", src:'images/el_eternauta/el_eternauta_extra2.jpg', key:'el_eternauta_extra2'},{type:"image", src:'images/el_eternauta/el_eternauta_extra3.jpg', key:'el_eternauta_extra3'},{type:"image", src:'images/el_eternauta/el_eternauta_extra4.jpg', key:'el_eternauta_extra4'}]
     },
 "laos_california": {
       title: 'Laos & California', titleEs: 'Laos & California', loc: 'California, USA', year: '2022', size: '8m x 2.8m',
-      desc: "Two garage doors, two worlds: Laos's nature and spirituality on the left, California's wild energy on the right.", tags: ['Commission Work', 'Mix Media'], flag: '🇺🇸',
+      desc: "Two garage doors, two worlds: Laos's nature and spirituality on the left, California's wild energy on the right.",
+      story: "Eight metres of painting across two garage doors in California, USA: two worlds side by side, the nature and spirituality of Laos on the left and the wild energy of California on the right. Painted in mixed media as a private commission, 8 by 2.8 metres. Because the surface is two separate doors, the mural reads as a diptych, with each half keeping its own palette.",
+     tags: ['Commission Work', 'Mix Media'], flag: '🇺🇸',
       gallery: [{type:"image", src:'images/laos_california/laos_california.jpg', key:'laos_california'},{type:"image", src:'images/laos_california/laos_california_extra3.jpg', key:'laos_california_extra3'},{type:"image", src:'images/laos_california/laos_california_extra4.jpg', key:'laos_california_extra4'}]
     },
 "tlaloc": {
       title: 'Tlaloc', titleEs: 'Tlaloc', loc: 'Playa del Carmen, Quintana Roo, Mexico', year: '2022', size: '2.5m x 2.5m',
-      desc: 'The Mesoamerican rain deity reimagined in acid color on a corner wall.', tags: ['Street Art', 'Spray Paint'], flag: '🇲🇽',
+      desc: 'The Mesoamerican rain deity reimagined in acid color on a corner wall.',
+      story: "The Mesoamerican rain deity reimagined in acid colour on a corner wall in Playa del Carmen, Quintana Roo, Mexico, on the Riviera Maya. Tláloc was the god of rain and fertility for the Aztecs, and here the mask keeps the goggle eyes and fangs of the original iconography but is sprayed in greens, magentas and blues, 2.5 by 2.5 metres, on a turquoise building in the middle of the street.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇲🇽',
       gallery: [{type:"image", src:'images/tlaloc/tlaloc_extra5.jpg', key:'tlaloc_extra5'},{type:"image", src:'images/tlaloc/tlaloc_extra6.jpg', key:'tlaloc_extra6'},{type:"image", src:'images/tlaloc/tlaloc_extra7.jpg', key:'tlaloc_extra7'}]
     },
 "circle_of_nature": {
       title: 'The Circle of Nature', titleEs: 'El Círculo de la Naturaleza', loc: 'Buenos Aires, Argentina', year: '2022', size: '2.2m x 3m',
-      desc: 'A parrot at rest inside a golden spiral, framed by moonlight and jungle leaves.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
+      desc: 'A parrot at rest inside a golden spiral, framed by moonlight and jungle leaves.',
+      story: "A parrot at rest inside a golden spiral, framed by moonlight and jungle leaves, 2.2 metres wide by three metres high. Painted with exterior paint and brush as a private commission in Buenos Aires, Argentina. The composition is built on the golden spiral, so the bird's body, the leaves and the moon all sit on the same curve.",
+     tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/circle_of_nature/circle_of_nature.jpg', key:'circle_of_nature'},{type:"image", src:'images/circle_of_nature/circle_of_nature_before.jpg', key:'circle_of_nature_before'},{type:"image", src:'images/circle_of_nature/circle_of_nature_extra1.jpg', key:'circle_of_nature_extra1'}]
     },
 "the_seesaw": {
       title: 'The Seesaw', titleEs: 'El Subibaja', loc: 'Buenos Aires, Argentina', year: '2022', size: '5m x 2.2m',
-      desc: "Three characters balance on a seesaw across a storefront's roller shutters.", tags: ['Commission Work', 'Spray Paint'], flag: '🇦🇷',
+      desc: "Three characters balance on a seesaw across a storefront's roller shutters.",
+      story: "Three characters balancing on a seesaw across the roller shutters of a storefront in Buenos Aires, Argentina, five metres wide and 2.2 metres high, sprayed with aerosol. Like other shutter murals, the piece is only fully visible outside opening hours, and the horizontal band of the shutter is what gives the seesaw its length.",
+     tags: ['Commission Work', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/the_seesaw/the_seesaw.jpg', key:'the_seesaw'},{type:"image", src:'images/the_seesaw/the_seesaw_before.jpg', key:'the_seesaw_before'},{type:"image", src:'images/the_seesaw/the_seesaw_extra1.jpg', key:'the_seesaw_extra1'},{type:"image", src:'images/the_seesaw/the_seesaw_extra2.jpg', key:'the_seesaw_extra2'},{type:"image", src:'images/the_seesaw/the_seesaw_extra3.jpg', key:'the_seesaw_extra3'},{type:"image", src:'images/the_seesaw/the_seesaw_extra4.jpg', key:'the_seesaw_extra4'},{type:"image", src:'images/the_seesaw/the_seesaw_extra5.jpg', key:'the_seesaw_extra5'},{type:"image", src:'images/the_seesaw/the_seesaw_extra6.jpg', key:'the_seesaw_extra6'}]
     },
 "you_see": {
       title: 'You Are What You See', titleEs: 'Sos Lo Que Ves', loc: 'Sierre, Switzerland', year: '2025', size: '3.5m x 2.2m',
-      desc: 'A single radiant eye, built from a pocket sketchbook drawing scaled up onto a public wall.', tags: ['Street Art', 'Spray Paint'], flag: '🇨🇭',
+      desc: 'A single radiant eye, built from a pocket sketchbook drawing scaled up onto a public wall.',
+      story: "A single radiant eye, 3.5 by 2.2 metres, sprayed on a public wall in Sierre, in the Valais canton of southern Switzerland. The image started as a drawing in a pocket sketchbook and was scaled straight up to the wall, keeping the loose line of the original sketch. The title, You Are What You See, is painted as part of the piece.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇨🇭',
       gallery: [{type:"image", src:'images/you_see/you_see.jpg', key:'you_see'},{type:"image", src:'images/you_see/you_see_before.jpg', key:'you_see_before'},{type:"image", src:'images/you_see/you_see_extra1.jpg', key:'you_see_extra1'},{type:"image", src:'images/you_see/you_see_extra2.jpg', key:'you_see_extra2'},{type:"image", src:'images/you_see/you_see_extra3.jpg', key:'you_see_extra3'},{type:"image", src:'images/you_see/you_see_extra4.jpg', key:'you_see_extra4'}]
     },
 "bear_virreyes": {
       title: 'Bear with Shades', titleEs: 'Oso con Lentes', loc: 'Virreyes, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
-      desc: 'A friendly bear in green sunglasses, painted under a crescent moon.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
+      desc: 'A friendly bear in green sunglasses, painted under a crescent moon.',
+      story: "A friendly bear in green sunglasses under a crescent moon, sprayed in Virreyes, San Fernando, in the north of Greater Buenos Aires, Argentina. The mural sits on a street wall in the neighbourhood and is painted in a flat, cartoon-leaning style, with the moon doubling as the light source for the whole scene.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/bear_virreyes/bear_virreyes.jpg', key:'bear_virreyes'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra2.jpg', key:'bear_virreyes_extra2'},{type:"image", src:'images/bear_virreyes/bear_virreyes_extra1.jpg', key:'bear_virreyes_extra1'}]
     },
 "bailarina": {
       title: 'The Ballerina', titleEs: 'La Bailarina', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: '2.5m x 1.2m',
-      desc: 'A ballerina painted in soft pastels on a shopfront wall, caught mid-turn with her tutu open like a flower.', tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
+      desc: 'A ballerina painted in soft pastels on a shopfront wall, caught mid-turn with her tutu open like a flower.',
+      story: "A ballerina caught mid turn, her tutu open like a flower, painted in soft pastels with exterior paint and brush on a shopfront wall in San Fernando, Buenos Aires, Argentina. The mural is 2.5 metres wide by 1.2 metres high and was made as a commission for the business, so the figure is sized and placed to work with the shop's own frontage.",
+     tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/bailarina/bailarina.jpg', key:'bailarina'},{type:"image", src:'images/bailarina/bailarina_extra1.jpg', key:'bailarina_extra1'},{type:"image", src:'images/bailarina/bailarina_extra2.jpg', key:'bailarina_extra2'},{type:"image", src:'images/bailarina/bailarina_extra3.jpg', key:'bailarina_extra3'}]
     },
 "dinamarca_hostel": {
       title: "It's More Fun", titleEs: "It's More Fun", loc: 'Denmark', year: '2025', size: '3.5m x 1.2m',
-      desc: 'A sheep in sunglasses carrying the Danish flag, painted across the welcome wall of a hostel common room.', tags: ['Commission Work', 'Spray Paint'], flag: '🇩🇰',
+      desc: 'A sheep in sunglasses carrying the Danish flag, painted across the welcome wall of a hostel common room.',
+      story: "A sheep in sunglasses carrying the Danish flag, sprayed across the welcome wall of a hostel common room in Denmark. The mural is 3.5 metres wide by about 1.2 metres high and was commissioned as an interior piece, so it was painted to be seen up close, in a room people sit in, rather than from across a street.",
+     tags: ['Commission Work', 'Spray Paint'], flag: '🇩🇰',
       gallery: [{type:"image", src:'images/dinamarca_hostel/dinamarca_hostel.jpg', key:'dinamarca_hostel'},{type:"image", src:'images/dinamarca_hostel/dinamarca_hostel_extra1.jpg', key:'dinamarca_hostel_extra1'},{type:"image", src:'images/dinamarca_hostel/dinamarca_hostel_extra2.jpg', key:'dinamarca_hostel_extra2'}]
     },
 "parma_medusa": {
       title: 'Medusa', titleEs: 'Medusa', loc: 'Parma, Italy', year: '2025', size: '3.5m x 2.5m',
-      desc: 'Medusa with hair of blue serpents, painted in collaboration with Andrea (Italy) alongside a wall of graffiti letters.', tags: ['Street Art', 'Spray Paint'], flag: '🇮🇹',
+      desc: 'Medusa with hair of blue serpents, painted in collaboration with Andrea (Italy) alongside a wall of graffiti letters.',
+      story: "Medusa with hair of blue serpents, sprayed 3.5 metres wide by 2.5 metres high in Parma, in the Emilia-Romagna region of northern Italy, in collaboration with the Italian artist Andrea. The portrait sits alongside a wall of graffiti letters, so the piece works both as a character and as part of a longer painted wall.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇮🇹',
       gallery: [{type:"image", src:'images/parma_medusa/parma_medusa.jpg', key:'parma_medusa'},{type:"image", src:'images/parma_medusa/parma_medusa_extra1.jpg', key:'parma_medusa_extra1'},{type:"image", src:'images/parma_medusa/parma_medusa_extra2.jpg', key:'parma_medusa_extra2'}]
     },
 "viking_malmo": {
       title: 'The Viking', titleEs: 'El Vikingo', loc: 'Malmö, Sweden', year: '2025', size: 'size TBC',
-      desc: 'A Swedish viking raising a spray can and a glass, painted as a collaboration in Malmö.', tags: ['Street Art', 'Spray Paint'], flag: '🇸🇪',
+      desc: 'A Swedish viking raising a spray can and a glass, painted as a collaboration in Malmö.',
+      story: "A Swedish viking raising a spray can in one hand and a glass in the other, painted as a collaboration on a wall in Malmö, in the south of Sweden. The figure swaps the usual axe and horn for the tools of the wall itself, which makes it a portrait of the painting scene in the city as much as of a viking.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇸🇪',
       gallery: [{type:"image", src:'images/viking_malmo/viking_malmo.jpg', key:'viking_malmo'},{type:"image", src:'images/viking_malmo/viking_malmo_extra1.jpg', key:'viking_malmo_extra1'}]
     },
 "kangaroo": {
       title: 'The Boxing Kangaroo', titleEs: 'El Canguro Boxeador', loc: 'Gold Coast, Queensland, Australia', year: '2026', size: '2.5m x 2.5m',
-      desc: 'Australia\'s boxing kangaroo in blue shorts and red gloves, standing in front of a burst of purple and green rays on a legal graffiti wall on the Gold Coast.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇺',
+      desc: 'Australia\'s boxing kangaroo in blue shorts and red gloves, standing in front of a burst of purple and green rays on a legal graffiti wall on the Gold Coast.',
+      story: "Australia's boxing kangaroo in blue shorts and red boxing gloves, standing in front of a burst of purple and green rays, sprayed 2.5 by 2.5 metres on a legal graffiti wall on the Gold Coast, Queensland, Australia. The boxing kangaroo is a national symbol in Australia, and the mural sits on a wall shared with other artists, next to their pieces.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇦🇺',
       gallery: [{type:"image", src:'images/kangaroo/kangaroo.jpg', key:'kangaroo'},{type:"image", src:'images/kangaroo/kangaroo_extra1.jpg', key:'kangaroo_extra1'},{type:"image", src:'images/kangaroo/kangaroo_extra2.jpg', key:'kangaroo_extra2'},{type:"image", src:'images/kangaroo/kangaroo_extra3.jpg', key:'kangaroo_extra3'}]
     },
 "nino_interior": {
       title: 'Inner Child', titleEs: 'Niño Interior', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: 'size TBC',
-      desc: 'A child with eyes closed and hands together, a light breaking open between his palms, painted across the shutters of a shopfront in San Fernando.', tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
+      desc: 'A child with eyes closed and hands together, a light breaking open between his palms, painted across the shutters of a shopfront in San Fernando.',
+      story: "A child with his eyes closed and his hands together, a light breaking open between his palms, sprayed across the shutters of a shopfront in San Fernando, Buenos Aires, Argentina. Rays of red and blue radiate from the figure to the edges of the metal, and lines of yellow light run out from his hands along the bottom of the wall. Like the other shutter murals, it is only fully visible when the shop is closed.",
+     tags: ['Street Art', 'Spray Paint'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/nino_interior/nino_interior.jpg', key:'nino_interior'},{type:"image", src:'images/nino_interior/nino_interior_extra1.jpg', key:'nino_interior_extra1'},{type:"image", src:'images/nino_interior/nino_interior_extra2.jpg', key:'nino_interior_extra2'}]
     },
 "inac_hospitality": {
       title: 'The Chef', titleEs: 'El Chef', loc: 'Broadbeach, Queensland, Australia', year: '2026', size: '2m x 2m',
-      desc: 'A chef lifting the lid off a pot, painted in cobalt blue and greys on the white wall of the INAC Hospitality office in Broadbeach.', tags: ['Commission Work', 'Interior Mural'], flag: '🇦🇺',
+      desc: 'A chef lifting the lid off a pot, painted in cobalt blue and greys on the white wall of the INAC Hospitality office in Broadbeach.',
+      story: "A chef lifting the lid off a pot, painted in cobalt blue and greys on the white wall of the INAC Hospitality office in Broadbeach, on the Gold Coast, Queensland, Australia. The mural measures two by two metres and was commissioned as an interior piece for the workplace, with the company's puzzle piece logo painted onto the chef's apron. The wall was plain white before the mural, and the blue splash behind the figure is what gives it its shape in the room.",
+     tags: ['Commission Work', 'Interior Mural'], flag: '🇦🇺',
       gallery: [{type:"image", src:'images/inac_hospitality/inac_hospitality.jpg', key:'inac_hospitality'},{type:"compare", before:'images/inac_hospitality/inac_hospitality_before.jpg', after:'images/inac_hospitality/inac_hospitality_after.jpg', key:'inac_hospitality_ba'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra1.jpg', key:'inac_hospitality_extra1'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra2.jpg', key:'inac_hospitality_extra2'}]
     }
 };
