@@ -536,7 +536,6 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img[data-key="shop_hoodie_bsas"] { object-position: center 0%; }
 .mural-photo img[data-key="shop_hoodie_miami"] { object-position: center 77%; }
 .mural-photo img[data-key="the_seesaw"] { object-position: center 66%; }
-.mural-photo img[data-key="tlaloc"] { object-position: 51% center; }
 .mural-photo img[data-key="viking_malmo"] { object-position: center 27%; }
 .mural-photo img[data-key="workshop_tiktok_3"] { object-position: center 47%; }
 .mural-photo img[data-key="zeus_athens"] { object-position: center 26%; }

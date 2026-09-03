@@ -15,6 +15,9 @@ import json, os, re, html, subprocess, unicodedata
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE = 'https://www.cundomarchi.com/'
 OUT_DIR = os.path.join(ROOT, 'mural')
+# a que ancho se ve cada foto en la pagina del mural
+GRID_SIZES = '(max-width:640px) 92vw, 370px'
+BA_SIZES = '(max-width:560px) 92vw, 370px'
 
 # ---------- sacar MURALS de script.js ----------
 js = open(os.path.join(ROOT, 'script.js'), encoding='utf-8').read()
@@ -25,6 +28,25 @@ node = subprocess.run(
     ['node', '-e', snippet + '\nprocess.stdout.write(JSON.stringify(MURALS));'],
     capture_output=True, text=True, check=True)
 MURALS = json.loads(node.stdout)
+
+def variantes(src, sizes_attr):
+    """srcset con las versiones reducidas que existan, para no bajar 1600px
+    donde la foto se ve a 370px."""
+    base, ext = os.path.splitext(src)
+    try:
+        from PIL import Image
+        w = Image.open(os.path.join(ROOT, src)).size[0]
+    except Exception:
+        return ''
+    cands = []
+    for a in (600, 800, 1200):
+        v = f'{base}-{a}{ext}'
+        if os.path.exists(os.path.join(ROOT, v)) and a < w:
+            cands.append(f'../{v} {a}w')
+    if not cands:
+        return ''
+    cands.append(f'../{src} {w}w')
+    return f' srcset="{", ".join(cands)}" sizes="{sizes_attr}"'
 
 def esc(t):
     return html.escape(str(t), quote=True)
@@ -181,13 +203,13 @@ for i, mid in enumerate(ids):
     for before, after in compares:
         gallery_html += (
             '<div class="m-ba">\n'
-            f'    <figure><img src="../{before}" alt="{esc(title)} wall before the mural, {esc(loc)}" loading="lazy"><figcaption>Before</figcaption></figure>\n'
-            f'    <figure><img src="../{after}" alt="{esc(title)} finished mural by Cundo Marchi, {esc(loc)}" loading="lazy"><figcaption>After</figcaption></figure>\n'
+            f'    <figure><img src="../{before}"{variantes(before, BA_SIZES)} alt="{esc(title)} wall before the mural, {esc(loc)}" loading="lazy"><figcaption>Before</figcaption></figure>\n'
+            f'    <figure><img src="../{after}"{variantes(after, BA_SIZES)} alt="{esc(title)} finished mural by Cundo Marchi, {esc(loc)}" loading="lazy"><figcaption>After</figcaption></figure>\n'
             '  </div>\n  ')
     # 2) despues el resto de las fotos
     if rest:
         cells = '\n'.join(
-            f'    <img src="../{s}" alt="{esc(title)} mural by Cundo Marchi in {esc(loc)}, view {n+2}" loading="lazy">'
+            f'    <img src="../{s}"{variantes(s, GRID_SIZES)} alt="{esc(title)} mural by Cundo Marchi in {esc(loc)}, view {n+2}" loading="lazy">'
             for n, s in enumerate(rest))
         gallery_html += f'<div class="m-grid">\n{cells}\n  </div>'
 

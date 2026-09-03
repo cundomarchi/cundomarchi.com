@@ -932,6 +932,7 @@ function buildCarousel() {
   pauseCarousel();
   track.innerHTML = '';
   dotsWrap.innerHTML = '';
+
   carouselMuralIds().forEach(id => {
     const m = MURALS[id];
     const cover = muralCoverImage(id);
@@ -944,14 +945,16 @@ function buildCarousel() {
     // capa de atras: la misma foto ampliada y desenfocada, para que el mural
     // pueda verse entero sin que queden franjas negras a los costados
     const blur = document.createElement('img');
-    blur.src = cover.src;
+    blur.dataset.src = cover.src;
     blur.alt = '';
     blur.setAttribute('aria-hidden', 'true');
     blur.className = 'carousel-blur';
     slide.appendChild(blur);
     // capa de adelante: el mural completo y centrado
     const img = document.createElement('img');
-    img.src = cover.src;
+    img.dataset.src = cover.src;
+    img.decoding = 'async';
+    blur.decoding = 'async';
     // alt descriptivo: titulo + autor + lugar + anio, igual que en las tarjetas
     img.alt = `${m.title}, mural by Cundo Marchi, ${m.loc}, ${m.year}`;
     img.className = 'carousel-main';
@@ -991,7 +994,42 @@ function buildCarousel() {
   }
   applyOverrides();
   applyPhotoZoom();
+  // al final de todo, cuando las diapositivas ya estan en la pagina
+  cargarSlidesCercanas(slideIdx);
   if (wasPlaying) resumeCarousel();
+}
+// La version chica (-800) de una foto. Se usa donde la imagen se muestra
+// pequena o borrosa: ahi la resolucion grande es peso tirado a la basura.
+// Si el archivo chico no existe, el onerror vuelve al original.
+function fotoVariante(src, ancho) {
+  return src.replace(/(\.[a-z]+)$/i, '-' + ancho + '$1');
+}
+// Pide la version reducida y, si ese archivo no existe, vuelve al original.
+function usarVarianteConRespaldo(img, src, ancho) {
+  img.onerror = function () { img.onerror = null; img.src = src; };
+  img.src = fotoVariante(src, ancho);
+}
+
+// El carrusel tiene 24 murales. Bajarlos todos al abrir la pagina eran mas
+// de 8 MB antes de que el visitante viera nada. Ahora cada foto se baja
+// recien cuando le toca su turno, junto con la anterior y la siguiente para
+// que el pase no se vea vacio.
+function cargarSlidesCercanas(centro) {
+  const slides = document.querySelectorAll('#carousel .carousel-slide');
+  if (!slides.length) return;
+  for (let d = -1; d <= 1; d++) {
+    const n = ((centro + d) % slides.length + slides.length) % slides.length;
+    slides[n].querySelectorAll('img[data-src]').forEach(img => {
+      const src = img.dataset.src;
+      delete img.dataset.src;
+      if (img.classList.contains('carousel-blur')) {
+        usarVarianteConRespaldo(img, src, 800);    // va desenfocado: alcanza la chica
+      } else {
+        // el carrusel se ve a 380px de alto, no hacen falta 1600px de archivo
+        usarVarianteConRespaldo(img, src, 1200);
+      }
+    });
+  }
 }
 function goToSlide(i) {
   const slides = document.querySelectorAll('#carousel .carousel-slide');
@@ -1003,6 +1041,7 @@ function goToSlide(i) {
   slideIdx = i;
   slides[slideIdx].classList.add('active');
   if (dots[slideIdx]) dots[slideIdx].classList.add('active');
+  cargarSlidesCercanas(slideIdx);
 }
 function nextSlide() { carouselUserInteracted(); goToSlide(slideIdx + 1); }
 function prevSlide() { carouselUserInteracted(); goToSlide(slideIdx - 1); }
@@ -1541,7 +1580,10 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra2.jpg', key: 'shop_hoodie_miami_extra2' }
   ],
   shop_tee_sugar2: [
-    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra1.jpg', key: 'shop_tee_sugar2_extra1' }
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra1.jpg', key: 'shop_tee_sugar2_extra1' },
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra2.jpg', key: 'shop_tee_sugar2_extra2' },
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra3.jpg', key: 'shop_tee_sugar2_extra3' },
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra4.jpg', key: 'shop_tee_sugar2_extra4' }
   ],
   shop_tee_player: [
     { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra1.jpg', key: 'shop_tee_player_extra1' }
