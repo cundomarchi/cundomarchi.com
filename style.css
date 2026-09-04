@@ -296,7 +296,10 @@ body.edit-mode .thumb-move-btn { display: block; }
 .lightbox-nav:hover { background: rgba(20,20,20,0.95); }
 .lightbox-nav.left { left: 24px; }
 .lightbox-nav.right { right: 24px; }
-@media (max-width: 700px) { .lightbox-nav { width: 38px; height: 38px; font-size: 18px; } .lightbox-nav.left { left: 8px; } .lightbox-nav.right { right: 8px; } }
+/* En celular la foto ocupa la franja de arriba, asi que las flechas van
+   alineadas con ella. Al 50% quedaban flotando sobre las etiquetas. */
+@media (max-width: 700px) { .lightbox-nav { width: 38px; height: 38px; font-size: 18px; top: 23vh; }
+  .lightbox-nav.left { left: 8px; } .lightbox-nav.right { right: 8px; } }
 .compare { position: relative; width: 100%; aspect-ratio: 4/3; max-height: 62vh; overflow: hidden; user-select: none; touch-action: none; background: #000; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 #before-img { will-change: clip-path; }
