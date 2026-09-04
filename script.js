@@ -1967,6 +1967,16 @@ function formatUsd(usd) {
   const rounded = Math.round(usd * rate);
   return `${CURRENCY_SYMBOLS[currency]}${rounded.toLocaleString('en-US')} ${currency}`;
 }
+// Los tramos de presupuesto se redondean a una cifra "linda" en cada moneda.
+// Sin esto, convertir 2000 dolares daba "A$2.780" o "AR$2.990.000", que en un
+// desplegable de rangos queda raro: nadie escribe su presupuesto asi.
+function formatRango(usd) {
+  const rate = CURRENCY_RATES[currency] || 1;
+  const v = usd * rate;
+  const paso = v >= 100000 ? 50000 : (v >= 10000 ? 500 : 100);
+  const r = Math.round(v / paso) * paso;
+  return `${CURRENCY_SYMBOLS[currency]}${r.toLocaleString('en-US')} ${currency}`;
+}
 function renderPrices() {
   document.querySelectorAll('.price[data-usd]').forEach(el => {
     el.textContent = formatUsd(parseFloat(el.getAttribute('data-usd')));
@@ -1975,9 +1985,9 @@ function renderPrices() {
     const type = el.getAttribute('data-range-type');
     const min = parseFloat(el.getAttribute('data-usd-min'));
     const max = parseFloat(el.getAttribute('data-usd-max'));
-    if (type === 'under') el.textContent = `< ${formatUsd(min || max)}`;
-    else if (type === 'over') el.textContent = `> ${formatUsd(min)}`;
-    else el.textContent = `${formatUsd(min)} – ${formatUsd(max)}`;
+    if (type === 'under') el.textContent = `< ${formatRango(min || max)}`;
+    else if (type === 'over') el.textContent = `> ${formatRango(min)}`;
+    else el.textContent = `${formatRango(min)} – ${formatRango(max)}`;
   });
 }
 function toggleCurrencyMenu() {
