@@ -1631,7 +1631,12 @@ function openLightbox(id) {
   renderGalleryItem();
   renderThumbs();
   const fl = document.getElementById('lb-full-link');
-  if (fl) { fl.href = 'mural/' + (MURAL_SLUGS[id] || '') + '.html'; fl.style.display = MURAL_SLUGS[id] ? '' : 'none'; }
+  if (fl) {
+    // en espanol, a la ficha en espanol
+    const base = (lang === 'es') ? 'es/mural/' : 'mural/';
+    fl.href = base + (MURAL_SLUGS[id] || '') + '.html';
+    fl.style.display = MURAL_SLUGS[id] ? '' : 'none';
+  }
   document.getElementById('lightbox').classList.add('open');
 }
 function initShopGallery() {
@@ -1719,6 +1724,10 @@ function openProduct(id) {
   document.getElementById('lb-meta').textContent = priceText + (metaEl ? ' · ' + metaEl.textContent : '');
   document.getElementById('lb-story-label').style.display = 'none';
   document.getElementById('lb-desc').textContent = '';
+  // Un producto del shop no tiene ficha de mural: el enlace decia "See the
+  // full mural page" y no llevaba a ningun lado. Se esconde.
+  const flp = document.getElementById('lb-full-link');
+  if (flp) flp.style.display = 'none';
   renderGalleryItem();
   renderThumbs();
   document.getElementById('lightbox').classList.add('open');

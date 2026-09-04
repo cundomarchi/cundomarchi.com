@@ -297,7 +297,7 @@ body.edit-mode .thumb-move-btn { display: block; }
 .lightbox-nav.left { left: 24px; }
 .lightbox-nav.right { right: 24px; }
 @media (max-width: 700px) { .lightbox-nav { width: 38px; height: 38px; font-size: 18px; } .lightbox-nav.left { left: 8px; } .lightbox-nav.right { right: 8px; } }
-.compare { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; user-select: none; touch-action: none; background: #000; }
+.compare { position: relative; width: 100%; aspect-ratio: 4/3; max-height: 62vh; overflow: hidden; user-select: none; touch-action: none; background: #000; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 #before-img { will-change: clip-path; }
 .compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--white); cursor: ew-resize; transform: translateX(-50%); }
@@ -311,7 +311,11 @@ body.edit-mode .compare-handle { pointer-events: none; opacity: .35; }
 .lightbox-body h3 { font-family: var(--display); font-size: 26px; text-transform: uppercase; margin-bottom: 6px; }
 .lightbox-body .meta { font-size: 13px; color: var(--gray); margin-bottom: 16px; }
 .lightbox-body .desc { font-size: 14px; color: #d8d8d3; margin-bottom: 28px; max-width: 640px; }
-.lightbox-single { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
+/* La foto no puede pasar de 62% del alto de la pantalla: si no, el nombre
+   del mural o del producto queda debajo del borde y hay que scrollear
+   para saber que estas mirando. */
+.lightbox-single { position: relative; width: 100%; aspect-ratio: 4/3; max-height: 62vh;
+  overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
 .lightbox-single img, .lightbox-single video { width: 100%; height: 100%; object-fit: contain; }
 #lightbox-media { transition: opacity .18s ease, transform .18s ease; opacity: 1; transform: scale(1); }
 #lightbox-media.media-fade-out { opacity: 0; transform: scale(0.98); }
