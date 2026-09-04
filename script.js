@@ -342,6 +342,15 @@ window.addEventListener('error', (e) => {
 }, true);
 function sweepBrokenImages() {
   document.querySelectorAll('img[data-key]').forEach(img => {
+    // OJO: "complete con naturalWidth 0" no significa que la foto este rota.
+    // Le pasa lo mismo a una foto con carga diferida que todavia no empezo a
+    // bajar, que es el caso de casi todas apenas se abre la pagina. Si se las
+    // marca como rotas, la foto queda escondida y en su lugar aparece el
+    // rayado gris, aunque el archivo este perfecto.
+    //
+    // currentSrc solo tiene valor cuando el navegador ya eligio la fuente y
+    // arranco a bajarla. Si esta vacio, la foto todavia no se pidió.
+    if (!img.currentSrc) return;
     if (img.complete && img.naturalWidth === 0) markBrokenImage(img);
   });
 }
