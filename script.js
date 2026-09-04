@@ -1890,10 +1890,34 @@ window.addEventListener('resize', () => {
 sizeHomePreviewGrid();
 
 let lang = (typeof window !== 'undefined' && window.__forceLang) ? window.__forceLang : 'en';
+// En /es/ la pagina ya viene en espanol, asi que el boton tiene que decir ES
+// desde el arranque y no "EN", que era lo que mostraba.
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', function () {
+    const b = document.getElementById('langCurrentBtn');
+    if (b) b.innerHTML = (lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES') + ' <span class="lang-arrow">▾</span>';
+  });
+}
 function toggleLangMenu() {
   document.getElementById('langMenu').classList.toggle('open');
 }
 function setLang(l) {
+  // Cada idioma tiene su propia direccion: la home en ingles es "/" y la de
+  // espanol es "/es/". Cambiar el idioma sin cambiar de direccion dejaba las
+  // tarjetas diciendo "Sweden" y los enlaces apuntando a las paginas en
+  // ingles, porque esas partes se arman al generar el sitio, no en el momento.
+  // Por eso el selector lleva a la version que corresponde.
+  var enEs = /(^|\/)es\//.test(location.pathname);
+  if (l === 'es' && !enEs) {
+    var m = location.pathname.match(/^\/?mural\/(.+)$/);
+    location.href = m ? ('/es/mural/' + m[1]) : '/es/';
+    return;
+  }
+  if (l === 'en' && enEs) {
+    var m2 = location.pathname.match(/es\/mural\/(.+)$/);
+    location.href = m2 ? ('/mural/' + m2[1]) : '/';
+    return;
+  }
   lang = l;
   document.documentElement.lang = l;
   document.getElementById('langMenu').classList.remove('open');
