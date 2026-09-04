@@ -131,7 +131,10 @@ for key, src in sorted(covers.items()):
         p = OV['card'][key]
     if p is not None and p != 50:
         axis = f'{p}% center' if is_horizontal(src, CARD_ASPECT) else f'center {p}%'
-        card_rules.append(f'.mural-photo img[data-key="{key}"] {{ object-position: {axis}; }}')
+        # Las tarjetas ya no recortan: muestran la foto entera (contain) con la
+        # misma foto ampliada y desenfocada detras. Por eso no hace falta
+        # calcularles una posicion; se dejan siempre centradas.
+        pass
     if p is not None:
         report.append((key, p, os.path.basename(src)))
 

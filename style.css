@@ -224,7 +224,17 @@ body.edit-mode .carousel-remove-btn { display: block; }
 .mural-card.dragging { opacity: .35; }
 .mural-card.drag-target { outline: 2px solid var(--red); outline-offset: -2px; }
 .mural-photo { aspect-ratio: 4/3; overflow: hidden; background: #000; display:flex; align-items:center; justify-content:center; position: relative; }
-.mural-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .5s; }
+/* La foto se muestra ENTERA (contain), nunca recortada. Para que no queden
+   franjas negras, detras va la misma foto ampliada y desenfocada, igual que
+   en el carrusel. Asi ningun mural queda cortado y no se pierde nada. */
+.mural-photo img.card-main { width: 100%; height: 100%; object-fit: contain;
+  object-position: center; transition: transform .5s; position: relative; z-index: 1; }
+.mural-photo img.card-blur { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; filter: blur(26px) brightness(0.5) saturate(1.05);
+  transform: scale(1.16); z-index: 0; }
+/* fotos sin la clase nueva (por si quedara alguna) siguen como estaban */
+.mural-photo img:not(.card-main):not(.card-blur) { width: 100%; height: 100%;
+  object-fit: cover; object-position: center; transition: transform .5s; }
 
 .cloud-save-warn-banner { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: #7a1414; color: var(--white); font-family: var(--mono); font-size: 12px; padding: 10px 16px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.5); }
 .cloud-save-warn-banner button { background: none; border: 1px solid rgba(255,255,255,.5); color: var(--white); cursor: pointer; padding: 2px 8px; font-family: var(--mono); }
@@ -266,7 +276,7 @@ body.edit-mode .thumb-move-btn { display: block; }
 .thumb-move-btn.right { right: -2px; }
 .thumb-remove-btn { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; border-radius: 50%; background: var(--red); color: var(--white); border: 1px solid var(--black); font-size: 10px; line-height: 1; cursor: pointer; z-index: 6; display: flex; align-items: center; justify-content: center; }
 .thumb-remove-btn:hover { background: #ff4a3f; }
-.mural-card:hover .mural-photo img { transform: scale(1.06); }
+.mural-card:hover .mural-photo img.card-main { transform: scale(1.06); }
 .mural-info { padding: 18px 20px; }
 .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .pill { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; font-weight: 600; }
@@ -437,8 +447,16 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .shop-card { background: var(--black-2); border: 1px solid #2a2a2a; transition: border-color .2s ease, transform .2s ease; }
 .shop-card:hover { border-color: #444; transform: translateY(-2px); }
 .shop-card-img { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #0a0a0a; }
-.shop-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; }
-.sold-out-badge { position: absolute; top: 10px; left: 10px; background: rgba(10,10,10,.82); color: var(--white); border: 1px solid rgba(255,255,255,.4); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 5px 10px; }
+/* Igual que las tarjetas de mural: el producto se ve entero, con la misma
+   foto ampliada y desenfocada detras en vez de recortarlo. */
+.shop-card-img img.card-main { width: 100%; height: 100%; object-fit: contain;
+  display: block; cursor: pointer; position: relative; z-index: 1; }
+.shop-card-img img.card-blur { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; filter: blur(26px) brightness(0.5) saturate(1.05);
+  transform: scale(1.16); z-index: 0; display: block; }
+.shop-card-img img:not(.card-main):not(.card-blur) { width: 100%; height: 100%;
+  object-fit: cover; display: block; cursor: pointer; }
+.sold-out-badge { position: absolute; z-index: 2; top: 10px; left: 10px; background: rgba(10,10,10,.82); color: var(--white); border: 1px solid rgba(255,255,255,.4); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 5px 10px; }
 .shop-card-body { padding: 16px 18px; }
 .shop-card-body h4 { font-family: var(--display); font-size: 14px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 4px; line-height: 1.3; }
 .shop-card-meta { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
@@ -509,36 +527,17 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo, .mural-info { color: inherit; text-decoration: none; display: block; }
 
 /* === encuadres calculados por build-crops.py, no editar a mano === */
-.mural-photo img[data-key="bailarina"] { object-position: center 30%; }
-.mural-photo img[data-key="bear_virreyes"] { object-position: center 67%; }
-.mural-photo img[data-key="bullshit_turin"] { object-position: center 36%; }
-.mural-photo img[data-key="circle_of_nature"] { object-position: 29% center; }
-.mural-photo img[data-key="down_ocean_1"] { object-position: 69% center; }
-.mural-photo img[data-key="el_eternauta"] { object-position: center 54%; }
-.mural-photo img[data-key="el_nino"] { object-position: center 17%; }
-.mural-photo img[data-key="flower_octopus"] { object-position: center 54%; }
-.mural-photo img[data-key="fusion_of_life"] { object-position: 31% center; }
-.mural-photo img[data-key="hero_bio_portrait"] { object-position: center 0%; }
-.mural-photo img[data-key="inac_hospitality"] { object-position: center 22%; }
-.mural-photo img[data-key="kangaroo"] { object-position: center 48%; }
-.mural-photo img[data-key="king_of_kings"] { object-position: center 4%; }
-.mural-photo img[data-key="meeting_of_styles_after"] { object-position: center 42%; }
-.mural-photo img[data-key="the_seesaw"] { object-position: center 66%; }
-.mural-photo img[data-key="viking_malmo"] { object-position: center 27%; }
-.mural-photo img[data-key="zeus_athens"] { object-position: center 26%; }
 .m-hero[data-key="bailarina"] { object-position: center 32%; }
-.m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
-.m-hero[data-key="bullshit_turin"] { object-position: center 41%; }
+.m-hero[data-key="bear_virreyes"] { object-position: center 70%; }
+.m-hero[data-key="bullshit_turin"] { object-position: center 20%; }
 .m-hero[data-key="city_of_fury"] { object-position: center 100%; }
-.m-hero[data-key="el_eternauta"] { object-position: center 54%; }
-.m-hero[data-key="el_nino"] { object-position: center 49%; }
-.m-hero[data-key="flower_octopus"] { object-position: center 53%; }
-.m-hero[data-key="inac_hospitality"] { object-position: center 30%; }
+.m-hero[data-key="el_nino"] { object-position: center 25%; }
+.m-hero[data-key="flower_octopus"] { object-position: center 82%; }
+.m-hero[data-key="inac_hospitality"] { object-position: center 68%; }
 .m-hero[data-key="kangaroo"] { object-position: center 49%; }
-.m-hero[data-key="king_of_kings"] { object-position: center 14%; }
 .m-hero[data-key="laos_california"] { object-position: center 0%; }
-.m-hero[data-key="meeting_of_styles"] { object-position: center 43%; }
+.m-hero[data-key="meeting_of_styles"] { object-position: center 22%; }
 .m-hero[data-key="ocean_heart"] { object-position: center 0%; }
-.m-hero[data-key="the_seesaw"] { object-position: center 63%; }
+.m-hero[data-key="the_seesaw"] { object-position: center 27%; }
 .m-hero[data-key="viking_malmo"] { object-position: center 31%; }
 .m-hero[data-key="zeus_athens"] { object-position: center 0%; }
