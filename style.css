@@ -513,7 +513,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img[data-key="bear_virreyes"] { object-position: center 67%; }
 .mural-photo img[data-key="bullshit_turin"] { object-position: center 36%; }
 .mural-photo img[data-key="circle_of_nature"] { object-position: 29% center; }
-.mural-photo img[data-key="down_ocean_1"] { object-position: center 69%; }
+.mural-photo img[data-key="down_ocean_1"] { object-position: 69% center; }
 .mural-photo img[data-key="el_eternauta"] { object-position: center 54%; }
 .mural-photo img[data-key="el_nino"] { object-position: center 17%; }
 .mural-photo img[data-key="flower_octopus"] { object-position: center 54%; }
@@ -530,7 +530,6 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
 .m-hero[data-key="bullshit_turin"] { object-position: center 41%; }
 .m-hero[data-key="city_of_fury"] { object-position: center 100%; }
-.m-hero[data-key="down_ocean"] { object-position: center 63%; }
 .m-hero[data-key="el_eternauta"] { object-position: center 54%; }
 .m-hero[data-key="el_nino"] { object-position: center 49%; }
 .m-hero[data-key="flower_octopus"] { object-position: center 53%; }
