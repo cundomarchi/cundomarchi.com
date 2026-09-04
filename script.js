@@ -1372,7 +1372,7 @@ const MURALS = {
       story: "Nine metres wide by 2.5 metres high, painted in mixed media for the second Maanso Meeting in San Juan, Argentina, in 2018. The mural represents the fusion of heart and brain, love and reason working towards a single purpose: fifty per cent love, fifty per cent reason, one hundred per cent dedication. It is one of the largest walls in the portfolio and was painted as part of a group mural event.",
       storyEs: "Nueve metros de ancho por 2,5 de alto, pintado con técnica mixta para el segundo Maanso Meeting en San Juan, Argentina, en 2018. El mural representa la fusión del corazón y el cerebro, el amor y la razón trabajando hacia un mismo objetivo: cincuenta por ciento amor, cincuenta por ciento razón, cien por ciento dedicación. Es una de las paredes más grandes del portfolio y se pintó dentro de un encuentro colectivo de muralistas.",
      tags: ['Mural Event', 'Mix Media'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/fusion_of_life/fusion_of_life.jpg', key:'fusion_of_life'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra1.jpg', key:'fusion_of_life_extra1'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra2.jpg', key:'fusion_of_life_extra2'}]
+      gallery: [{type:"image", src:'images/fusion_of_life/fusion_of_life.jpg', key:'fusion_of_life'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra1.jpg', key:'fusion_of_life_extra1'}]
     },
 "down_ocean": {
       title: 'Down the Ocean', titleEs: 'Bajo el Océano', loc: 'Bicentennial Tunnel, Tigre, Buenos Aires, Argentina', year: '2019', size: '150 m²',
