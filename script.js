@@ -1943,9 +1943,10 @@ document.addEventListener('click', function(e) {
 });
 
 // ---- currency: approximate rates for display only, geo-IP auto-detect ----
-// Rates updated 2026-08-10 (Google/market mid-rate): 1 USD ≈ 1.415 AUD, 0.865 EUR, 1499 ARS.
+// Cotizaciones al 2026-09-04 (tipo medio de mercado): 1 USD ≈ 1.39 AUD,
+// 0.86 EUR, 1495 ARS. Son solo para mostrar un precio orientativo.
 // Update these periodically to keep displayed conversions reasonably current.
-const CURRENCY_RATES = { USD: 1, AUD: 1.415, EUR: 0.865, ARS: 1499 };
+const CURRENCY_RATES = { USD: 1, AUD: 1.39, EUR: 0.86, ARS: 1495 };
 const CURRENCY_SYMBOLS = { USD: '$', AUD: 'A$', EUR: '€', ARS: 'AR$' };
 const COUNTRY_TO_CURRENCY = {
   AU: 'AUD', AR: 'ARS', US: 'USD',
