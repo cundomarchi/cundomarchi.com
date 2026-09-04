@@ -18,12 +18,13 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css?v=130">
 <style>
   .nf-wrap{min-height:78vh;display:flex;flex-direction:column;align-items:center;
     justify-content:center;text-align:center;padding:40px 22px;}
+  /* el numero va en gris, no en rojo: la marca es blanco y negro */
   .nf-code{font-family:var(--display);font-size:clamp(72px,18vw,150px);line-height:1;
-    color:var(--red);margin:0;}
+    color:#2e2e2c;margin:0;}
   .nf-title{font-family:var(--display);font-size:clamp(22px,4vw,34px);margin:14px 0 0;}
   .nf-text{color:var(--gray);font-family:var(--mono);font-size:15px;margin:16px 0 30px;
     max-width:46ch;line-height:1.7;}
@@ -38,7 +39,7 @@
 
 <nav>
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
-    <a href="/"><img src="/images/site/cmz_logo.png" alt="Cundo Marchi" style="height:34px;display:block;"></a>
+    <a href="/"><img src="/images/site/cmz_logo-400.png" srcset="/images/site/cmz_logo-120.png 120w, /images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" style="height:34px;width:auto;display:block;"></a>
     <a href="/#quote" class="btn-primary" style="padding:11px 22px;font-size:11px;">Get a Quote</a>
   </div>
 </nav>
