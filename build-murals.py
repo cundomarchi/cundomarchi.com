@@ -11,6 +11,7 @@ Correr despues de tocar los murales en script.js:
     python3 build-murals.py
 """
 import json, os, re, html, subprocess, unicodedata
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE = 'https://www.cundomarchi.com/'
@@ -65,8 +66,8 @@ TEXTOS = {
 }
 OUT_DIR = os.path.join(ROOT, 'mural')
 # a que ancho se ve cada foto en la pagina del mural
-GRID_SIZES = '(max-width:640px) 92vw, 370px'
-BA_SIZES = '(max-width:560px) 92vw, 370px'
+GRID_SIZES = '(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px'
+BA_SIZES = '(max-width:560px) 92vw, (max-width:1400px) 47vw, 600px'
 
 # ---------- sacar MURALS de script.js ----------
 js = open(os.path.join(ROOT, 'script.js'), encoding='utf-8').read()
@@ -218,14 +219,20 @@ PAGE = '''<!DOCTYPE html>
   .m-body {{ max-width:760px; }}
   .m-body p {{ color:#d8d8d3; font-size:16px; line-height:1.75; }}
   .m-meta {{ color:var(--gray); font-family:var(--mono); font-size:14px; }}
-  /* columnas tipo albanileria: cada foto conserva su alto real, sin recortes */
-  .m-grid {{ columns:2; column-gap:14px; margin-top:32px; }}
-  .m-grid img {{ margin-bottom:14px; break-inside:avoid; }}
-  @media (max-width:640px) {{ .m-grid {{ columns:1; }} }}
+  /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
+     final en vez de quedar pegada a un costado. */
+  .m-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; align-items:start; }}
   .m-grid img {{ width:100%; height:auto; display:block; border-radius:2px; }}
+  .m-grid img:last-child:nth-child(odd) {{ grid-column:1 / -1; width:calc(50% - 7px); justify-self:center; }}
+  @media (max-width:640px) {{
+    .m-grid {{ grid-template-columns:1fr; }}
+    .m-grid img:last-child:nth-child(odd) {{ grid-column:auto; width:100%; }}
+  }}
   .m-ba {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }}
   .m-ba figure {{ margin:0; }}
-  .m-ba img {{ width:100%; height:auto; display:block; border-radius:2px; }}
+  .m-ba img {{ width:100%; aspect-ratio:1 / 1; object-fit:cover; object-position:center; display:block; border-radius:2px; }}
+  .m-ba--portrait img {{ aspect-ratio:3 / 4; }}
+  .m-ba--landscape img {{ aspect-ratio:4 / 3; }}
   .m-ba figcaption {{
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -330,8 +337,21 @@ for cfg in IDIOMAS:
 
         gallery_html = ''
         for before, after in compares:
+            ratios = []
+            for src in (before, after):
+                try:
+                    w, h = Image.open(os.path.join(ROOT, src)).size
+                    ratios.append(w / h)
+                except Exception:
+                    ratios.append(1)
+            if all(r < .9 for r in ratios):
+                compare_class = 'm-ba m-ba--portrait'
+            elif all(r > 1.1 for r in ratios):
+                compare_class = 'm-ba m-ba--landscape'
+            else:
+                compare_class = 'm-ba m-ba--mixed'
             gallery_html += (
-                '<div class="m-ba">\n'
+                f'<div class="{compare_class}">\n'
                 f'    <figure><img src="{before}"{variantes(before, BA_SIZES, "")} alt="{esc(T["alt_antes"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["antes"]}</figcaption></figure>\n'
                 f'    <figure><img src="{after}"{variantes(after, BA_SIZES, "")} alt="{esc(T["alt_despues"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["despues"]}</figcaption></figure>\n'
                 '  </div>\n  ')

@@ -129,12 +129,18 @@ for key, src in sorted(covers.items()):
     p = position_y(src, CARD_ASPECT)
     if key in OV.get('card', {}):
         p = OV['card'][key]
-    if p is not None and p != 50:
-        axis = f'{p}% center' if is_horizontal(src, CARD_ASPECT) else f'center {p}%'
-        # Las tarjetas ya no recortan: muestran la foto entera (contain) con la
-        # misma foto ampliada y desenfocada detras. Por eso no hace falta
-        # calcularles una posicion; se dejan siempre centradas.
-        pass
+    display = OV.get('cardDisplay', {}).get(key, {})
+    if display:
+        mode = display.get('mode', 'contain')
+        x = int(display.get('x', 50))
+        y = int(display.get('y', p if p is not None else 50))
+        card_rules.append(
+            f'.mural-photo img.card-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; }}'
+        )
+        if mode == 'cover':
+            card_rules.append(
+                f'.mural-photo:has(img.card-main[data-key="{key}"]) img.card-blur {{ display: none; }}'
+            )
     if p is not None:
         report.append((key, p, os.path.basename(src)))
 

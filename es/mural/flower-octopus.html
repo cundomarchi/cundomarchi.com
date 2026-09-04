@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=139">
+<link rel="stylesheet" href="style.css?v=140">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -95,14 +95,20 @@
   .m-body { max-width:760px; }
   .m-body p { color:#d8d8d3; font-size:16px; line-height:1.75; }
   .m-meta { color:var(--gray); font-family:var(--mono); font-size:14px; }
-  /* columnas tipo albanileria: cada foto conserva su alto real, sin recortes */
-  .m-grid { columns:2; column-gap:14px; margin-top:32px; }
-  .m-grid img { margin-bottom:14px; break-inside:avoid; }
-  @media (max-width:640px) { .m-grid { columns:1; } }
+  /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
+     final en vez de quedar pegada a un costado. */
+  .m-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; align-items:start; }
   .m-grid img { width:100%; height:auto; display:block; border-radius:2px; }
+  .m-grid img:last-child:nth-child(odd) { grid-column:1 / -1; width:calc(50% - 7px); justify-self:center; }
+  @media (max-width:640px) {
+    .m-grid { grid-template-columns:1fr; }
+    .m-grid img:last-child:nth-child(odd) { grid-column:auto; width:100%; }
+  }
   .m-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }
   .m-ba figure { margin:0; }
-  .m-ba img { width:100%; height:auto; display:block; border-radius:2px; }
+  .m-ba img { width:100%; aspect-ratio:1 / 1; object-fit:cover; object-position:center; display:block; border-radius:2px; }
+  .m-ba--portrait img { aspect-ratio:3 / 4; }
+  .m-ba--landscape img { aspect-ratio:4 / 3; }
   .m-ba figcaption {
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -137,12 +143,12 @@
     <p>Un pulpo rojo envuelto en hojas tropicales, con los brazos enroscados alrededor de una ventana en una terraza de Buenos Aires, Argentina. El mural mide 3,5 por 2,5 metros, se pintó con pintura de exterior y pincel como encargo particular, y usa la arquitectura existente como parte del dibujo: el hueco de la ventana se convierte en aquello de lo que el pulpo se agarra.</p>
   </div>
 
-  <div class="m-ba">
-    <figure><img src="images/flower_octopus/flower_octopus_before.jpg" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:560px) 92vw, 370px" alt="La pared de Pulpo Flor antes del mural, Buenos Aires, Argentina" loading="lazy"><figcaption>Antes</figcaption></figure>
-    <figure><img src="images/flower_octopus/flower_octopus.jpg" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus.jpg 1066w" sizes="(max-width:560px) 92vw, 370px" alt="Pulpo Flor, mural terminado de Cundo Marchi, Buenos Aires, Argentina" loading="lazy"><figcaption>Después</figcaption></figure>
+  <div class="m-ba m-ba--mixed">
+    <figure><img src="images/flower_octopus/flower_octopus_before.jpg" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:560px) 92vw, (max-width:1400px) 47vw, 600px" alt="La pared de Pulpo Flor antes del mural, Buenos Aires, Argentina" loading="lazy"><figcaption>Antes</figcaption></figure>
+    <figure><img src="images/flower_octopus/flower_octopus.jpg" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus.jpg 1066w" sizes="(max-width:560px) 92vw, (max-width:1400px) 47vw, 600px" alt="Pulpo Flor, mural terminado de Cundo Marchi, Buenos Aires, Argentina" loading="lazy"><figcaption>Después</figcaption></figure>
   </div>
   <div class="m-grid">
-    <img src="images/flower_octopus/flower_octopus_extra1.jpg" srcset="images/flower_octopus/flower_octopus_extra1-600.jpg 600w, images/flower_octopus/flower_octopus_extra1-800.jpg 800w, images/flower_octopus/flower_octopus_extra1-1200.jpg 1200w, images/flower_octopus/flower_octopus_extra1.jpg 1600w" sizes="(max-width:640px) 92vw, 370px" alt="Pulpo Flor, mural de Cundo Marchi en Buenos Aires, Argentina, vista 2" loading="lazy">
+    <img src="images/flower_octopus/flower_octopus_extra1.jpg" srcset="images/flower_octopus/flower_octopus_extra1-600.jpg 600w, images/flower_octopus/flower_octopus_extra1-800.jpg 800w, images/flower_octopus/flower_octopus_extra1-1200.jpg 1200w, images/flower_octopus/flower_octopus_extra1.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Pulpo Flor, mural de Cundo Marchi en Buenos Aires, Argentina, vista 2" loading="lazy">
   </div>
 
   <div style="margin-top:44px;">

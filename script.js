@@ -323,6 +323,18 @@ function applyOverrides() {
     }
   });
 }
+
+// El fondo borroso de una tarjeta aparece recien cuando la foto nitida ya
+// termino de cargar. Evita que durante la descarga parezca que la portada
+// elegida es una imagen pixelada.
+function revealCardBackgroundsAfterMainImage() {
+  document.querySelectorAll('.mural-photo img.card-main').forEach(img => {
+    const reveal = () => img.closest('.mural-photo')?.classList.add('main-loaded');
+    if (img.complete && img.naturalWidth > 0) reveal();
+    else img.addEventListener('load', reveal, { once: true });
+  });
+}
+revealCardBackgroundsAfterMainImage();
 function removeSinglePhoto(key) {
   if (!confirm('¿Eliminar esta foto? No se puede deshacer.')) return;
   overrides[key] = '__none__';
@@ -1368,10 +1380,10 @@ const MURALS = {
       gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra2.jpg', key:'city_of_fury_extra2'},{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'},{type:"image", src:'images/city_of_fury/city_of_fury_extra3.jpg', key:'city_of_fury_extra3'}]
     },
 "el_nino": {
-      title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: '2017', size: '4m x 7.5m',
+      title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: '2017', size: '3m x 5.5m',
       desc: 'Cuando sea grande quiero ser un niño, a kid in a monkey hoodie and lightning-bolt sunglasses, a reminder to hold on to your inner child.', descEs: 'Cuando sea grande quiero ser un niño, un nene con capucha de mono y lentes de rayo, un recordatorio de no perder al niño interior.',
-      story: "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
-      storyEs: "Un chico con buzo de mono y anteojos de sol con forma de rayo, pintado con pintura de exterior y pincel a lo largo de cuatro metros por 7,5 en San Fernando, en el norte del Gran Buenos Aires, Argentina. Es una de las paredes más antiguas del portfolio, de 2017. El título sale de la frase escrita en el muro, cuando sea grande quiero ser un niño, y el mural es un recordatorio de no soltar al niño que uno lleva adentro.",
+      story: "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across three metres by 5.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
+      storyEs: "Un chico con buzo de mono y anteojos de sol con forma de rayo, pintado con pintura de exterior y pincel a lo largo de tres metros por 5,5 en San Fernando, en el norte del Gran Buenos Aires, Argentina. Es una de las paredes más antiguas del portfolio, de 2017. El título sale de la frase escrita en el muro, cuando sea grande quiero ser un niño, y el mural es un recordatorio de no soltar al niño que uno lleva adentro.",
      tags: ['Street Art', 'Exterior Paint & Brush'], flag: '🇦🇷',
       gallery: [{type:"image", src:'images/el_nino/el_nino.jpg', key:'el_nino'},{type:"image", src:'images/el_nino/el_nino_extra1.jpg', key:'el_nino_extra1'}]
     },
@@ -1509,7 +1521,7 @@ const MURALS = {
       story: "Australia's boxing kangaroo in blue shorts and red boxing gloves, standing in front of a burst of purple and green rays, sprayed 2.5 by 2.5 metres on a legal graffiti wall on the Gold Coast, Queensland, Australia. The boxing kangaroo is a national symbol in Australia, and the mural sits on a wall shared with other artists, next to their pieces.",
       storyEs: "El canguro boxeador australiano con pantalón azul y guantes rojos, parado frente a un estallido de rayos violetas y verdes, pintado con aerosol en 2,5 por 2,5 metros sobre un muro de graffiti legal en la Gold Coast, Queensland, Australia. El canguro boxeador es un símbolo nacional en Australia, y el mural está sobre una pared compartida con otros artistas, al lado de sus piezas.",
      tags: ['Street Art', 'Spray Paint'], flag: '🇦🇺',
-      gallery: [{type:"image", src:'images/kangaroo/kangaroo.jpg', key:'kangaroo'},{type:"image", src:'images/kangaroo/kangaroo_extra1.jpg', key:'kangaroo_extra1'},{type:"image", src:'images/kangaroo/kangaroo_extra2.jpg', key:'kangaroo_extra2'},{type:"image", src:'images/kangaroo/kangaroo_extra3.jpg', key:'kangaroo_extra3'}]
+      gallery: [{type:"image", src:'images/kangaroo/kangaroo.jpg', key:'kangaroo'},{type:"image", src:'images/kangaroo/kangaroo_extra1.jpg', key:'kangaroo_extra1'},{type:"image", src:'images/kangaroo/kangaroo_extra2.jpg', key:'kangaroo_extra2'}]
     },
 "nino_interior": {
       title: 'Inner Child', titleEs: 'Niño Interior', loc: 'San Fernando, Buenos Aires, Argentina', year: '2025', size: '2.5m x 2m',

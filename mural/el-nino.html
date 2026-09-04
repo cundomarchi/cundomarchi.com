@@ -13,7 +13,7 @@
   gtag('config', 'G-MPKTK5PNK7', { anonymize_ip: true });
 </script>
 <title>El Niño, mural by Cundo Marchi in San Fernando, Argentina (2017)</title>
-<meta name="description" content="A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of...">
+<meta name="description" content="A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across three metres by 5.5 in San Fernando, in the north of...">
 <meta name="author" content="Cundo Marchi">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.cundomarchi.com/mural/el-nino.html">
@@ -25,13 +25,13 @@
 <meta property="og:site_name" content="Cundo Marchi">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="El Niño, mural by Cundo Marchi">
-<meta property="og:description" content="A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of...">
+<meta property="og:description" content="A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across three metres by 5.5 in San Fernando, in the north of...">
 <meta property="og:url" content="https://www.cundomarchi.com/mural/el-nino.html">
 <meta property="og:image" content="https://www.cundomarchi.com/images/el_nino/el_nino.jpg">
 <meta property="og:image:alt" content="El Niño, mural by Cundo Marchi, San Fernando, Buenos Aires, Argentina, 2017">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="El Niño, mural by Cundo Marchi">
-<meta name="twitter:description" content="A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of...">
+<meta name="twitter:description" content="A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across three metres by 5.5 in San Fernando, in the north of...">
 <meta name="twitter:image" content="https://www.cundomarchi.com/images/el_nino/el_nino.jpg">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -44,7 +44,7 @@
  "artform": "Mural",
  "artMedium": "Street Art, Exterior Paint & Brush",
  "dateCreated": "2017",
- "description": "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
+ "description": "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across three metres by 5.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
  "image": "https://www.cundomarchi.com/images/el_nino/el_nino.jpg",
  "url": "https://www.cundomarchi.com/mural/el-nino.html",
  "creator": {
@@ -57,7 +57,7 @@
   "@type": "Place",
   "name": "San Fernando, Buenos Aires, Argentina"
  },
- "width": "4m x 7.5m"
+ "width": "3m x 5.5m"
 }
 </script>
 <script type="application/ld+json">
@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=139">
+<link rel="stylesheet" href="style.css?v=140">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -95,14 +95,20 @@
   .m-body { max-width:760px; }
   .m-body p { color:#d8d8d3; font-size:16px; line-height:1.75; }
   .m-meta { color:var(--gray); font-family:var(--mono); font-size:14px; }
-  /* columnas tipo albanileria: cada foto conserva su alto real, sin recortes */
-  .m-grid { columns:2; column-gap:14px; margin-top:32px; }
-  .m-grid img { margin-bottom:14px; break-inside:avoid; }
-  @media (max-width:640px) { .m-grid { columns:1; } }
+  /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
+     final en vez de quedar pegada a un costado. */
+  .m-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; align-items:start; }
   .m-grid img { width:100%; height:auto; display:block; border-radius:2px; }
+  .m-grid img:last-child:nth-child(odd) { grid-column:1 / -1; width:calc(50% - 7px); justify-self:center; }
+  @media (max-width:640px) {
+    .m-grid { grid-template-columns:1fr; }
+    .m-grid img:last-child:nth-child(odd) { grid-column:auto; width:100%; }
+  }
   .m-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }
   .m-ba figure { margin:0; }
-  .m-ba img { width:100%; height:auto; display:block; border-radius:2px; }
+  .m-ba img { width:100%; aspect-ratio:1 / 1; object-fit:cover; object-position:center; display:block; border-radius:2px; }
+  .m-ba--portrait img { aspect-ratio:3 / 4; }
+  .m-ba--landscape img { aspect-ratio:4 / 3; }
   .m-ba figcaption {
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -128,17 +134,17 @@
   <a href="index.html#work" style="color:var(--gray);font-family:var(--mono);font-size:13px;text-decoration:none;">&lsaquo; Back to Portfolio</a>
   <span class="eyebrow" style="margin-top:24px;">Mural</span>
   <h1 class="m-title">El Niño</h1>
-  <p class="m-meta">🇦🇷 San Fernando, Buenos Aires, Argentina &middot; 2017 &middot; 4m x 7.5m</p>
+  <p class="m-meta">🇦🇷 San Fernando, Buenos Aires, Argentina &middot; 2017 &middot; 3m x 5.5m</p>
   <div class="pills" style="margin-top:14px;"><span class="pill tag-outline">Street Art</span><span class="pill tag-outline">Exterior Paint &amp; Brush</span></div>
 
   <img class="m-hero" src="images/el_nino/el_nino.jpg" data-key="el_nino" alt="El Niño, mural by Cundo Marchi, San Fernando, Buenos Aires, Argentina, 2017" style="margin-top:28px;">
 
   <div class="m-body" style="margin-top:32px;">
-    <p>A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.</p>
+    <p>A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across three metres by 5.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.</p>
   </div>
 
   <div class="m-grid">
-    <img src="images/el_nino/el_nino_extra1.jpg" srcset="images/el_nino/el_nino_extra1-600.jpg 600w, images/el_nino/el_nino_extra1-800.jpg 800w, images/el_nino/el_nino_extra1-1200.jpg 1200w, images/el_nino/el_nino_extra1.jpg 1600w" sizes="(max-width:640px) 92vw, 370px" alt="El Niño mural by Cundo Marchi in San Fernando, Buenos Aires, Argentina, view 2" loading="lazy">
+    <img src="images/el_nino/el_nino_extra1.jpg" srcset="images/el_nino/el_nino_extra1-600.jpg 600w, images/el_nino/el_nino_extra1-800.jpg 800w, images/el_nino/el_nino_extra1-1200.jpg 1200w, images/el_nino/el_nino_extra1.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="El Niño mural by Cundo Marchi in San Fernando, Buenos Aires, Argentina, view 2" loading="lazy">
   </div>
 
   <div style="margin-top:44px;">

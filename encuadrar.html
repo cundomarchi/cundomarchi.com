@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Encuadrar murales</title>
+<style>
+  :root{ --bg:#0e0e0e; --card:#181817; --line:#2b2926; --ink:#f2f0ec; --muted:#8d887f; --red:#ff5449; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:28px 20px 80px;}
+  h1{font-size:22px;margin:0 0 6px;}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 26px;max-width:70ch;line-height:1.6;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;max-width:1300px;}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .frame{width:100%;aspect-ratio:4/3;background:#000;overflow:hidden;}
+  .frame{position:relative;display:flex;align-items:center;justify-content:center;}
+  .frame img{width:100%;height:100%;display:block;}
+  .frame .blur{position:absolute;inset:0;object-fit:cover;filter:blur(26px) brightness(.5);transform:scale(1.16);}
+  .frame .main{position:relative;z-index:1;}
+  .ctl{padding:12px 14px 14px;}
+  .name{font-size:13px;font-weight:600;margin-bottom:2px;}
+  .key{font-size:11px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;margin-bottom:10px;}
+  input[type=range]{width:100%;accent-color:var(--red);}
+  .modes{display:flex;gap:6px;margin:8px 0 12px;}
+  .modes button{flex:1;padding:7px 8px;font-size:11px;background:#242321;color:var(--muted);border:1px solid var(--line);}
+  .modes button.active{background:var(--ink);color:#111;border-color:var(--ink);}
+  .axis{margin-top:8px;}
+  .row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;}
+  .val{color:var(--red);font-weight:700;font-variant-numeric:tabular-nums;}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#000;border-top:1px solid var(--line);
+    padding:14px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+  button{background:var(--red);color:#fff;border:none;padding:11px 20px;border-radius:3px;
+    font-size:13px;font-weight:700;cursor:pointer;}
+  button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);}
+  #out{position:fixed;inset:5% 8%;background:#111;border:1px solid var(--line);border-radius:6px;
+    padding:18px;display:none;flex-direction:column;gap:12px;z-index:10;}
+  #out textarea{flex:1;width:100%;background:#000;color:#9fe6b8;border:1px solid var(--line);
+    border-radius:4px;padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;}
+</style>
+</head>
+<body>
+
+<h1>Encuadrar murales</h1>
+<p class="sub">
+  Elegí <b>Llenar cuadro</b> para acercar y recortar la foto, o <b>Foto completa + fondo</b>
+  cuando el mural necesite verse entero. Ajustá la posición hasta que la portada quede exacta.
+  Cuando termines, apretá <b>Copiar</b> y mandame el texto: yo lo aplico y queda fijo.
+</p>
+
+<div class="grid" id="grid"></div>
+
+<div class="bar">
+  <button onclick="showJson()">Copiar ajustes</button>
+  <button class="ghost" onclick="resetAll()">Volver al automatico</button>
+  <span style="color:var(--muted);font-size:13px;">Los cambios se guardan solos en este navegador.</span>
+</div>
+
+<div id="out">
+  <b>Mandame este texto</b>
+  <textarea id="json" readonly></textarea>
+  <div style="display:flex;gap:10px;">
+    <button onclick="copyJson()">Copiar al portapapeles</button>
+    <button class="ghost" onclick="document.getElementById('out').style.display='none'">Cerrar</button>
+  </div>
+</div>
+
+<script>
+const KEY='cmz_crops_v2';
+let saved={};
+try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
+saved.card=saved.card||{};
+saved.cardDisplay=saved.cardDisplay||{};
+
+Promise.all([fetch('index.html').then(r=>r.text()),fetch('crops.json').then(r=>r.json())]).then(([html,crops])=>{
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const seen=new Set(); const items=[];
+  doc.querySelectorAll('.mural-photo img[data-key]').forEach(img=>{
+    const key=img.getAttribute('data-key');
+    if(seen.has(key)) return; seen.add(key);
+    const card=img.closest('.mural-card');
+    const h3=card?card.querySelector('h3'):null;
+    items.push({key,src:img.getAttribute('src'),name:h3?h3.textContent.replace(/"/g,''):key});
+  });
+
+  render(items,crops||{});
+});
+
+function render(items,cur){
+  const grid=document.getElementById('grid');
+  items.forEach(it=>{
+    const configured=(saved.cardDisplay[it.key]||((cur.cardDisplay||{})[it.key]))||{};
+    const legacy=(saved.card[it.key]!==undefined?saved.card[it.key]:((cur.card||{})[it.key]));
+    const state={mode:configured.mode||'contain',x:configured.x==null?50:+configured.x,y:configured.y==null?(legacy==null?50:+legacy):+configured.y};
+    saved.cardDisplay[it.key]=state;
+    const el=document.createElement('div');
+    el.className='item';
+    el.innerHTML=`
+      <div class="frame"><img class="blur" src="${it.src}" alt=""><img class="main" src="${it.src}"></div>
+      <div class="ctl">
+        <div class="name">${it.name}</div>
+        <div class="key">${it.key}</div>
+        <div class="modes"><button data-mode="cover">Llenar cuadro</button><button data-mode="contain">Foto completa + fondo</button></div>
+        <div class="axis"><div class="row"><span>izquierda</span><span class="xval">${state.x}%</span><span>derecha</span></div><input class="x" type="range" min="0" max="100" value="${state.x}"></div>
+        <div class="axis"><div class="row"><span>arriba</span><span class="yval">${state.y}%</span><span>abajo</span></div><input class="y" type="range" min="0" max="100" value="${state.y}"></div>
+      </div>`;
+    const main=el.querySelector('.main'),blur=el.querySelector('.blur');
+    const xr=el.querySelector('.x'),yr=el.querySelector('.y');
+    function apply(){
+      main.style.objectFit=state.mode;
+      main.style.objectPosition=state.x+'% '+state.y+'%';
+      blur.style.display=state.mode==='contain'?'block':'none';
+      el.querySelector('.xval').textContent=state.x+'%';
+      el.querySelector('.yval').textContent=state.y+'%';
+      el.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===state.mode));
+      saved.card[it.key]=state.y;
+      saved.cardDisplay[it.key]={...state};
+      try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}
+    }
+    el.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{state.mode=b.dataset.mode;apply();});
+    xr.oninput=()=>{state.x=+xr.value;apply();};
+    yr.oninput=()=>{state.y=+yr.value;apply();};
+    apply();
+    grid.appendChild(el);
+  });
+}
+
+function showJson(){
+  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay},null,2);
+  document.getElementById('out').style.display='flex';
+}
+function copyJson(){
+  const t=document.getElementById('json'); t.select();
+  try{ document.execCommand('copy'); alert('Copiado. Mandamelo por chat.'); }catch(e){}
+}
+function resetAll(){
+  if(!confirm('Volver todo al encuadre automatico?')) return;
+  saved={}; try{ localStorage.removeItem(KEY); }catch(e){}
+  location.reload();
+}
+</script>
+</body>
+</html>
