@@ -1356,7 +1356,7 @@ const MURALS = {
       story: "A face dissolving into colour above a sleeping skyline, 4.5 by 2.8 metres, painted with exterior paint and brush in Buenos Aires, Argentina. The mural takes its name and its imagery from Gustavo Cerati and the song that gave Buenos Aires its nickname, the city of fury. The skyline along the bottom of the wall is painted in near monochrome so the colour of the face carries the whole composition.",
       storyEs: "Un rostro que se disuelve en color sobre un horizonte de edificios dormidos, 4,5 por 2,8 metros, pintado con pintura de exterior y pincel en Buenos Aires, Argentina. El mural toma su nombre y sus imágenes de Gustavo Cerati y de la canción que le dio a Buenos Aires su apodo, la ciudad de la furia. La línea de edificios de la parte baja está pintada casi en blanco y negro, para que el color del rostro sostenga toda la composición.",
      tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'}]
+      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra2.jpg', key:'city_of_fury_extra2'},{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'},{type:"image", src:'images/city_of_fury/city_of_fury_extra3.jpg', key:'city_of_fury_extra3'}]
     },
 "el_nino": {
       title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: '2017', size: '4m x 7.5m',
@@ -1364,7 +1364,7 @@ const MURALS = {
       story: "A kid in a monkey hoodie and lightning bolt sunglasses, painted with exterior paint and brush across four metres by 7.5 in San Fernando, in the north of Greater Buenos Aires, Argentina. It is one of the earliest walls in the portfolio, from 2017. The title comes from the phrase written on the wall, cuando sea grande quiero ser un niño, when I grow up I want to be a child, and the mural is a reminder to hold on to your inner child.",
       storyEs: "Un chico con buzo de mono y anteojos de sol con forma de rayo, pintado con pintura de exterior y pincel a lo largo de cuatro metros por 7,5 en San Fernando, en el norte del Gran Buenos Aires, Argentina. Es una de las paredes más antiguas del portfolio, de 2017. El título sale de la frase escrita en el muro, cuando sea grande quiero ser un niño, y el mural es un recordatorio de no soltar al niño que uno lleva adentro.",
      tags: ['Street Art', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/el_nino/el_nino.jpg', key:'el_nino'}]
+      gallery: [{type:"image", src:'images/el_nino/el_nino.jpg', key:'el_nino'},{type:"image", src:'images/el_nino/el_nino_extra1.jpg', key:'el_nino_extra1'}]
     },
 "fusion_of_life": {
       title: 'The Fusion of Life', titleEs: 'La Fusión de la Vida', loc: 'San Juan, Argentina, Maanso Meeting II', year: '2018', size: '9m x 2.5m',
@@ -1372,7 +1372,7 @@ const MURALS = {
       story: "Nine metres wide by 2.5 metres high, painted in mixed media for the second Maanso Meeting in San Juan, Argentina, in 2018. The mural represents the fusion of heart and brain, love and reason working towards a single purpose: fifty per cent love, fifty per cent reason, one hundred per cent dedication. It is one of the largest walls in the portfolio and was painted as part of a group mural event.",
       storyEs: "Nueve metros de ancho por 2,5 de alto, pintado con técnica mixta para el segundo Maanso Meeting en San Juan, Argentina, en 2018. El mural representa la fusión del corazón y el cerebro, el amor y la razón trabajando hacia un mismo objetivo: cincuenta por ciento amor, cincuenta por ciento razón, cien por ciento dedicación. Es una de las paredes más grandes del portfolio y se pintó dentro de un encuentro colectivo de muralistas.",
      tags: ['Mural Event', 'Mix Media'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/fusion_of_life/fusion_of_life.jpg', key:'fusion_of_life'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra1.jpg', key:'fusion_of_life_extra1'}]
+      gallery: [{type:"image", src:'images/fusion_of_life/fusion_of_life.jpg', key:'fusion_of_life'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra1.jpg', key:'fusion_of_life_extra1'},{type:"image", src:'images/fusion_of_life/fusion_of_life_extra2.jpg', key:'fusion_of_life_extra2'}]
     },
 "down_ocean": {
       title: 'Down the Ocean', titleEs: 'Bajo el Océano', loc: 'Bicentennial Tunnel, Tigre, Buenos Aires, Argentina', year: '2019', size: '150 m²',
@@ -1388,7 +1388,7 @@ const MURALS = {
       story: "A red octopus wrapped in tropical leaves, its arms curling around a rooftop window in Buenos Aires, Argentina. The mural is 3.5 by 2.5 metres, painted with exterior paint and brush as a private commission, and it uses the existing architecture as part of the drawing: the window opening becomes the space the octopus holds on to.",
       storyEs: "Un pulpo rojo envuelto en hojas tropicales, con los brazos enroscados alrededor de una ventana en una terraza de Buenos Aires, Argentina. El mural mide 3,5 por 2,5 metros, se pintó con pintura de exterior y pincel como encargo particular, y usa la arquitectura existente como parte del dibujo: el hueco de la ventana se convierte en aquello de lo que el pulpo se agarra.",
      tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"compare", before:'images/flower_octopus/flower_octopus_before.jpg', after:'images/flower_octopus/flower_octopus.jpg', beforeKey:'flower_octopus_before', afterKey:'flower_octopus'}]
+      gallery: [{type:"compare", before:'images/flower_octopus/flower_octopus_before.jpg', after:'images/flower_octopus/flower_octopus.jpg', beforeKey:'flower_octopus_before', afterKey:'flower_octopus'},{type:"image", src:'images/flower_octopus/flower_octopus_extra1.jpg', key:'flower_octopus_extra1'}]
     },
 "ocean_heart": {
       title: 'Ocean Heart', titleEs: 'Corazón del Océano', loc: 'Bonfil Urban Mural Fest, Acapulco, Mexico', year: '2022', size: '7m x 2.5m',
@@ -1673,7 +1673,6 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra6.jpg', key: 'shop_hoodie_miami_extra6' }
   ],
   shop_tee_sugar2: [
-    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra1.jpg', key: 'shop_tee_sugar2_extra1' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra5.jpg', key: 'shop_tee_sugar2_extra5' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra2.jpg', key: 'shop_tee_sugar2_extra2' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra3.jpg', key: 'shop_tee_sugar2_extra3' },

@@ -161,7 +161,7 @@ def descripcion(texto, limite=155):
 def hacer_nav(inicio, cta):
     return ("""<nav>
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
-    <a href="%s"><img src="images/site/cmz_logo.png" alt="Cundo Marchi" style="height:34px;display:block;"></a>
+    <a href="%s"><img src="images/site/cmz_logo-400.png" srcset="images/site/cmz_logo-120.png 120w, images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" style="height:34px;width:auto;display:block;"></a>
     <a href="%s#quote" class="btn-primary" style="padding:11px 22px;font-size:11px;">%s</a>
   </div>
 </nav>""" % (inicio, inicio, cta))
