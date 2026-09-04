@@ -1377,7 +1377,7 @@ const MURALS = {
       story: "A face dissolving into colour above a sleeping skyline, 4.5 by 2.8 metres, painted with exterior paint and brush in Buenos Aires, Argentina. The mural takes its name and its imagery from Gustavo Cerati and the song that gave Buenos Aires its nickname, the city of fury. The skyline along the bottom of the wall is painted in near monochrome so the colour of the face carries the whole composition.",
       storyEs: "Un rostro que se disuelve en color sobre un horizonte de edificios dormidos, 4,5 por 2,8 metros, pintado con pintura de exterior y pincel en Buenos Aires, Argentina. El mural toma su nombre y sus imágenes de Gustavo Cerati y de la canción que le dio a Buenos Aires su apodo, la ciudad de la furia. La línea de edificios de la parte baja está pintada casi en blanco y negro, para que el color del rostro sostenga toda la composición.",
      tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra2.jpg', key:'city_of_fury_extra2'},{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'},{type:"image", src:'images/city_of_fury/city_of_fury_extra3.jpg', key:'city_of_fury_extra3'}]
+      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'},{type:"image", src:'images/city_of_fury/city_of_fury_extra2.jpg', key:'city_of_fury_extra2'},{type:"image", src:'images/city_of_fury/city_of_fury_extra3.jpg', key:'city_of_fury_extra3'}]
     },
 "el_nino": {
       title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: '2017', size: '3m x 5.5m',

@@ -104,8 +104,12 @@ MURALS = json.loads(subprocess.run(
 # la portada que usa cada tarjeta del portfolio
 html = open('index.html', encoding='utf-8').read()
 covers = {}
-for src, key in re.findall(r'<img src="(images/[^"]+)"[^>]*data-key="([a-z0-9_]+)"', html):
-    covers.setdefault(key, src)
+for tag in re.findall(r'<img\b[^>]*\bdata-key="[a-z0-9_]+"[^>]*>', html):
+    src_match = re.search(r'\bsrc="(images/[^"]+)"', tag)
+    key_match = re.search(r'\bdata-key="([a-z0-9_]+)"', tag)
+    class_match = re.search(r'\bclass="([^"]*)"', tag)
+    if src_match and key_match and (not class_match or 'card-blur' not in class_match.group(1)):
+        covers.setdefault(key_match.group(1), src_match.group(1))
 
 # la ficha del mural usa el id del mural como data-key, que no siempre coincide
 # con el de la tarjeta (ej: portada city_of_fury_extra1 dentro del mural city_of_fury)
@@ -134,8 +138,12 @@ for key, src in sorted(covers.items()):
         mode = display.get('mode', 'contain')
         x = int(display.get('x', 50))
         y = int(display.get('y', p if p is not None else 50))
+        zoom = max(1.0, min(3.0, float(display.get('zoom', 1))))
         card_rules.append(
-            f'.mural-photo img.card-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; }}'
+            f'.mural-photo img.card-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+        )
+        card_rules.append(
+            f'.mural-card:hover .mural-photo img.card-main[data-key="{key}"] {{ transform: scale({zoom * 1.06:g}); }}'
         )
         if mode == 'cover':
             card_rules.append(
@@ -157,6 +165,16 @@ for mid, src in sorted(hero_src.items()):
         ph = OV['hero'][mid]
     if ph is not None and ph != 50:
         hero_rules.append(f'.m-hero[data-key="{mid}"] {{ object-position: center {ph}%; }}')
+
+for mid, display in OV.get('heroDisplay', {}).items():
+    mode = display.get('mode', 'contain')
+    x = int(display.get('x', 50))
+    y = int(display.get('y', 50))
+    zoom = max(1.0, min(3.0, float(display.get('zoom', 1))))
+    aspect = display.get('aspect', 'auto')
+    hero_rules.append(
+        f'.m-hero[data-key="{mid}"] {{ width: 100%; height: auto; aspect-ratio: {aspect}; object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+    )
 
 # el carrusel del home es casi 2:1: encuadre propio para ese marco
 carousel_rules, too_tall = [], []
