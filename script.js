@@ -921,6 +921,11 @@ function showPage(id, fromHistory) {
   window.scrollTo(0,0);
   const quoteSection = document.getElementById('quote');
   if (quoteSection) quoteSection.style.display = (id === 'shop') ? 'none' : '';
+  // El selector de moneda solo tiene sentido en la tienda, que es lo unico
+  // con precios. En el resto de las secciones estorba y confunde: el
+  // presupuesto del formulario va fijo en dolares.
+  const monedas = document.getElementById('currencyDropdown');
+  if (monedas) monedas.style.display = (id === 'shop') ? '' : 'none';
   currentBgTarget = null;
   document.querySelectorAll('.section-bg-edit-btn, .page-bg-edit-btn').forEach(b => b.classList.remove('active'));
   syncBgSlider();

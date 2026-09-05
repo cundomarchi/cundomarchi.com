@@ -115,7 +115,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=142">
+<link rel="stylesheet" href="style.css?v=141">
 </head>
 <body oncontextmenu="return false;">
 
@@ -143,7 +143,7 @@
     </div>
     <a href="#quote" class="nav-cta" data-en="Get a Quote" data-es="Cotizar">Get a Quote</a>
     <div class="nav-utils">
-      <div class="lang-dropdown" id="currencyDropdown">
+      <div class="lang-dropdown" id="currencyDropdown" style="display:none;">
         <button class="lang-current" id="currencyCurrentBtn" onclick="toggleCurrencyMenu()">USD <span class="lang-arrow">▾</span></button>
         <div class="lang-menu" id="currencyMenu">
           <button onclick="setCurrency('USD')">$ USD</button>
@@ -778,16 +778,16 @@
       <p class="step-label" style="margin-top:8px;" data-en="Real examples, before &amp; after" data-es="Ejemplos reales, antes y después">Real examples, before &amp; after</p>
       <div class="mural-compare-preview" onclick="openLightbox('flower_octopus')">
         <div class="mcp-imgs">
-          <div class="mcp-img"><img class="card-blur" src="images/flower_octopus/flower_octopus_before-600.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="card-main" loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before" width="1600" height="1212" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img class="card-blur" src="images/flower_octopus/flower_octopus-600.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="card-main" loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus" width="1066" height="1600" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus.jpg 1066w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
+          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before" width="1600" height="1212" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
+          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus" width="1066" height="1600" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus.jpg 1066w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
         </div>
         <p class="mcp-caption" data-en="&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;Pulpo Flor&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after</p>
       </div>
 
       <div class="mural-compare-preview" style="margin-top:24px;" onclick="openLightbox('circle_of_nature')">
         <div class="mcp-imgs">
-          <div class="mcp-img"><img class="card-blur" src="images/circle_of_nature/circle_of_nature_before-600.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="card-main" loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature_before-600.jpg 600w, images/circle_of_nature/circle_of_nature_before-800.jpg 800w, images/circle_of_nature/circle_of_nature_before-1200.jpg 1200w, images/circle_of_nature/circle_of_nature_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img class="card-blur" src="images/circle_of_nature/circle_of_nature-600.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="card-main" loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature-600.jpg 600w, images/circle_of_nature/circle_of_nature-800.jpg 800w, images/circle_of_nature/circle_of_nature-1200.jpg 1200w, images/circle_of_nature/circle_of_nature.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
+          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature_before-600.jpg 600w, images/circle_of_nature/circle_of_nature_before-800.jpg 800w, images/circle_of_nature/circle_of_nature_before-1200.jpg 1200w, images/circle_of_nature/circle_of_nature_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
+          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature-600.jpg 600w, images/circle_of_nature/circle_of_nature-800.jpg 800w, images/circle_of_nature/circle_of_nature-1200.jpg 1200w, images/circle_of_nature/circle_of_nature.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
         </div>
         <p class="mcp-caption" data-en="&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;El Círculo de la Naturaleza&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after</p>
       </div>
@@ -1063,10 +1063,13 @@
           <p class="step-label" style="margin-top:14px;" data-en="Budget" data-es="Presupuesto">Budget</p>
           <select class="field" onchange="chooseWallSelect(this,'budget')">
             <option value="" data-en="Select..." data-es="Seleccionar...">Select...</option>
-            <option class="price-range" data-range-type="under" data-usd-min="0" data-usd-max="2000">&lt; $2,000 USD</option>
-            <option class="price-range" data-range-type="between" data-usd-min="2000" data-usd-max="4000">$2,000 – $4,000 USD</option>
-            <option class="price-range" data-range-type="between" data-usd-min="4000" data-usd-max="8000">$4,000 – $8,000 USD</option>
-            <option class="price-range" data-range-type="over" data-usd-min="8000" data-usd-max="0">&gt; $8,000 USD</option>
+            <!-- Los tramos van fijos en dolares: el presupuesto de un mural se
+                 habla en dolares, y asi no cambian cuando alguien mira los
+                 precios de la tienda en otra moneda. -->
+            <option>&lt; $2,500 USD</option>
+            <option>$2,500 – $5,000 USD</option>
+            <option>$5,000 – $10,000 USD</option>
+            <option>&gt; $10,000 USD</option>
             <option data-en="Not sure yet" data-es="Todavía no sé">Not sure yet</option>
           </select>
         </div>
@@ -1106,6 +1109,8 @@
       <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/meeting_of_styles_sweden.png" alt="Meeting of Styles Sweden" width="360" height="240"></span>
       <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/farola.png" alt="Farola" width="448" height="240"></span>
       <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/hotel_sayab.png" alt="Hotel Sayab" width="395" height="238"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/norths_devils.png" alt="Norths Devils" width="267" height="228"></span>
+      <span class="brand-logo"><img loading="lazy" decoding="async" src="images/site/sleep_in_heaven.png" alt="Sleep in Heaven" width="793" height="552"></span>
     </div>
   </div>
 </section>

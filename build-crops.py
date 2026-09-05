@@ -125,7 +125,7 @@ for mid, m in MURALS.items():
     if cov:
         hero_src[mid] = cov
 
-card_rules, hero_rules = [], []
+card_rules, hero_rules, gallery_rules = [], [], []
 report = []
 for key, src in sorted(covers.items()):
     if not os.path.isfile(src):
@@ -176,6 +176,15 @@ for mid, display in OV.get('heroDisplay', {}).items():
         f'.m-hero[data-key="{mid}"] {{ width: 100%; height: auto; aspect-ratio: {aspect}; object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
     )
 
+for key, display in OV.get('galleryDisplay', {}).items():
+    mode = display.get('mode', 'contain')
+    x = int(display.get('x', 50))
+    y = int(display.get('y', 50))
+    zoom = max(1.0, min(3.0, float(display.get('zoom', 1))))
+    gallery_rules.append(
+        f'.m-grid img[data-key="{key}"], .m-ba img[data-key="{key}"] {{ aspect-ratio: 4 / 3; object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+    )
+
 # el carrusel del home es casi 2:1: encuadre propio para ese marco
 carousel_rules, too_tall = [], []
 for key, src in sorted(covers.items()):
@@ -201,7 +210,7 @@ for key, src in sorted(covers.items()):
     if pl is not None and pl != 50:
         live_rules.append(f'.live-gallery img[data-key="{key}"] {{ object-position: center {pl}%; }}')
 
-block = MARK + '\n' + '\n'.join(card_rules + hero_rules + carousel_rules + live_rules) + '\n'
+block = MARK + '\n' + '\n'.join(card_rules + hero_rules + gallery_rules + carousel_rules + live_rules) + '\n'
 
 css = open('style.css', encoding='utf-8').read()
 css = re.sub(re.escape(MARK) + r'.*?(?=\n/\*|\Z)', '', css, flags=re.S).rstrip() + '\n\n' + block

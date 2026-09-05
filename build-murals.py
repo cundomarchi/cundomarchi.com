@@ -352,12 +352,12 @@ for cfg in IDIOMAS:
                 compare_class = 'm-ba m-ba--mixed'
             gallery_html += (
                 f'<div class="{compare_class}">\n'
-                f'    <figure><img src="{before}"{variantes(before, BA_SIZES, "")} alt="{esc(T["alt_antes"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["antes"]}</figcaption></figure>\n'
-                f'    <figure><img src="{after}"{variantes(after, BA_SIZES, "")} alt="{esc(T["alt_despues"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["despues"]}</figcaption></figure>\n'
+                f'    <figure><img src="{before}" data-key="{os.path.splitext(os.path.basename(before))[0]}"{variantes(before, BA_SIZES, "")} alt="{esc(T["alt_antes"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["antes"]}</figcaption></figure>\n'
+                f'    <figure><img src="{after}" data-key="{os.path.splitext(os.path.basename(after))[0]}"{variantes(after, BA_SIZES, "")} alt="{esc(T["alt_despues"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["despues"]}</figcaption></figure>\n'
                 '  </div>\n  ')
         if rest:
             cells = '\n'.join(
-                f'    <img src="{x}"{variantes(x, GRID_SIZES, "")} alt="{esc(T["alt_vista"].format(title=title, loc=loc, n=n+2))}" loading="lazy">'
+                f'    <img src="{x}" data-key="{os.path.splitext(os.path.basename(x))[0]}"{variantes(x, GRID_SIZES, "")} alt="{esc(T["alt_vista"].format(title=title, loc=loc, n=n+2))}" loading="lazy">'
                 for n, x in enumerate(rest))
             gallery_html += f'<div class="m-grid">\n{cells}\n  </div>'
 
