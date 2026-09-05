@@ -98,7 +98,7 @@ def position_y(path, aspect):
 js = open('script.js', encoding='utf-8').read()
 st = js.index('const MURALS = {'); en = js.index('\n};', st) + 3
 MURALS = json.loads(subprocess.run(
-    ['node', '-e', js[st:en] + '\nprocess.stdout.write(JSON.stringify(MURALS));'],
+    [os.environ.get('NODE_BINARY', 'node'), '-e', js[st:en] + '\nprocess.stdout.write(JSON.stringify(MURALS));'],
     capture_output=True, text=True, check=True).stdout)
 
 # la portada que usa cada tarjeta del portfolio

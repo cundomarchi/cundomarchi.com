@@ -1352,7 +1352,7 @@ const MURALS = {
       gallery: [{type:"image", src:'images/meeting_of_styles/meeting_of_styles_after.jpg', key:'meeting_of_styles_after'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_before.jpg', key:'meeting_of_styles_before'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra5.jpg', key:'meeting_of_styles_extra5'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra1.jpg', key:'meeting_of_styles_extra1'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra4.jpg', key:'meeting_of_styles_extra4'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra2.jpg', key:'meeting_of_styles_extra2'},{type:"image", src:'images/meeting_of_styles/meeting_of_styles_extra3.jpg', key:'meeting_of_styles_extra3'}]
     },
 "bullshit_turin": {
-      title: 'BULLL$HIT', titleEs: 'BULLL$HIT', loc: 'Turin, Italy', year: '2025', size: '5m x 2.2m',
+      title: 'Bull Balls', titleEs: 'Bull Balls', loc: 'Turin, Italy', year: '2025', size: '5m x 2.2m',
       desc: 'A charging bull rendered in electric magenta and teal. Collab with Ades (Italy).',
       story: "A bull charging out of a wall in electric magenta and teal, five metres wide and 2.2 metres high, painted with spray paint in Turin, in the Piedmont region of northern Italy. The piece was made as a collaboration with the Italian artist Ades, whose lettering runs alongside the animal. The bull is built almost entirely from complementary colours, with no black outline holding the shape together.",
       storyEs: "Un toro saliendo de la pared en magenta eléctrico y turquesa, cinco metros de ancho por 2,2 de alto, pintado con aerosol en Turín, en la región del Piamonte, al norte de Italia. La obra se hizo en colaboración con el artista italiano Ades, cuyas letras acompañan al animal. El toro está armado casi por completo con colores complementarios, sin ningún contorno negro que sostenga la forma.",
@@ -1360,10 +1360,10 @@ const MURALS = {
       gallery: [{type:"image", src:'images/bullshit_turin/bullshit_turin.jpg', key:'bullshit_turin'},{type:"image", src:'images/bullshit_turin/bullshit_turin_before.jpg', key:'bullshit_turin_before'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra1.jpg', key:'bullshit_turin_extra1'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra4.jpg', key:'bullshit_turin_extra4'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra2.jpg', key:'bullshit_turin_extra2'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra5.jpg', key:'bullshit_turin_extra5'},{type:"image", src:'images/bullshit_turin/bullshit_turin_extra3.jpg', key:'bullshit_turin_extra3'}]
     },
 "zeus_athens": {
-      title: 'Hercules', titleEs: 'Hércules', loc: 'Athens, Greece', year: '2025', size: '5m x 2.2m',
-      desc: 'Hercules rising from the waves, painted in collaboration with Noless (Greece).',
-      story: "Hercules rising out of the waves, sprayed five metres wide across a wall in Athens, Greece, in collaboration with the Greek artist Noless. The figure is painted in the tradition of classical Greek heroes but rendered with spray paint and a street art palette, hair and water blending into the same movement. Athens is one of Europe's most active cities for legal and independent wall painting.",
-      storyEs: "Hércules emergiendo de las olas, pintado con aerosol a lo largo de cinco metros sobre una pared de Atenas, Grecia, en colaboración con el artista griego Noless. La figura sigue la tradición de los héroes clásicos griegos, pero resuelta con aerosol y una paleta de arte urbano, donde el pelo y el agua se funden en un mismo movimiento. Atenas es una de las ciudades más activas de Europa para la pintura mural legal e independiente.",
+      title: 'Herakles', titleEs: 'Herakles', loc: 'Athens, Greece', year: '2025', size: '5m x 2.2m',
+      desc: 'Herakles rising from the waves, painted in collaboration with Noless (Greece).',
+      story: "Herakles rising out of the waves, sprayed five metres wide across a wall in Athens, Greece, in collaboration with the Greek artist Noless. The figure is painted in the tradition of classical Greek heroes but rendered with spray paint and a street art palette, hair and water blending into the same movement. Athens is one of Europe's most active cities for legal and independent wall painting.",
+      storyEs: "Herakles emergiendo de las olas, pintado con aerosol a lo largo de cinco metros sobre una pared de Atenas, Grecia, en colaboración con el artista griego Noless. La figura sigue la tradición de los héroes clásicos griegos, pero resuelta con aerosol y una paleta de arte urbano, donde el pelo y el agua se funden en un mismo movimiento. Atenas es una de las ciudades más activas de Europa para la pintura mural legal e independiente.",
      tags: ['Street Art', 'Spray Paint'], flag: '🇬🇷',
       gallery: [{type:"image", src:'images/zeus_athens/zeus_athens.jpg', key:'zeus_athens'},{type:"image", src:'images/zeus_athens/zeus_athens_extra2.jpg', key:'zeus_athens_extra2'},{type:"image", src:'images/zeus_athens/zeus_athens_extra3.jpg', key:'zeus_athens_extra3'},{type:"image", src:'images/zeus_athens/zeus_athens_extra1.jpg', key:'zeus_athens_extra1'},{type:"image", src:'images/zeus_athens/zeus_athens.jpg', key:'zeus_athens'}]
     },
@@ -1917,10 +1917,10 @@ function sizeHomePreviewGrid() {
   const cards = [...grid.children];
   if (!cards.length) return;
   const tops = [...new Set(cards.map(c => c.offsetTop))].sort((a, b) => a - b);
-  if (tops.length < 2) return;
-  const secondRowTop = tops[1];
-  const secondRowCards = cards.filter(c => c.offsetTop === secondRowTop);
-  const maxBottom = Math.max(...secondRowCards.map(c => c.offsetTop + c.offsetHeight));
+  if (tops.length < 3) return;
+  const thirdRowTop = tops[2];
+  const thirdRowCards = cards.filter(c => c.offsetTop === thirdRowTop);
+  const maxBottom = Math.max(...thirdRowCards.map(c => c.offsetTop + c.offsetHeight));
   wrap.style.maxHeight = maxBottom + 'px';
 }
 window.addEventListener('load', sizeHomePreviewGrid);

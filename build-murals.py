@@ -75,7 +75,7 @@ start = js.index('const MURALS = {')
 end = js.index('\n};', start) + 3
 snippet = js[start:end]
 node = subprocess.run(
-    ['node', '-e', snippet + '\nprocess.stdout.write(JSON.stringify(MURALS));'],
+    [os.environ.get('NODE_BINARY', 'node'), '-e', snippet + '\nprocess.stdout.write(JSON.stringify(MURALS));'],
     capture_output=True, text=True, check=True)
 MURALS = json.loads(node.stdout)
 
@@ -292,6 +292,12 @@ ver = re.search(r'style\.css\?v=(\d+)', idx).group(1)
 
 ids = list(MURALS.keys())
 slugs = {mid: slugify(MURALS[mid]['title']) or mid for mid in ids}
+# Estos enlaces ya estan publicados e indexados: el nombre visible puede cambiar,
+# pero la URL debe seguir funcionando.
+slugs.update({
+    'bullshit_turin': 'bulll-hit',
+    'zeus_athens': 'hercules',
+})
 os.makedirs(OUT_DIR, exist_ok=True)
 os.makedirs(os.path.join(ROOT, 'es', 'mural'), exist_ok=True)
 

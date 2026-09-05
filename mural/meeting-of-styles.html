@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=149">
+<link rel="stylesheet" href="style.css?v=150">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -112,8 +112,10 @@
   .m-ba--portrait img { aspect-ratio:3 / 4; }
   .m-ba--landscape img { aspect-ratio:4 / 3; }
   .m-ba--mixed img { object-fit:contain; background:#000; }
+  .m-ba img[data-key="inac_hospitality_before"],
+  .m-ba img[data-key="inac_hospitality_after"] { object-fit:contain; background:#000; }
   .m-hero[data-key="flower_octopus"] { max-height:68vh; }
-  .m-hero[data-key="bear_virreyes"] { width:min(100%,900px); aspect-ratio:4 / 5; object-fit:cover; object-position:center 68%; }
+  .m-hero[data-key="bear_virreyes"] { width:min(100%,520px); height:min(76vh,700px); max-height:none; object-fit:cover; object-position:center 71%; }
   .m-ba figcaption {
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -165,7 +167,7 @@
 
   <div class="m-nav">
     <a href="mural/the-chef.html">&lsaquo; The Chef</a>
-    <a href="mural/bulll-hit.html">BULLL$HIT &rsaquo;</a>
+    <a href="mural/bulll-hit.html">Bull Balls &rsaquo;</a>
   </div>
 </main>
 </body>
