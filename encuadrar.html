@@ -55,10 +55,6 @@
 <p class="sub">Estas son las fotos que se ven en la grilla principal.</p>
 <div class="grid" id="grid"></div>
 
-<h2>Fotos dentro de cada mural</h2>
-<p class="sub">Acá podés igualar el acercamiento y el centro de cada foto que aparece al abrir una ficha.</p>
-<div class="grid" id="galleryGrid"></div>
-
 <h2>Carrusel grande del inicio — pausado</h2>
 <p class="sub">Cada mural está quieto y usa el formato ancho real del carrusel. Acomodalos uno por uno.</p>
 <div class="grid" id="carouselGrid"></div>
@@ -79,12 +75,11 @@
 </div>
 
 <script>
-const KEY='cmz_crops_v4';
+const KEY='cmz_crops_v5';
 let saved={};
 try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
 saved.card=saved.card||{};
 saved.cardDisplay=saved.cardDisplay||{};
-saved.galleryDisplay=saved.galleryDisplay||{};
 saved.carouselDisplay=saved.carouselDisplay||{};
 
 Promise.all([fetch('index.html').then(r=>r.text()),fetch('script.js').then(r=>r.text()),fetch('crops.json').then(r=>r.json())]).then(([html,script,crops])=>{
@@ -103,19 +98,6 @@ Promise.all([fetch('index.html').then(r=>r.text()),fetch('script.js').then(r=>r.
   const start=script.indexOf('const MURALS = {');
   const end=script.indexOf('\n};',start);
   const murals=(start>=0&&end>start)?Function('return '+script.slice(start+'const MURALS = '.length,end+2))():{};
-  const galleryItems=[]; const gallerySeen=new Set();
-  Object.values(murals).forEach(m=>{
-    (m.gallery||[]).forEach(photo=>{
-      const sources=photo.type==='compare'?[photo.before,photo.after]:[photo.src];
-      sources.filter(Boolean).forEach(src=>{
-        const key=(src.split('/').pop()||'').replace(/\.[^.]+$/,'');
-        if(gallerySeen.has(key))return; gallerySeen.add(key);
-        galleryItems.push({key,src,name:(m.title||key)+' — '+key.replaceAll('_',' ')});
-      });
-    });
-  });
-  render(galleryItems,crops||{},'galleryDisplay','galleryGrid',false);
-
   const carouselItems=[];
   Object.entries(murals).forEach(([id,m])=>{
     if(id==='el_nino'||!(m.gallery||[]).length)return;
@@ -152,6 +134,7 @@ function render(items,cur,section,gridId,legacyCard,frameClass=''){
     function apply(){
       main.style.objectFit=state.mode;
       main.style.objectPosition=state.x+'% '+state.y+'%';
+      main.style.transformOrigin=state.x+'% '+state.y+'%';
       main.style.transform='scale('+state.zoom+')';
       blur.style.display=state.mode==='contain'?'block':'none';
       el.querySelector('.xval').textContent=state.x+'%';
@@ -172,7 +155,7 @@ function render(items,cur,section,gridId,legacyCard,frameClass=''){
 }
 
 function showJson(){
-  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay,galleryDisplay:saved.galleryDisplay,carouselDisplay:saved.carouselDisplay},null,2);
+  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay,carouselDisplay:saved.carouselDisplay},null,2);
   document.getElementById('out').style.display='flex';
 }
 function copyJson(){

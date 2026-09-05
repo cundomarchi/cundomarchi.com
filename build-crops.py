@@ -140,7 +140,7 @@ for key, src in sorted(covers.items()):
         y = int(display.get('y', p if p is not None else 50))
         zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
         card_rules.append(
-            f'.mural-photo img.card-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+            f'.mural-photo img.card-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform-origin: {x}% {y}%; transform: scale({zoom:g}); }}'
         )
         card_rules.append(
             f'.mural-card:hover .mural-photo img.card-main[data-key="{key}"] {{ transform: scale({zoom * 1.06:g}); }}'
@@ -182,7 +182,7 @@ for key, display in OV.get('galleryDisplay', {}).items():
     y = int(display.get('y', 50))
     zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
     gallery_rules.append(
-        f'.m-grid img[data-key="{key}"], .m-ba img[data-key="{key}"] {{ aspect-ratio: 4 / 3; object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+        f'.m-grid img[data-key="{key}"], .m-ba img[data-key="{key}"] {{ aspect-ratio: 4 / 3; object-fit: {mode}; object-position: {x}% {y}%; transform-origin: {x}% {y}%; transform: scale({zoom:g}); }}'
     )
 
 # el carrusel del home es casi 2:1: encuadre propio para ese marco
@@ -200,7 +200,7 @@ for key, src in sorted(covers.items()):
         y = int(display.get('y', 50))
         zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
         carousel_rules.append(
-            f'.carousel-slide img.carousel-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+            f'.carousel-slide img.carousel-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform-origin: {x}% {y}%; transform: scale({zoom:g}); }}'
         )
         if mode == 'cover':
             carousel_rules.append(
