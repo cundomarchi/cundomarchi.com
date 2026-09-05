@@ -466,13 +466,12 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .shop-card { background: var(--black-2); border: 1px solid #2a2a2a; transition: border-color .2s ease, transform .2s ease; }
 .shop-card:hover { border-color: #444; transform: translateY(-2px); }
 .shop-card-img { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #0a0a0a; }
-/* Igual que las tarjetas de mural: el producto se ve entero, con la misma
-   foto ampliada y desenfocada detras en vez de recortarlo. */
+/* Portadas limpias: mockup centrado, sin repetir la foto desenfocada detrás. */
 .shop-card-img img.card-main { width: 100%; height: 100%; object-fit: contain;
   display: block; cursor: pointer; position: relative; z-index: 1; }
 .shop-card-img img.card-blur { position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; filter: blur(26px) brightness(0.5) saturate(1.05);
-  transform: scale(1.16); z-index: 0; display: block; }
+  transform: scale(1.16); z-index: 0; display: none; }
 .shop-card-img img:not(.card-main):not(.card-blur) { width: 100%; height: 100%;
   object-fit: cover; display: block; cursor: pointer; }
 .sold-out-badge { position: absolute; z-index: 2; top: 10px; left: 10px; background: rgba(10,10,10,.82); color: var(--white); border: 1px solid rgba(255,255,255,.4); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 5px 10px; }
