@@ -557,13 +557,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img.card-main[data-key="circle_of_nature"] { object-fit: cover; object-position: 50% 29%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="circle_of_nature"] { transform: scale(1.06); }
 .mural-photo:has(img.card-main[data-key="circle_of_nature"]) img.card-blur { display: none; }
-.mural-photo img.card-main[data-key="city_of_fury_extra1"] { object-fit: cover; object-position: 50% 49%; transform: scale(1); }
-.mural-card:hover .mural-photo img.card-main[data-key="city_of_fury_extra1"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="city_of_fury_extra1"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="dinamarca_hostel"] { object-fit: contain; object-position: 62% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="dinamarca_hostel"] { transform: scale(1.06); }
-.mural-photo img.card-main[data-key="down_ocean_1"] { object-fit: contain; object-position: 50% 50%; transform: scale(1); }
-.mural-card:hover .mural-photo img.card-main[data-key="down_ocean_1"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="el_eternauta"] { object-fit: cover; object-position: 50% 56%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="el_eternauta"] { transform: scale(1.06); }
 .mural-photo:has(img.card-main[data-key="el_eternauta"]) img.card-blur { display: none; }
@@ -611,7 +606,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-card:hover .mural-photo img.card-main[data-key="zeus_athens"] { transform: scale(1.06); }
 .m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
 .m-hero[data-key="bullshit_turin"] { object-position: center 41%; }
-.m-hero[data-key="city_of_fury"] { object-position: center 49%; }
+.m-hero[data-key="city_of_fury"] { object-position: center 100%; }
 .m-hero[data-key="el_eternauta"] { object-position: center 55%; }
 .m-hero[data-key="el_nino"] { object-position: center 49%; }
 .m-hero[data-key="flower_octopus"] { object-position: center 53%; }
