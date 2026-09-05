@@ -222,7 +222,9 @@ PAGE = '''<!DOCTYPE html>
   /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
      final en vez de quedar pegada a un costado. */
   .m-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; align-items:start; }}
-  .m-grid img {{ width:100%; height:auto; display:block; border-radius:2px; }}
+  .m-grid img {{ width:100%; aspect-ratio:4 / 3; object-fit:cover; object-position:center; background:#000; display:block; border-radius:2px; }}
+  .m-grid img[data-key="you_see_before"],
+  .m-grid img[data-key="you_see_extra1"] {{ object-fit:contain; }}
   .m-grid img:last-child:nth-child(odd) {{ grid-column:1 / -1; width:calc(50% - 7px); justify-self:center; }}
   @media (max-width:640px) {{
     .m-grid {{ grid-template-columns:1fr; }}
@@ -233,6 +235,11 @@ PAGE = '''<!DOCTYPE html>
   .m-ba img {{ width:100%; aspect-ratio:1 / 1; object-fit:cover; object-position:center; display:block; border-radius:2px; }}
   .m-ba--portrait img {{ aspect-ratio:3 / 4; }}
   .m-ba--landscape img {{ aspect-ratio:4 / 3; }}
+  .m-ba--mixed img {{ object-fit:contain; background:#000; }}
+  .m-ba img[data-key="inac_hospitality_before"],
+  .m-ba img[data-key="inac_hospitality_after"] {{ object-fit:contain; background:#000; }}
+  .m-hero[data-key="flower_octopus"] {{ max-height:68vh; }}
+  .m-hero[data-key="bear_virreyes"] {{ width:min(100%,520px); height:min(76vh,700px); max-height:none; object-fit:cover; object-position:center 71%; }}
   .m-ba figcaption {{
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -329,7 +336,11 @@ for cfg in IDIOMAS:
             cover = imgs[0] if imgs else 'images/site/og_image.jpg'
         hero = cover
         hero_abs = BASE + cover
-        rest = [x for x in imgs if x != cover]
+        # Si una foto se repite al final, es intencional: permite cerrar una
+        # secuencia antes -> proceso -> final sin cambiar la portada elegida.
+        rest = list(imgs)
+        if cover in rest:
+            rest.remove(cover)
         hero_alt = T['alt_hero'].format(title=title, loc=loc, year=year)
 
         body = (m.get('storyEs') if es else m.get('story')) or m.get('desc') or ''
@@ -354,7 +365,7 @@ for cfg in IDIOMAS:
                 f'<div class="{compare_class}">\n'
                 f'    <figure><img src="{before}" data-key="{os.path.splitext(os.path.basename(before))[0]}"{variantes(before, BA_SIZES, "")} alt="{esc(T["alt_antes"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["antes"]}</figcaption></figure>\n'
                 f'    <figure><img src="{after}" data-key="{os.path.splitext(os.path.basename(after))[0]}"{variantes(after, BA_SIZES, "")} alt="{esc(T["alt_despues"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["despues"]}</figcaption></figure>\n'
-                '  </div>\n  ')
+                '  </div>\n')
         if rest:
             cells = '\n'.join(
                 f'    <img src="{x}" data-key="{os.path.splitext(os.path.basename(x))[0]}"{variantes(x, GRID_SIZES, "")} alt="{esc(T["alt_vista"].format(title=title, loc=loc, n=n+2))}" loading="lazy">'

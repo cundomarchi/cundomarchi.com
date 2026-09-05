@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=148">
+<link rel="stylesheet" href="style.css?v=149">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -98,7 +98,9 @@
   /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
      final en vez de quedar pegada a un costado. */
   .m-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; align-items:start; }
-  .m-grid img { width:100%; height:auto; display:block; border-radius:2px; }
+  .m-grid img { width:100%; aspect-ratio:4 / 3; object-fit:cover; object-position:center; background:#000; display:block; border-radius:2px; }
+  .m-grid img[data-key="you_see_before"],
+  .m-grid img[data-key="you_see_extra1"] { object-fit:contain; }
   .m-grid img:last-child:nth-child(odd) { grid-column:1 / -1; width:calc(50% - 7px); justify-self:center; }
   @media (max-width:640px) {
     .m-grid { grid-template-columns:1fr; }
@@ -109,6 +111,9 @@
   .m-ba img { width:100%; aspect-ratio:1 / 1; object-fit:cover; object-position:center; display:block; border-radius:2px; }
   .m-ba--portrait img { aspect-ratio:3 / 4; }
   .m-ba--landscape img { aspect-ratio:4 / 3; }
+  .m-ba--mixed img { object-fit:contain; background:#000; }
+  .m-hero[data-key="flower_octopus"] { max-height:68vh; }
+  .m-hero[data-key="bear_virreyes"] { width:min(100%,900px); aspect-ratio:4 / 5; object-fit:cover; object-position:center 68%; }
   .m-ba figcaption {
     font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
     color:var(--gray); margin-top:8px;
@@ -144,18 +149,14 @@
   </div>
 
   <div class="m-grid">
-    <img src="images/ocean_heart/ocean_heart_extra1.jpg" data-key="ocean_heart_extra1" srcset="images/ocean_heart/ocean_heart_extra1-600.jpg 600w, images/ocean_heart/ocean_heart_extra1-800.jpg 800w, images/ocean_heart/ocean_heart_extra1.jpg 929w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 2" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra2.jpg" data-key="ocean_heart_extra2" srcset="images/ocean_heart/ocean_heart_extra2-800.jpg 800w, images/ocean_heart/ocean_heart_extra2.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 3" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra3.jpg" data-key="ocean_heart_extra3" srcset="images/ocean_heart/ocean_heart_extra3-800.jpg 800w, images/ocean_heart/ocean_heart_extra3.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 4" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra4.jpg" data-key="ocean_heart_extra4" srcset="images/ocean_heart/ocean_heart_extra4-800.jpg 800w, images/ocean_heart/ocean_heart_extra4.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 5" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra5.jpg" data-key="ocean_heart_extra5" srcset="images/ocean_heart/ocean_heart_extra5-800.jpg 800w, images/ocean_heart/ocean_heart_extra5.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 6" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra6.jpg" data-key="ocean_heart_extra6" srcset="images/ocean_heart/ocean_heart_extra6-800.jpg 800w, images/ocean_heart/ocean_heart_extra6.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 7" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra7.jpg" data-key="ocean_heart_extra7" srcset="images/ocean_heart/ocean_heart_extra7-800.jpg 800w, images/ocean_heart/ocean_heart_extra7.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 8" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra8.jpg" data-key="ocean_heart_extra8" srcset="images/ocean_heart/ocean_heart_extra8-800.jpg 800w, images/ocean_heart/ocean_heart_extra8.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 9" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra9.jpg" data-key="ocean_heart_extra9" srcset="images/ocean_heart/ocean_heart_extra9-800.jpg 800w, images/ocean_heart/ocean_heart_extra9.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 10" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra10.jpg" data-key="ocean_heart_extra10" srcset="images/ocean_heart/ocean_heart_extra10-800.jpg 800w, images/ocean_heart/ocean_heart_extra10.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 11" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra11.jpg" data-key="ocean_heart_extra11" srcset="images/ocean_heart/ocean_heart_extra11-800.jpg 800w, images/ocean_heart/ocean_heart_extra11.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 12" loading="lazy">
-    <img src="images/ocean_heart/ocean_heart_extra12.jpg" data-key="ocean_heart_extra12" srcset="images/ocean_heart/ocean_heart_extra12-800.jpg 800w, images/ocean_heart/ocean_heart_extra12.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 13" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra2.jpg" data-key="ocean_heart_extra2" srcset="images/ocean_heart/ocean_heart_extra2-800.jpg 800w, images/ocean_heart/ocean_heart_extra2.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 2" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra3.jpg" data-key="ocean_heart_extra3" srcset="images/ocean_heart/ocean_heart_extra3-800.jpg 800w, images/ocean_heart/ocean_heart_extra3.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 3" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra4.jpg" data-key="ocean_heart_extra4" srcset="images/ocean_heart/ocean_heart_extra4-800.jpg 800w, images/ocean_heart/ocean_heart_extra4.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 4" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra9.jpg" data-key="ocean_heart_extra9" srcset="images/ocean_heart/ocean_heart_extra9-800.jpg 800w, images/ocean_heart/ocean_heart_extra9.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 5" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra11.jpg" data-key="ocean_heart_extra11" srcset="images/ocean_heart/ocean_heart_extra11-800.jpg 800w, images/ocean_heart/ocean_heart_extra11.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 6" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra8.jpg" data-key="ocean_heart_extra8" srcset="images/ocean_heart/ocean_heart_extra8-800.jpg 800w, images/ocean_heart/ocean_heart_extra8.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 7" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra10.jpg" data-key="ocean_heart_extra10" srcset="images/ocean_heart/ocean_heart_extra10-800.jpg 800w, images/ocean_heart/ocean_heart_extra10.jpg 1200w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 8" loading="lazy">
+    <img src="images/ocean_heart/ocean_heart_extra12.jpg" data-key="ocean_heart_extra12" srcset="images/ocean_heart/ocean_heart_extra12-800.jpg 800w, images/ocean_heart/ocean_heart_extra12.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Ocean Heart mural by Cundo Marchi in Bonfil Urban Mural Fest, Acapulco, Mexico, view 9" loading="lazy">
   </div>
 
   <div style="margin-top:44px;">
