@@ -138,7 +138,7 @@ for key, src in sorted(covers.items()):
         mode = display.get('mode', 'contain')
         x = int(display.get('x', 50))
         y = int(display.get('y', p if p is not None else 50))
-        zoom = max(1.0, min(3.0, float(display.get('zoom', 1))))
+        zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
         card_rules.append(
             f'.mural-photo img.card-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
         )
@@ -170,7 +170,7 @@ for mid, display in OV.get('heroDisplay', {}).items():
     mode = display.get('mode', 'contain')
     x = int(display.get('x', 50))
     y = int(display.get('y', 50))
-    zoom = max(1.0, min(3.0, float(display.get('zoom', 1))))
+    zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
     aspect = display.get('aspect', 'auto')
     hero_rules.append(
         f'.m-hero[data-key="{mid}"] {{ width: 100%; height: auto; aspect-ratio: {aspect}; object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
@@ -180,7 +180,7 @@ for key, display in OV.get('galleryDisplay', {}).items():
     mode = display.get('mode', 'contain')
     x = int(display.get('x', 50))
     y = int(display.get('y', 50))
-    zoom = max(1.0, min(3.0, float(display.get('zoom', 1))))
+    zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
     gallery_rules.append(
         f'.m-grid img[data-key="{key}"], .m-ba img[data-key="{key}"] {{ aspect-ratio: 4 / 3; object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
     )
@@ -193,10 +193,19 @@ for key, src in sorted(covers.items()):
     W, H = Image.open(src).size
     if W / H < 1.15:
         too_tall.append((key, round(W / H, 2)))   # una foto vertical no entra en un banner ancho
-    # El carrusel muestra el mural entero (contain), asi que no hay nada que encuadrar.
-    pc = None
-    if pc is not None and pc != 50:
-        carousel_rules.append(f'.carousel-slide img[data-key="{key}"] {{ object-position: center {pc}%; }}')
+    display = OV.get('carouselDisplay', {}).get(key, {})
+    if display:
+        mode = display.get('mode', 'contain')
+        x = int(display.get('x', 50))
+        y = int(display.get('y', 50))
+        zoom = max(0.5, min(3.0, float(display.get('zoom', 1))))
+        carousel_rules.append(
+            f'.carousel-slide img.carousel-main[data-key="{key}"] {{ object-fit: {mode}; object-position: {x}% {y}%; transform: scale({zoom:g}); }}'
+        )
+        if mode == 'cover':
+            carousel_rules.append(
+                f'.carousel-slide:has(img.carousel-main[data-key="{key}"]) img.carousel-blur {{ display: none; }}'
+            )
 
 # galeria de Live Painting: mismo criterio
 live_rules = []

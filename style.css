@@ -559,6 +559,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo:has(img.card-main[data-key="circle_of_nature"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="dinamarca_hostel"] { object-fit: contain; object-position: 62% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="dinamarca_hostel"] { transform: scale(1.06); }
+.mural-photo img.card-main[data-key="down_ocean_6"] { object-fit: contain; object-position: 50% 50%; transform: scale(1); }
+.mural-card:hover .mural-photo img.card-main[data-key="down_ocean_6"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="el_eternauta"] { object-fit: cover; object-position: 50% 56%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="el_eternauta"] { transform: scale(1.06); }
 .mural-photo:has(img.card-main[data-key="el_eternauta"]) img.card-blur { display: none; }

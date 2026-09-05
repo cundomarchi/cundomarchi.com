@@ -16,6 +16,7 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;max-width:1300px;}
   .item{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
   .frame{width:100%;aspect-ratio:4/3;background:#000;overflow:hidden;}
+  .frame.carousel-frame{aspect-ratio:2/1;}
   .frame{position:relative;display:flex;align-items:center;justify-content:center;}
   .frame img{width:100%;height:100%;display:block;}
   .frame .blur{position:absolute;inset:0;object-fit:cover;filter:blur(14px) brightness(.62);transform:scale(1.1);}
@@ -58,6 +59,10 @@
 <p class="sub">Acá podés igualar el acercamiento y el centro de cada foto que aparece al abrir una ficha.</p>
 <div class="grid" id="galleryGrid"></div>
 
+<h2>Carrusel grande del inicio — pausado</h2>
+<p class="sub">Cada mural está quieto y usa el formato ancho real del carrusel. Acomodalos uno por uno.</p>
+<div class="grid" id="carouselGrid"></div>
+
 <div class="bar">
   <button onclick="showJson()">Copiar ajustes</button>
   <button class="ghost" onclick="resetAll()">Volver al automatico</button>
@@ -80,6 +85,7 @@ try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={};
 saved.card=saved.card||{};
 saved.cardDisplay=saved.cardDisplay||{};
 saved.galleryDisplay=saved.galleryDisplay||{};
+saved.carouselDisplay=saved.carouselDisplay||{};
 
 Promise.all([fetch('index.html').then(r=>r.text()),fetch('script.js').then(r=>r.text()),fetch('crops.json').then(r=>r.json())]).then(([html,script,crops])=>{
   const doc=new DOMParser().parseFromString(html,'text/html');
@@ -109,9 +115,20 @@ Promise.all([fetch('index.html').then(r=>r.text()),fetch('script.js').then(r=>r.
     });
   });
   render(galleryItems,crops||{},'galleryDisplay','galleryGrid',false);
+
+  const carouselItems=[];
+  Object.entries(murals).forEach(([id,m])=>{
+    if(id==='el_nino'||!(m.gallery||[]).length)return;
+    const first=m.gallery[0];
+    const src=first.type==='compare'?first.after:first.src;
+    if(!src)return;
+    const key=first.type==='compare'?(first.afterKey||(src.split('/').pop()||'').replace(/\.[^.]+$/,'')):(first.key||(src.split('/').pop()||'').replace(/\.[^.]+$/,''));
+    carouselItems.push({key,src,name:m.title||key});
+  });
+  render(carouselItems,crops||{},'carouselDisplay','carouselGrid',false,'carousel-frame');
 });
 
-function render(items,cur,section,gridId,legacyCard){
+function render(items,cur,section,gridId,legacyCard,frameClass=''){
   const grid=document.getElementById(gridId);
   items.forEach(it=>{
     const configured=(saved[section][it.key]||((cur[section]||{})[it.key]))||{};
@@ -121,14 +138,14 @@ function render(items,cur,section,gridId,legacyCard){
     const el=document.createElement('div');
     el.className='item';
     el.innerHTML=`
-      <div class="frame"><img class="blur" src="${it.src}" alt=""><img class="main" src="${it.src}"></div>
+      <div class="frame ${frameClass}"><img class="blur" src="${it.src}" alt=""><img class="main" src="${it.src}"></div>
       <div class="ctl">
         <div class="name">${it.name}</div>
         <div class="key">${it.key}</div>
         <div class="modes"><button data-mode="cover">Llenar cuadro</button><button data-mode="contain">Foto completa + fondo</button></div>
         <div class="axis"><div class="row"><span>izquierda</span><span class="xval">${state.x}%</span><span>derecha</span></div><input class="x" type="range" min="0" max="100" value="${state.x}"></div>
         <div class="axis"><div class="row"><span>arriba</span><span class="yval">${state.y}%</span><span>abajo</span></div><input class="y" type="range" min="0" max="100" value="${state.y}"></div>
-        <div class="axis"><div class="row"><span>foto completa</span><span class="zval">${state.zoom.toFixed(2)}x</span><span>acercar</span></div><input class="z" type="range" min="1" max="3" step="0.01" value="${state.zoom}"></div>
+        <div class="axis"><div class="row"><span>alejar</span><span class="zval">${state.zoom.toFixed(2)}x</span><span>acercar</span></div><input class="z" type="range" min="0.5" max="3" step="0.01" value="${state.zoom}"></div>
       </div>`;
     const main=el.querySelector('.main'),blur=el.querySelector('.blur');
     const xr=el.querySelector('.x'),yr=el.querySelector('.y'),zr=el.querySelector('.z');
@@ -155,7 +172,7 @@ function render(items,cur,section,gridId,legacyCard){
 }
 
 function showJson(){
-  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay,galleryDisplay:saved.galleryDisplay},null,2);
+  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay,galleryDisplay:saved.galleryDisplay,carouselDisplay:saved.carouselDisplay},null,2);
   document.getElementById('out').style.display='flex';
 }
 function copyJson(){
