@@ -441,9 +441,9 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .workshop-photo img.card-blur { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   filter: blur(26px) brightness(0.5) saturate(1.05); transform: scale(1.16); z-index: 0; display: block; }
 .workshop-photo img:not(.card-main):not(.card-blur) { width: 100%; height: 100%; object-fit: cover; display: block; }
-.workshop-photo img.card-main[data-key="workshop_tiktok_1"] { transform: scale(1.08); }
-.workshop-photo img.card-main[data-key="workshop_tiktok_2"] { transform: scale(1.08); }
-.workshop-photo img.card-main[data-key="workshop_tiktok_3"] { object-position: center 42%; transform: scale(1.2); }
+.workshop-photo img.card-main[data-key="workshop_tiktok_1"] { scale: 1.08; }
+.workshop-photo img.card-main[data-key="workshop_tiktok_2"] { scale: 1.08; }
+.workshop-photo img.card-main[data-key="workshop_tiktok_3"] { object-position: center 42%; scale: 1.2; }
 @media (max-width: 560px) { .workshop-photo-row { grid-template-columns: repeat(3, 1fr); gap: 5px; } }
 
 .instagram-feed { padding-top: 0; }
@@ -477,7 +477,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
   transform: scale(1.16); z-index: 0; display: none; }
 .shop-card-img img:not(.card-main):not(.card-blur) { width: 100%; height: 100%;
   object-fit: cover; display: block; cursor: pointer; }
-.sold-out-badge { display: inline-flex; align-items: center; background: transparent; color: #b9b9b4; border: 1px solid #555; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .7px; line-height: 1; text-transform: uppercase; padding: 5px 8px; margin: 0 0 10px; }
+.sold-out-badge { display: flex; width: max-content; align-items: center; background: transparent; color: #b9b9b4; border: 1px solid #555; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .7px; line-height: 1; text-transform: uppercase; padding: 5px 8px; margin: 0 0 10px; }
 .shop-card-img > .sold-out-badge { display: none; }
 .shop-card-body { padding: 16px 18px; }
 .shop-card-body h4 { font-family: var(--display); font-size: 14px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 4px; line-height: 1.3; }
