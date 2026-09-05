@@ -1666,6 +1666,12 @@ function openLightbox(id) {
   document.getElementById('lightbox').classList.add('open');
 }
 function initShopGallery() {
+  document.querySelectorAll('.shop-card.sold-out').forEach(card => {
+    const badge = card.querySelector('.sold-out-badge');
+    const body = card.querySelector('.shop-card-body');
+    const price = body && body.querySelector('.price');
+    if (badge && body && price) body.insertBefore(badge, price);
+  });
   document.querySelectorAll('.shop-card-img img[data-key]').forEach(img => {
     const wrap = img.closest('.shop-card-img');
     const baseKey = img.getAttribute('data-key');
@@ -1985,11 +1991,7 @@ document.addEventListener('click', function(e) {
 // Update these periodically to keep displayed conversions reasonably current.
 const CURRENCY_RATES = { USD: 1, AUD: 1.39, EUR: 0.86, ARS: 1495 };
 const CURRENCY_SYMBOLS = { USD: '$', AUD: 'A$', EUR: '€', ARS: 'AR$' };
-const COUNTRY_TO_CURRENCY = {
-  AU: 'AUD', AR: 'ARS', US: 'USD',
-  DE: 'EUR', FR: 'EUR', ES: 'EUR', IT: 'EUR', NL: 'EUR', PT: 'EUR', IE: 'EUR', GR: 'EUR', AT: 'EUR', BE: 'EUR', FI: 'EUR'
-};
-let currency = 'USD';
+let currency = 'AUD';   // moneda por defecto de la tienda
 function formatUsd(usd) {
   const rate = CURRENCY_RATES[currency] || 1;
   const rounded = Math.round(usd * rate);
@@ -2032,19 +2034,15 @@ document.addEventListener('click', function(e) {
   const dd = document.getElementById('currencyDropdown');
   if (dd && !dd.contains(e.target)) document.getElementById('currencyMenu').classList.remove('open');
 });
-let geoDetectedCurrency = 'USD';
 async function initCurrency() {
   let saved = null;
   try { saved = localStorage.getItem('cmz_currency_manual_v2'); } catch (e) {}
-  try {
-    const res = await fetch('https://get.geojs.io/v1/ip/country.json', { signal: AbortSignal.timeout(2500) });
-    const data = await res.json();
-    geoDetectedCurrency = COUNTRY_TO_CURRENCY[data.country] || 'USD';
-  } catch (e) {
-    geoDetectedCurrency = 'USD';
-  }
+  // La tienda arranca siempre en dolares australianos. Antes miraba el pais
+  // desde donde entraba cada visitante y cambiaba sola, asi que los precios
+  // no eran los mismos para todos. Si alguien elige otra moneda a mano, se
+  // recuerda esa eleccion.
   if (saved && CURRENCY_RATES[saved]) { setCurrency(saved, true); return; }
-  setCurrency(geoDetectedCurrency, true);
+  setCurrency('AUD', true);
 }
 initCurrency();
 

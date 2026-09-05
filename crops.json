@@ -70,7 +70,7 @@
     "king_of_kings": {"mode":"contain","x":50,"y":50,"zoom":1},
     "city_of_fury_extra2": {"mode":"contain","x":50,"y":50,"zoom":1},
     "fusion_of_life": {"mode":"contain","x":50,"y":50,"zoom":1},
-    "down_ocean_6": {"mode":"contain","x":50,"y":50,"zoom":1},
+    "down_ocean_6": {"mode":"cover","x":50,"y":42,"zoom":1},
     "flower_octopus": {"mode":"contain","x":50,"y":54,"zoom":2.9},
     "ocean_heart": {"mode":"contain","x":0,"y":67,"zoom":1.4},
     "the_eyes": {"mode":"contain","x":50,"y":61,"zoom":1.49},
