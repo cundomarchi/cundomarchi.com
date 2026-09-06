@@ -546,6 +546,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .brand-logo:hover { opacity: 1; }
 .brand-logo:has(img[alt="Farola"]) { opacity: 1; }
 .brand-logo img { height: 100%; width: auto; max-width: 220px; object-fit: contain; display: block; filter: none; }
+.brand-logo img[alt="Sleep in Heaven"] { transform: translateY(-6px); }
 .social-icons { display: flex; gap: 22px; justify-content: center; margin-bottom: 28px; }
 .social-icons a { color: var(--gray); transition: color .15s, transform .15s; display: flex; }
 .social-icons a:hover { color: var(--white); transform: translateY(-2px); }

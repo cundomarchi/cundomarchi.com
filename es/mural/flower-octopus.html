@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=150">
+<link rel="stylesheet" href="style.css?v=151">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -102,6 +102,11 @@
   .m-rows { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
   .m-row { display:flex; gap:14px; width:100%; margin:0 auto; }
   .m-row img { display:block; width:100%; height:auto; min-width:0; background:#000; border-radius:2px; }
+  /* Excepciones pedidas para estas fotos concretas. El boceto se ve completo
+     dentro de un marco menos vertical y el recorte del oso oculta el icono que
+     venia incrustado en la captura, sin tocar el archivo original. */
+  .m-row img[data-key="you_see_before"] { flex:.85 1 0 !important; aspect-ratio:.85 !important; object-fit:contain; }
+  .m-row img[data-key="bear_virreyes_extra2"] { flex:1.08 1 0 !important; aspect-ratio:1.08 !important; object-fit:cover; object-position:top; }
   @media (max-width:640px) {
     .m-row { display:block; max-width:none !important; }
     .m-row img + img { margin-top:14px; }
@@ -112,6 +117,7 @@
   .m-ba--portrait img { aspect-ratio:3 / 4; }
   .m-ba--landscape img { aspect-ratio:4 / 3; }
   .m-ba--mixed img { object-fit:contain; background:#000; }
+  .m-ba--flower img { aspect-ratio:1 / 1; object-fit:cover; object-position:center; background:#000; }
   .m-ba img[data-key="inac_hospitality_before"],
   .m-ba img[data-key="inac_hospitality_after"] { object-fit:contain; background:#000; }
   .m-hero[data-key="flower_octopus"] { max-height:68vh; }
@@ -150,7 +156,7 @@
     <p>Un pulpo rojo envuelto en hojas tropicales, con los brazos enroscados alrededor de una ventana en una terraza de Buenos Aires, Argentina. El mural mide 3,5 por 2,5 metros, se pintó con pintura de exterior y pincel como encargo particular, y usa la arquitectura existente como parte del dibujo: el hueco de la ventana se convierte en aquello de lo que el pulpo se agarra.</p>
   </div>
 
-  <div class="m-ba m-ba--mixed">
+  <div class="m-ba m-ba--flower">
     <figure><img src="images/flower_octopus/flower_octopus_before.jpg" data-key="flower_octopus_before" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:560px) 92vw, (max-width:1400px) 47vw, 600px" alt="La pared de Pulpo Flor antes del mural, Buenos Aires, Argentina" loading="lazy"><figcaption>Antes</figcaption></figure>
     <figure><img src="images/flower_octopus/flower_octopus.jpg" data-key="flower_octopus" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus.jpg 1066w" sizes="(max-width:560px) 92vw, (max-width:1400px) 47vw, 600px" alt="Pulpo Flor, mural terminado de Cundo Marchi, Buenos Aires, Argentina" loading="lazy"><figcaption>Después</figcaption></figure>
   </div>

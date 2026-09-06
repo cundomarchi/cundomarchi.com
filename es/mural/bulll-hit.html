@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=150">
+<link rel="stylesheet" href="style.css?v=151">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -102,6 +102,11 @@
   .m-rows { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
   .m-row { display:flex; gap:14px; width:100%; margin:0 auto; }
   .m-row img { display:block; width:100%; height:auto; min-width:0; background:#000; border-radius:2px; }
+  /* Excepciones pedidas para estas fotos concretas. El boceto se ve completo
+     dentro de un marco menos vertical y el recorte del oso oculta el icono que
+     venia incrustado en la captura, sin tocar el archivo original. */
+  .m-row img[data-key="you_see_before"] { flex:.85 1 0 !important; aspect-ratio:.85 !important; object-fit:contain; }
+  .m-row img[data-key="bear_virreyes_extra2"] { flex:1.08 1 0 !important; aspect-ratio:1.08 !important; object-fit:cover; object-position:top; }
   @media (max-width:640px) {
     .m-row { display:block; max-width:none !important; }
     .m-row img + img { margin-top:14px; }
@@ -112,6 +117,7 @@
   .m-ba--portrait img { aspect-ratio:3 / 4; }
   .m-ba--landscape img { aspect-ratio:4 / 3; }
   .m-ba--mixed img { object-fit:contain; background:#000; }
+  .m-ba--flower img { aspect-ratio:1 / 1; object-fit:cover; object-position:center; background:#000; }
   .m-ba img[data-key="inac_hospitality_before"],
   .m-ba img[data-key="inac_hospitality_after"] { object-fit:contain; background:#000; }
   .m-hero[data-key="flower_octopus"] { max-height:68vh; }
@@ -150,16 +156,21 @@
     <p>Un toro saliendo de la pared en magenta eléctrico y turquesa, cinco metros de ancho por 2,2 de alto, pintado con aerosol en Turín, en la región del Piamonte, al norte de Italia. La obra se hizo en colaboración con el artista italiano Ades, cuyas letras acompañan al animal. El toro está armado casi por completo con colores complementarios, sin ningún contorno negro que sostenga la forma.</p>
   </div>
 
-  <div class="m-rows">
-    <div class="m-row" style="max-width:1997px;">
+  <div class="m-rows m-rows--fixed">
+    <div class="m-row" style="max-width:1327px;">
       <img src="images/bullshit_turin/bullshit_turin_before.jpg" data-key="bullshit_turin_before" srcset="images/bullshit_turin/bullshit_turin_before-800.jpg 800w, images/bullshit_turin/bullshit_turin_before.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 2" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
-      <img src="images/bullshit_turin/bullshit_turin_extra1.jpg" data-key="bullshit_turin_extra1" srcset="images/bullshit_turin/bullshit_turin_extra1-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra1.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 3" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
-      <img src="images/bullshit_turin/bullshit_turin_extra4.jpg" data-key="bullshit_turin_extra4" srcset="images/bullshit_turin/bullshit_turin_extra4-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra4.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 4" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
+      <img src="images/bullshit_turin/bullshit_turin.jpg" data-key="bullshit_turin" srcset="images/bullshit_turin/bullshit_turin-600.jpg 600w, images/bullshit_turin/bullshit_turin-800.jpg 800w, images/bullshit_turin/bullshit_turin.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 3" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
     </div>
+  </div><div class="m-rows m-rows--fixed">
+    <div class="m-row" style="max-width:1327px;">
+      <img src="images/bullshit_turin/bullshit_turin_extra1.jpg" data-key="bullshit_turin_extra1" srcset="images/bullshit_turin/bullshit_turin_extra1-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra1.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 2" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
+      <img src="images/bullshit_turin/bullshit_turin_extra4.jpg" data-key="bullshit_turin_extra4" srcset="images/bullshit_turin/bullshit_turin_extra4-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra4.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 3" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
+    </div>
+  </div><div class="m-rows m-rows--fixed">
     <div class="m-row" style="max-width:1690px;">
-      <img src="images/bullshit_turin/bullshit_turin_extra2.jpg" data-key="bullshit_turin_extra2" srcset="images/bullshit_turin/bullshit_turin_extra2-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra2.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 5" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
-      <img src="images/bullshit_turin/bullshit_turin_extra5.jpg" data-key="bullshit_turin_extra5" srcset="images/bullshit_turin/bullshit_turin_extra5-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra5.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 6" loading="lazy" style="flex:0.5625 1 0;aspect-ratio:0.5625;">
-      <img src="images/bullshit_turin/bullshit_turin_extra3.jpg" data-key="bullshit_turin_extra3" srcset="images/bullshit_turin/bullshit_turin_extra3-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra3.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 7" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
+      <img src="images/bullshit_turin/bullshit_turin_extra2.jpg" data-key="bullshit_turin_extra2" srcset="images/bullshit_turin/bullshit_turin_extra2-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra2.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 2" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
+      <img src="images/bullshit_turin/bullshit_turin_extra5.jpg" data-key="bullshit_turin_extra5" srcset="images/bullshit_turin/bullshit_turin_extra5-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra5.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 3" loading="lazy" style="flex:0.5625 1 0;aspect-ratio:0.5625;">
+      <img src="images/bullshit_turin/bullshit_turin_extra3.jpg" data-key="bullshit_turin_extra3" srcset="images/bullshit_turin/bullshit_turin_extra3-800.jpg 800w, images/bullshit_turin/bullshit_turin_extra3.jpg 900w" sizes="(max-width:640px) 92vw, (max-width:1400px) 47vw, 600px" alt="Bull Balls, mural de Cundo Marchi en Turín, Italia, vista 4" loading="lazy" style="flex:1.0588 1 0;aspect-ratio:1.0588;">
     </div>
   </div>
 

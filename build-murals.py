@@ -216,6 +216,21 @@ def filas_galeria(rest, title, loc, T, objetivo=2.7, por_fila=4, alto_max=620):
         html += '    </div>\n'
     return html + '  </div>'
 
+def fila_galeria_fija(rest, title, loc, T, alto_max=620):
+    """Renderiza una fila elegida manualmente para secuencias que necesitan
+    conservar un orden visual preciso: antes/despues, proceso y detalles."""
+    ars = [proporcion(x) for x in rest]
+    suma = sum(ars)
+    ancho_max = int(round(suma * alto_max)) + 14 * (len(rest) - 1)
+    out = f'<div class="m-rows m-rows--fixed">\n    <div class="m-row" style="max-width:{ancho_max}px;">\n'
+    for j, (src, ar) in enumerate(zip(rest, ars)):
+        key = os.path.splitext(os.path.basename(src))[0]
+        alt = esc(T['alt_vista'].format(title=title, loc=loc, n=j + 2))
+        out += (f'      <img src="{src}" data-key="{key}"{variantes(src, GRID_SIZES, "")} '
+                f'alt="{alt}" loading="lazy" '
+                f'style="flex:{ar:.4f} 1 0;aspect-ratio:{ar:.4f};">\n')
+    return out + '    </div>\n  </div>'
+
 
 def hacer_nav(inicio, cta):
     return ("""<nav>
@@ -284,6 +299,11 @@ PAGE = '''<!DOCTYPE html>
   .m-rows {{ margin-top:32px; display:flex; flex-direction:column; gap:14px; }}
   .m-row {{ display:flex; gap:14px; width:100%; margin:0 auto; }}
   .m-row img {{ display:block; width:100%; height:auto; min-width:0; background:#000; border-radius:2px; }}
+  /* Excepciones pedidas para estas fotos concretas. El boceto se ve completo
+     dentro de un marco menos vertical y el recorte del oso oculta el icono que
+     venia incrustado en la captura, sin tocar el archivo original. */
+  .m-row img[data-key="you_see_before"] {{ flex:.85 1 0 !important; aspect-ratio:.85 !important; object-fit:contain; }}
+  .m-row img[data-key="bear_virreyes_extra2"] {{ flex:1.08 1 0 !important; aspect-ratio:1.08 !important; object-fit:cover; object-position:top; }}
   @media (max-width:640px) {{
     .m-row {{ display:block; max-width:none !important; }}
     .m-row img + img {{ margin-top:14px; }}
@@ -294,6 +314,7 @@ PAGE = '''<!DOCTYPE html>
   .m-ba--portrait img {{ aspect-ratio:3 / 4; }}
   .m-ba--landscape img {{ aspect-ratio:4 / 3; }}
   .m-ba--mixed img {{ object-fit:contain; background:#000; }}
+  .m-ba--flower img {{ aspect-ratio:1 / 1; object-fit:cover; object-position:center; background:#000; }}
   .m-ba img[data-key="inac_hospitality_before"],
   .m-ba img[data-key="inac_hospitality_after"] {{ object-fit:contain; background:#000; }}
   .m-hero[data-key="flower_octopus"] {{ max-height:68vh; }}
@@ -382,13 +403,14 @@ for cfg in IDIOMAS:
         year = m['year']
         size = medida_es(m.get('size', '')) if es else m.get('size', '')
         gal = m.get('gallery', [])
-        compares, imgs = [], []
+        compares, imgs, img_items = [], [], []
         for it in gal:
             if it.get('type') == 'compare':
                 if it.get('before') and it.get('after'):
                     compares.append((it['before'], it['after']))
             elif it.get('type') == 'image' and it.get('src'):
                 imgs.append(it['src'])
+                img_items.append(it)
         # la portada es la primera foto elegida a mano en la galeria; si el mural
         # solo tiene un antes/despues, se usa el despues. Nunca la pared en blanco.
         primera = gal[0] if gal else None
@@ -405,6 +427,11 @@ for cfg in IDIOMAS:
         rest = list(imgs)
         if cover in rest:
             rest.remove(cover)
+        rest_items = list(img_items)
+        for pos, it in enumerate(rest_items):
+            if it.get('src') == cover:
+                rest_items.pop(pos)
+                break
         hero_alt = T['alt_hero'].format(title=title, loc=loc, year=year)
 
         body = (m.get('storyEs') if es else m.get('story')) or m.get('desc') or ''
@@ -419,7 +446,9 @@ for cfg in IDIOMAS:
                     ratios.append(w / h)
                 except Exception:
                     ratios.append(1)
-            if all(r < .9 for r in ratios):
+            if 'flower_octopus' in before or 'flower_octopus' in after:
+                compare_class = 'm-ba m-ba--flower'
+            elif all(r < .9 for r in ratios):
                 compare_class = 'm-ba m-ba--portrait'
             elif all(r > 1.1 for r in ratios):
                 compare_class = 'm-ba m-ba--landscape'
@@ -431,7 +460,18 @@ for cfg in IDIOMAS:
                 f'    <figure><img src="{after}" data-key="{os.path.splitext(os.path.basename(after))[0]}"{variantes(after, BA_SIZES, "")} alt="{esc(T["alt_despues"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["despues"]}</figcaption></figure>\n'
                 '  </div>\n')
         if rest:
-            gallery_html += filas_galeria(rest, title, loc, T)
+            if any('row' in it for it in rest_items):
+                grupos = []
+                for it in rest_items:
+                    row = it.get('row', 'auto')
+                    if not grupos or grupos[-1][0] != row:
+                        grupos.append((row, []))
+                    grupos[-1][1].append(it['src'])
+                for row, sources in grupos:
+                    gallery_html += (fila_galeria_fija(sources, title, loc, T)
+                                     if row != 'auto' else filas_galeria(sources, title, loc, T))
+            else:
+                gallery_html += filas_galeria(rest, title, loc, T)
 
         url_en = BASE + 'mural/' + slugs[mid] + '.html'
         url_es = BASE + 'es/mural/' + slugs[mid] + '.html'
