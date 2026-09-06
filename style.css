@@ -562,8 +562,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .shop-card-img:has(img[data-key="shop_mug_golo"]) { overflow: hidden; }
 .shop-card-img img.card-main[data-key="shop_mug_golo"] {
   object-fit: cover;
-  object-position: 32% 52%;
-  transform: scale(1.05);
+  object-position: 0% 52%;
+  transform: scale(1);
 }
 .shop-card-img:has(img[data-key="shop_hoodie_bsas"]) { overflow: hidden; }
 .shop-card-img:has(img[data-key="shop_hoodie_bsas"]) img.card-blur { display: none; }
@@ -577,6 +577,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
   object-fit: cover;
   object-position: 50% 38%;
 }
+.shop-card:has(img[data-key="shop_tee_sugar_white"]) { order: -2; }
+.shop-card:has(img[data-key="shop_tee_sugar_black"]) { order: -1; }
 .m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
 .m-hero[data-key="bullshit_turin"] { object-position: center 41%; }
 .m-hero[data-key="city_of_fury"] { object-position: center 78%; }
