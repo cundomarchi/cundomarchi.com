@@ -923,7 +923,7 @@ function showPage(id, fromHistory) {
   if (quoteSection) quoteSection.style.display = (id === 'shop') ? 'none' : '';
   // El selector de moneda solo tiene sentido en la tienda, que es lo unico
   // con precios. En el resto de las secciones estorba y confunde: el
-  // presupuesto del formulario va fijo en dolares.
+  // presupuesto del formulario va fijo en dolares australianos.
   const monedas = document.getElementById('currencyDropdown');
   if (monedas) monedas.style.display = (id === 'shop') ? '' : 'none';
   currentBgTarget = null;
@@ -1682,7 +1682,7 @@ function initShopGallery() {
 }
 const STATIC_PRODUCT_EXTRAS = {
   shop_mug_golo: [
-    { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_2.jpg', key: 'shop_mug_2' },
+    { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_1.jpg', key: 'shop_mug_1' },
     { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_3.jpg', key: 'shop_mug_3' },
     { type: 'image', src: 'images/shop/shop_mug_golo/shop_mug_4.jpg', key: 'shop_mug_4' },
     { type: 'video', src: 'images/shop/shop_mug_golo/shop_mug_video1.mp4', key: 'shop_mug_video1' }
@@ -1709,6 +1709,8 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra6.jpg', key: 'shop_hoodie_miami_extra6' }
   ],
   shop_tee_sugar2: [
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_original_white.png', key: 'shop_tee_sugar2_original_white' },
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_original_black.png', key: 'shop_tee_sugar2_original_black' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra2.jpg', key: 'shop_tee_sugar2_extra2' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra3.jpg', key: 'shop_tee_sugar2_extra3' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra4.jpg', key: 'shop_tee_sugar2_extra4' }
