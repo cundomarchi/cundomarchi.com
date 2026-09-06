@@ -618,6 +618,21 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .live-gallery img[data-key="live_otamendi_day3"] { object-position: center 40%; }
 .live-gallery img[data-key="live_painting_1"] { object-position: center 35%; }
 
+.design-process { margin: 26px 0 34px; padding: 22px; border: 1px solid #292929; background: rgba(8,8,8,.72); }
+.design-process-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
+.design-process-head p { color: #c9c9c5; font-size: 14px; line-height: 1.65; max-width: 620px; margin: 0; }
+.design-process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.design-process-grid figure { margin: 0; min-width: 0; }
+.design-process-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #050505; }
+.design-process-grid figcaption { display: flex; gap: 10px; align-items: center; padding-top: 10px; color: var(--white); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+.design-process-grid figcaption b { color: var(--gray); font-weight: 500; }
+@media (max-width: 700px) {
+  .design-process { padding: 14px; }
+  .design-process-head { display: block; }
+  .design-process-head p { margin-top: 10px; }
+  .design-process-grid { grid-template-columns: 1fr; }
+}
+
 /* === encuadres calculados por build-crops.py, no editar a mano === */
 .mural-photo img.card-main[data-key="bailarina"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="bailarina"] { transform: scale(1.06); }

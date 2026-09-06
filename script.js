@@ -1675,9 +1675,13 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_buff_psycho/shop_buff_9.jpg', key: 'shop_buff_9' }
   ],
   shop_hoodie_bsas: [
+    { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_2.jpg', key: 'shop_hoodie_bsas_original_cover' },
     { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_bsas_extra1.jpg', key: 'shop_hoodie_bsas_extra1' },
     { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_bsas_extra2.jpg', key: 'shop_hoodie_bsas_extra2' },
     { type: 'image', src: 'images/shop/shop_hoodie_bsas/shop_hoodie_bsas_extra3.jpg', key: 'shop_hoodie_bsas_extra3' }
+  ],
+  shop_hoodie_sugar: [
+    { type: 'image', src: 'images/shop/shop_hoodie_sugar/shop_hoodie_3.jpg', key: 'shop_hoodie_sugar_original_cover' }
   ],
   shop_hoodie_miami: [
     { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_1.jpg', key: 'shop_hoodie_miami_model_front' },
@@ -1686,13 +1690,19 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra6.jpg', key: 'shop_hoodie_miami_extra6' }
   ],
   shop_tee_sugar2: [
+    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_mockup.jpg', key: 'shop_tee_sugar2_previous_mockup' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra2.jpg', key: 'shop_tee_sugar2_extra2' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra3.jpg', key: 'shop_tee_sugar2_extra3' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra4.jpg', key: 'shop_tee_sugar2_extra4' }
   ],
   shop_tee_player: [
+    { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_mockup.jpg', key: 'shop_tee_player_previous_mockup' },
     { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_2.jpg', key: 'shop_tee_player_model_front' },
     { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra1.jpg', key: 'shop_tee_player_extra1' },
+  ],
+  shop_tee_miami: [
+    { type: 'image', src: 'images/shop/shop_tee_miami/shop_tee_miami_mockup.jpg', key: 'shop_tee_miami_previous_mockup' },
+    { type: 'image', src: 'images/shop/shop_tee_miami/shop_tee_miami.jpg', key: 'shop_tee_miami_model' }
   ]
 };
 function buildProductGallery(id) {
