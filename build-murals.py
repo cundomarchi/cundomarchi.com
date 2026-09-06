@@ -159,6 +159,64 @@ def descripcion(texto, limite=155):
         corte = corte[:corte.rfind(' ')]
     return corte.rstrip(' ,.;:') + '...'
 
+def proporcion(src):
+    """Ancho/alto real de la foto; 4/3 si no se puede leer."""
+    try:
+        w, h = Image.open(os.path.join(ROOT, src)).size
+        return w / h
+    except Exception:
+        return 4 / 3
+
+
+def filas_galeria(rest, title, loc, T, objetivo=2.7, por_fila=4, alto_max=620):
+    """Arma la galeria en filas horizontales.
+
+    Cada foto conserva su proporcion real: dentro de una fila el ancho se
+    reparte con flex-grow proporcional al ancho/alto, asi todas terminan con la
+    misma altura y ninguna queda recortada. Las filas se eligen con un reparto
+    que busca que todas sumen una proporcion parecida, para que ademas queden
+    todas mas o menos igual de altas.
+    """
+    ars = [proporcion(x) for x in rest]
+    n = len(ars)
+
+    # Reparto por programacion dinamica: corta la lista en filas contiguas
+    # minimizando cuanto se aleja cada fila de la proporcion objetivo.
+    INF = float('inf')
+    costo = [0.0] + [INF] * n
+    corte = [0] * (n + 1)
+    for i in range(1, n + 1):
+        for k in range(1, min(por_fila, i) + 1):
+            j = i - k
+            if costo[j] == INF:
+                continue
+            suma = sum(ars[j:i])
+            c = costo[j] + (suma - objetivo) ** 2
+            if c < costo[i]:
+                costo[i] = c
+                corte[i] = j
+    filas, i = [], n
+    while i > 0:
+        filas.append(list(range(corte[i], i)))
+        i = corte[i]
+    filas.reverse()
+
+    html = '<div class="m-rows">\n'
+    for fila in filas:
+        suma = sum(ars[j] for j in fila)
+        ancho_max = int(round(suma * alto_max)) + 14 * (len(fila) - 1)
+        html += f'    <div class="m-row" style="max-width:{ancho_max}px;">\n'
+        for j in fila:
+            x = rest[j]
+            key = os.path.splitext(os.path.basename(x))[0]
+            alt = esc(T['alt_vista'].format(title=title, loc=loc, n=j + 2))
+            html += (f'      <img src="{x}" data-key="{key}"{variantes(x, GRID_SIZES, "")} '
+                     f'alt="{alt}" loading="lazy" '
+                     f'style="flex:{ars[j]:.4f} 1 0;aspect-ratio:{ars[j]:.4f};">\n')
+        html += '    </div>\n'
+    return html + '  </div>'
+
+
 def hacer_nav(inicio, cta):
     return ("""<nav>
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
@@ -221,14 +279,14 @@ PAGE = '''<!DOCTYPE html>
   .m-meta {{ color:var(--gray); font-family:var(--mono); font-size:14px; }}
   /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
      final en vez de quedar pegada a un costado. */
-  .m-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; align-items:start; }}
-  .m-grid img {{ width:100%; aspect-ratio:4 / 3; object-fit:cover; object-position:center; background:#000; display:block; border-radius:2px; }}
-  .m-grid img[data-key="you_see_before"],
-  .m-grid img[data-key="you_see_extra1"] {{ object-fit:contain; }}
-  .m-grid img:last-child:nth-child(odd) {{ grid-column:1 / -1; width:calc(50% - 7px); justify-self:center; }}
+  /* Galeria justificada: cada foto conserva su proporcion real y las de una
+     misma fila comparten altura (flex-grow proporcional al ancho/alto). */
+  .m-rows {{ margin-top:32px; display:flex; flex-direction:column; gap:14px; }}
+  .m-row {{ display:flex; gap:14px; width:100%; margin:0 auto; }}
+  .m-row img {{ display:block; width:100%; height:auto; min-width:0; background:#000; border-radius:2px; }}
   @media (max-width:640px) {{
-    .m-grid {{ grid-template-columns:1fr; }}
-    .m-grid img:last-child:nth-child(odd) {{ grid-column:auto; width:100%; }}
+    .m-row {{ display:block; max-width:none !important; }}
+    .m-row img + img {{ margin-top:14px; }}
   }}
   .m-ba {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }}
   .m-ba figure {{ margin:0; }}
@@ -373,10 +431,7 @@ for cfg in IDIOMAS:
                 f'    <figure><img src="{after}" data-key="{os.path.splitext(os.path.basename(after))[0]}"{variantes(after, BA_SIZES, "")} alt="{esc(T["alt_despues"].format(title=title, loc=loc))}" loading="lazy"><figcaption>{T["despues"]}</figcaption></figure>\n'
                 '  </div>\n')
         if rest:
-            cells = '\n'.join(
-                f'    <img src="{x}" data-key="{os.path.splitext(os.path.basename(x))[0]}"{variantes(x, GRID_SIZES, "")} alt="{esc(T["alt_vista"].format(title=title, loc=loc, n=n+2))}" loading="lazy">'
-                for n, x in enumerate(rest))
-            gallery_html += f'<div class="m-grid">\n{cells}\n  </div>'
+            gallery_html += filas_galeria(rest, title, loc, T)
 
         url_en = BASE + 'mural/' + slugs[mid] + '.html'
         url_es = BASE + 'es/mural/' + slugs[mid] + '.html'
