@@ -577,6 +577,9 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
   object-fit: cover;
   object-position: 50% 38%;
 }
+.shop-card:has(img[data-key="shop_tee_miami"]) { order: -5; }
+.shop-card:has(img[data-key="shop_tee_sugar2"]) { order: -4; }
+.shop-card:has(img[data-key="shop_tee_player"]) { order: -3; }
 .shop-card:has(img[data-key="shop_tee_sugar_white"]) { order: -2; }
 .shop-card:has(img[data-key="shop_tee_sugar_black"]) { order: -1; }
 .m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
