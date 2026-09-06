@@ -968,19 +968,10 @@ function buildCarousel() {
     slide.style.cursor = 'pointer';
     slide.setAttribute('data-mural-id', id);
     slide.addEventListener('click', () => { window.location.href = 'mural/' + (MURAL_SLUGS[id] || '') + '.html'; });
-    // capa de atras: la misma foto ampliada y desenfocada, para que el mural
-    // pueda verse entero sin que queden franjas negras a los costados
-    const blur = document.createElement('img');
-    blur.dataset.src = cover.src;
-    blur.alt = '';
-    blur.setAttribute('aria-hidden', 'true');
-    blur.className = 'carousel-blur';
-    slide.appendChild(blur);
-    // capa de adelante: el mural completo y centrado
+    // Una sola imagen completa y centrada sobre negro.
     const img = document.createElement('img');
     img.dataset.src = cover.src;
     img.decoding = 'async';
-    blur.decoding = 'async';
     // alt descriptivo: titulo + autor + lugar + anio, igual que en las tarjetas
     img.alt = (typeof lang !== 'undefined' && lang === 'es')
       ? `${m.titleEs || m.title}, mural de Cundo Marchi, ${lugarSegunIdioma(m.loc)}, ${m.year}`
@@ -1026,8 +1017,8 @@ function buildCarousel() {
   cargarSlidesCercanas(slideIdx);
   if (wasPlaying) resumeCarousel();
 }
-// La version chica (-800) de una foto. Se usa donde la imagen se muestra
-// pequena o borrosa: ahi la resolucion grande es peso tirado a la basura.
+// La version reducida de una foto. Se usa donde la imagen se muestra
+// pequena: ahi la resolucion grande es peso tirado a la basura.
 // Si el archivo chico no existe, el onerror vuelve al original.
 // Los lugares se guardan en ingles. En la version en espanol conviene
 // mostrarlos traducidos: la gente busca "Atenas" y "Suecia", no "Athens".
@@ -1073,27 +1064,13 @@ function cargarSlidesCercanas(centro) {
   }
 }
 
-// El fondo desenfocado pesa menos que la foto, asi que si los dos arrancan
-// juntos el fondo gana la carrera y por unos segundos se ve el mural TODO
-// borroso. Por eso se carga primero la foto y recien cuando esta lista se
-// pide el fondo. Mientras tanto la diapositiva queda en negro, nunca borrosa.
+// Cada diapositiva carga una sola imagen; mientras llega, queda negra.
 function cargarSlide(slide) {
   if (!slide) return;
   const main = slide.querySelector('.carousel-main[data-src]');
-  const blur = slide.querySelector('.carousel-blur[data-src]');
   if (!main) return;
   const src = main.dataset.src;
   delete main.dataset.src;
-
-  const pedirFondo = () => {
-    if (!blur || !blur.dataset.src) return;
-    const bsrc = blur.dataset.src;
-    delete blur.dataset.src;
-    usarVarianteConRespaldo(blur, bsrc, 800);   // va desenfocado: alcanza la chica
-  };
-  // solo cuando la foto CARGO de verdad. Si fallara, la diapositiva queda
-  // negra en vez de quedar toda borrosa, que es lo que se veia mal.
-  main.addEventListener('load', pedirFondo, { once: true });
   // El carrusel se ve a 380px de alto: en una pantalla de celular con 800px
   // de archivo ya sobra, y son unos 600 KB menos por visita.
   const anchoFoto = window.innerWidth < 700 ? 800 : 1200;

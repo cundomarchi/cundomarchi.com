@@ -187,11 +187,7 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
      negra y no en blanco ni con el fondo desenfocado solo */
   background: var(--black); }
 .carousel-slide.active { opacity: 1; pointer-events: auto; }
-/* El mural se muestra ENTERO y centrado (contain), con margenes simetricos.
-   Para que no queden franjas negras, detras va la misma foto ampliada y
-   desenfocada: el marco acompania la obra en vez de cortarla. */
-.carousel-slide img.carousel-blur { position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; filter: blur(18px) brightness(0.54) saturate(1.08); transform: scale(1.1); }
+/* El mural se muestra entero y centrado sobre fondo negro. */
 .carousel-slide img.carousel-main { position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: contain; object-position: center; }
 .carousel-remove-btn { position: absolute; top: 20px; right: 20px; z-index: 4; background: rgba(120,0,0,0.8); color: var(--white); border: 1px solid rgba(255,255,255,0.4); padding: 8px 14px; font-family: var(--mono); font-size: 11px; cursor: pointer; border-radius: 4px; display: none; }
@@ -225,15 +221,10 @@ body.edit-mode .carousel-remove-btn { display: block; }
 .mural-card.dragging { opacity: .35; }
 .mural-card.drag-target { outline: 2px solid var(--red); outline-offset: -2px; }
 .mural-photo { aspect-ratio: 4/3; overflow: hidden; background: #000; display:flex; align-items:center; justify-content:center; position: relative; }
-/* La foto se muestra ENTERA (contain), nunca recortada. Para que no queden
-   franjas negras, detras va la misma foto ampliada y desenfocada, igual que
-   en el carrusel. Asi ningun mural queda cortado y no se pierde nada. */
+/* La foto se muestra entera y centrada. Si sobra espacio, queda negro: no se
+   repite ni se descarga una segunda copia desenfocada de la misma imagen. */
 .mural-photo img.card-main { width: 100%; height: 100%; object-fit: contain;
   object-position: center; transition: transform .5s; position: relative; z-index: 1; }
-.mural-photo img.card-blur { position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; filter: blur(14px) brightness(0.62) saturate(1.05);
-  transform: scale(1.1); z-index: 0; opacity:0; transition:opacity .2s; }
-.mural-photo.main-loaded img.card-blur { opacity:1; }
 /* fotos sin la clase nueva (por si quedara alguna) siguen como estaban */
 .mural-photo img:not(.card-main):not(.card-blur) { width: 100%; height: 100%;
   object-fit: cover; object-position: center; transition: transform .5s; }
@@ -504,6 +495,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 @media (max-width: 900px) { .quote-layout { flex-direction: column-reverse; align-items: stretch; gap: 32px; } .quote-photo-wrap { width: 100%; max-width: 380px; margin: 0 auto; flex-basis: auto; aspect-ratio: 4/5; position: static; } }
 .quote-intro { text-align: center; max-width: 620px; margin: 0 auto 44px; }
 .quote-intro p { color: #d8d8d3; font-size: 15px; margin-top: 14px; }
+.quote-intro .quote-reassurance { color: var(--white); font-family: var(--mono); font-size: 12px; letter-spacing: .4px; }
 .budget-grid { grid-template-columns: repeat(3, 1fr); }
 #wallBudgetBlock .budget-grid { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 560px) { .budget-grid { grid-template-columns: 1fr; } }
@@ -546,7 +538,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .brand-logo:hover { opacity: 1; }
 .brand-logo:has(img[alt="Farola"]) { opacity: 1; }
 .brand-logo img { height: 100%; width: auto; max-width: 220px; object-fit: contain; display: block; filter: none; }
-.brand-logo img[alt="Sleep in Heaven"] { transform: translateY(-6px); }
+.brand-logo img[alt="Sleep in Heaven"] { transform: none; }
 .social-icons { display: flex; gap: 22px; justify-content: center; margin-bottom: 28px; }
 .social-icons a { color: var(--gray); transition: color .15s, transform .15s; display: flex; }
 .social-icons a:hover { color: var(--white); transform: translateY(-2px); }
@@ -604,7 +596,6 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .carousel-slide img.carousel-main[data-key="circle_of_nature"] { object-fit: contain; object-position: 50% 68%; transform-origin: 50% 68%; transform: scale(1.3); }
 .carousel-slide img.carousel-main[data-key="dinamarca_hostel"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1.14); }
 .carousel-slide img.carousel-main[data-key="down_ocean_6"] { object-fit: cover; object-position: 50% 42%; transform-origin: 50% 42%; transform: scale(1); }
-.carousel-slide:has(img.carousel-main[data-key="down_ocean_6"]) img.carousel-blur { display: none; }
 .carousel-slide img.carousel-main[data-key="el_eternauta"] { object-fit: contain; object-position: 50% 58%; transform-origin: 50% 58%; transform: scale(1.74); }
 .carousel-slide img.carousel-main[data-key="flower_octopus"] { object-fit: contain; object-position: 50% 54%; transform-origin: 50% 54%; transform: scale(2.9); }
 .carousel-slide img.carousel-main[data-key="fusion_of_life"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
@@ -632,60 +623,48 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-card:hover .mural-photo img.card-main[data-key="bailarina"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="bear_virreyes"] { object-fit: cover; object-position: 50% 67%; transform-origin: 50% 67%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="bear_virreyes"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="bear_virreyes"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="bullshit_turin"] { object-fit: cover; object-position: 50% 36%; transform-origin: 50% 36%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="bullshit_turin"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="bullshit_turin"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="circle_of_nature"] { object-fit: cover; object-position: 50% 29%; transform-origin: 50% 29%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="circle_of_nature"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="circle_of_nature"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="dinamarca_hostel"] { object-fit: contain; object-position: 62% 50%; transform-origin: 62% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="dinamarca_hostel"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="down_ocean_6"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="down_ocean_6"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="el_eternauta"] { object-fit: cover; object-position: 50% 56%; transform-origin: 50% 56%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="el_eternauta"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="el_eternauta"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="el_nino"] { object-fit: contain; object-position: 50% 17%; transform-origin: 50% 17%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="el_nino"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="flower_octopus"] { object-fit: cover; object-position: 50% 54%; transform-origin: 50% 54%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="flower_octopus"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="flower_octopus"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="fusion_of_life"] { object-fit: contain; object-position: 50% 31%; transform-origin: 50% 31%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="fusion_of_life"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="inac_hospitality"] { object-fit: contain; object-position: 50% 22%; transform-origin: 50% 22%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="inac_hospitality"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="kangaroo"] { object-fit: cover; object-position: 50% 25%; transform-origin: 50% 25%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="kangaroo"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="kangaroo"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="king_of_kings"] { object-fit: contain; object-position: 50% 4%; transform-origin: 50% 4%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="king_of_kings"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="laos_california"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="laos_california"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="meeting_of_styles_after"] { object-fit: cover; object-position: 50% 42%; transform-origin: 50% 42%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="meeting_of_styles_after"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="meeting_of_styles_after"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="nino_interior"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="nino_interior"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="ocean_heart"] { object-fit: cover; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="ocean_heart"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="ocean_heart"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="parma_medusa"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="parma_medusa"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="the_eyes"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="the_eyes"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="the_seesaw"] { object-fit: cover; object-position: 50% 66%; transform-origin: 50% 66%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="the_seesaw"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="the_seesaw"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="tlaloc_extra5"] { object-fit: cover; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="tlaloc_extra5"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="tlaloc_extra5"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="viking_malmo"] { object-fit: cover; object-position: 50% 66%; transform-origin: 50% 66%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="viking_malmo"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="viking_malmo"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="you_see"] { object-fit: cover; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="you_see"] { transform: scale(1.06); }
-.mural-photo:has(img.card-main[data-key="you_see"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="zeus_athens"] { object-fit: contain; object-position: 50% 26%; transform-origin: 50% 26%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="zeus_athens"] { transform: scale(1.06); }
 .m-hero[data-key="bear_virreyes"] { object-position: center 64%; }
@@ -709,7 +688,6 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .carousel-slide img.carousel-main[data-key="circle_of_nature"] { object-fit: contain; object-position: 50% 68%; transform-origin: 50% 68%; transform: scale(1.3); }
 .carousel-slide img.carousel-main[data-key="dinamarca_hostel"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1.14); }
 .carousel-slide img.carousel-main[data-key="down_ocean_6"] { object-fit: cover; object-position: 50% 42%; transform-origin: 50% 42%; transform: scale(1); }
-.carousel-slide:has(img.carousel-main[data-key="down_ocean_6"]) img.carousel-blur { display: none; }
 .carousel-slide img.carousel-main[data-key="el_eternauta"] { object-fit: contain; object-position: 50% 58%; transform-origin: 50% 58%; transform: scale(1.74); }
 .carousel-slide img.carousel-main[data-key="flower_octopus"] { object-fit: contain; object-position: 50% 54%; transform-origin: 50% 54%; transform: scale(2.9); }
 .carousel-slide img.carousel-main[data-key="fusion_of_life"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
