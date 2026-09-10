@@ -350,7 +350,11 @@ function markBrokenImage(el) {
 }
 window.addEventListener('error', (e) => {
   const el = e.target;
-  if (el && el.tagName === 'IMG' && el.hasAttribute('data-key')) markBrokenImage(el);
+  // Las portadas prueban primero una version reducida y tienen respaldo en la
+  // original. No la marques como rota mientras ese respaldo siga disponible.
+  if (el && el.tagName === 'IMG' && el.hasAttribute('data-key') && !el.dataset.fallbackSrc) {
+    markBrokenImage(el);
+  }
 }, true);
 function sweepBrokenImages() {
   document.querySelectorAll('img[data-key]').forEach(img => {
@@ -1047,7 +1051,18 @@ function fotoVariante(src, ancho) {
 }
 // Pide la version reducida y, si ese archivo no existe, vuelve al original.
 function usarVarianteConRespaldo(img, src, ancho) {
-  img.onerror = function () { img.onerror = null; img.src = src; };
+  img.dataset.fallbackSrc = src;
+  img.onerror = function () {
+    img.onerror = null;
+    delete img.dataset.fallbackSrc;
+    img.src = src;
+  };
+  img.onload = function () {
+    img.style.display = '';
+    if (img.parentElement) img.parentElement.classList.remove('photo-removed');
+    delete img.dataset.fallbackSrc;
+    img.onload = null;
+  };
   img.src = fotoVariante(src, ancho);
 }
 
