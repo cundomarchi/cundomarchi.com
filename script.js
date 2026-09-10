@@ -76,10 +76,15 @@ async function loadOverrides() {
   } catch (e) { /* not available */ }
   try {
     const res6 = await appStorage.get('mural_order');
-    if (res6 && res6.value) {
+    const res6Revision = await appStorage.get('mural_order_revision');
+    if (res6 && res6.value && res6Revision && res6Revision.value === MURAL_ORDER_REVISION) {
       const saved = JSON.parse(res6.value).filter(k => MURALS[k]);
       const missing = MURAL_ORDER.filter(k => !saved.includes(k));
       muralOrder = [...saved, ...missing];
+    } else {
+      muralOrder = MURAL_ORDER.slice();
+      await appStorage.set('mural_order', JSON.stringify(muralOrder));
+      await appStorage.set('mural_order_revision', MURAL_ORDER_REVISION);
     }
     applyMuralOrder();
   } catch (e) { /* not available */ }
@@ -1537,7 +1542,37 @@ const MURALS = {
       gallery: [{type:"compare", before:'images/inac_hospitality/inac_hospitality_before.jpg', after:'images/inac_hospitality/inac_hospitality_after.jpg', beforeKey:'inac_hospitality_before', afterKey:'inac_hospitality_after'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra1.jpg', key:'inac_hospitality_extra1'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra2.jpg', key:'inac_hospitality_extra2'}]
     }
 };
-const MURAL_ORDER = Object.keys(MURALS);
+// Orden curado para que el Home abra con las obras visualmente mas fuertes y
+// alterne formatos, paletas y contextos. La revision renueva el orden guardado
+// una sola vez; despues se puede seguir ajustando desde el modo de edicion.
+const MURAL_ORDER_REVISION = 'visual-priority-2026-09';
+const MURAL_ORDER = [
+  'ocean_heart',
+  'bear_virreyes',
+  'you_see',
+  'circle_of_nature',
+  'inac_hospitality',
+  'kangaroo',
+  'zeus_athens',
+  'bullshit_turin',
+  'king_of_kings',
+  'down_ocean',
+  'flower_octopus',
+  'the_eyes',
+  'el_eternauta',
+  'laos_california',
+  'tlaloc',
+  'the_seesaw',
+  'bailarina',
+  'parma_medusa',
+  'viking_malmo',
+  'nino_interior',
+  'dinamarca_hostel',
+  'city_of_fury',
+  'meeting_of_styles',
+  'fusion_of_life',
+  'el_nino'
+];
 let muralOrder = MURAL_ORDER.slice();
 function applyMuralOrder() {
   const grids = [document.getElementById('homePreviewGrid'), document.querySelector('#muralGridWrap .mural-grid')];
