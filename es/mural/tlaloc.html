@@ -86,7 +86,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="style.css?v=151">
+<link rel="stylesheet" href="style.css?v=153">
 <style>
   /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
      proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
@@ -137,10 +137,18 @@
 </style>
 </head>
 <body>
-<nav>
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
-    <a href="es/index.html"><img src="images/site/cmz_logo-400.png" srcset="images/site/cmz_logo-120.png 120w, images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" style="height:34px;width:auto;display:block;"></a>
-    <a href="es/index.html#quote" class="btn-primary" style="padding:11px 22px;font-size:11px;">Pedir presupuesto</a>
+<nav class="mural-site-nav" aria-label="Navegación principal">
+  <div class="wrap">
+    <div class="menu-dropdown" style="display:flex;align-items:center;gap:16px;position:relative;">
+      <button class="hamburger-btn" type="button" onclick="const m=this.nextElementSibling.nextElementSibling;m.classList.toggle('open');this.setAttribute('aria-expanded',m.classList.contains('open'))" aria-label="Menú" aria-expanded="false"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+      <a href="es/index.html#home" aria-label="Inicio"><img src="images/site/cmz_logo-400.png" srcset="images/site/cmz_logo-120.png 120w, images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" class="nav-logo"></a>
+      <div class="full-menu">
+        <a href="es/index.html#home">Inicio</a><a href="es/index.html#bio">Bio</a><a href="es/index.html#work">Portfolio</a><a href="es/index.html#live">Servicios</a><a href="es/index.html#shop">Shop</a><a href="es/index.html#quote">Pedir Presupuesto</a>
+      </div>
+    </div>
+    <div class="nav-links"><a href="es/index.html#home">Inicio</a><a href="es/index.html#bio">Bio</a><a href="es/index.html#work">Portfolio</a><a href="es/index.html#live">Servicios</a><a href="es/index.html#shop">Shop</a></div>
+    <a href="es/index.html#quote" class="nav-cta">Pedir Presupuesto</a>
+    <div class="nav-utils"><div class="lang-dropdown"><button class="lang-current" type="button" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Cambiar idioma">🇪🇸 ES <span class="lang-arrow">⌄</span></button><div class="lang-menu"><a href="mural/tlaloc.html">🇺🇸 English</a><a href="es/mural/tlaloc.html">🇪🇸 Español</a></div></div></div>
   </div>
 </nav>
 <main class="wrap" style="padding-top:40px;padding-bottom:80px;">

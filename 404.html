@@ -18,7 +18,7 @@
 <meta name="theme-color" content="#0a0a0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/style.css?v=150">
+<link rel="stylesheet" href="/style.css?v=153">
 <style>
   .nf-wrap{min-height:78vh;display:flex;flex-direction:column;align-items:center;
     justify-content:center;text-align:center;padding:40px 22px;}
@@ -37,10 +37,16 @@
 </head>
 <body>
 
-<nav>
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:72px;">
-    <a href="/"><img src="/images/site/cmz_logo-400.png" srcset="/images/site/cmz_logo-120.png 120w, /images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" style="height:34px;width:auto;display:block;"></a>
-    <a href="/#quote" class="btn-primary" style="padding:11px 22px;font-size:11px;">Get a Quote</a>
+<nav class="mural-site-nav" aria-label="Primary navigation">
+  <div class="wrap">
+    <div class="menu-dropdown" style="display:flex;align-items:center;gap:16px;position:relative;">
+      <button class="hamburger-btn" type="button" onclick="this.nextElementSibling.nextElementSibling.classList.toggle('open')" aria-label="Menu"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
+      <a href="/#home" aria-label="Home"><img src="/images/site/cmz_logo-400.png" srcset="/images/site/cmz_logo-120.png 120w, /images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" class="nav-logo"></a>
+      <div class="full-menu"><a href="/#home">Home</a><a href="/#bio">Bio</a><a href="/#work">Portfolio</a><a href="/#live">Services</a><a href="/#shop">Shop</a><a href="/#quote">Get a Quote</a></div>
+    </div>
+    <div class="nav-links"><a href="/#home">Home</a><a href="/#bio">Bio</a><a href="/#work">Portfolio</a><a href="/#live">Services</a><a href="/#shop">Shop</a></div>
+    <a href="/#quote" class="nav-cta">Get a Quote</a>
+    <div class="nav-utils"><div class="lang-dropdown"><button class="lang-current" type="button" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Change language">🇺🇸 EN <span class="lang-arrow">⌄</span></button><div class="lang-menu"><a href="/">🇺🇸 English</a><a href="/es/">🇪🇸 Español</a></div></div></div>
   </div>
 </nav>
 

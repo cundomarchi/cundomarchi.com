@@ -1419,7 +1419,7 @@ const MURALS = {
       story: "A heart made of coral resting on the ocean floor, seven metres wide by 2.5 metres high, sprayed for the Bonfil Urban Mural Fest in Acapulco, Guerrero, Mexico. The image is a reminder that reefs are the actual heart of the sea, painted in a coastal city where the health of the water is part of daily life. Bonfil is a neighbourhood mural festival that brings artists to paint the walls of the community.",
       storyEs: "Un corazón hecho de coral apoyado en el fondo del mar, siete metros de ancho por 2,5 de alto, pintado con aerosol para el Bonfil Urban Mural Fest en Acapulco, Guerrero, México. La imagen recuerda que los arrecifes son el verdadero corazón del mar, pintada en una ciudad costera donde la salud del agua es parte de la vida diaria. Bonfil es un festival mural de barrio que convoca artistas para pintar las paredes de la comunidad.",
      tags: ['Mural Event', 'Spray Paint'], flag: '🇲🇽',
-      gallery: [{type:"image", src:'images/ocean_heart/ocean_heart.jpg', key:'ocean_heart'},{type:"image", src:'images/ocean_heart/ocean_heart_extra2.jpg', key:'ocean_heart_extra2', row:1},{type:"image", src:'images/ocean_heart/ocean_heart_extra12.jpg', key:'ocean_heart_extra12', row:1},{type:"image", src:'images/ocean_heart/ocean_heart_extra3.jpg', key:'ocean_heart_extra3', row:2},{type:"image", src:'images/ocean_heart/ocean_heart_extra4.jpg', key:'ocean_heart_extra4', row:2},{type:"image", src:'images/ocean_heart/ocean_heart_extra9.jpg', key:'ocean_heart_extra9', row:2},{type:"image", src:'images/ocean_heart/ocean_heart.jpg', key:'ocean_heart', row:3},{type:"image", src:'images/ocean_heart/ocean_heart_extra8.jpg', key:'ocean_heart_extra8', row:4},{type:"image", src:'images/ocean_heart/ocean_heart_extra10.jpg', key:'ocean_heart_extra10', row:4}]
+      gallery: [{type:"image", src:'images/ocean_heart/ocean_heart_extra12.jpg', key:'ocean_heart_main'},{type:"image", src:'images/ocean_heart/ocean_heart_extra2.jpg', key:'ocean_heart_extra2', row:1},{type:"image", src:'images/ocean_heart/ocean_heart_extra12.jpg', key:'ocean_heart_extra12', row:1},{type:"image", src:'images/ocean_heart/ocean_heart_extra3.jpg', key:'ocean_heart_extra3', row:2},{type:"image", src:'images/ocean_heart/ocean_heart_extra4.jpg', key:'ocean_heart_extra4', row:2},{type:"image", src:'images/ocean_heart/ocean_heart_extra9.jpg', key:'ocean_heart_extra9', row:2},{type:"image", src:'images/ocean_heart/ocean_heart.jpg', key:'ocean_heart', row:3},{type:"image", src:'images/ocean_heart/ocean_heart_extra8.jpg', key:'ocean_heart_extra8', row:4},{type:"image", src:'images/ocean_heart/ocean_heart_extra10.jpg', key:'ocean_heart_extra10', row:4}]
     },
 "the_eyes": {
       title: 'The Eyes', titleEs: 'Los Ojos', loc: 'Buenos Aires, Argentina', year: '2023', size: '4.2m x 1.2m',
@@ -1545,20 +1545,20 @@ const MURALS = {
 // Orden curado para que el Home abra con las obras visualmente mas fuertes y
 // alterne formatos, paletas y contextos. La revision renueva el orden guardado
 // una sola vez; despues se puede seguir ajustando desde el modo de edicion.
-const MURAL_ORDER_REVISION = 'visual-priority-2026-09';
+const MURAL_ORDER_REVISION = 'visual-priority-2026-09-11';
 const MURAL_ORDER = [
-  'ocean_heart',
-  'bear_virreyes',
-  'you_see',
+  'flower_octopus',
   'circle_of_nature',
-  'inac_hospitality',
+  'bear_virreyes',
+  'the_eyes',
   'kangaroo',
+  'ocean_heart',
+  'you_see',
+  'inac_hospitality',
   'zeus_athens',
   'bullshit_turin',
   'king_of_kings',
   'down_ocean',
-  'flower_octopus',
-  'the_eyes',
   'el_eternauta',
   'laos_california',
   'tlaloc',
