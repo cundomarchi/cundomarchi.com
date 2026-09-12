@@ -165,10 +165,10 @@
 
 
 <div class="page active" id="page-home">
-<div class="page-bg" id="bg-home"><img src="images/site/bg_home_maanso.jpg" alt="" data-key="bg_home" width="2000" height="1325" srcset="images/site/bg_home_maanso-600.jpg 600w, images/site/bg_home_maanso-800.jpg 800w, images/site/bg_home_maanso-1200.jpg 1200w, images/site/bg_home_maanso.jpg 2000w" sizes="100vw"></div><button class="page-bg-edit-btn" onclick="editSectionBg('home', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
+<div class="page-bg" id="bg-home"><img src="images/site/bg_home_maanso.jpg" alt="" data-key="bg_home" width="2000" height="1325" srcset="images/site/bg_home_maanso-600.jpg 600w, images/site/bg_home_maanso-800.jpg 800w, images/site/bg_home_maanso-1200.jpg 1200w, images/site/bg_home_maanso.jpg 2000w" sizes="100vw" loading="eager" fetchpriority="high" decoding="async"></div><button class="page-bg-edit-btn" onclick="editSectionBg('home', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
 
 <section class="hero">
-  <img src="images/site/cmz_logo.png" alt="Cundo Marchi logo" class="hero-logo" width="1239" height="516" srcset="images/site/cmz_logo-120.png 120w, images/site/cmz_logo-400.png 400w, images/site/cmz_logo-700.png 700w, images/site/cmz_logo-900.png 900w, images/site/cmz_logo.png 1239w" sizes="(max-width:700px) 70vw, 420px">
+  <img src="images/site/cmz_logo.png" alt="Cundo Marchi logo" class="hero-logo" width="1239" height="516" srcset="images/site/cmz_logo-120.png 120w, images/site/cmz_logo-400.png 400w, images/site/cmz_logo-700.png 700w, images/site/cmz_logo-900.png 900w, images/site/cmz_logo.png 1239w" sizes="(max-width:700px) 70vw, 420px" loading="eager" fetchpriority="high" decoding="async">
   <h1 class="sr-only" data-en="Cundo Marchi, Muralist and Visual Artist painting murals worldwide" data-es="Cundo Marchi, Muralista y Artista Visual pintando murales en todo el mundo">Cundo Marchi, Muralista y Artista Visual pintando murales en todo el mundo</h1>
   <p class="sub" data-text-key="hero-sub" data-en="Visual Artist & Urban Artist, Argentinian, painting murals across 5 continents since 2012." data-es="Artista Visual y Urbano, Argentino, pintando murales en 5 continentes desde 2012.">Artista Visual y Urbano, Argentino, pintando murales en 5 continentes desde 2012.</p>
   <div class="hero-ctas">
@@ -1084,6 +1084,7 @@
         <p style="color:var(--gray); font-size:13px; margin-top:-8px; margin-bottom:10px;" data-en="Describe your wall, event or group, and your idea/vision for it" data-es="Describí tu pared, evento o grupo, y tu idea/visión">Describí tu pared, evento o grupo, y tu idea/visión</p>
         <textarea class="field" id="w-details" rows="4" style="resize:none; overflow:hidden;" oninput="autoGrow(this)"></textarea>
         <p id="wallFormError" style="color:#e0b667; font-size:12px; margin-top:4px; margin-bottom:14px; display:none;" data-en="Please fill in all required fields (*)." data-es="Completá todos los campos obligatorios (*).">Completá todos los campos obligatorios (*).</p>
+        <p class="form-privacy" data-en="Your project details are used only to prepare and reply to your quote. They are never shared with third parties." data-es="Los datos de tu proyecto se usan únicamente para preparar y responder tu cotización. Nunca se comparten con terceros.">Los datos de tu proyecto se usan únicamente para preparar y responder tu cotización. Nunca se comparten con terceros.</p>
         <div class="step-nav"><span></span><button class="btn-primary" id="wallSubmitBtn" style="padding:12px 28px; font-size:12px;" onclick="submitWallForm()" data-en="Submit" data-es="Enviar">Enviar</button></div>
       </div>
 

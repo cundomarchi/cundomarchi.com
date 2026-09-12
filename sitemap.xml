@@ -3,14 +3,14 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://www.cundomarchi.com/</loc><lastmod>2026-09-03</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
+    <loc>https://www.cundomarchi.com/</loc><lastmod>2026-09-12</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/"/>
     <image:image><image:loc>https://www.cundomarchi.com/images/site/og_image.jpg</image:loc><image:title>Cundo Marchi mural</image:title></image:image>
   </url>
   <url>
-    <loc>https://www.cundomarchi.com/es/</loc><lastmod>2026-09-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <loc>https://www.cundomarchi.com/es/</loc><lastmod>2026-09-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/"/>
@@ -83,7 +83,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/ocean-heart.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/ocean-heart.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/ocean-heart.html"/><lastmod>2026-09-03</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
-    <image:image><image:loc>https://www.cundomarchi.com/images/ocean_heart/ocean_heart.jpg</image:loc><image:title>Ocean Heart mural by Cundo Marchi</image:title></image:image>
+    <image:image><image:loc>https://www.cundomarchi.com/images/ocean_heart/ocean_heart_extra12.jpg</image:loc><image:title>Ocean Heart mural by Cundo Marchi</image:title></image:image>
   </url>
   <url>
     <loc>https://www.cundomarchi.com/mural/the-eyes.html</loc>
