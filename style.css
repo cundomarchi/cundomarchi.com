@@ -470,7 +470,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .shop-card:hover { border-color: #444; transform: translateY(-2px); }
 .shop-card-img { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #0a0a0a; }
 /* Portadas limpias: mockup centrado, sin repetir la foto desenfocada detrás. */
-.shop-card-img img.card-main { width: 100%; height: 100%; object-fit: contain;
+.shop-card-img img.card-main { width: 100%; height: 100%; object-fit: contain; object-position: 50% 50%; transform: none;
   display: block; cursor: pointer; position: relative; z-index: 1; }
 .shop-card-img img.card-blur { position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; filter: blur(26px) brightness(0.5) saturate(1.05);
@@ -480,7 +480,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .sold-out-badge { display: flex; width: max-content; align-items: center; background: transparent; color: #b9b9b4; border: 1px solid #555; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .7px; line-height: 1; text-transform: uppercase; padding: 5px 8px; margin: 0 0 10px; }
 .shop-card-img > .sold-out-badge { display: none; }
 .shop-card-body { padding: 16px 18px; }
-.shop-card-body h4 { font-family: var(--display); font-size: 14px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 4px; line-height: 1.3; }
+.shop-card-body h4 { font-family: var(--display); font-size: 14px; text-transform: uppercase; letter-spacing: .3px; margin-bottom: 4px; line-height: 1.3; min-height: 2.6em; }
 .shop-card-meta { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
 .shop-card-body .price { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--white); }
 .shop-card.sold-out .price { color: var(--gray); text-decoration: line-through; }
@@ -577,13 +577,6 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
   object-position: 0% 52%;
   transform: scale(1);
 }
-.shop-card-img:has(img[data-key="shop_hoodie_bsas"]) { overflow: hidden; }
-.shop-card-img:has(img[data-key="shop_hoodie_bsas"]) img.card-blur { display: none; }
-.shop-card-img img.card-main[data-key="shop_hoodie_bsas"] {
-  object-fit: cover;
-  object-position: 50% 43%;
-  transform: scale(1.08);
-}
 .shop-card-img img.card-main[data-key="shop_tee_sugar_white"],
 .shop-card-img img.card-main[data-key="shop_tee_sugar_black"] {
   object-fit: cover;
@@ -664,7 +657,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img.card-main[data-key="dinamarca_hostel"] { object-fit: contain; object-position: 62% 50%; transform-origin: 62% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="dinamarca_hostel"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="down_ocean_6"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
-.mural-card:hover .mural-photo img.card-main[data-key="down_ocean_6"] { transform: scale(1.06); }
+.mural-card:hover .mural-photo img.card-main[data-key="down_ocean_6"] { transform: scale(1); }
 .mural-photo img.card-main[data-key="el_eternauta"] { object-fit: cover; object-position: 50% 56%; transform-origin: 50% 56%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="el_eternauta"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="el_nino"] { object-fit: contain; object-position: 50% 17%; transform-origin: 50% 17%; transform: scale(1); }

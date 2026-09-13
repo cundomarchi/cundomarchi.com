@@ -1545,18 +1545,18 @@ const MURALS = {
 // Orden curado para que el Home abra con las obras visualmente mas fuertes y
 // alterne formatos, paletas y contextos. La revision renueva el orden guardado
 // una sola vez; despues se puede seguir ajustando desde el modo de edicion.
-const MURAL_ORDER_REVISION = 'visual-priority-2026-09-11';
+const MURAL_ORDER_REVISION = 'visual-priority-2026-09-12';
 const MURAL_ORDER = [
   'flower_octopus',
   'circle_of_nature',
   'bear_virreyes',
   'the_eyes',
   'kangaroo',
-  'ocean_heart',
-  'you_see',
-  'inac_hospitality',
+  'meeting_of_styles',
   'zeus_athens',
   'bullshit_turin',
+  'ocean_heart',
+  'you_see',
   'king_of_kings',
   'down_ocean',
   'el_eternauta',
@@ -1569,9 +1569,9 @@ const MURAL_ORDER = [
   'nino_interior',
   'dinamarca_hostel',
   'city_of_fury',
-  'meeting_of_styles',
   'fusion_of_life',
-  'el_nino'
+  'el_nino',
+  'inac_hospitality'
 ];
 let muralOrder = MURAL_ORDER.slice();
 function applyMuralOrder() {
@@ -1740,13 +1740,11 @@ const STATIC_PRODUCT_EXTRAS = {
     { type: 'image', src: 'images/shop/shop_hoodie_miami/shop_hoodie_miami_extra6.jpg', key: 'shop_hoodie_miami_extra6' }
   ],
   shop_tee_sugar2: [
-    { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_mockup.jpg', key: 'shop_tee_sugar2_previous_mockup' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra2.jpg', key: 'shop_tee_sugar2_extra2' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra3.jpg', key: 'shop_tee_sugar2_extra3' },
     { type: 'image', src: 'images/shop/shop_tee_sugar2/shop_tee_sugar2_extra4.jpg', key: 'shop_tee_sugar2_extra4' }
   ],
   shop_tee_player: [
-    { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_mockup.jpg', key: 'shop_tee_player_previous_mockup' },
     { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_2.jpg', key: 'shop_tee_player_model_front' },
     { type: 'image', src: 'images/shop/shop_tee_player/shop_tee_player_extra1.jpg', key: 'shop_tee_player_extra1' },
   ],
@@ -1942,6 +1940,18 @@ function expandGrid() {
 }
 function expandHomeGrid() {
   const wrap = document.getElementById('homeGridWrap');
+  const homeGrid = document.getElementById('homePreviewGrid');
+  const portfolioGrid = document.querySelector('#muralGridWrap .mural-grid');
+  // Home starts as a light three-row preview. When it expands, copy in any
+  // works that only exist in the full portfolio (for example El Nino).
+  if (homeGrid && portfolioGrid) {
+    muralOrder.forEach(id => {
+      if (homeGrid.querySelector(`[data-mural-id="${id}"]`)) return;
+      const source = portfolioGrid.querySelector(`[data-mural-id="${id}"]`);
+      if (source) homeGrid.appendChild(source.cloneNode(true));
+    });
+    applyMuralOrder();
+  }
   wrap.classList.add('expanded');
   wrap.style.maxHeight = 'none';
   document.getElementById('homeSeeMoreBtn').style.display = 'none';

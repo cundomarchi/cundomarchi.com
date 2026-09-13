@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Encuadrar murales</title>
+<title>Encuadrar fotos</title>
 <style>
   :root{ --bg:#0e0e0e; --card:#181817; --line:#2b2926; --ink:#f2f0ec; --muted:#8d887f; --red:#ff5449; }
   *{box-sizing:border-box;}
@@ -44,20 +44,28 @@
 </head>
 <body>
 
-<h1>Encuadrar murales</h1>
+<h1>Encuadrar fotos</h1>
 <p class="sub">
   Elegí <b>Llenar cuadro</b> para acercar y recortar la foto, o <b>Foto completa + fondo</b>
   cuando el mural necesite verse entero. Ajustá posición y zoom hasta que la portada quede exacta.
   Cuando termines, apretá <b>Copiar</b> y mandame el texto: yo lo aplico y queda fijo.
 </p>
 
-<h2>Portadas del portfolio</h2>
+<h2 id="home-portadas">Portadas de murales en Home</h2>
 <p class="sub">Estas son las fotos que se ven en la grilla principal.</p>
 <div class="grid" id="grid"></div>
 
-<h2>Carrusel grande del inicio — pausado</h2>
-<p class="sub">Cada mural está quieto y usa el formato ancho real del carrusel. Acomodalos uno por uno.</p>
-<div class="grid" id="carouselGrid"></div>
+<section data-preview-extra>
+  <h2>Carrusel grande del inicio — pausado</h2>
+  <p class="sub">Cada mural está quieto y usa el formato ancho real del carrusel. Acomodalos uno por uno.</p>
+  <div class="grid" id="carouselGrid"></div>
+</section>
+
+<section data-preview-extra>
+  <h2>Portadas de Shop</h2>
+  <p class="sub">Usá Miami Bitch Hoodie como referencia para igualar el tamaño visual de todos los productos.</p>
+  <div class="grid" id="shopGrid"></div>
+</section>
 
 <div class="bar">
   <button onclick="showJson()">Copiar ajustes</button>
@@ -75,12 +83,20 @@
 </div>
 
 <script>
-const KEY='cmz_crops_v5';
+// v6 descarta encuadres antiguos que todavía recortaban la foto original
+// restaurada de Down the Ocean.
+const KEY='cmz_crops_v6';
+const homeOnly=new URLSearchParams(location.search).get('home')==='1';
+if(homeOnly){
+  document.querySelector('h1').textContent='Encuadrar murales de Home';
+  document.querySelectorAll('[data-preview-extra]').forEach(el=>el.remove());
+}
 let saved={};
 try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ saved={}; }
 saved.card=saved.card||{};
 saved.cardDisplay=saved.cardDisplay||{};
 saved.carouselDisplay=saved.carouselDisplay||{};
+saved.shopDisplay=saved.shopDisplay||{};
 
 Promise.all([fetch('index.html').then(r=>r.text()),fetch('script.js').then(r=>r.text()),fetch('crops.json').then(r=>r.json())]).then(([html,script,crops])=>{
   const doc=new DOMParser().parseFromString(html,'text/html');
@@ -107,7 +123,15 @@ Promise.all([fetch('index.html').then(r=>r.text()),fetch('script.js').then(r=>r.
     const key=first.type==='compare'?(first.afterKey||(src.split('/').pop()||'').replace(/\.[^.]+$/,'')):(first.key||(src.split('/').pop()||'').replace(/\.[^.]+$/,''));
     carouselItems.push({key,src,name:m.title||key});
   });
-  render(carouselItems,crops||{},'carouselDisplay','carouselGrid',false,'carousel-frame');
+  if(document.getElementById('carouselGrid')) render(carouselItems,crops||{},'carouselDisplay','carouselGrid',false,'carousel-frame');
+
+  const shopItems=[];
+  doc.querySelectorAll('.shop-card-img img.card-main[data-key]').forEach(img=>{
+    const card=img.closest('.shop-card');
+    const h4=card?card.querySelector('h4'):null;
+    shopItems.push({key:img.dataset.key,src:img.getAttribute('src'),name:h4?h4.textContent.trim():img.dataset.key});
+  });
+  if(document.getElementById('shopGrid')) render(shopItems,crops||{},'shopDisplay','shopGrid',false);
 });
 
 function render(items,cur,section,gridId,legacyCard,frameClass=''){
@@ -124,7 +148,7 @@ function render(items,cur,section,gridId,legacyCard,frameClass=''){
       <div class="ctl">
         <div class="name">${it.name}</div>
         <div class="key">${it.key}</div>
-        <div class="modes"><button data-mode="cover">Llenar cuadro</button><button data-mode="contain">Foto completa + fondo</button></div>
+        <div class="modes"><button data-mode="cover">Llenar cuadro</button><button data-mode="contain">Foto completa + fondo negro</button></div>
         <div class="axis"><div class="row"><span>izquierda</span><span class="xval">${state.x}%</span><span>derecha</span></div><input class="x" type="range" min="0" max="100" value="${state.x}"></div>
         <div class="axis"><div class="row"><span>arriba</span><span class="yval">${state.y}%</span><span>abajo</span></div><input class="y" type="range" min="0" max="100" value="${state.y}"></div>
         <div class="axis"><div class="row"><span>alejar</span><span class="zval">${state.zoom.toFixed(2)}x</span><span>acercar</span></div><input class="z" type="range" min="0.5" max="3" step="0.01" value="${state.zoom}"></div>
@@ -136,7 +160,9 @@ function render(items,cur,section,gridId,legacyCard,frameClass=''){
       main.style.objectPosition=state.x+'% '+state.y+'%';
       main.style.transformOrigin=state.x+'% '+state.y+'%';
       main.style.transform='scale('+state.zoom+')';
-      blur.style.display=state.mode==='contain'?'block':'none';
+      // El sitio usa negro limpio en las fotos completas: la vista previa debe
+      // mostrar exactamente ese resultado, sin inventar un fondo desenfocado.
+      blur.style.display='none';
       el.querySelector('.xval').textContent=state.x+'%';
       el.querySelector('.yval').textContent=state.y+'%';
       el.querySelector('.zval').textContent=state.zoom.toFixed(2)+'x';
@@ -155,7 +181,7 @@ function render(items,cur,section,gridId,legacyCard,frameClass=''){
 }
 
 function showJson(){
-  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay,carouselDisplay:saved.carouselDisplay},null,2);
+  document.getElementById('json').value=JSON.stringify({card:saved.card,cardDisplay:saved.cardDisplay,carouselDisplay:saved.carouselDisplay,shopDisplay:saved.shopDisplay},null,2);
   document.getElementById('out').style.display='flex';
 }
 function copyJson(){
