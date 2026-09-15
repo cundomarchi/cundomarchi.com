@@ -1979,13 +1979,25 @@ window.addEventListener('resize', () => {
 });
 sizeHomePreviewGrid();
 
-let lang = (typeof window !== 'undefined' && window.__forceLang) ? window.__forceLang : 'en';
+const LANG_META = {
+  en: { flag: '🇺🇸', code: 'EN' }, es: { flag: '🇪🇸', code: 'ES' },
+  fr: { flag: '🇫🇷', code: 'FR' }, it: { flag: '🇮🇹', code: 'IT' }
+};
+const requestedLang = (typeof window !== 'undefined')
+  ? new URLSearchParams(window.location.search).get('lang') : null;
+let lang = (typeof window !== 'undefined' && window.__forceLang)
+  ? window.__forceLang : (LANG_META[requestedLang] ? requestedLang : 'en');
+function langButtonLabel(l) {
+  const meta = LANG_META[l] || LANG_META.en;
+  return `${meta.flag} ${meta.code} <span class="lang-arrow">▾</span>`;
+}
 // En /es/ la pagina ya viene en espanol, asi que el boton tiene que decir ES
 // desde el arranque y no "EN", que era lo que mostraba.
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', function () {
     const b = document.getElementById('langCurrentBtn');
-    if (b) b.innerHTML = (lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES') + ' <span class="lang-arrow">▾</span>';
+    if (b) b.innerHTML = langButtonLabel(lang);
+    if (lang === 'fr' || lang === 'it') applyTranslations(lang);
   });
 }
 function toggleLangMenu() {
@@ -2008,22 +2020,45 @@ function setLang(l) {
     location.href = m2 ? ('/mural/' + m2[1]) : '/';
     return;
   }
+  if ((l === 'fr' || l === 'it') && enEs) {
+    location.href = '/?lang=' + l + location.hash;
+    return;
+  }
+  if ((l === 'fr' || l === 'it') && !enEs) {
+    const u = new URL(location.href);
+    u.searchParams.set('lang', l);
+    history.replaceState(null, '', u.pathname + u.search + u.hash);
+  } else if (l === 'en' && !enEs) {
+    const u = new URL(location.href);
+    u.searchParams.delete('lang');
+    history.replaceState(null, '', u.pathname + (u.searchParams.toString() ? '?' + u.searchParams.toString() : '') + u.hash);
+  }
   lang = l;
   document.documentElement.lang = l;
   document.getElementById('langMenu').classList.remove('open');
-  document.getElementById('langCurrentBtn').innerHTML = (lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES') + ' <span class="lang-arrow">▾</span>';
+  document.getElementById('langCurrentBtn').innerHTML = langButtonLabel(lang);
+  applyTranslations(lang);
+}
+function applyTranslations(activeLang) {
+  const translations = (window.CMZ_TRANSLATIONS && window.CMZ_TRANSLATIONS[activeLang]) || {};
   document.querySelectorAll('[data-en]').forEach(el => {
-    const val = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-es');
+    const en = el.getAttribute('data-en');
+    const val = activeLang === 'en' ? en
+      : activeLang === 'es' ? el.getAttribute('data-es')
+      : (translations[en] || en);
     if (val !== null) el.innerHTML = val;
   });
   document.querySelectorAll('[data-en-ph]').forEach(el => {
-    const val = lang === 'en' ? el.getAttribute('data-en-ph') : el.getAttribute('data-es-ph');
+    const en = el.getAttribute('data-en-ph');
+    const val = activeLang === 'en' ? en
+      : activeLang === 'es' ? el.getAttribute('data-es-ph')
+      : (translations[en] || en);
     if (val !== null) el.setAttribute('placeholder', val);
   });
   if (currentMuralId && currentMode === 'mural' && document.getElementById('lightbox').classList.contains('open')) {
     const m = MURALS[currentMuralId];
-    document.getElementById('lb-title').textContent = '"' + (lang === 'es' ? m.titleEs : m.title) + '"';
-    document.getElementById('lb-desc').textContent = (lang === 'es' ? (m.storyEs || m.descEs || m.desc) : (m.story || m.desc));
+    document.getElementById('lb-title').textContent = '"' + (activeLang === 'es' ? m.titleEs : m.title) + '"';
+    document.getElementById('lb-desc').textContent = (activeLang === 'es' ? (m.storyEs || m.descEs || m.desc) : (m.story || m.desc));
   }
 }
 document.addEventListener('click', function(e) {
