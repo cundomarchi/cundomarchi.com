@@ -941,6 +941,18 @@ function showPage(id, fromHistory) {
   syncBgZoomSlider();
   updateBgTargetLabel();
   refreshEditButtons();
+
+  // Las secciones principales funcionan como una SPA: cambiar de Home a Bio,
+  // Portfolio, Services o Shop no recarga el documento. Registrar la vista de
+  // forma explicita permite que Analytics mida ese recorrido completo.
+  if (typeof window.gtag === 'function' && window.__cmzInitialPageReady) {
+    window.gtag('event', 'page_view', {
+      page_title: document.title + ' — ' + id,
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.search + window.location.hash
+    });
+  }
+  window.__cmzInitialPageReady = true;
 }
 
 // ---- carousel ----
@@ -1091,9 +1103,10 @@ function cargarSlide(slide) {
   if (!main) return;
   const src = main.dataset.src;
   delete main.dataset.src;
-  // El carrusel se ve a 380px de alto: en una pantalla de celular con 800px
-  // de archivo ya sobra, y son unos 600 KB menos por visita.
-  const anchoFoto = window.innerWidth < 700 ? 800 : 1200;
+  // El carrusel se ve a 380px de alto y todas las portadas tienen una variante
+  // de 800px. Incluso en pantallas retina alcanza para verse nitida y evita
+  // pedir variantes de 1200px que algunas obras no tienen.
+  const anchoFoto = 800;
   usarVarianteConRespaldo(main, src, anchoFoto);
 }
 function goToSlide(i) {
@@ -1317,6 +1330,13 @@ function sendQuoteRequest(photoFile) {
   }
 
   if (btn) { btn.disabled = true; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'generate_lead', {
+      currency: 'AUD',
+      lead_source: 'website_quote_form',
+      project_type: type
+    });
+  }
   document.body.appendChild(form);
   form.submit();
 }
@@ -1841,7 +1861,7 @@ function renderThumbs() {
     const key = it.type === 'compare' ? it.afterKey : it.key;
     return `<div class="lb-thumb-wrap" ${canReorder ? `draggable="true" ondragstart="thumbDragStart(event,${i})" ondragover="thumbDragOver(event)" ondragleave="thumbDragLeave(event)" ondrop="thumbDrop(event,${i})" ondragend="thumbDragEnd(event)"` : ''}>
       ${canReorder ? `<button class="thumb-move-btn left" onclick="event.stopPropagation(); moveGalleryItem(${i},-1)">‹</button>` : ''}
-      ${it.type === 'video' ? `<video src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" muted onclick="event.stopPropagation(); goToGalleryItem(${i})"></video>` : `<img src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" onclick="event.stopPropagation(); goToGalleryItem(${i})">`}
+      ${it.type === 'video' ? `<video src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" muted aria-label="Gallery video ${i + 1}" onclick="event.stopPropagation(); goToGalleryItem(${i})"></video>` : `<img src="${src}" class="lb-thumb ${i===currentGalleryIdx?'active':''}" data-key="${key}" alt="" aria-hidden="true" onclick="event.stopPropagation(); goToGalleryItem(${i})">`}
       ${canReorder ? `<button class="thumb-move-btn right" onclick="event.stopPropagation(); moveGalleryItem(${i},1)">›</button>` : ''}
       ${editMode && gallery.length > 1 ? `<button class="thumb-remove-btn" onclick="event.stopPropagation(); removeGalleryPhoto(${i})" title="Quitar foto">✕</button>` : ''}
     </div>`;
