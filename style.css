@@ -643,7 +643,16 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-detail .detail-actions { display:flex; justify-content:space-between; align-items:center; gap:18px; margin-top:42px; }
 .mural-detail .detail-language { color:var(--gray); font-family:var(--mono); font-size:13px; }
 .mural-detail .detail-language a { color:var(--white); }
-@media (max-width:640px) { .mural-detail .detail-gallery { grid-template-columns:1fr; } .mural-detail .detail-gallery .wide { grid-column:auto; } .mural-detail .detail-actions { align-items:flex-start; flex-direction:column; } }
+.mural-grid .mural-card[data-mural-id="universe_citizens"],
+.mural-grid .mural-card[data-mural-id="toluca_collab"],
+.mural-grid .mural-card[data-mural-id="trippy_trip"],
+.mural-grid .mural-card[data-mural-id="sol_de_mayo"],
+.mural-grid .mural-card[data-mural-id="aguila_tigre"] { order:999; }
+.mural-detail .detail-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:32px 0; }
+.mural-detail .detail-ba figure { margin:0; }
+.mural-detail .detail-ba img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:#000; }
+.mural-detail .detail-ba figcaption { color:var(--gray); font-family:var(--mono); font-size:11px; letter-spacing:.14em; margin-top:8px; text-transform:uppercase; }
+@media (max-width:640px) { .mural-detail .detail-gallery, .mural-detail .detail-ba { grid-template-columns:1fr; } .mural-detail .detail-gallery .wide { grid-column:auto; } .mural-detail .detail-actions { align-items:flex-start; flex-direction:column; } }
 
 .design-process { margin: 26px 0 34px; padding: 22px; border: 1px solid #292929; background: rgba(8,8,8,.72); }
 .design-process-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
