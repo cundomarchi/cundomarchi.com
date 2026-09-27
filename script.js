@@ -1684,9 +1684,39 @@ function curGallery() {
 // preferimos el visor rapido en vez de recargar toda la pagina.
 const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "hercules", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "california-bear", "bailarina": "the-ballerina", "dinamarca_hostel": "it-s-more-fun", "parma_medusa": "medusa", "viking_malmo": "the-viking", "kangaroo": "the-boxing-kangaroo", "nino_interior": "inner-child", "inac_hospitality": "the-chef"};
 
+const PORTFOLIO_RETURN_KEY = 'cmz_portfolio_return';
+
+function portfolioPathKey(path) {
+  // La portada puede servirse como / o /index.html (y lo mismo en /es/).
+  return (path || '/').replace(/index\.html$/, '').replace(/\/+$/, '') || '/';
+}
+
+function rememberMuralReturnPosition() {
+  const activePage = document.querySelector('.page.active');
+  const page = activePage ? activePage.id.replace('page-', '') : 'work';
+  try {
+    sessionStorage.setItem(PORTFOLIO_RETURN_KEY, JSON.stringify({
+      page: page,
+      scrollY: window.scrollY || window.pageYOffset || 0,
+      path: portfolioPathKey(location.pathname),
+      savedAt: Date.now()
+    }));
+  } catch (e) {}
+}
+
+// Algunas tarjetas antiguas llaman muralCardClick y las nuevas son links
+// directos. Escuchar el click de la tarjeta cubre ambos casos sin depender
+// de como fue creada cada ficha.
+document.addEventListener('click', function(e) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const link = e.target.closest && e.target.closest('.mural-card[data-mural-id] a[href]');
+  if (link) rememberMuralReturnPosition();
+}, true);
+
 function muralCardClick(e, id) {
   // Cada mural tiene su propia pagina, con la foto grande arriba y el resto
   // abajo. Dejamos que el link navegue normalmente en vez de abrir el visor.
+  rememberMuralReturnPosition();
   return true;
 }
 
@@ -1962,13 +1992,15 @@ function expandHomeGrid() {
   const wrap = document.getElementById('homeGridWrap');
   const homeGrid = document.getElementById('homePreviewGrid');
   const portfolioGrid = document.querySelector('#muralGridWrap .mural-grid');
-  // Home starts as a light three-row preview. When it expands, copy in any
-  // works that only exist in the full portfolio (for example El Nino).
+  // Home is a summary of Portfolio: it starts as a short preview, and when it
+  // expands it mirrors every card in the full portfolio. Iterate over the DOM
+  // instead of MURAL_ORDER so newly added works are included automatically,
+  // even before they have lightbox data or a curated-order entry.
   if (homeGrid && portfolioGrid) {
-    muralOrder.forEach(id => {
+    portfolioGrid.querySelectorAll('.mural-card[data-mural-id]').forEach(source => {
+      const id = source.getAttribute('data-mural-id');
       if (homeGrid.querySelector(`[data-mural-id="${id}"]`)) return;
-      const source = portfolioGrid.querySelector(`[data-mural-id="${id}"]`);
-      if (source) homeGrid.appendChild(source.cloneNode(true));
+      homeGrid.appendChild(source.cloneNode(true));
     });
     applyMuralOrder();
   }
@@ -2242,7 +2274,37 @@ function openPageFromUrl(fromHistory) {
   const valid = ['home','bio','work','live','shop'];
   showPage(valid.indexOf(id) >= 0 ? id : 'home', fromHistory !== false);
 }
+
+function restoreMuralReturnPosition() {
+  // Las fichas enlazan de vuelta a #work. Si la visita empezo desde una
+  // tarjeta de esta misma pestana, regresar al punto exacto que se dejo.
+  if (location.hash !== '#work') return;
+  let saved;
+  try {
+    saved = JSON.parse(sessionStorage.getItem(PORTFOLIO_RETURN_KEY) || 'null');
+  } catch (e) {}
+  if (!saved || saved.path !== portfolioPathKey(location.pathname) ||
+      Date.now() - saved.savedAt > 6 * 60 * 60 * 1000) return;
+
+  try { sessionStorage.removeItem(PORTFOLIO_RETURN_KEY); } catch (e) {}
+  const valid = ['home','work'];
+  const page = valid.indexOf(saved.page) >= 0 ? saved.page : 'work';
+  if (page !== 'work') {
+    showPage(page, true);
+    try {
+      history.replaceState({ page: page }, '', location.pathname + (page === 'home' ? '' : '#' + page));
+    } catch (e) {}
+  }
+
+  const y = Math.max(0, Number(saved.scrollY) || 0);
+  const restore = () => window.scrollTo(0, y);
+  requestAnimationFrame(() => requestAnimationFrame(restore));
+  // Las imagenes pueden terminar de definir la altura despues del primer frame.
+  window.addEventListener('load', restore, { once: true });
+  setTimeout(restore, 250);
+}
 window.addEventListener('popstate', () => openPageFromUrl(true));
 document.addEventListener('DOMContentLoaded', () => {
   if (location.hash && location.hash !== '#quote') openPageFromUrl(true);
+  restoreMuralReturnPosition();
 });
