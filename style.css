@@ -281,6 +281,11 @@ body.edit-mode .thumb-move-btn { display: block; }
 /* LIGHTBOX / MURAL DETAIL PAGE */
 .lightbox-overlay { display: none; position: fixed; inset: 0; background: var(--black); z-index: 1000; overflow-y: auto; padding: 0 20px 60px; }
 .lightbox-overlay.open { display: block; }
+.mural-page-overlay { display:none; position:fixed; inset:0; z-index:1200; background:var(--black); }
+.mural-page-overlay.open { display:block; }
+.mural-page-overlay iframe { display:block; width:100%; height:100%; border:0; background:var(--black); }
+.mural-page-close { position:absolute; z-index:2; top:12px; left:14px; padding:12px 16px; border:1px solid rgba(255,255,255,.28); border-radius:2px; background:rgba(10,10,10,.92); color:var(--white); font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; box-shadow:0 5px 20px rgba(0,0,0,.35); }
+.mural-page-close:hover { border-color:var(--white); }
 .lightbox-box { max-width: 1000px; margin: 0 auto; }
 .lightbox-back { position: sticky; top: 0; z-index: 5; background: rgba(10,10,10,0.92); backdrop-filter: blur(6px); border: none; color: var(--white); font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; padding: 18px 4px; margin: 0 -4px; width: calc(100% + 8px); text-align: left; }
 .lightbox-back:hover { color: var(--white); }
@@ -651,6 +656,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-detail .detail-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:32px 0; }
 .mural-detail .detail-ba figure { margin:0; }
 .mural-detail .detail-ba img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:#000; }
+.mural-detail .detail-ba--full img { aspect-ratio:3/4; object-fit:contain; }
 .mural-detail .detail-ba figcaption { color:var(--gray); font-family:var(--mono); font-size:11px; letter-spacing:.14em; margin-top:8px; text-transform:uppercase; }
 @media (max-width:640px) { .mural-detail .detail-gallery, .mural-detail .detail-ba { grid-template-columns:1fr; } .mural-detail .detail-gallery .wide { grid-column:auto; } .mural-detail .detail-actions { align-items:flex-start; flex-direction:column; } }
 

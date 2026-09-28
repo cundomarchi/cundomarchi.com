@@ -118,7 +118,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=153">
+<link rel="stylesheet" href="style.css?v=155">
 </head>
 <body oncontextmenu="return false;">
 
@@ -750,6 +750,11 @@
   </div>
 </div>
 
+<div class="mural-page-overlay" id="muralPageOverlay" aria-hidden="true">
+  <button class="mural-page-close" type="button" onclick="closeMuralPageOverlay()">← <span data-en="Back to Portfolio" data-es="Volver al Portfolio">Volver al Portfolio</span></button>
+  <iframe id="muralPageFrame" title="Detalle del mural" src="about:blank"></iframe>
+</div>
+
 
 <div class="page" id="page-live">
 <div class="page-bg" id="bg-live"><img loading="lazy" decoding="async" src="images/live-painting/bg_live.jpg" alt="" data-key="bg_live" width="1360" height="906"></div><button class="page-bg-edit-btn" onclick="editSectionBg('live', this)" data-en="🖼 Edit this background" data-es="🖼 Editar este fondo">🖼 Editar este fondo</button>
@@ -1176,7 +1181,7 @@
 
 <script src="translations.js?v=1"></script>
 <script>window.__forceLang="es";</script>
-<script src="script.js?v=133"></script>
+<script src="script.js?v=134"></script>
 
 </body>
 </html>

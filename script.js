@@ -1399,7 +1399,7 @@ const MURALS = {
       story: "A face dissolving into colour above a sleeping skyline, 4.5 by 2.8 metres, painted with exterior paint and brush in Buenos Aires, Argentina. The mural takes its name and its imagery from Gustavo Cerati and the song that gave Buenos Aires its nickname, the city of fury. The skyline along the bottom of the wall is painted in near monochrome so the colour of the face carries the whole composition.",
       storyEs: "Un rostro que se disuelve en color sobre un horizonte de edificios dormidos, 4,5 por 2,8 metros, pintado con pintura de exterior y pincel en Buenos Aires, Argentina. El mural toma su nombre y sus imágenes de Gustavo Cerati y de la canción que le dio a Buenos Aires su apodo, la ciudad de la furia. La línea de edificios de la parte baja está pintada casi en blanco y negro, para que el color del rostro sostenga toda la composición.",
      tags: ['Commission Work', 'Exterior Paint & Brush'], flag: '🇦🇷',
-      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'},{type:"image", src:'images/city_of_fury/city_of_fury_extra3.jpg', key:'city_of_fury_extra3'}]
+      gallery: [{type:"image", src:'images/city_of_fury/city_of_fury_extra1.jpg', key:'city_of_fury_extra1'}]
     },
 "el_nino": {
       title: 'El Niño', titleEs: 'El Niño', loc: 'San Fernando, Buenos Aires, Argentina', year: '2017', size: '3m x 5.5m',
@@ -1704,19 +1704,52 @@ function rememberMuralReturnPosition() {
   } catch (e) {}
 }
 
-// Algunas tarjetas antiguas llaman muralCardClick y las nuevas son links
-// directos. Escuchar el click de la tarjeta cubre ambos casos sin depender
-// de como fue creada cada ficha.
+// Abrir la ficha completa encima del Portfolio mantiene intactos la pagina y
+// el scroll que quedan detras. Los clicks con modificadores siguen siendo
+// links reales para poder abrir una ficha en otra pestana.
 document.addEventListener('click', function(e) {
   if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
   const link = e.target.closest && e.target.closest('.mural-card[data-mural-id] a[href]');
-  if (link) rememberMuralReturnPosition();
+  if (!link) return;
+  e.preventDefault();
+  openMuralPageOverlay(link.href);
 }, true);
 
+let muralPagePreviousOverflow = '';
+function openMuralPageOverlay(url) {
+  const overlay = document.getElementById('muralPageOverlay');
+  const frame = document.getElementById('muralPageFrame');
+  if (!overlay || !frame) return;
+  muralPagePreviousOverflow = document.body.style.overflow;
+  frame.onload = function() {
+    try {
+      frame.contentDocument.querySelectorAll('a[href$="index.html#work"]').forEach(back => {
+        back.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeMuralPageOverlay();
+        });
+      });
+    } catch (e) {}
+  };
+  frame.src = url;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMuralPageOverlay() {
+  const overlay = document.getElementById('muralPageOverlay');
+  const frame = document.getElementById('muralPageFrame');
+  if (!overlay || !frame) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = muralPagePreviousOverflow;
+  // Descargar la ficha despues de cerrar evita que sigan videos o animaciones.
+  setTimeout(() => { if (!overlay.classList.contains('open')) frame.src = 'about:blank'; }, 250);
+}
+
 function muralCardClick(e, id) {
-  // Cada mural tiene su propia pagina, con la foto grande arriba y el resto
-  // abajo. Dejamos que el link navegue normalmente en vez de abrir el visor.
-  rememberMuralReturnPosition();
+  // El listener general abre la ficha superpuesta y conserva el link real.
   return true;
 }
 
@@ -1971,6 +2004,10 @@ function stepMural(dir, landOn) {
   }
 }
 document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('muralPageOverlay')?.classList.contains('open')) {
+    closeMuralPageOverlay();
+    return;
+  }
   if (!document.getElementById('lightbox').classList.contains('open')) return;
   if (e.key === 'ArrowRight') lightboxRight();
   else if (e.key === 'ArrowLeft') lightboxLeft();
