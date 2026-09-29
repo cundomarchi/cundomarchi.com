@@ -1716,36 +1716,63 @@ document.addEventListener('click', function(e) {
 }, true);
 
 let muralPagePreviousOverflow = '';
-function openMuralPageOverlay(url) {
+let muralPageCurrentUrl = '';
+async function openMuralPageOverlay(url) {
   const overlay = document.getElementById('muralPageOverlay');
-  const frame = document.getElementById('muralPageFrame');
-  if (!overlay || !frame) return;
-  muralPagePreviousOverflow = document.body.style.overflow;
-  frame.onload = function() {
-    try {
-      frame.contentDocument.querySelectorAll('a[href$="index.html#work"]').forEach(back => {
-        back.addEventListener('click', function(e) {
-          e.preventDefault();
-          closeMuralPageOverlay();
-        });
-      });
-    } catch (e) {}
-  };
-  frame.src = url;
+  const content = document.getElementById('muralPageContent');
+  if (!overlay || !content) return;
+  if (!overlay.classList.contains('open')) muralPagePreviousOverflow = document.body.style.overflow;
+  muralPageCurrentUrl = new URL(url, location.href).href;
+  content.innerHTML = '<p class="mural-page-loading">Loading…</p>';
+  content.scrollTop = 0;
   overlay.classList.add('open');
   overlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  updateMuralOverlayLanguageButtons();
+  try {
+    const response = await fetch(muralPageCurrentUrl, { credentials: 'same-origin' });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const html = await response.text();
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    const main = parsed.querySelector('main');
+    if (!main) throw new Error('Missing mural content');
+    content.innerHTML = '';
+    parsed.querySelectorAll('head style').forEach(style => {
+      content.appendChild(document.importNode(style, true));
+    });
+    main.classList.add('embedded-mural-detail');
+    content.appendChild(document.importNode(main, true));
+    content.querySelectorAll('a[href$="index.html#work"]').forEach(back => {
+      back.addEventListener('click', function(e) { e.preventDefault(); closeMuralPageOverlay(); });
+    });
+  } catch (e) {
+    content.innerHTML = '<div class="mural-page-error"><strong>Could not load this mural.</strong><button type="button" onclick="closeMuralPageOverlay()">Back to Portfolio</button></div>';
+  }
+}
+
+function updateMuralOverlayLanguageButtons() {
+  const isEs = /\/es\/mural\//.test(muralPageCurrentUrl);
+  document.querySelectorAll('.mural-page-languages button').forEach((button, i) => {
+    button.classList.toggle('is-active', i === (isEs ? 1 : 0));
+  });
+}
+
+function switchMuralOverlayLanguage(target) {
+  if (!muralPageCurrentUrl) return;
+  const url = new URL(muralPageCurrentUrl);
+  if (target === 'es') url.pathname = url.pathname.replace(/^\/mural\//, '/es/mural/');
+  else url.pathname = url.pathname.replace(/^\/es\/mural\//, '/mural/');
+  openMuralPageOverlay(url.href);
 }
 
 function closeMuralPageOverlay() {
   const overlay = document.getElementById('muralPageOverlay');
-  const frame = document.getElementById('muralPageFrame');
-  if (!overlay || !frame) return;
+  const content = document.getElementById('muralPageContent');
+  if (!overlay || !content) return;
   overlay.classList.remove('open');
   overlay.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = muralPagePreviousOverflow;
-  // Descargar la ficha despues de cerrar evita que sigan videos o animaciones.
-  setTimeout(() => { if (!overlay.classList.contains('open')) frame.src = 'about:blank'; }, 250);
+  setTimeout(() => { if (!overlay.classList.contains('open')) content.innerHTML = ''; }, 250);
 }
 
 function muralCardClick(e, id) {

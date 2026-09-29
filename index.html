@@ -117,7 +117,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=157">
+<link rel="stylesheet" href="style.css?v=159">
 </head>
 <body oncontextmenu="return false;">
 
@@ -159,8 +159,6 @@
         <div class="lang-menu" id="langMenu">
           <button onclick="setLang('en')">🇺🇸 English</button>
           <button onclick="setLang('es')">🇪🇸 Español</button>
-          <button onclick="setLang('fr')">🇫🇷 Français</button>
-          <button onclick="setLang('it')">🇮🇹 Italiano</button>
         </div>
       </div>
     </div>
@@ -751,7 +749,8 @@
 
 <div class="mural-page-overlay" id="muralPageOverlay" aria-hidden="true">
   <button class="mural-page-close" type="button" onclick="closeMuralPageOverlay()">← <span data-en="Back to Portfolio" data-es="Volver al Portfolio">Back to Portfolio</span></button>
-  <iframe id="muralPageFrame" title="Mural details" src="about:blank"></iframe>
+  <div class="mural-page-languages" aria-label="Language"><button type="button" onclick="switchMuralOverlayLanguage('en')">🇺🇸 EN</button><button type="button" onclick="switchMuralOverlayLanguage('es')">🇪🇸 ES</button></div>
+  <div class="mural-page-content" id="muralPageContent" role="dialog" aria-modal="true" aria-label="Mural details"></div>
 </div>
 
 
@@ -1179,7 +1178,7 @@
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
 
 <script src="translations.js?v=1"></script>
-<script src="script.js?v=134"></script>
+<script src="script.js?v=135"></script>
 
 </body>
 </html>

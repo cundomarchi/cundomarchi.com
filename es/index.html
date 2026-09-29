@@ -118,7 +118,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=157">
+<link rel="stylesheet" href="style.css?v=159">
 </head>
 <body oncontextmenu="return false;">
 
@@ -160,8 +160,6 @@
         <div class="lang-menu" id="langMenu">
           <button onclick="setLang('en')">🇺🇸 English</button>
           <button onclick="setLang('es')">🇪🇸 Español</button>
-          <button onclick="setLang('fr')">🇫🇷 Français</button>
-          <button onclick="setLang('it')">🇮🇹 Italiano</button>
         </div>
       </div>
     </div>
@@ -752,7 +750,8 @@
 
 <div class="mural-page-overlay" id="muralPageOverlay" aria-hidden="true">
   <button class="mural-page-close" type="button" onclick="closeMuralPageOverlay()">← <span data-en="Back to Portfolio" data-es="Volver al Portfolio">Volver al Portfolio</span></button>
-  <iframe id="muralPageFrame" title="Detalle del mural" src="about:blank"></iframe>
+  <div class="mural-page-languages" aria-label="Idioma"><button type="button" onclick="switchMuralOverlayLanguage('en')">🇺🇸 EN</button><button type="button" onclick="switchMuralOverlayLanguage('es')">🇪🇸 ES</button></div>
+  <div class="mural-page-content" id="muralPageContent" role="dialog" aria-modal="true" aria-label="Detalle del mural"></div>
 </div>
 
 
@@ -1181,7 +1180,7 @@
 
 <script src="translations.js?v=1"></script>
 <script>window.__forceLang="es";</script>
-<script src="script.js?v=134"></script>
+<script src="script.js?v=135"></script>
 
 </body>
 </html>
