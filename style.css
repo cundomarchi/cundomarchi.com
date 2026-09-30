@@ -358,7 +358,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .map-outline { pointer-events: none; }
 .map-outline-shape { fill: rgba(255,255,255,.09); stroke: rgba(255,255,255,.30); stroke-width: 0.7; transition: stroke .25s ease, fill .25s ease; }
 .map-outline-shape.visited { fill: rgba(255,255,255,.28); stroke: rgba(255,255,255,.95); stroke-width: 1.1; filter: drop-shadow(0 0 2px rgba(255,255,255,.40)); pointer-events: auto; cursor: pointer; }
-.map-outline-shape.is-active { fill: rgba(255,255,255,.48); stroke: #fff; stroke-width: 1.8; filter: drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 9px rgba(255,255,255,.70)); }
+.map-outline-shape.is-active { fill: rgba(255,255,255,.28); stroke: rgba(255,255,255,.95); stroke-width: 1.1; filter: drop-shadow(0 0 2px rgba(255,255,255,.40)); }
 
 .world-map-caption { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.60); text-align: left; margin-bottom: 36px; letter-spacing: .3px; }
 
@@ -375,7 +375,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .country-item::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
 .country-item:hover, .country-item:focus-visible, .country-item.is-active { background: #1c1c1c; border-color: #3a3a3a; outline: none; z-index: 2; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.45); }
 .country-item:hover::after, .country-item:focus-visible::after, .country-item.is-active::after { transform: scaleX(1); }
-.country-item.is-active { border-color: rgba(255,255,255,.90); box-shadow: 0 0 8px rgba(255,255,255,.24), 0 7px 20px rgba(255,255,255,.14); }
+.country-item.is-active { border-color:#3a3a3a; box-shadow:0 6px 16px rgba(0,0,0,.45); }
 .country-item-flag { font-size: 16px; flex-shrink: 0; width: 22px; text-align: center; }
 .country-item-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow: hidden; }
 .country-item-name { font-size: 13px; letter-spacing: .4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
@@ -566,12 +566,11 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .contact-links a:hover { color: var(--white); }
 .foot-note { font-size: 11px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
 .brands { padding: 56px 0; border-top: 1px solid #1a1a1a; }
-.brands-row { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: center; margin-top: 22px; }
+.brands-row { display: flex; flex-wrap: wrap; gap: 30px 24px; justify-content: center; align-items: center; margin-top: 22px; }
 .brands-row span { font-family: var(--display); font-size: 15px; letter-spacing: 0.5px; color: #5a5a55; text-transform: uppercase; }
-.brand-logo { display: flex; align-items: center; justify-content: center; height: 76px; opacity: 0.85; transition: opacity .2s; }
-.brand-logo:hover { opacity: 1; }
-.brand-logo:has(img[alt="Farola"]) { opacity: 1; }
-.brand-logo img { height: 100%; width: auto; max-width: 220px; object-fit: contain; display: block; filter: none; }
+.brand-logo { display:flex; align-items:center; justify-content:center; width:170px; height:90px; opacity:1; }
+.brand-logo img { width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain; display:block; filter:none; }
+.brand-logo img[alt="Farola"] { filter:saturate(1.55) brightness(1.28) contrast(1.08); }
 .brand-logo img[alt="Sleep in Heaven"] { transform: none; }
 .social-icons { display: flex; gap: 22px; justify-content: center; margin-bottom: 28px; }
 .social-icons a { color: var(--gray); transition: color .15s, transform .15s; display: flex; }
