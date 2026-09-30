@@ -13,6 +13,10 @@
     description: description.content,
     image: image.content,
     url: canonical.href,
+    mainEntityOfPage: canonical.href,
+    copyrightHolder: {
+      '@id': 'https://www.cundomarchi.com/#person'
+    },
     creator: {
       '@type': 'Person',
       '@id': 'https://www.cundomarchi.com/#person',

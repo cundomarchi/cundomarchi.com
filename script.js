@@ -1331,7 +1331,7 @@ function sendQuoteRequest(photoFile) {
 
   if (btn) { btn.disabled = true; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
   if (typeof window.gtag === 'function') {
-    window.gtag('event', 'generate_lead', {
+    window.gtag('event', 'quote_submit_attempt', {
       currency: 'AUD',
       lead_source: 'website_quote_form',
       project_type: type
@@ -1344,6 +1344,15 @@ function sendQuoteRequest(photoFile) {
 // Al volver de FormSubmit con ?enviado=1, mostrar el mensaje de gracias.
 document.addEventListener('DOMContentLoaded', function () {
   if (location.search.indexOf('enviado=1') === -1) return;
+  // Solo considerar el contacto como conversion cuando FormSubmit devuelve al
+  // sitio con confirmacion. Asi los errores de red o envios abortados no
+  // inflan la cantidad de consultas reales.
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'generate_lead', {
+      currency: 'AUD',
+      lead_source: 'website_quote_form'
+    });
+  }
   const paso = document.getElementById('wallFormStep');
   const listo = document.getElementById('wallFormConfirm');
   if (paso && listo) {
@@ -1742,6 +1751,18 @@ async function openMuralPageOverlay(url) {
     });
     main.classList.add('embedded-mural-detail');
     content.appendChild(document.importNode(main, true));
+    // El mural se abre dentro de la misma pagina, por lo que Analytics no lo
+    // detecta como una navegacion nueva. Registrar la apertura permite saber
+    // que trabajos generan interes sin cambiar la URL ni el scroll del usuario.
+    if (typeof window.gtag === 'function') {
+      const muralSlug = new URL(muralPageCurrentUrl).pathname.split('/').pop().replace(/\.html$/, '');
+      const muralTitle = content.querySelector('h1');
+      window.gtag('event', 'view_mural', {
+        mural_slug: muralSlug,
+        mural_title: muralTitle ? muralTitle.textContent.trim() : muralSlug,
+        content_language: /\/es\/mural\//.test(muralPageCurrentUrl) ? 'es' : 'en'
+      });
+    }
     content.querySelectorAll('a[href$="index.html#work"]').forEach(back => {
       back.addEventListener('click', function(e) { e.preventDefault(); closeMuralPageOverlay(); });
     });
@@ -1759,6 +1780,12 @@ function updateMuralOverlayLanguageButtons() {
 
 function switchMuralOverlayLanguage(target) {
   if (!muralPageCurrentUrl) return;
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'language_change', {
+      language: target,
+      content_type: 'mural'
+    });
+  }
   const url = new URL(muralPageCurrentUrl);
   if (target === 'es') url.pathname = url.pathname.replace(/^\/mural\//, '/es/mural/');
   else url.pathname = url.pathname.replace(/^\/es\/mural\//, '/mural/');
