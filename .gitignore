@@ -26,3 +26,7 @@ PARA SUBIR/
 
 # config local del servidor de preview
 .claude/
+
+# salidas temporales de herramientas locales; nunca publicar en la web
+/output/
+/tmp/

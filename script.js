@@ -905,7 +905,17 @@ function syncBgSlider() {
 }
 
 function toggleFullMenu() {
-  document.getElementById('fullMenu').classList.toggle('open');
+  const menu = document.getElementById('fullMenu');
+  menu.classList.toggle('open');
+  if (!menu.classList.contains('open')) {
+    const submenu = menu.querySelector('.full-menu-services');
+    if (submenu) submenu.classList.remove('open');
+  }
+}
+function toggleServicesSubmenu(event) {
+  if (event) event.preventDefault();
+  const submenu = document.querySelector('.full-menu-services');
+  if (submenu) submenu.classList.toggle('open');
 }
 document.addEventListener('click', function(e) {
   const dd = document.getElementById('menuDropdown');
@@ -2398,4 +2408,11 @@ window.addEventListener('popstate', () => openPageFromUrl(true));
 document.addEventListener('DOMContentLoaded', () => {
   if (location.hash && location.hash !== '#quote') openPageFromUrl(true);
   restoreMuralReturnPosition();
+  // Las paginas individuales de servicios vuelven al mismo formulario con el
+  // tipo de trabajo ya elegido.
+  const requestedService = new URLSearchParams(location.search).get('request');
+  if (['mural', 'live', 'workshop'].includes(requestedService)) {
+    requestArt(requestedService);
+    try { history.replaceState({}, '', location.pathname + '#quote'); } catch (e) {}
+  }
 });

@@ -115,7 +115,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=160">
+<link rel="stylesheet" href="style.css?v=161">
 </head>
 <body oncontextmenu="return false;">
 
@@ -129,7 +129,13 @@
         <a onclick="navGo('home')" data-en="Home" data-es="Inicio">Home</a>
         <a onclick="navGo('bio')" data-en="Bio" data-es="Bio">Bio</a>
         <a onclick="navGo('work')" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-        <a onclick="navGo('live')" data-en="Services" data-es="Servicios">Services</a>
+        <a onclick="toggleServicesSubmenu(event)" data-en="Services ▾" data-es="Servicios ▾">Services ▾</a>
+        <div class="full-menu-services">
+          <a onclick="navGo('live')">— All Services</a>
+          <a href="services/murals.html">— Murals</a>
+          <a href="services/live-painting.html">— Live Painting</a>
+          <a href="services/workshops.html">— Workshops</a>
+        </div>
         <a onclick="navGo('shop')" data-en="Shop" data-es="Tienda">Shop</a>
         <a href="#quote" onclick="toggleFullMenu()" data-en="Get a Quote" data-es="Cotizar">Get a Quote</a>
       </div>
@@ -138,7 +144,14 @@
       <a onclick="showPage('home')" data-en="Home" data-es="Inicio">Home</a>
       <a onclick="showPage('bio')" data-en="Bio" data-es="Bio">Bio</a>
       <a onclick="showPage('work')" data-en="Portfolio" data-es="Portfolio">Portfolio</a>
-      <a onclick="showPage('live')" data-en="Services" data-es="Servicios">Services</a>
+      <div class="nav-services">
+        <a onclick="showPage('live')" data-en="Services" data-es="Servicios">Services <span aria-hidden="true">▾</span></a>
+        <div class="nav-services-menu">
+          <a href="services/murals.html">Murals</a>
+          <a href="services/live-painting.html">Live Painting</a>
+          <a href="services/workshops.html">Workshops</a>
+        </div>
+      </div>
       <a onclick="showPage('shop')" data-en="Shop" data-es="Tienda">Shop</a>
     </div>
     <a href="#quote" class="nav-cta" data-en="Get a Quote" data-es="Cotizar">Get a Quote</a>
@@ -760,100 +773,10 @@
     <h2 class="section-title" style="font-size:32px;" data-en="Services" data-es="Servicios">Services</h2>
     <p style="color:#d8d8d3; font-size:15px; max-width:640px; margin-bottom:44px;" data-en="Three ways to work together: a mural on your wall, a piece painted live in front of your guests, or a hands-on workshop for your team, anywhere in the world." data-es="Tres formas de trabajar juntos: un mural en tu pared, una obra pintada en vivo frente a tus invitados, o un taller práctico para tu equipo, en cualquier parte del mundo.">Three ways to work together: a mural on your wall, a piece painted live in front of your guests, or a hands-on workshop for your team, anywhere in the world.</p>
 
-    <div class="live-event" id="service-murals">
-      <span class="eyebrow" data-en="Service 01" data-es="Servicio 01">Service 01</span>
-      <h3 data-en="Murals" data-es="Murales">Murals</h3>
-      <p class="live-event-meta" data-en="Full-scale wall art for homes, businesses and public spaces." data-es="Arte mural a toda escala para casas, negocios y espacios públicos.">Full-scale wall art for homes, businesses and public spaces.</p>
-
-      <div class="mural-categories-grid">
-        <div class="mural-card-intro">
-          <h4 data-en="Home Interior" data-es="Interior de Casa">Home Interior</h4>
-          <p data-en="A piece designed for a specific interior, a living room, a bedroom, a restaurant or hospitality space. More intimate in scale, built around the room's own light and layout." data-es="Una obra pensada para un interior específico, un living, un dormitorio, un restaurante o un espacio de hospitalidad. Más íntima en escala, construida alrededor de la luz y la distribución del ambiente.">A piece designed for a specific interior, a living room, a bedroom, a restaurant or hospitality space. More intimate in scale, built around the room's own light and layout.</p>
-        </div>
-        <div class="mural-card-intro">
-          <h4 data-en="Commercial Space" data-es="Espacio Comercial">Commercial Space</h4>
-          <p data-en="Murals for stores, offices, restaurants and other commercial spaces, a piece built to represent a brand or set the tone for a space customers walk into." data-es="Murales para tiendas, oficinas, restaurantes y otros espacios comerciales, una obra pensada para representar una marca o marcar el tono de un espacio al que entran tus clientes.">Murals for stores, offices, restaurants and other commercial spaces, a piece built to represent a brand or set the tone for a space customers walk into.</p>
-        </div>
-        <div class="mural-card-intro">
-          <h4 data-en="Exterior Wall / Public Space" data-es="Pared Exterior / Espacio Público">Exterior Wall / Public Space</h4>
-          <p data-en="Murals painted outdoors in full public view, a home facade, a storefront, a festival wall, a building. Visible from the street, built to hold color through sun, rain and years outdoors." data-es="Murales pintados al aire libre, a la vista de todos, una fachada, un local, un muro de festival, un edificio. Visibles desde la calle, pensados para aguantar el sol, la lluvia y los años a la intemperie.">Murals painted outdoors in full public view, a home facade, a storefront, a festival wall, a building. Visible from the street, built to hold color through sun, rain and years outdoors.</p>
-        </div>
-      </div>
-
-      <p class="step-label" style="margin-top:8px;" data-en="Real examples, before &amp; after" data-es="Ejemplos reales, antes y después">Real examples, before &amp; after</p>
-      <div class="mural-compare-preview" onclick="openLightbox('flower_octopus')">
-        <div class="mcp-imgs">
-          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus_before.jpg" alt="Before" data-key="flower_octopus_before" width="1600" height="1212" srcset="images/flower_octopus/flower_octopus_before-600.jpg 600w, images/flower_octopus/flower_octopus_before-800.jpg 800w, images/flower_octopus/flower_octopus_before-1200.jpg 1200w, images/flower_octopus/flower_octopus_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/flower_octopus/flower_octopus.jpg" alt="After" data-key="flower_octopus" width="1600" height="1088" srcset="images/flower_octopus/flower_octopus-600.jpg 600w, images/flower_octopus/flower_octopus-800.jpg 800w, images/flower_octopus/flower_octopus-1200.jpg 1200w, images/flower_octopus/flower_octopus.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
-        </div>
-        <p class="mcp-caption" data-en="&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;Pulpo Flor&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;Flower Octopus&quot;, Buenos Aires, Argentina · tap to see the full before/after</p>
-      </div>
-
-      <div class="mural-compare-preview" style="margin-top:24px;" onclick="openLightbox('circle_of_nature')">
-        <div class="mcp-imgs">
-          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature_before.jpg" alt="Before" data-key="circle_of_nature_before" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature_before-600.jpg 600w, images/circle_of_nature/circle_of_nature_before-800.jpg 800w, images/circle_of_nature/circle_of_nature_before-1200.jpg 1200w, images/circle_of_nature/circle_of_nature_before.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/circle_of_nature/circle_of_nature.jpg" alt="After" data-key="circle_of_nature" width="1600" height="1066" srcset="images/circle_of_nature/circle_of_nature-600.jpg 600w, images/circle_of_nature/circle_of_nature-800.jpg 800w, images/circle_of_nature/circle_of_nature-1200.jpg 1200w, images/circle_of_nature/circle_of_nature.jpg 1600w" sizes="(max-width:700px) 92vw, 46vw"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
-        </div>
-        <p class="mcp-caption" data-en="&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after" data-es="&quot;El Círculo de la Naturaleza&quot;, Buenos Aires, Argentina · toca para ver el antes/después completo">&quot;The Circle of Nature&quot;, Buenos Aires, Argentina · tap to see the full before/after</p>
-      </div>
-
-      <div class="mural-compare-preview" style="margin-top:24px;" onclick="location.href='mural/the-city-of-the-fury.html'">
-        <div class="mcp-imgs">
-          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/city_of_fury/city_of_fury_before.jpg" alt="Before" data-key="city_of_fury_before" width="1600" height="1200" srcset="images/city_of_fury/city_of_fury_before-600.jpg 600w, images/city_of_fury/city_of_fury_before-800.jpg 800w, images/city_of_fury/city_of_fury_before-1200.jpg 1200w, images/city_of_fury/city_of_fury_before.jpg 1600w" sizes="(max-width:700px) 92vw, (max-width:1100px) 46vw, 300px"><span class="mcp-tag" data-en="Before" data-es="Antes">Before</span></div>
-          <div class="mcp-img"><img class="card-main" loading="lazy" decoding="async" src="images/city_of_fury/city_of_fury_extra1.jpg" alt="After" data-key="city_of_fury_extra1" width="1600" height="1600"><span class="mcp-tag" data-en="After" data-es="Después">After</span></div>
-        </div>
-        <p class="mcp-caption" data-en="&quot;The City of the Fury&quot;, Buenos Aires · tap to see the full before/after" data-es="&quot;La Ciudad de la Furia&quot;, Buenos Aires · toca para ver el antes/después completo">&quot;The City of the Fury&quot;, Buenos Aires · tap to see the full before/after</p>
-      </div>
-
-      <button class="btn-primary" style="margin-top:26px;" onclick="requestArt('mural')" data-en="Request a Mural" data-es="Solicitar un Mural">Request a Mural</button>
-    </div>
-
-    <div class="live-event" id="service-live-painting">
-      <span class="eyebrow" data-en="Service 02" data-es="Servicio 02">Service 02</span>
-      <h3 data-en="Live Painting" data-es="Pintura en Vivo">Live Painting</h3>
-      <p class="live-event-meta" data-en="Full pieces painted live at galas, brand activations and public openings." data-es="Obras completas pintadas en vivo en galas, activaciones de marca y aperturas públicas.">Full pieces painted live at galas, brand activations and public openings.</p>
-
-      <div class="live-event" style="margin-bottom:32px; padding-bottom:0; border-bottom:none;">
-        <h3 style="font-size:16px;" data-en="Art Basel Week, Wynwood, Miami" data-es="Art Basel Week, Wynwood, Miami">Art Basel Week, Wynwood, Miami</h3>
-        <p class="live-event-meta" data-en="Live painting canvas for Fume Vapors, 1-800 Lucky · 2024" data-es="Lienzo en vivo para Fume Vapors, 1-800 Lucky · 2024">Live painting canvas for Fume Vapors, 1-800 Lucky · 2024</p>
-        <div class="live-gallery">
-          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_basel_night1.jpg" alt="Cundo Marchi painting live under blacklight, Art Basel Week, Miami" data-key="live_basel_night1" width="1360" height="906"><figcaption data-en="Painting live under blacklight" data-es="Pintando en vivo con luz negra">Painting live under blacklight</figcaption></figure>
-          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_basel_night2.jpg" alt="Art Basel live painting 2" data-key="live_basel_night2" width="698" height="1047"><figcaption data-en="Canvas in progress" data-es="Lienzo en proceso">Canvas in progress</figcaption></figure>
-          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_basel_night3.jpg" alt="Art Basel live painting 3" data-key="live_basel_night3" width="900" height="1200"><figcaption data-en="Finished piece for Fume Vapors" data-es="Pieza terminada para Fume Vapors">Finished piece for Fume Vapors</figcaption></figure>
-        </div>
-        <p class="live-event-meta" style="margin-top:14px;" data-en="Also on the same trip: Chiquita Day for Chiquita Banana, and the Tik Tok Live Fest, both live painting murals in Miami, 2024." data-es="También en el mismo viaje: Chiquita Day para Chiquita Banana, y el Tik Tok Live Fest, ambos murales pintados en vivo en Miami, 2024.">Also on the same trip: Chiquita Day for Chiquita Banana, and the Tik Tok Live Fest, both live painting murals in Miami, 2024.</p>
-      </div>
-
-      <div class="live-event" style="margin-bottom:0; padding-bottom:0; border-bottom:none;">
-        <h3 style="font-size:16px;" data-en="Otamendi Palace, Opening" data-es="Apertura Palacio Otamendi">Otamendi Palace, Opening</h3>
-        <p class="live-event-meta" data-en="Buenos Aires, Argentina · 2023" data-es="Buenos Aires, Argentina · 2023">Buenos Aires, Argentina · 2023</p>
-        <div class="live-gallery">
-          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_painting_1.jpg" alt="Otamendi Palace live painting 1" data-key="live_painting_1" width="1080" height="1350"><figcaption data-en="Sketching the palace on site" data-es="Bocetando el palacio en el lugar">Sketching the palace on site</figcaption></figure>
-          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_otamendi_day3.jpg" alt="Otamendi Palace live painting 2" data-key="live_otamendi_day3" width="626" height="782"><figcaption data-en="Building the composition" data-es="Armando la composición">Building the composition</figcaption></figure>
-          <figure><img loading="lazy" decoding="async" src="images/live-painting/live_otamendi_final2.jpg" srcset="images/live-painting/live_otamendi_final2-600.jpg 600w, images/live-painting/live_otamendi_final2-800.jpg 800w, images/live-painting/live_otamendi_final2-1200.jpg 1200w, images/live-painting/live_otamendi_final2.jpg 1284w" sizes="(max-width:700px) 92vw, 31vw" alt="Cundo Marchi with the finished piece, Otamendi Palace behind" data-key="live_otamendi_final2" width="1284" height="1600"><figcaption data-en="With the finished piece, palace behind" data-es="Con la obra terminada, el palacio detrás">With the finished piece, palace behind</figcaption></figure>
-        </div>
-      </div>
-
-      <button class="btn-primary" style="margin-top:10px;" onclick="requestArt('live')" data-en="Request Live Painting" data-es="Solicitar Pintura en Vivo">Request Live Painting</button>
-    </div>
-
-    <div class="live-event workshop" id="service-workshop">
-      <span class="eyebrow" data-en="Service 03" data-es="Servicio 03">Service 03</span>
-      <h3 data-en="Paint Workshop" data-es="Taller de Pintura">Paint Workshop</h3>
-      <p style="color:#d8d8d3; font-size:14px; max-width:600px; margin-top:14px;" data-en="Graffiti and mural workshops for companies, team events, and beginner classes, in two formats: a community mural, where the whole group paints one shared piece together, or individual canvases, where everyone paints and keeps their own. Get in touch to design a session for your team or group." data-es="Talleres de grafiti y muralismo para empresas, eventos de equipo y clases para principiantes, en dos formatos: un mural comunitario, donde todo el grupo pinta una obra en conjunto, o lienzos individuales, donde cada uno pinta y se lleva el suyo. Escribime para armar una sesión a medida para tu equipo o grupo.">Graffiti and mural workshops for companies, team events, and beginner classes, in two formats: a community mural, where the whole group paints one shared piece together, or individual canvases, where everyone paints and keeps their own. Get in touch to design a session for your team or group.</p>
-
-      <!-- Chiquita Banana / House of Prints sigue oculto: faltan sus fotos.
-           Cuando lleguen, agregar su workshop-photo-row de vuelta aca arriba. -->
-      <div class="workshop-gallery">
-        <p class="step-label" style="margin-top:18px;">TikTok Live Fest 2023, Ice Palace Films, Downtown Miami</p>
-        <div class="workshop-photo-row">
-          <div class="workshop-photo"><img class="card-blur" src="images/live-painting/workshop_tiktok_3.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="739" height="1600"><img class="card-main" loading="lazy" decoding="async" src="images/live-painting/workshop_tiktok_3.jpg" alt="TikTok Live Fest stage, Ice Palace Films, Miami" data-key="workshop_tiktok_3" width="739" height="1600"></div>
-          <div class="workshop-photo"><img class="card-blur" src="images/live-painting/workshop_tiktok_1.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1200" height="1600"><img class="card-main" loading="lazy" decoding="async" src="images/live-painting/workshop_tiktok_1.jpg" alt="Cundo Marchi painting live at TikTok Live Fest, Ice Palace Films, Miami" data-key="workshop_tiktok_1" width="1200" height="1600" srcset="images/live-painting/workshop_tiktok_1-800.jpg 800w, images/live-painting/workshop_tiktok_1.jpg 1200w" sizes="(max-width:700px) 92vw, 45vw"></div>
-          <div class="workshop-photo"><img class="card-blur" src="images/live-painting/workshop_tiktok_2.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1200" height="1600"><img class="card-main" loading="lazy" decoding="async" src="images/live-painting/workshop_tiktok_2.jpg" alt="Finished workshop canvas with TikTok Live Fest attendees, Miami" data-key="workshop_tiktok_2" width="1200" height="1600" srcset="images/live-painting/workshop_tiktok_2-800.jpg 800w, images/live-painting/workshop_tiktok_2.jpg 1200w" sizes="(max-width:700px) 92vw, 45vw"></div>
-        </div>
-      </div>
-
-      <button class="btn-primary" style="margin-top:22px;" onclick="requestArt('workshop')" data-en="Request a Workshop" data-es="Solicitar un Taller">Request a Workshop</button>
+    <div class="service-links-grid">
+      <a class="service-link-card" href="services/murals.html"><img src="images/flower_octopus/flower_octopus.jpg" alt="Flower Octopus mural" loading="lazy" width="1600" height="1088"><div class="service-link-card-body"><span class="eyebrow">Service 01</span><h3>Murals</h3><p>Custom artwork for interiors, businesses, facades and public spaces, designed around each location.</p><span class="service-link-arrow">Explore murals →</span></div></a>
+      <a class="service-link-card" href="services/live-painting.html"><img src="images/live-painting/bg_live.jpg" alt="Cundo Marchi painting live" loading="lazy" width="1360" height="906"><div class="service-link-card-body"><span class="eyebrow">Service 02</span><h3>Live Painting</h3><p>An artwork created in front of the audience for events, galas, openings and brand activations.</p><span class="service-link-arrow">Explore live painting →</span></div></a>
+      <a class="service-link-card" href="services/workshops.html"><img src="images/live-painting/workshop_tiktok_3.jpg" alt="Painting workshop at TikTok Live Fest" loading="lazy" width="739" height="1600"><div class="service-link-card-body"><span class="eyebrow">Service 03</span><h3>Workshops</h3><p>Hands-on painting, graffiti and mural experiences for companies, events and groups.</p><span class="service-link-arrow">Explore workshops →</span></div></a>
     </div>
   </div>
 </section>
@@ -1176,7 +1099,7 @@
 <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
 
 <script src="translations.js?v=1"></script>
-<script src="script.js?v=136"></script>
+<script src="script.js?v=138"></script>
 
 </body>
 </html>
