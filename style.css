@@ -127,7 +127,7 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .nav-services-menu a:hover,.nav-services-menu a:focus-visible { opacity:1; background:rgba(255,255,255,.07); }
 .full-menu-services { display:none; padding:0 0 5px; border-bottom:1px solid #242424; }
 .full-menu-services.open { display:block; }
-.full-menu-services a { padding:8px 28px; color:#bdbdb8; font-size:12px; }
+.full-menu-services a { display:block; width:100%; box-sizing:border-box; padding:8px 28px; color:#bdbdb8; font-size:12px; white-space:nowrap; }
 .nav-cta { background: transparent; color: var(--white); border: 1px solid #3a3a38; padding: 10px 20px; font-family: var(--mono); font-weight: 700; font-size: 13px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: background .18s, color .18s, border-color .18s; }
 .nav-cta:hover { background: var(--white); color: var(--black); border-color: var(--white); }
 .nav-utils { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
