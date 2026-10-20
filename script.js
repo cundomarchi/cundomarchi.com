@@ -1579,12 +1579,20 @@ const MURALS = {
       storyEs: "Un cocinero levantando la tapa de una olla, pintado en azul cobalto y grises sobre la pared blanca de la oficina de INAC Hospitality en Broadbeach, en la Gold Coast, Queensland, Australia. El mural mide dos por dos metros y fue un encargo de interior para el lugar de trabajo, con el logo de la empresa, una pieza de rompecabezas, pintado sobre el delantal del cocinero. La pared era blanca lisa antes del mural, y la mancha azul detrás de la figura es lo que le da su forma dentro de la sala.",
      tags: ['Commission Work', 'Interior Mural'], flag: '🇦🇺',
       gallery: [{type:"compare", before:'images/inac_hospitality/inac_hospitality_before.jpg', after:'images/inac_hospitality/inac_hospitality_after.jpg', beforeKey:'inac_hospitality_before', afterKey:'inac_hospitality_after'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra1.jpg', key:'inac_hospitality_extra1'},{type:"image", src:'images/inac_hospitality/inac_hospitality_extra2.jpg', key:'inac_hospitality_extra2'}]
+    },
+"tay": {
+      title: 'Tay', titleEs: 'Tay', loc: 'Victoria, Australia', year: '2026', size: '',
+      desc: 'A monochrome portrait of Tay in sunglasses, painted across the black lower facade of a rural building.',
+      story: 'A monochrome portrait of Tay in sunglasses, built through layers of black, white and grey across the lower facade of a rural building. The scarf, braided hair and reflective lenses give the portrait depth while keeping the palette restrained.',
+      storyEs: 'Un retrato monocromático de Tay con anteojos de sol, construido en capas de negro, blanco y gris sobre la parte baja de la fachada de una construcción rural. El pañuelo, el pelo trenzado y los reflejos de los lentes le dan profundidad sin salir de una paleta contenida.',
+      tags: ['Commission Work', 'Spray Paint'], flag: '🇦🇺',
+      gallery: [{type:"image", src:'images/tay/tay.jpg', key:'tay'},{type:"image", src:'images/tay/tay_closeup.jpg', key:'tay_closeup'},{type:"image", src:'images/tay/tay_context.jpg', key:'tay_context'},{type:"image", src:'images/tay/tay_with_artist.jpg', key:'tay_with_artist'}]
     }
 };
 // Orden curado para que el Home abra con las obras visualmente mas fuertes y
 // alterne formatos, paletas y contextos. La revision renueva el orden guardado
 // una sola vez; despues se puede seguir ajustando desde el modo de edicion.
-const MURAL_ORDER_REVISION = 'visual-priority-2026-09-12';
+const MURAL_ORDER_REVISION = 'visual-priority-2026-10-20';
 const MURAL_ORDER = [
   'flower_octopus',
   'circle_of_nature',
@@ -1610,7 +1618,13 @@ const MURAL_ORDER = [
   'city_of_fury',
   'fusion_of_life',
   'el_nino',
-  'inac_hospitality'
+  'inac_hospitality',
+  'universe_citizens',
+  'toluca_collab',
+  'trippy_trip',
+  'sol_de_mayo',
+  'aguila_tigre',
+  'tay'
 ];
 let muralOrder = MURAL_ORDER.slice();
 function applyMuralOrder() {
@@ -1701,7 +1715,7 @@ function curGallery() {
 // Las tarjetas del portfolio son links reales a mural/<slug>.html: asi Google las
 // encuentra y se pueden abrir en pestana nueva. Con click normal, sin embargo,
 // preferimos el visor rapido en vez de recargar toda la pagina.
-const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "hercules", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "california-bear", "bailarina": "the-ballerina", "dinamarca_hostel": "it-s-more-fun", "parma_medusa": "medusa", "viking_malmo": "the-viking", "kangaroo": "the-boxing-kangaroo", "nino_interior": "inner-child", "inac_hospitality": "the-chef"};
+const MURAL_SLUGS = {"meeting_of_styles": "meeting-of-styles", "bullshit_turin": "bulll-hit", "zeus_athens": "hercules", "king_of_kings": "the-king-of-kings", "city_of_fury": "the-city-of-the-fury", "el_nino": "el-nino", "fusion_of_life": "the-fusion-of-life", "down_ocean": "down-the-ocean", "flower_octopus": "flower-octopus", "ocean_heart": "ocean-heart", "the_eyes": "the-eyes", "el_eternauta": "el-eternauta", "laos_california": "laos-california", "tlaloc": "tlaloc", "circle_of_nature": "the-circle-of-nature", "the_seesaw": "the-seesaw", "you_see": "you-are-what-you-see", "bear_virreyes": "california-bear", "bailarina": "the-ballerina", "dinamarca_hostel": "it-s-more-fun", "parma_medusa": "medusa", "viking_malmo": "the-viking", "kangaroo": "the-boxing-kangaroo", "nino_interior": "inner-child", "inac_hospitality": "the-chef", "universe_citizens": "universe-citizens", "toluca_collab": "toluca-collaboration", "trippy_trip": "the-trippy-trip", "sol_de_mayo": "sol-de-mayo", "aguila_tigre": "eagle-tigre", "tay": "tay"};
 
 const PORTFOLIO_RETURN_KEY = 'cmz_portfolio_return';
 
@@ -2057,9 +2071,10 @@ function lightboxLeft() {
   }
 }
 function stepMural(dir, landOn) {
-  let idx = MURAL_ORDER.indexOf(currentMuralId);
-  idx = (idx + dir + MURAL_ORDER.length) % MURAL_ORDER.length;
-  openLightbox(MURAL_ORDER[idx]);
+  const navigableMurals = MURAL_ORDER.filter(id => MURALS[id]);
+  let idx = navigableMurals.indexOf(currentMuralId);
+  idx = (idx + dir + navigableMurals.length) % navigableMurals.length;
+  openLightbox(navigableMurals[idx]);
   if (landOn === 'end') {
     const m = MURALS[currentMuralId];
     currentGalleryIdx = m.gallery.length - 1;
