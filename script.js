@@ -1644,6 +1644,9 @@ function applyMuralOrder() {
     });
   });
 }
+// El script se carga al final del documento: aplicar el orden inmediatamente
+// evita que durante la carga aparezca por un instante el orden escrito en HTML.
+applyMuralOrder();
 async function saveMuralOrder() {
   try { await appStorage.set('mural_order', JSON.stringify(muralOrder)); } catch (e) { warnSaveFailed(); }
 }
