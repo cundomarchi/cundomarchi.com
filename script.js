@@ -1754,6 +1754,12 @@ document.addEventListener('click', function(e) {
   if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
   const link = e.target.closest && e.target.closest('.mural-card[data-mural-id] a[href]');
   if (!link) return;
+  // En modo edición la tarjeta es una superficie para mover y ampliar su
+  // portada. No debe abrir la ficha del mural ni seguir el enlace del <a>.
+  if (editMode) {
+    e.preventDefault();
+    return;
+  }
   e.preventDefault();
   openMuralPageOverlay(link.href);
 }, true);
