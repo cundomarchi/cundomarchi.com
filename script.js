@@ -445,7 +445,9 @@ function refreshEditButtons() {
 
     if (isLightboxSingle) { img.style.transform = 'none'; return; }
 
-    if (!isCardThumb) {
+    // Mostrar el mismo panel también sobre las portadas del Home y Portfolio.
+    // Así cada mural se puede encuadrar viendo exactamente el recorte final.
+    {
       const zoomWrap = document.createElement('div');
       zoomWrap.className = 'edit-zoom-controls';
       zoomWrap.style.bottom = (8 + idx * 40) + 'px';
@@ -460,7 +462,7 @@ function refreshEditButtons() {
       zoomWrap.querySelector('[data-act="down"]').onclick = (e) => { e.stopPropagation(); nudgePhoto(key, img, 0, 5); };
       zoomWrap.querySelector('[data-act="left"]').onclick = (e) => { e.stopPropagation(); nudgePhoto(key, img, -5, 0); };
       zoomWrap.querySelector('[data-act="right"]').onclick = (e) => { e.stopPropagation(); nudgePhoto(key, img, 5, 0); };
-      zoomWrap.querySelector('[data-act="reset"]').onclick = (e) => { e.stopPropagation(); slider.value = 1; photoZoom[key] = { s: 1, x: 0, y: 0 }; applyOnePhotoZoom(key, img); savePhotoZoom(); };
+      zoomWrap.querySelector('[data-act="reset"]').onclick = (e) => { e.stopPropagation(); slider.value = 1; photoZoom[key] = { s: 1, x: 0, y: 0 }; applyPhotoZoomForKey(key); savePhotoZoom(); };
       parent.appendChild(zoomWrap);
     }
 
@@ -492,7 +494,7 @@ function enablePhotoDrag(key, img, signal, withWheelZoom) {
     z.x = Math.max(-40, Math.min(40, startZ.x + dxPct));
     z.y = Math.max(-40, Math.min(40, startZ.y + dyPct));
     photoZoom[key] = z;
-    applyOnePhotoZoom(key, img);
+    applyPhotoZoomForKey(key);
   }
   function endDrag() {
     if (!dragging) return;
@@ -512,7 +514,7 @@ function enablePhotoDrag(key, img, signal, withWheelZoom) {
       const z = normZoom(photoZoom[key]);
       z.s = Math.max(1, Math.min(2.5, z.s + (e.deltaY < 0 ? 0.08 : -0.08)));
       photoZoom[key] = z;
-      applyOnePhotoZoom(key, img);
+      applyPhotoZoomForKey(key);
       savePhotoZoom();
     }, { signal, passive: false });
   }
@@ -535,6 +537,11 @@ function applyOnePhotoZoom(key, el) {
   const z = normZoom(photoZoom[key]);
   el.style.transform = `scale(${z.s}) translate(${z.x}%, ${z.y}%)`;
 }
+function applyPhotoZoomForKey(key) {
+  document.querySelectorAll(`[data-key="${CSS.escape(key)}"]`).forEach(el => {
+    if (!el.closest('.lightbox-single')) applyOnePhotoZoom(key, el);
+  });
+}
 function applyPhotoZoom() {
   document.querySelectorAll('[data-key]').forEach(el => {
     if (el.closest('.lightbox-single')) { el.style.transform = 'none'; return; }
@@ -547,7 +554,7 @@ function setZoom(key, el, val) {
   const z = normZoom(photoZoom[key]);
   z.s = val;
   photoZoom[key] = z;
-  applyOnePhotoZoom(key, el);
+  applyPhotoZoomForKey(key);
   savePhotoZoom();
 }
 function nudgePhoto(key, el, dx, dy) {
@@ -555,7 +562,7 @@ function nudgePhoto(key, el, dx, dy) {
   z.x = Math.max(-40, Math.min(40, z.x + dx));
   z.y = Math.max(-40, Math.min(40, z.y + dy));
   photoZoom[key] = z;
-  applyOnePhotoZoom(key, el);
+  applyPhotoZoomForKey(key);
   savePhotoZoom();
 }
 async function savePhotoZoom() {
@@ -1592,8 +1599,9 @@ const MURALS = {
 // Orden curado para que el Home abra con las obras visualmente mas fuertes y
 // alterne formatos, paletas y contextos. La revision renueva el orden guardado
 // una sola vez; despues se puede seguir ajustando desde el modo de edicion.
-const MURAL_ORDER_REVISION = 'visual-priority-2026-10-20';
+const MURAL_ORDER_REVISION = 'visual-priority-2026-10-20-tay-first';
 const MURAL_ORDER = [
+  'tay',
   'flower_octopus',
   'circle_of_nature',
   'bear_virreyes',
@@ -1623,8 +1631,7 @@ const MURAL_ORDER = [
   'toluca_collab',
   'trippy_trip',
   'sol_de_mayo',
-  'aguila_tigre',
-  'tay'
+  'aguila_tigre'
 ];
 let muralOrder = MURAL_ORDER.slice();
 function applyMuralOrder() {
@@ -2423,6 +2430,17 @@ window.addEventListener('popstate', () => openPageFromUrl(true));
 document.addEventListener('DOMContentLoaded', () => {
   if (location.hash && location.hash !== '#quote') openPageFromUrl(true);
   restoreMuralReturnPosition();
+  // Vista privada para revisar el encuadre de todas las portadas sin mostrar
+  // herramientas de edición a quienes visitan el sitio normalmente.
+  const editPreview = new URLSearchParams(location.search).get('edit');
+  const editToggle = document.getElementById('editToggle');
+  if (editToggle && editPreview) {
+    editToggle.style.display = '';
+    if (editPreview === 'zoom') {
+      showPage('work', true);
+      toggleEditMode();
+    }
+  }
   // Las paginas individuales de servicios vuelven al mismo formulario con el
   // tipo de trabajo ya elegido.
   const requestedService = new URLSearchParams(location.search).get('request');
