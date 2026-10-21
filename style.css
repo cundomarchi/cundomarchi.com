@@ -790,7 +790,7 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-photo img.card-main[data-key="the_eyes"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
 .mural-card:hover .mural-photo img.card-main[data-key="the_eyes"] { transform: scale(1.06); }
 .mural-photo img.card-main[data-key="the_seesaw"] { object-fit: cover; object-position: 50% 66%; transform-origin: 50% 66%; transform: scale(1); }
-.mural-photo img.card-main[data-key="tay"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(2.28) translate(-0.08%, -13.4545%); }
+body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: contain; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(2.28) translate(-0.08%, -13.4545%) !important; }
 .mural-card:hover .mural-photo img.card-main[data-key="the_seesaw"] { transform: scale(1.06); }
 .mural-photo:has(img.card-main[data-key="the_seesaw"]) img.card-blur { display: none; }
 .mural-photo img.card-main[data-key="tlaloc_extra5"] { object-fit: cover; object-position: 50% 50%; transform-origin: 50% 50%; transform: scale(1); }
