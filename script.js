@@ -39,6 +39,7 @@ const appStorage = {
 
 // ---- photo edit system ----
 let editMode = false;
+let coverZoomPreview = false;
 let overrides = {};
 let pendingKey = null;
 
@@ -408,6 +409,7 @@ function refreshEditButtons() {
     const key = img.getAttribute('data-key');
     const isLightboxSingle = !!img.closest('.lightbox-single');
     const isCardThumb = !!(img.closest('.mural-photo') || img.closest('.shop-card-img'));
+    if (coverZoomPreview && !img.closest('.mural-photo')) return;
     const parent = img.parentElement;
     if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
     const idx = parentCounts.get(parent) || 0;
@@ -2445,7 +2447,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const editToggle = document.getElementById('editToggle');
   if (editToggle && editPreview) {
     editToggle.style.display = '';
-    if (editPreview === 'zoom') {
+    if (editPreview === 'zoom' || editPreview === 'cover') {
+      coverZoomPreview = true;
+      document.body.classList.add('cover-zoom-preview');
       showPage('work', true);
       toggleEditMode();
     }
