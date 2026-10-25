@@ -935,7 +935,24 @@ function navGo(id) {
   showPage(id);
 }
 
+// The SPA keeps hidden sections light. Promote only the assets that become
+// visible on navigation so Portfolio never waits on its background or top row.
+function primePageImages(id) {
+  const page = document.getElementById('page-' + id);
+  if (!page) return;
+  const priorityImages = [
+    page.querySelector('.page-bg img'),
+    ...page.querySelectorAll('.mural-grid .mural-card:nth-child(-n+8) img.card-main, .service-links-grid img')
+  ].filter(Boolean);
+  priorityImages.forEach((img, index) => {
+    img.loading = 'eager';
+    img.decoding = 'async';
+    if (index === 0) img.fetchPriority = 'high';
+  });
+}
+
 function showPage(id, fromHistory) {
+  primePageImages(id);
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   // Dejar la seccion en la URL: asi el boton Atras del navegador y el link

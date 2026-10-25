@@ -537,6 +537,19 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 
 /* ROUTE */
 .shop-category { margin-bottom: 48px; }
+.shop-coming-soon { min-height: calc(100vh - 82px); overflow: hidden; }
+.shop-coming-soon > .section,
+.shop-coming-soon > .instagram-feed { display: none; }
+.coming-soon-stage { min-height: calc(100vh - 82px); position: relative; display: grid; place-items: center; overflow: hidden; isolation: isolate; }
+.coming-soon-stage::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.5)); }
+.coming-soon-kicker { position: absolute; top: 13%; left: 50%; transform: translateX(-50%); width: 90%; color: rgba(255,255,255,.82); text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+.coming-soon-tape { width: 120%; padding: 19px 0; overflow: hidden; background: #e8352c; border-block: 2px solid rgba(255,255,255,.9); box-shadow: 0 14px 45px rgba(0,0,0,.55); transform: rotate(-7deg); }
+.coming-soon-tape div { width: max-content; color: #fff; font-family: var(--display); font-size: clamp(28px, 5vw, 74px); line-height: 1; letter-spacing: .035em; white-space: nowrap; }
+@media (max-width: 700px) {
+  .shop-coming-soon, .coming-soon-stage { min-height: calc(100svh - 68px); }
+  .coming-soon-tape { width: 145%; padding: 14px 0; transform: rotate(-11deg); }
+  .coming-soon-kicker { top: 18%; font-size: 10px; }
+}
 .shop-category-title { font-family: var(--display); font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); border-bottom: 1px solid #2a2a2a; padding-bottom: 10px; margin-bottom: 20px; }
 .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
 .shop-card { background: var(--black-2); border: 1px solid #2a2a2a; transition: border-color .2s ease, transform .2s ease; }
