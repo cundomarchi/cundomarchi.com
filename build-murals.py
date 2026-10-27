@@ -246,6 +246,7 @@ PAGE = '''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <base href="{base}">
+<script src="/consent.js"></script>
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPKTK5PNK7"></script>
 <script>
