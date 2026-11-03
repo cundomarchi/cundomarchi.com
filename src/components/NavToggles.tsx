@@ -22,13 +22,13 @@ export function MenuToggle({ label = "Menu" }: { label?: string }) {
 }
 
 /** Abre el menu de idiomas. */
-export function DropdownToggle({ label, ariaLabel }: { label: string; ariaLabel: string }) {
+export function DropdownToggle({ label, ariaLabel, arrow = "⌄" }: { label: string; ariaLabel: string; arrow?: string }) {
   function onClick(e: MouseEvent<HTMLButtonElement>) {
     e.currentTarget.nextElementSibling?.classList.toggle("open");
   }
   return (
     <button className="lang-current" type="button" onClick={onClick} aria-label={ariaLabel}>
-      {label} <span className="lang-arrow">⌄</span>
+      {label} <span className="lang-arrow">{arrow}</span>
     </button>
   );
 }

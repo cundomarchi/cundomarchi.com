@@ -14,3 +14,18 @@ export function getMuralPage(lang: Lang, slug: string): MuralPage | undefined {
 export function muralPath(lang: Lang, slug: string): string {
   return `${lang === "es" ? "/es" : ""}/mural/${slug}.html`;
 }
+
+import { servicePages } from "./services";
+import type { ServicePage } from "./service-types";
+
+export function getServicePages(lang: Lang): ServicePage[] {
+  return servicePages.filter((p) => p.lang === lang);
+}
+
+export function getServicePage(lang: Lang, slug: string): ServicePage | undefined {
+  return servicePages.find((p) => p.lang === lang && p.slug === slug);
+}
+
+export function servicePath(lang: Lang, slug: string): string {
+  return `${lang === "es" ? "/es" : ""}/services/${slug}.html`;
+}

@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
       // La version sin .html de un mural lleva a la publicada.
       { source: "/mural/:slug([^.]+)/", destination: "/mural/:slug.html", permanent: true },
       { source: "/es/mural/:slug([^.]+)/", destination: "/es/mural/:slug.html", permanent: true },
+      { source: "/services/:slug([^.]+)/", destination: "/services/:slug.html", permanent: true },
+      { source: "/es/services/:slug([^.]+)/", destination: "/es/services/:slug.html", permanent: true },
+      { source: "/privacy/", destination: "/privacy.html", permanent: true },
+      { source: "/es/privacy/", destination: "/es/privacy.html", permanent: true },
     ];
   },
   async rewrites() {
@@ -22,6 +26,10 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         { source: "/mural/:slug.html", destination: "/mural/:slug" },
         { source: "/es/mural/:slug.html", destination: "/es/mural/:slug" },
+        { source: "/services/:slug.html", destination: "/services/:slug" },
+        { source: "/es/services/:slug.html", destination: "/es/services/:slug" },
+        { source: "/privacy.html", destination: "/privacy" },
+        { source: "/es/privacy.html", destination: "/es/privacy" },
       ],
     };
   },
