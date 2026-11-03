@@ -25,6 +25,7 @@
   window.gtag('set', 'allow_ad_personalization_signals', false);
 
   function updateConsent(value) {
+    saved = value;
     try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
     window.gtag('consent', 'update', {
       analytics_storage: value === 'granted' ? 'granted' : 'denied',
@@ -46,11 +47,11 @@
     banner.id = 'cookieConsent';
     banner.className = 'cookie-consent';
     banner.setAttribute('role', 'dialog');
-    banner.setAttribute('aria-modal', 'true');
+    banner.setAttribute('aria-modal', 'false');
     banner.setAttribute('aria-labelledby', 'cookieConsentTitle');
     banner.innerHTML = lang === 'es'
-      ? '<div><strong id="cookieConsentTitle">Privacidad y estadísticas</strong><p>Uso Google Analytics para entender qué páginas y murales resultan útiles. Las cookies de estadísticas son opcionales; la publicidad personalizada permanece desactivada. <a href="/es/privacy.html">Ver privacidad y cookies</a>.</p></div><div class="cookie-actions"><button type="button" data-consent="denied">Rechazar</button><button type="button" class="cookie-accept" data-consent="granted">Aceptar estadísticas</button></div>'
-      : '<div><strong id="cookieConsentTitle">Privacy and analytics</strong><p>I use Google Analytics to understand which pages and murals are useful. Analytics cookies are optional; personalised advertising remains disabled. <a href="/privacy.html">View privacy and cookies</a>.</p></div><div class="cookie-actions"><button type="button" data-consent="denied">Reject</button><button type="button" class="cookie-accept" data-consent="granted">Accept analytics</button></div>';
+      ? '<div><strong id="cookieConsentTitle">Cookies</strong><p>Guardamos tu elección. Las cookies para medir visitas son opcionales. <a href="/es/privacy.html">Más información</a>.</p></div><div class="cookie-actions"><button type="button" data-consent="denied">Solo necesarias</button><button type="button" class="cookie-accept" data-consent="granted">Aceptar todas</button></div>'
+      : '<div><strong id="cookieConsentTitle">Cookies</strong><p>We remember your choice. Cookies for measuring visits are optional. <a href="/privacy.html">Learn more</a>.</p></div><div class="cookie-actions"><button type="button" data-consent="denied">Necessary only</button><button type="button" class="cookie-accept" data-consent="granted">Accept all</button></div>';
     banner.addEventListener('click', function (event) {
       var button = event.target.closest('[data-consent]');
       if (button) updateConsent(button.getAttribute('data-consent'));

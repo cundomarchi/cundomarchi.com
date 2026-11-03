@@ -97,7 +97,7 @@ body.edit-mode .bg-opacity-panel { display: flex; }
 .bg-pos-grid button:hover { border-color: var(--white); color: var(--red); }
 .bg-pos-grid span { width: 26px; height: 24px; }
 body { background: var(--black); color: var(--white); font-family: var(--mono); line-height: 1.6; overflow-x: hidden; }
-.cookie-consent { position:fixed; z-index:10000; left:20px; right:20px; bottom:20px; max-width:980px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px 20px; background:rgba(12,12,12,.98); border:1px solid #444; box-shadow:0 14px 50px rgba(0,0,0,.65); }
+.cookie-consent { position:fixed; z-index:10000; left:20px; right:20px; bottom:20px; max-width:640px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px; background:rgba(12,12,12,.98); border:1px solid #444; box-shadow:0 14px 50px rgba(0,0,0,.65); }
 .cookie-consent strong { display:block; margin-bottom:4px; font-family:var(--display); font-size:14px; text-transform:uppercase; letter-spacing:.04em; }
 .cookie-consent p { max-width:650px; color:#c7c7c2; font-size:12px; line-height:1.55; }
 .cookie-consent a, .foot-legal a, .legal-page a { color:var(--white); text-underline-offset:3px; }
