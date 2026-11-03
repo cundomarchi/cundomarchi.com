@@ -2,8 +2,8 @@ import type { Lang } from "@/lib/site";
 import { MenuToggle, DropdownToggle } from "./NavToggles";
 
 const LABELS = {
-  en: { home: "Home", bio: "Bio", work: "Portfolio", live: "Services", shop: "Shop", quote: "Get a Quote", lang: "🇺🇸 EN" },
-  es: { home: "Inicio", bio: "Bio", work: "Portfolio", live: "Servicios", shop: "Tienda", quote: "Pedir presupuesto", lang: "🇪🇸 ES" },
+  en: { nav: "Primary navigation", menu: "Menu", changeLang: "Change language", home: "Home", bio: "Bio", work: "Portfolio", live: "Services", shop: "Shop", quote: "Get a Quote", lang: "🇺🇸 EN" },
+  es: { nav: "Navegación principal", menu: "Menú", changeLang: "Cambiar idioma", home: "Inicio", bio: "Bio", work: "Portfolio", live: "Servicios", shop: "Shop", quote: "Pedir Presupuesto", lang: "🇪🇸 ES" },
 } as const;
 
 export interface SiteNavProps {
@@ -27,11 +27,11 @@ export function SiteNav({ lang, alternates }: SiteNavProps) {
   );
 
   return (
-    <nav className="mural-site-nav" aria-label="Primary navigation">
+    <nav className="mural-site-nav" aria-label={t.nav}>
       <div className="wrap">
         <div className="menu-dropdown" style={{ display: "flex", alignItems: "center", gap: 16, position: "relative" }}>
-          <MenuToggle />
-          <a href={`${home}#home`} aria-label="Home">
+          <MenuToggle label={t.menu} />
+          <a href={`${home}#home`} aria-label={t.home}>
             <img
               src="/images/site/cmz_logo-400.png"
               srcSet="/images/site/cmz_logo-120.png 120w, /images/site/cmz_logo-400.png 400w"
@@ -53,7 +53,7 @@ export function SiteNav({ lang, alternates }: SiteNavProps) {
         </a>
         <div className="nav-utils">
           <div className="lang-dropdown">
-            <DropdownToggle label={t.lang} />
+            <DropdownToggle label={t.lang} ariaLabel={t.changeLang} />
             <div className="lang-menu">
               <a href={alternates.en}>🇺🇸 English</a>
               <a href={alternates.es}>🇪🇸 Español</a>
