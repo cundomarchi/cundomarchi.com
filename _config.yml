@@ -1,7 +1,0 @@
-# Keep local working files out of GitHub Pages builds, even if staged by mistake.
-exclude:
-  - tmp
-  - output
-  - originales
-  - "PARA SUBIR"
-  - COMO-USAR.md
