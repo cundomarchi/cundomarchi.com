@@ -1,0 +1,46 @@
+  /* El marco se adapta a la foto, no al reves: la imagen se muestra con su
+     proporcion real, asi no hay recorte NI franjas negras. Solo se limita la
+     altura para que una foto muy vertical no ocupe toda la pantalla. */
+  .m-hero { display:block; margin:0 auto; max-width:100%; max-height:82vh; width:auto; height:auto; }
+  .m-body { max-width:760px; }
+  .m-body p { color:#d8d8d3; font-size:16px; line-height:1.75; }
+  .m-meta { color:var(--gray); font-family:var(--mono); font-size:14px; }
+  /* Dos columnas equilibradas. Si sobra una foto, queda centrada en la fila
+     final en vez de quedar pegada a un costado. */
+  /* Galeria justificada: cada foto conserva su proporcion real y las de una
+     misma fila comparten altura (flex-grow proporcional al ancho/alto). */
+  .m-rows { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
+  .m-row { display:flex; gap:14px; width:100%; margin:0 auto; }
+  .m-row img { display:block; width:100%; height:auto; min-width:0; background:#000; border-radius:2px; }
+  /* Excepciones pedidas para estas fotos concretas. El boceto se ve completo
+     dentro de un marco menos vertical y el recorte del oso oculta el icono que
+     venia incrustado en la captura, sin tocar el archivo original. */
+  .m-row img[data-key="you_see_before"] { flex:.85 1 0 !important; aspect-ratio:.85 !important; object-fit:contain; }
+  .m-row img[data-key="bear_virreyes_extra2"] { flex:1.08 1 0 !important; aspect-ratio:1.08 !important; object-fit:cover; object-position:top; }
+  @media (max-width:640px) {
+    .m-row { display:block; max-width:none !important; }
+    .m-row img + img { margin-top:14px; }
+  }
+  .m-ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:32px; }
+  .m-ba figure { margin:0; }
+  .m-ba img { width:100%; aspect-ratio:1 / 1; object-fit:cover; object-position:center; display:block; border-radius:2px; }
+  .m-ba--portrait img { aspect-ratio:3 / 4; }
+  .m-ba--landscape img { aspect-ratio:4 / 3; }
+  .m-ba--mixed img { object-fit:contain; background:#000; }
+  .m-ba--flower img { aspect-ratio:1 / 1; object-fit:cover; object-position:center; background:#000; }
+  .m-ba img[data-key="inac_hospitality_before"],
+  .m-ba img[data-key="inac_hospitality_after"] { object-fit:contain; background:#000; }
+  .m-hero[data-key="flower_octopus"] { max-height:68vh; }
+  .m-hero[data-key="bear_virreyes"] { width:min(100%,520px); height:min(76vh,700px); max-height:none; object-fit:cover; object-position:center 71%; }
+  .m-ba figcaption {
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gray); margin-top:8px;
+  }
+  @media (max-width:560px) { .m-ba { grid-template-columns:1fr; } }
+  .m-title { font-family:var(--display); font-size:clamp(30px,5vw,52px); line-height:1.05; margin:14px 0; }
+  .m-nav { display:flex; justify-content:space-between; gap:16px; margin-top:56px;
+            border-top:1px solid #232323; padding-top:24px; font-family:var(--mono); font-size:13px; }
+  .m-nav a { color:var(--gray); text-decoration:none; }
+  .m-nav a:hover { color:var(--white); }
+  .m-idioma { margin-top:26px; font-family:var(--mono); font-size:13px; color:var(--gray); }
+  .m-idioma a { color:var(--white); }

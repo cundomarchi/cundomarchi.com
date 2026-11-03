@@ -8,19 +8,19 @@ Copiá el archivo a la carpeta del mural o producto, corré un comando, avisame.
 
 ## Paso a paso
 
-**1. Copiá la foto o el video** a la carpeta que corresponda dentro de `images/`.
+**1. Copiá la foto o el video** a la carpeta que corresponda dentro de `public/images/`.
 El nombre no importa, puede ser `IMG_4821.HEIC` o lo que sea.
 
 ```
-images/tlaloc/            fotos del mural Tlaloc
-images/shop/shop_mug_golo/  fotos y videos de la taza
-images/site/              fondos y fotos del sitio
+public/images/tlaloc/            fotos del mural Tlaloc
+public/images/shop/shop_mug_golo/  fotos y videos de la taza
+public/images/site/              fondos y fotos del sitio
 ```
 
 **2. Abrí la Terminal**, pegá esto y dale Enter:
 
 ```
-cd ~/Documents/GitHub/cundomarchi.com && python3 optimize-media.py
+cd ~/Documents/GitHub/cundomarchi.com && python3 scripts/optimize-media.py
 ```
 
 Esto **solo te muestra** qué encontró. No toca nada.
@@ -28,7 +28,7 @@ Esto **solo te muestra** qué encontró. No toca nada.
 **3. Si está bien, aplicá:**
 
 ```
-cd ~/Documents/GitHub/cundomarchi.com && python3 optimize-media.py --apply
+cd ~/Documents/GitHub/cundomarchi.com && python3 scripts/optimize-media.py --apply
 ```
 
 **4. Avisame** qué agregaste y a qué mural o producto va.
