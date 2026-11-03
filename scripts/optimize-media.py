@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Deja lista para la web cualquier foto o video que copies a images/.
+Deja lista para la web cualquier foto o video que copies a public/images/.
 
 Como usarlo:
-    python3 optimize-media.py            ve que hay para arreglar y te lo dice, NO toca nada
-    python3 optimize-media.py --apply    lo arregla
+    python3 scripts/optimize-media.py            ve que hay para arreglar y te lo dice, NO toca nada
+    python3 scripts/optimize-media.py --apply    lo arregla
 
 Que hace:
   - Fotos pesadas o gigantes: las baja a 1600px de lado mayor y las recomprime
@@ -17,8 +17,8 @@ Los fondos de pantalla completa se dejan un poco mas grandes (2000px).
 """
 import os, sys, subprocess, shutil
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
-IMAGES = os.path.join(ROOT, 'images')
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+IMAGES = os.path.join(ROOT, 'public', 'images')
 APPLY = '--apply' in sys.argv
 
 MAX_SIDE      = 1600      # lado mayor para fotos normales
@@ -104,7 +104,7 @@ def shrink_video(path, apply):
 
 def main():
     if not os.path.isdir(IMAGES):
-        sys.exit('no encuentro la carpeta images/')
+        sys.exit('no encuentro la carpeta public/images/')
 
     jobs = []
     for root, dirs, files in os.walk(IMAGES):
@@ -145,7 +145,7 @@ def main():
     if not APPLY:
         print(f'\nTotal actual: {saved_before/1024:.0f} MB')
         print('Esto fue solo un vistazo, no se toco nada.')
-        print('Para aplicarlo:  python3 optimize-media.py --apply')
+        print('Para aplicarlo:  python3 scripts/optimize-media.py --apply')
     else:
         after = sum(kb(p) for _, p, _ in jobs if os.path.exists(p))
         print(f'\nListo: {saved_before/1024:.0f} MB -> {after/1024:.0f} MB')

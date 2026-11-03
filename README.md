@@ -18,8 +18,9 @@ npm run typecheck
 - `src/data/services.ts`: contenido de las paginas de servicios (tipos en `service-types.ts`).
 - `src/data/murals.ts`: textos, fotos y SEO de cada mural en los dos idiomas (tipos en `mural-types.ts`).
 - `src/components/`: componentes compartidos (navegacion, analytics, JSON-LD, galeria de murales).
-- `src/legacy/index.{en,es}.html`: markup de la home, todavia servido tal cual junto con `public/script.js`.
+- `src/components/home/`: la home (inicio, bio, portfolio, servicios, tienda, formulario) como componentes bilingues. El comportamiento (lightbox, carrusel, formulario, idioma, modo edicion) sigue en `public/script.js`, que `HomeRuntime` carga despues de que React monta la pagina.
 - `public/`: imagenes, fuentes, CSS y los scripts del sitio original (`script.js`, `consent.js`, `service-pages.js`).
-- `tools/`: scripts de Python del sitio anterior (optimizar fotos, encuadres).
+- `scripts/optimize-media.py`: deja livianas las fotos y videos nuevos (ver `COMO-USAR.md`).
+- `tools/migrate/`: scripts que se usaron una vez para migrar el sitio HTML.
 
 Las URLs publicadas (`/mural/<slug>.html`, `/services/*.html`) se conservan para no perder posicionamiento.

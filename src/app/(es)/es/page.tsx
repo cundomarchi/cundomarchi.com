@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { LegacyHome } from "@/components/LegacyHome";
+import { Home } from "@/components/home/Home";
+import { JsonLd } from "@/components/JsonLd";
+import { homeJsonLd } from "@/data/site-jsonld";
 
 const title = "Cundo Marchi, Muralista y Artista Visual";
 const description =
@@ -39,5 +41,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePageEs() {
-  return <LegacyHome lang="es" />;
+  return (
+    <>
+      <JsonLd data={homeJsonLd} />
+      <Home lang="es" />
+    </>
+  );
 }

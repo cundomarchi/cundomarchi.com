@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { LegacyHome } from "@/components/LegacyHome";
+import { Home } from "@/components/home/Home";
+import { JsonLd } from "@/components/JsonLd";
+import { homeJsonLd } from "@/data/site-jsonld";
 
 const description =
   "Argentinian muralist and visual artist painting large-scale murals across 5 continents since 2012. Murals, live painting and paint workshops, worldwide.";
@@ -40,5 +42,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <LegacyHome lang="en" />;
+  return (
+    <>
+      <JsonLd data={homeJsonLd} />
+      <Home lang="en" />
+    </>
+  );
 }
