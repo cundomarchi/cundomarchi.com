@@ -884,3 +884,56 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 .live-gallery img[data-key="live_basel_night3"] { object-position: center 35%; }
 .live-gallery img[data-key="live_otamendi_day3"] { object-position: center 40%; }
 .live-gallery img[data-key="live_painting_1"] { object-position: center 35%; }
+
+/* Personal project brief */
+#quote [hidden] { display:none !important; }
+#quote .quote-box { max-width:720px; padding:32px; }
+#quote .quote-photo-wrap { flex-basis:300px; width:300px; }
+.quote-progress { list-style:none; display:flex; gap:12px; padding:0; margin:0 0 30px; font:11px var(--mono); }
+.quote-progress li { flex:1; padding:0 0 12px; border-bottom:2px solid #333; color:#aaa; }
+.quote-progress [aria-current="step"] { color:#fff; border-color:var(--red, #e8352c); }
+.quote-progress .is-complete { border-color:#aaa; }
+.quote-stage h3 { outline:none; font-size:24px; line-height:1.25; }
+.quote-stage h3:focus-visible { outline:2px solid #fff; outline-offset:6px; }
+.quote-choices { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:16px 0 26px; }
+.quote-choice { text-align:left; padding:0 0 14px; border:1px solid #444; background:#111; color:#eee; cursor:pointer; overflow:hidden; }
+.quote-choice img { display:block; width:100%; height:100px; object-fit:contain; background:#191919; }
+.quote-choice strong { display:block; font:12px var(--display); padding:12px 10px 5px; }
+.quote-choice span { display:block; font:11px/1.5 var(--mono); padding:0 10px; color:#bbb; }
+.quote-choice[aria-pressed="true"] { border-color:#fff; box-shadow:0 0 0 1px #fff; background:#252525; }
+.quote-choice:focus-visible, .quote-step-actions button:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+.quote-input { flex:1; min-width:0; }
+.quote-input label, .quote-stage label.step-label { display:block; font:11px/1.5 var(--mono); color:#ccc; margin:10px 0 0; }
+#quote .field::placeholder { color:#999; }
+#quote [aria-invalid="true"] { border-color:#e0b667; }
+#wallFormError { color:#e0b667; font-size:13px; margin:14px 0; }
+.quote-step-actions { display:flex; justify-content:flex-end; align-items:center; gap:16px; margin-top:24px; }
+.quote-step-actions .btn-primary { padding:14px 20px; font-size:12px; cursor:pointer; }
+.quote-back { margin-right:auto; background:none; border:0; color:#ccc; font:12px var(--mono); cursor:pointer; padding:12px 0; }
+.quote-direct { display:block; margin-top:18px; font:11px/1.6 var(--mono); color:#bbb; text-underline-offset:4px; }
+@media(max-width:900px) { #quote .quote-layout { flex-direction:column; } #quote .quote-photo-wrap { display:none; } #quote .quote-box { max-width:720px; } }
+@media(max-width:480px) { #quote .quote-box { padding:22px 16px; } .quote-progress { font-size:10px; gap:8px; } .quote-choice img { height:78px; } .quote-choice strong { font-size:11px; padding:10px 7px 4px; } .quote-choice span { padding:0 7px; font-size:10px; } .quote-stage h3 { font-size:21px; } }
+
+/* Clickable line-art choices: the eye motif echoes Cundo's mural language. */
+.quote-choice { padding:20px 10px 18px; text-align:center; transition:border-color .18s, background .18s; }
+.quote-icon { width:76px; height:76px; margin:0 auto 10px; display:block; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; color:#ecece5; }
+.quote-choice[aria-pressed="true"] .quote-icon, .quote-option[aria-pressed="true"] .quote-icon { color:#e8352c; }
+.quote-option-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin:14px 0 24px; }
+.quote-option { background:#161616; color:#eee; border:1px solid #444; padding:16px 10px; cursor:pointer; font:12px/1.5 var(--mono); }
+.quote-option .quote-icon { width:48px; height:48px; }
+.quote-option[aria-pressed="true"] { border-color:#fff; background:#252525; box-shadow:0 0 0 1px #fff; }
+.quote-option:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+.quote-choice:hover, .quote-option:hover { background:#242424; border-color:#aaa; }
+.quote-stage h3 { scroll-margin-top:100px; }
+.quote-reveal:not([hidden]), .quote-option-grid:not([hidden]) { animation:quote-appear .2s ease-out; }
+@keyframes quote-appear { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .quote-reveal, .quote-option-grid { animation:none !important; } }
+@media(max-width:480px) { .quote-choice { padding:16px 4px; } .quote-choice .quote-icon { width:58px; height:58px; } .quote-option-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+.quote-upload { position:relative; display:flex; flex-direction:column; align-items:center; gap:6px; padding:24px 16px; margin:14px 0; border:1px dashed #777; background:#161616; color:#eee; cursor:pointer; text-align:center; }
+.quote-upload:hover, .quote-upload:focus-within { border-color:#fff; background:#242424; }
+.quote-upload .quote-icon { width:58px; height:58px; }
+.quote-upload span { font:13px var(--mono); }
+.quote-upload small { color:#aaa; font:11px/1.5 var(--mono); }
+.quote-upload input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
+.quote-upload:focus-within { outline:2px solid #fff; outline-offset:4px; }

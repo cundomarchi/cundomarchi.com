@@ -1139,11 +1139,10 @@ function cargarSlide(slide) {
   if (!main) return;
   const src = main.dataset.src;
   delete main.dataset.src;
-  // El carrusel se ve a 380px de alto y todas las portadas tienen una variante
-  // de 800px. Incluso en pantallas retina alcanza para verse nitida y evita
-  // pedir variantes de 1200px que algunas obras no tienen.
-  const anchoFoto = 800;
-  usarVarianteConRespaldo(main, src, anchoFoto);
+  // Use the largest published source: the full-width carousel and approved
+  // zoom crops need more detail than the 800px card thumbnail. Nearby slides
+  // are still loaded on demand to avoid downloading the whole portfolio.
+  main.src = src;
 }
 function goToSlide(i) {
   const slides = document.querySelectorAll('#carousel .carousel-slide');
@@ -1194,6 +1193,7 @@ function formatDateInput(el) {
 function chooseArtTypeSelect(selectEl) {
   const type = selectEl.value;
   wallAnswers.artType = type;
+  if (window.syncQuoteChoices) window.syncQuoteChoices(type);
   document.getElementById('artMuralBlock').style.display = type === 'mural' ? 'block' : 'none';
   document.getElementById('artLiveBlock').style.display = type === 'live' ? 'block' : 'none';
   document.getElementById('artWorkshopBlock').style.display = type === 'workshop' ? 'block' : 'none';
@@ -1250,6 +1250,7 @@ function shrinkImage(file, maxDim, quality) {
   });
 }
 function submitWallForm() {
+  if (window.validateQuoteJourney && !window.validateQuoteJourney()) return;
   const first = document.getElementById('w-first').value.trim();
   const last = document.getElementById('w-last').value.trim();
   const email = document.getElementById('w-email').value.trim();
