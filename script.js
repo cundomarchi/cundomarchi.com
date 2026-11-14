@@ -1261,7 +1261,7 @@ function submitWallForm() {
   const hasPhoto = !!(photoInput.files && photoInput.files[0]);
   const errorMsg = document.getElementById('wallFormError');
   const type = wallAnswers.artType;
-  let valid = !!(first && last && email && location && details && type && wallAnswers.budget);
+  let valid = !!(first && email && location && details && type && wallAnswers.budget);
   // la foto de la pared es opcional: ayuda a cotizar, pero no frena la consulta
   if (type === 'mural') valid = valid && !!(wallAnswers.wallType && size);
   if (type === 'live') valid = valid && !!wallAnswers.attendance;
@@ -1310,15 +1310,25 @@ function sendQuoteRequest(photoFile) {
     form.appendChild(i);
   }
 
-  campo('_subject', `Nueva consulta de ${type}: ${a.first} ${a.last} (${a.location})`);
+  campo('_subject', `Nueva consulta de ${type}: ${(a.first + ' ' + a.last).trim()} (${a.location})`);
   campo('_captcha', 'false');
   // "table" arma una tabla de dos columnas; con 13 campos se lee mucho mejor
   // que "box", que apila una caja gris por campo.
   campo('_template', 'table');
   // asi podes apretar Responder en el mail y le contestas al cliente directo
   campo('_replyto', a.email);
-  // al terminar, volver al sitio con la marca de exito
-  campo('_next', location.origin + location.pathname + '?enviado=1');
+  // El envio va a un iframe oculto: el visitante nunca sale del sitio ni ve
+  // la pagina generica de FormSubmit, y al terminar ve nuestro propio gracias.
+  let sink = document.getElementById('quoteSink');
+  if (!sink) {
+    sink = document.createElement('iframe');
+    sink.name = sink.id = 'quoteSink';
+    sink.title = 'quote';
+    sink.hidden = true;
+    sink.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(sink);
+  }
+  form.target = 'quoteSink';
 
   // Respuesta automatica al cliente: le llega al instante, con tu voz, y te
   // saca la presion de contestar en el momento.
@@ -1348,7 +1358,7 @@ function sendQuoteRequest(photoFile) {
   campo('06. Fecha preferida', a.date || '-');
   campo('07. Foto de la pared', a.photoName ? ('adjunta: ' + a.photoName) : 'no adjunto foto');
   campo('08. Detalles', a.details || '-');
-  campo('09. Nombre', `${a.first} ${a.last}`);
+  campo('09. Nombre', `${a.first} ${a.last}`.trim());
   campo('10. Email', a.email);
   campo('11. Telefono', a.phone || '-');
   campo('12. Empresa', a.company || '-');
@@ -1375,10 +1385,32 @@ function sendQuoteRequest(photoFile) {
     });
   }
   document.body.appendChild(form);
+  sink.onload = function () {
+    sink.onload = null;
+    form.remove();
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', { currency: 'AUD', lead_source: 'website_quote_form' });
+    }
+    showQuoteConfirm(a.first);
+  };
   form.submit();
 }
 
-// Al volver de FormSubmit con ?enviado=1, mostrar el mensaje de gracias.
+function showQuoteConfirm(name) {
+  const paso = document.getElementById('wallFormStep');
+  const listo = document.getElementById('wallFormConfirm');
+  if (!paso || !listo) return;
+  const slot = listo.querySelector('.confirm-name');
+  if (slot) slot.textContent = name ? ', ' + name : '';
+  paso.classList.remove('active');
+  listo.classList.add('active');
+  setTimeout(function () {
+    listo.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    listo.focus({ preventScroll: true });
+  }, 120);
+}
+
+// Compatibilidad: enlaces viejos con ?enviado=1 todavia muestran el gracias.
 document.addEventListener('DOMContentLoaded', function () {
   if (location.search.indexOf('enviado=1') === -1) return;
   // Solo considerar el contacto como conversion cuando FormSubmit devuelve al
@@ -1390,15 +1422,7 @@ document.addEventListener('DOMContentLoaded', function () {
       lead_source: 'website_quote_form'
     });
   }
-  const paso = document.getElementById('wallFormStep');
-  const listo = document.getElementById('wallFormConfirm');
-  if (paso && listo) {
-    paso.classList.remove('active');
-    listo.classList.add('active');
-    setTimeout(function () {
-      document.getElementById('quote').scrollIntoView({ block: 'center' });
-    }, 120);
-  }
+  showQuoteConfirm('');
   // limpiar la direccion para que al recargar no vuelva a mostrarlo
   try { history.replaceState({}, '', location.pathname); } catch (e) {}
 });

@@ -910,7 +910,17 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 .quote-step-actions { display:flex; justify-content:flex-end; align-items:center; gap:16px; margin-top:24px; }
 .quote-step-actions .btn-primary { padding:14px 20px; font-size:12px; cursor:pointer; }
 .quote-back { margin-right:auto; background:none; border:0; color:#ccc; font:12px var(--mono); cursor:pointer; padding:12px 0; }
-.quote-direct { display:block; margin-top:18px; font:11px/1.6 var(--mono); color:#bbb; text-underline-offset:4px; }
+.quote-direct { display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin-top:22px; padding-top:20px; border-top:1px solid #2a2a2a; font:11px/1.6 var(--mono); color:#bbb; }
+.quote-direct > span { margin-right:4px; }
+.quote-direct-link { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid #444; color:#eee; text-decoration:none; transition:border-color .18s, background .18s; }
+.quote-direct-link:hover { border-color:#fff; background:#242424; }
+.quote-direct-link:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+.quote-direct-link svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+/* Budget: plain text chips, no repeated icon */
+.quote-option-grid--chips { grid-template-columns:repeat(auto-fit,minmax(105px,1fr)); }
+.quote-option-grid--chips .quote-option { padding:14px 10px; }
+#quote .form-privacy { margin-top:14px; color:#aaa; font-size:11px; }
+@media(max-width:480px) { .quote-direct-link { flex:1 1 100%; justify-content:center; } .quote-option-grid--chips { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:900px) { #quote .quote-layout { flex-direction:column; } #quote .quote-photo-wrap { display:none; } #quote .quote-box { max-width:720px; } }
 @media(max-width:480px) { #quote .quote-box { padding:22px 16px; } .quote-progress { font-size:10px; gap:8px; } .quote-choice img { height:78px; } .quote-choice strong { font-size:11px; padding:10px 7px 4px; } .quote-choice span { padding:0 7px; font-size:10px; } .quote-stage h3 { font-size:21px; } }
 
@@ -937,3 +947,15 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 .quote-upload small { color:#aaa; font:11px/1.5 var(--mono); }
 .quote-upload input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
 .quote-upload:focus-within { outline:2px solid #fff; outline-offset:4px; }
+
+/* Thank-you screen after sending the quote */
+#wallFormConfirm { text-align:left; outline:none; }
+#wallFormConfirm .confirm-logo { width:120px; height:auto; margin:0 0 22px; display:block; }
+#wallFormConfirm h3 { font-size:30px; line-height:1.15; }
+#wallFormConfirm .confirm-lead { color:#d8d8d3; font-size:15px; margin-top:12px; max-width:480px; }
+.confirm-steps { list-style:none; margin:28px 0 0; padding:0; border-top:1px solid #2a2a2a; }
+.confirm-steps li { display:grid; grid-template-columns:76px 1fr; gap:14px; padding:14px 0; border-bottom:1px solid #2a2a2a; font-size:14px; color:#ddd; }
+.confirm-steps strong { font:11px/1.9 var(--mono); color:#e8352c; letter-spacing:.4px; }
+.confirm-meanwhile { margin-top:28px !important; font:11px var(--mono) !important; color:#aaa !important; letter-spacing:.4px; text-transform:uppercase; }
+.confirm-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; font:11px/1.6 var(--mono); }
+@media(max-width:480px) { #wallFormConfirm h3 { font-size:24px; } .confirm-steps li { grid-template-columns:60px 1fr; } .confirm-links .quote-direct-link { flex:1 1 100%; justify-content:center; } }

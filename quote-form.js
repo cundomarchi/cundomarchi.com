@@ -43,7 +43,7 @@
   const svg = name => '<svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#' + name + '"/></svg>';
   root.querySelectorAll('select:not([hidden])').forEach(select => {
     const group = document.createElement('div');
-    group.className = 'quote-option-grid';
+    group.className = 'quote-option-grid' + (select.closest('#wallBudgetBlock') ? ' quote-option-grid--chips' : '');
     group.id = select.id + '-choices';
     group.setAttribute('role', 'group');
     const label = select.previousElementSibling;
@@ -62,9 +62,9 @@
       if (option.dataset.es) labelText.dataset.es = option.dataset.es;
       let icon = 'people';
       if (select.closest('#artMuralBlock')) icon = ['home','shop','wall'][i];
-      if (select.closest('#wallBudgetBlock')) icon = 'budget';
+      if (select.closest('#wallBudgetBlock')) icon = '';
       if (select.closest('#artWorkshopBlock') && choices.filter(x => x.select.closest('#artWorkshopBlock')).length === 0) icon = i ? 'canvas' : 'mural';
-      button.innerHTML = svg(icon);
+      button.innerHTML = icon ? svg(icon) : '';
       button.appendChild(labelText);
       button.setAttribute('aria-pressed', String(option.selected));
       button.addEventListener('click', () => {
@@ -107,7 +107,7 @@
     ideaWriting.hidden = !budgetReady;
     next.hidden = current === 2 || (current === 0 && !ready) || (current === 1 && !budgetReady);
   }
-  const mandatory = ['w-first', 'w-last', 'w-email', 'w-location', 'w-details', 'w-size'];
+  const mandatory = ['w-first', 'w-email', 'w-location', 'w-details', 'w-size'];
   mandatory.forEach(id => document.getElementById(id).setAttribute('aria-required', 'true'));
   function validate(index) {
     const controls = [...stages[index].querySelectorAll('input,select,textarea')]
