@@ -152,4 +152,97 @@
   next.addEventListener('click', () => { if (validate(current)) show(current + 1, true); });
   show(0, false);
   window.syncQuoteChoices(document.getElementById('quoteType').value);
+
+  // ---- Borrador local y aviso de consultas incompletas ----
+  // Lo que el visitante carga se guarda en su navegador: si se va y vuelve,
+  // retoma donde dejo. Si llego a cargar su email y se fue sin enviar, te
+  // llega un aviso con lo que alcanzo a completar para que puedas escribirle.
+  const DRAFT_KEY = 'cmz_quote_draft';
+  const DRAFT_DAYS = 7;
+  const fieldIds = ['w-size', 'w-location', 'w-date', 'w-details', 'w-first', 'w-last', 'w-email', 'w-phone', 'w-company'];
+  const allSelects = [...root.querySelectorAll('select')];
+  const typeSelect = document.getElementById('quoteType');
+  const confirmBox = document.getElementById('wallFormConfirm');
+  const isEs = () => (typeof lang !== 'undefined' ? lang : document.documentElement.lang) === 'es';
+  function readDraft() { try { return JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) { return null; } }
+  function writeDraft(d) { try { localStorage.setItem(DRAFT_KEY, JSON.stringify(d)); } catch (e) {} }
+  function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} }
+  function saveDraft() {
+    if (!typeSelect.value) return;
+    const d = readDraft() || {};
+    d.t = Date.now();
+    d.step = current;
+    d.v = {};
+    fieldIds.forEach(id => { d.v[id] = document.getElementById(id).value; });
+    d.s = allSelects.map(sel => sel.selectedIndex);
+    writeDraft(d);
+  }
+  root.addEventListener('input', saveDraft);
+  root.addEventListener('change', saveDraft);
+  root.querySelectorAll('[data-quote-type]').forEach(b => b.addEventListener('click', saveDraft));
+  back.addEventListener('click', saveDraft);
+  next.addEventListener('click', saveDraft);
+  function syncOptionButtons() {
+    choices.forEach(item => {
+      item.group.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(item.select.selectedIndex - 1 === i)));
+    });
+  }
+  function restoreDraft() {
+    const d = readDraft();
+    if (!d || !d.s || !(d.s[0] > 0) || Date.now() - d.t > DRAFT_DAYS * 864e5) return;
+    if (window.location.search.indexOf('enviado=1') !== -1) return;
+    fieldIds.forEach(id => { if (d.v && d.v[id]) document.getElementById(id).value = d.v[id]; });
+    allSelects.forEach((sel, i) => { if (d.s[i] > 0) sel.selectedIndex = d.s[i]; });
+    chooseArtTypeSelect(typeSelect);
+    allSelects.slice(1).forEach(sel => { if (sel.selectedIndex > 0) sel.dispatchEvent(new Event('change', { bubbles: true })); });
+    syncOptionButtons();
+    const details = document.getElementById('w-details');
+    if (details.value && typeof autoGrow === 'function') autoGrow(details);
+    show(Math.min(d.step || 0, 2), false);
+    const note = document.createElement('div');
+    note.className = 'quote-resume';
+    note.innerHTML = '<span>' + (isEs() ? 'Retomamos tu consulta donde la dejaste.' : 'We picked up your enquiry where you left off.') + '</span>'
+      + '<button type="button">' + (isEs() ? 'Empezar de nuevo' : 'Start over') + '</button>';
+    note.querySelector('button').addEventListener('click', () => { clearDraft(); window.location.reload(); });
+    root.insertBefore(note, root.firstChild);
+  }
+  restoreDraft();
+
+  function notifyAbandoned() {
+    const d = readDraft();
+    if (!d || d.notified || !typeSelect.value) return;
+    if (confirmBox && confirmBox.classList.contains('active')) return;
+    const email = document.getElementById('w-email');
+    if (!email.value.trim() || !email.validity.valid) return;
+    d.notified = true;
+    writeDraft(d);
+    const a = (typeof wallAnswers !== 'undefined') ? wallAnswers : {};
+    const val = id => document.getElementById(id).value.trim();
+    const tipo = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' }[typeSelect.value] || '-';
+    const nombre = (val('w-first') + ' ' + val('w-last')).trim() || email.value.trim();
+    const fd = new FormData();
+    fd.append('_subject', '[Consulta incompleta] ' + tipo + (val('w-location') ? ' en ' + val('w-location') : '') + ' · ' + nombre);
+    fd.append('_template', 'table');
+    fd.append('_captcha', 'false');
+    fd.append('_replyto', email.value.trim());
+    fd.append('Aviso', 'El visitante cargo sus datos pero no llego a tocar Enviar. Esto es lo que alcanzo a completar; conviene escribirle.');
+    fd.append('Trabajo', tipo);
+    fd.append('Ubicacion', val('w-location') || '-');
+    if (typeSelect.value === 'mural') { fd.append('Pared', a.wallType || '-'); fd.append('Medidas', val('w-size') || '-'); }
+    if (typeSelect.value === 'live') fd.append('Asistentes', a.attendance || '-');
+    if (typeSelect.value === 'workshop') { fd.append('Taller', a.workshopType || '-'); fd.append('Grupo', a.groupSize || '-'); }
+    fd.append('Presupuesto', a.budget || '-');
+    fd.append('Fecha', val('w-date') || '-');
+    fd.append('Detalles', val('w-details') || '-');
+    fd.append('Nombre', nombre);
+    fd.append('Email', email.value.trim());
+    fd.append('Telefono', val('w-phone') || '-');
+    fd.append('Empresa', val('w-company') || '-');
+    try {
+      fetch('https://formsubmit.co/ajax/cundomarchi@gmail.com', { method: 'POST', body: fd, keepalive: true, headers: { Accept: 'application/json' } }).catch(() => {});
+    } catch (e) {}
+  }
+  window.addEventListener('pagehide', notifyAbandoned);
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') notifyAbandoned(); });
+  window.clearQuoteDraft = clearDraft;
 }());

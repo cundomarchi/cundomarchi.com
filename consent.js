@@ -35,6 +35,7 @@
     });
     var banner = document.getElementById('cookieConsent');
     if (banner) banner.remove();
+    liberarEspacio();
     addSettingsButton();
   }
 
@@ -57,6 +58,22 @@
       if (button) updateConsent(button.getAttribute('data-consent'));
     });
     document.body.appendChild(banner);
+    reservarEspacio(banner);
+  }
+
+  // La franja esta fija al borde de abajo, asi que le sumo su alto al final de
+  // la pagina: de otro modo le taparia el ultimo pedazo de foto.
+  function reservarEspacio(banner) {
+    var aplicar = function () {
+      document.body.style.paddingBottom = banner.offsetHeight + 'px';
+    };
+    aplicar();
+    if (window.ResizeObserver) new ResizeObserver(aplicar).observe(banner);
+    else window.addEventListener('resize', aplicar);
+  }
+
+  function liberarEspacio() {
+    document.body.style.paddingBottom = '';
   }
 
   function addSettingsButton() {
@@ -67,7 +84,9 @@
     button.type = 'button';
     button.textContent = lang === 'es' ? 'Cookies' : 'Cookies';
     button.addEventListener('click', function () { showBanner(true); });
-    document.body.appendChild(button);
+    var pie = document.querySelector('.foot-legal');
+    if (pie) pie.appendChild(button);
+    else document.body.appendChild(button);
   }
 
   function init() {

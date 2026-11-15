@@ -1310,7 +1310,7 @@ function sendQuoteRequest(photoFile) {
     form.appendChild(i);
   }
 
-  campo('_subject', `Nueva consulta de ${type}: ${(a.first + ' ' + a.last).trim()} (${a.location})`);
+  campo('_subject', `[Consulta] ${type} en ${a.location} · ${(a.first + ' ' + a.last).trim()}`);
   campo('_captcha', 'false');
   // "table" arma una tabla de dos columnas; con 13 campos se lee mucho mejor
   // que "box", que apila una caja gris por campo.
@@ -1343,25 +1343,29 @@ function sendQuoteRequest(photoFile) {
 
   // El orden importa: la plantilla los muestra en este orden, y lo primero
   // que necesitas ver es que trabajo es y donde queda.
-  campo('01. Tipo de trabajo', type);
-  campo('02. Ubicacion', a.location);
+  // FormSubmit muestra los nombres tal cual (los espacios salen como "_"),
+  // asi que van en una sola palabra. Respeta el orden en que se agregan.
+  const resumen = [type, a.location, a.wallType, a.size, a.attendance, a.workshopType, a.groupSize, a.budget].filter(Boolean).join(' · ');
+  campo('Resumen', resumen);
+  campo('Trabajo', type);
+  campo('Ubicacion', a.location);
   if (a.artType === 'mural') {
-    campo('03. Tipo de pared', a.wallType || '-');
-    campo('04. Medidas aproximadas', a.size || '-');
+    campo('Pared', a.wallType || '-');
+    campo('Medidas', a.size || '-');
   }
-  if (a.artType === 'live') campo('03. Cantidad de personas', a.attendance || '-');
+  if (a.artType === 'live') campo('Asistentes', a.attendance || '-');
   if (a.artType === 'workshop') {
-    campo('03. Tipo de taller', a.workshopType || '-');
-    campo('04. Tamano del grupo', a.groupSize || '-');
+    campo('Taller', a.workshopType || '-');
+    campo('Grupo', a.groupSize || '-');
   }
-  campo('05. Presupuesto', a.budget || '-');
-  campo('06. Fecha preferida', a.date || '-');
-  campo('07. Foto de la pared', a.photoName ? ('adjunta: ' + a.photoName) : 'no adjunto foto');
-  campo('08. Detalles', a.details || '-');
-  campo('09. Nombre', `${a.first} ${a.last}`.trim());
-  campo('10. Email', a.email);
-  campo('11. Telefono', a.phone || '-');
-  campo('12. Empresa', a.company || '-');
+  campo('Presupuesto', a.budget || '-');
+  campo('Fecha', a.date || '-');
+  campo('Foto', a.photoName ? ('adjunta: ' + a.photoName) : 'sin foto');
+  campo('Detalles', a.details || '-');
+  campo('Nombre', `${a.first} ${a.last}`.trim());
+  campo('Email', a.email);
+  campo('Telefono', a.phone || '-');
+  campo('Empresa', a.company || '-');
 
   // La foto va como archivo real. OJO: FormSubmit solo la adjunta si el campo
   // se llama exactamente "attachment"; con cualquier otro nombre (por ejemplo
@@ -1400,6 +1404,7 @@ function showQuoteConfirm(name) {
   const paso = document.getElementById('wallFormStep');
   const listo = document.getElementById('wallFormConfirm');
   if (!paso || !listo) return;
+  if (window.clearQuoteDraft) window.clearQuoteDraft();
   const slot = listo.querySelector('.confirm-name');
   if (slot) slot.textContent = name ? ', ' + name : '';
   paso.classList.remove('active');
