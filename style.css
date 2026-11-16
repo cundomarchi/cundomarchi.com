@@ -972,3 +972,5 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 /* Resumed enquiry notice */
 .quote-resume { display:flex; justify-content:space-between; align-items:center; gap:12px; margin:0 0 20px; padding:10px 14px; border:1px solid #3a3a3a; background:#161616; font:11px/1.6 var(--mono); color:#ccc; }
 .quote-resume button { background:none; border:0; padding:0; color:#fff; font:inherit; text-decoration:underline; text-underline-offset:3px; cursor:pointer; white-space:nowrap; }
+
+.quote-hp { position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }

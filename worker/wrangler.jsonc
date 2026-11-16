@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cundomarchi-quote",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-01",
+  "account_id": "e4da952450c514eeb5a1f92a54e9bee9",
+  "routes": [
+    { "pattern": "api.cundomarchi.com", "custom_domain": true }
+  ],
+  "vars": {
+    "TO_EMAIL": "cundomarchi@gmail.com",
+    "FROM_EMAIL": "Cundo Marchi <hello@cundomarchi.com>",
+    "REPLY_EMAIL": "hello@cundomarchi.com",
+    "SITE_URL": "https://www.cundomarchi.com",
+    "ALLOWED_ORIGINS": "https://www.cundomarchi.com,https://cundomarchi.com,http://localhost:8080,http://127.0.0.1:8080"
+  }
+  // Secret (set with: npx wrangler secret put RESEND_API_KEY): RESEND_API_KEY
+}

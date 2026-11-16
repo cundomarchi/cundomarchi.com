@@ -221,25 +221,27 @@
     const tipo = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' }[typeSelect.value] || '-';
     const nombre = (val('w-first') + ' ' + val('w-last')).trim() || email.value.trim();
     const fd = new FormData();
-    fd.append('_subject', '[Consulta incompleta] ' + tipo + (val('w-location') ? ' en ' + val('w-location') : '') + ' · ' + nombre);
-    fd.append('_template', 'table');
-    fd.append('_captcha', 'false');
-    fd.append('_replyto', email.value.trim());
-    fd.append('Aviso', 'El visitante cargo sus datos pero no llego a tocar Enviar. Esto es lo que alcanzo a completar; conviene escribirle.');
-    fd.append('Trabajo', tipo);
-    fd.append('Ubicacion', val('w-location') || '-');
-    if (typeSelect.value === 'mural') { fd.append('Pared', a.wallType || '-'); fd.append('Medidas', val('w-size') || '-'); }
-    if (typeSelect.value === 'live') fd.append('Asistentes', a.attendance || '-');
-    if (typeSelect.value === 'workshop') { fd.append('Taller', a.workshopType || '-'); fd.append('Grupo', a.groupSize || '-'); }
-    fd.append('Presupuesto', a.budget || '-');
-    fd.append('Fecha', val('w-date') || '-');
-    fd.append('Detalles', val('w-details') || '-');
-    fd.append('Nombre', nombre);
-    fd.append('Email', email.value.trim());
-    fd.append('Telefono', val('w-phone') || '-');
-    fd.append('Empresa', val('w-company') || '-');
+    fd.append('kind', 'partial');
+    fd.append('lang', isEs() ? 'es' : 'en');
+    fd.append('type', typeSelect.value);
+    fd.append('location', val('w-location'));
+    fd.append('wallType', a.wallType || '');
+    fd.append('size', val('w-size'));
+    fd.append('attendance', a.attendance || '');
+    fd.append('workshopType', a.workshopType || '');
+    fd.append('groupSize', a.groupSize || '');
+    fd.append('budget', a.budget || '');
+    fd.append('date', val('w-date'));
+    fd.append('details', val('w-details'));
+    fd.append('first', val('w-first'));
+    fd.append('last', val('w-last'));
+    fd.append('email', email.value.trim());
+    fd.append('phone', val('w-phone'));
+    fd.append('company', val('w-company'));
+    const hp = document.getElementById('w-website');
+    fd.append('website', hp ? hp.value : '');
     try {
-      fetch('https://formsubmit.co/ajax/cundomarchi@gmail.com', { method: 'POST', body: fd, keepalive: true, headers: { Accept: 'application/json' } }).catch(() => {});
+      fetch((typeof QUOTE_API !== 'undefined' ? QUOTE_API : 'https://api.cundomarchi.com') + '/quote', { method: 'POST', body: fd, keepalive: true }).catch(() => {});
     } catch (e) {}
   }
   window.addEventListener('pagehide', notifyAbandoned);

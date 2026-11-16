@@ -30,3 +30,6 @@ PARA SUBIR/
 # salidas temporales de herramientas locales; nunca publicar en la web
 /output/
 /tmp/
+worker/node_modules/
+worker/.wrangler/
+worker/.dev.vars

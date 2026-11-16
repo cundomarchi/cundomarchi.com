@@ -1288,6 +1288,9 @@ function submitWallForm() {
 // IMPORTANTE: FormSubmit solo adjunta archivos con un envio de formulario real
 // (multipart/form-data). Con el modo AJAX los campos de texto llegan pero la
 // foto de la pared se pierde. Por eso armamos y enviamos un <form> de verdad.
+// Envio principal: servicio propio (Cloudflare Worker + Resend), mails con marca desde hello@cundomarchi.com.
+const QUOTE_API = 'https://api.cundomarchi.com';
+// Respaldo si el servicio propio no responde.
 const QUOTE_ENDPOINT = 'https://formsubmit.co/cundomarchi@gmail.com';
 const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' };
 
@@ -1295,30 +1298,54 @@ function sendQuoteRequest(photoFile) {
   const btn = document.getElementById('wallSubmitBtn');
   const a = wallAnswers;
   const type = TYPE_LABEL[a.artType] || a.artType || '';
+  if (btn) { btn.disabled = true; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'quote_submit_attempt', { currency: 'AUD', lead_source: 'website_quote_form', project_type: type });
+  }
+  const fd = new FormData();
+  fd.append('kind', 'full');
+  fd.append('lang', lang === 'es' ? 'es' : 'en');
+  fd.append('type', a.artType || '');
+  [['location', a.location], ['wallType', a.wallType], ['size', a.size], ['attendance', a.attendance],
+   ['workshopType', a.workshopType], ['groupSize', a.groupSize], ['budget', a.budget], ['date', a.date],
+   ['details', a.details], ['first', a.first], ['last', a.last], ['email', a.email], ['phone', a.phone],
+   ['company', a.company]].forEach(([k, v]) => fd.append(k, v || ''));
+  const hp = document.getElementById('w-website');
+  fd.append('website', hp ? hp.value : '');
+  if (photoFile) fd.append('photo', photoFile, photoFile.name);
 
+  fetch(QUOTE_API + '/quote', { method: 'POST', body: fd })
+    .then(r => r.json().then(j => ({ ok: r.ok && j.ok, j })))
+    .then(({ ok, j }) => {
+      if (!ok) throw new Error((j && j.error) || 'send_failed');
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { currency: 'AUD', lead_source: 'website_quote_form' });
+      }
+      showQuoteConfirm(a.first);
+    })
+    .catch(() => {
+      // Si el servicio propio falla, el formulario cae a FormSubmit para no perder la consulta.
+      sendQuoteViaFormSubmit(photoFile);
+    });
+}
+
+// Respaldo: envio clasico por FormSubmit (iframe oculto), solo si api.cundomarchi.com no responde.
+function sendQuoteViaFormSubmit(photoFile) {
+  const a = wallAnswers;
+  const type = TYPE_LABEL[a.artType] || a.artType || '';
   const form = document.createElement('form');
   form.method = 'POST';
   form.action = QUOTE_ENDPOINT;
   form.enctype = 'multipart/form-data';
   form.style.display = 'none';
-
   function campo(nombre, valor) {
     const i = document.createElement('input');
-    i.type = 'hidden';
-    i.name = nombre;
-    i.value = valor;
-    form.appendChild(i);
+    i.type = 'hidden'; i.name = nombre; i.value = valor; form.appendChild(i);
   }
-
   campo('_subject', `[Consulta] ${type} en ${a.location} · ${(a.first + ' ' + a.last).trim()}`);
   campo('_captcha', 'false');
-  // "table" arma una tabla de dos columnas; con 13 campos se lee mucho mejor
-  // que "box", que apila una caja gris por campo.
   campo('_template', 'table');
-  // asi podes apretar Responder en el mail y le contestas al cliente directo
   campo('_replyto', a.email);
-  // El envio va a un iframe oculto: el visitante nunca sale del sitio ni ve
-  // la pagina generica de FormSubmit, y al terminar ve nuestro propio gracias.
   let sink = document.getElementById('quoteSink');
   if (!sink) {
     sink = document.createElement('iframe');
@@ -1329,35 +1356,13 @@ function sendQuoteRequest(photoFile) {
     document.body.appendChild(sink);
   }
   form.target = 'quoteSink';
-
-  // Respuesta automatica al cliente: le llega al instante, con tu voz, y te
-  // saca la presion de contestar en el momento.
-  campo('_autoresponse',
-    (lang === 'es'
-      ? 'Gracias por escribir. Recibi tu consulta y la estoy mirando. '
-        + 'Te contesto personalmente dentro de las proximas 48 horas con una '
-        + 'propuesta y un presupuesto.\n\nCundo Marchi\ncundomarchi.com'
-      : 'Thanks for reaching out. I got your enquiry and I am looking at it. '
-        + 'I will get back to you personally within 48 hours with a proposal '
-        + 'and a quote.\n\nCundo Marchi\ncundomarchi.com'));
-
-  // El orden importa: la plantilla los muestra en este orden, y lo primero
-  // que necesitas ver es que trabajo es y donde queda.
-  // FormSubmit muestra los nombres tal cual (los espacios salen como "_"),
-  // asi que van en una sola palabra. Respeta el orden en que se agregan.
   const resumen = [type, a.location, a.wallType, a.size, a.attendance, a.workshopType, a.groupSize, a.budget].filter(Boolean).join(' · ');
   campo('Resumen', resumen);
   campo('Trabajo', type);
   campo('Ubicacion', a.location);
-  if (a.artType === 'mural') {
-    campo('Pared', a.wallType || '-');
-    campo('Medidas', a.size || '-');
-  }
+  if (a.artType === 'mural') { campo('Pared', a.wallType || '-'); campo('Medidas', a.size || '-'); }
   if (a.artType === 'live') campo('Asistentes', a.attendance || '-');
-  if (a.artType === 'workshop') {
-    campo('Taller', a.workshopType || '-');
-    campo('Grupo', a.groupSize || '-');
-  }
+  if (a.artType === 'workshop') { campo('Taller', a.workshopType || '-'); campo('Grupo', a.groupSize || '-'); }
   campo('Presupuesto', a.budget || '-');
   campo('Fecha', a.date || '-');
   campo('Foto', a.photoName ? ('adjunta: ' + a.photoName) : 'sin foto');
@@ -1366,27 +1371,11 @@ function sendQuoteRequest(photoFile) {
   campo('Email', a.email);
   campo('Telefono', a.phone || '-');
   campo('Empresa', a.company || '-');
-
-  // La foto va como archivo real. OJO: FormSubmit solo la adjunta si el campo
-  // se llama exactamente "attachment"; con cualquier otro nombre (por ejemplo
-  // "Foto de la pared") el mail llega igual pero sin la foto.
   if (photoFile) {
     const dt = new DataTransfer();
     dt.items.add(photoFile);
     const fi = document.createElement('input');
-    fi.type = 'file';
-    fi.name = 'attachment';
-    fi.files = dt.files;
-    form.appendChild(fi);
-  }
-
-  if (btn) { btn.disabled = true; btn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...'; }
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'quote_submit_attempt', {
-      currency: 'AUD',
-      lead_source: 'website_quote_form',
-      project_type: type
-    });
+    fi.type = 'file'; fi.name = 'attachment'; fi.files = dt.files; form.appendChild(fi);
   }
   document.body.appendChild(form);
   sink.onload = function () {
