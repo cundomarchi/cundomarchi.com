@@ -426,7 +426,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 @media (max-width: 480px) { .country-items li { flex: 0 0 100%; } .country-item { width: 100%; margin-left: 0; } }
 
 /* Service hub and standalone service pages */
-.service-links-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:34px; }
+.service-links-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:34px; }
 .service-link-card { min-height:310px; position:relative; overflow:hidden; display:flex; align-items:flex-end; color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.18); background:#121212; isolation:isolate; }
 .service-link-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; transition:transform .45s ease; }
 .service-link-card::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.34) 70%,rgba(0,0,0,.12)); }
@@ -978,7 +978,7 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 /* Clear service-led Home and readable project brief. */
 .hero .home-headline { max-width:850px; font-size:clamp(30px,4.5vw,58px); line-height:1.12; }
 .hero .sub { max-width:680px; line-height:1.7; font-size:16px; }
-.home-service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.home-service-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; }
 .home-service-card { display:flex; flex-direction:column; padding:28px; background:#131313; border:1px solid #404040; color:#eee; text-decoration:none; }
 .home-service-card h3 { font-family:var(--display); font-size:22px; margin-bottom:16px; }
 .home-service-card p { line-height:1.7; color:#bbb; margin-bottom:24px; }
@@ -995,3 +995,13 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 .hero .hero-proof { max-width:760px; font-size:clamp(12px,1.5vw,16px); font-weight:700; line-height:1.7; margin:0 0 12px; color:var(--white); text-wrap:balance; }
 .hero .hero-location { font-size:14px; line-height:1.6; color:#ccc; margin:0 0 28px; }
 .hero .sub { margin-bottom:22px; }
+
+/* Home order (2026-11-19): client logos sit right under the hero on the home;
+   the shared logo strip at the bottom stays for every other page. */
+#page-home.active ~ .brands-global { display: none; }
+.brands-home { padding: 40px 0 48px; border-top: 0; }
+@media (max-width: 700px) {
+  .brands-home { padding: 28px 0 32px; }
+  .brands-home .brands-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 14px; }
+  .brands-home .brand-logo { width: 100%; height: 56px; }
+}
