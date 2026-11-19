@@ -2149,6 +2149,16 @@ document.addEventListener('keydown', function(e) {
   else if (e.key === 'Escape') closeLightbox();
 });
 
+// Home "Which wall is yours?" cards: open the form as a mural with the wall
+// type preselected (1 home interior, 2 commercial, 3 exterior / public).
+function requestWall(index) {
+  requestArt('mural');
+  setTimeout(() => {
+    const opt = document.querySelectorAll('#artMuralBlock .quote-option')[index - 1];
+    if (opt && opt.getAttribute('aria-pressed') !== 'true') opt.click();
+  }, 0);
+}
+
 function requestArt(type) {
   const select = document.querySelector('#wallFormStep select[onchange="chooseArtTypeSelect(this)"]');
   if (select) { select.value = type; chooseArtTypeSelect(select); }

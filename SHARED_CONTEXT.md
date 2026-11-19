@@ -92,3 +92,10 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Sitio: `consent.js` lee `?internal=1` / `?internal=0`, guarda `cmz_internal` en localStorage y, si está, hace `gtag('set', {traffic_type:'internal'})` antes del `config`. Cubre todas las páginas porque todas cargan consent.js antes de GA. Versión subida a `consent.js?v=177` en las 73 páginas.
 - Facundo tiene que abrir una vez `https://www.cundomarchi.com/?internal=1` en cada navegador/celular que use.
 - Lectura de los últimos 90 días (21 ago – 18 nov): 194 usuarios, 297 sesiones, 847 vistas; Direct 168, Organic Social 77, Organic Search 52 (la de mejor calidad). EE. UU. 95 usuarios con 3 s de permanencia (probables bots); Australia 44 (incluye visitas propias y pruebas).
+
+## Home: "Which wall is yours?" reemplaza "Art for your space" (Claude), 2026-11-19
+- Pedido de Facundo: sacar "What we can create / Art for your space" (le faltaba ímpetu) y mostrar tipos de pared con ejemplos, como muralnomad.au.
+- Nueva sección `.home-walls` en index EN/ES: eyebrow "Mural services", título "Which wall is yours? / ¿Cuál es tu pared?", tres tarjetas con foto real y etiqueta del proyecto: **Homes** (The City of the Fury, living, Buenos Aires), **Businesses** (The Chef, INAC Hospitality, Gold Coast), **Public spaces** (Meeting of Styles, Malmö). Link "See all murals →" al portfolio.
+- Cada tarjeta llama a `requestWall(n)` (script.js): abre el formulario como Mural con el tipo de pared preelegido (1 Home Interior, 2 Commercial Space, 3 Exterior/Public).
+- La sección vieja quedó comentada (`ARCHIVED home services`), incluida su tarjeta Custom artwork; Custom artwork sigue en Servicios y en el formulario.
+- Validación: preview EN/ES escritorio y móvil, fotos cargan, clic en Businesses → Mural + Commercial Space, sin errores ni scroll horizontal.
