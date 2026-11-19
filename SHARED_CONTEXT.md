@@ -99,3 +99,4 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Cada tarjeta llama a `requestWall(n)` (script.js): abre el formulario como Mural con el tipo de pared preelegido (1 Home Interior, 2 Commercial Space, 3 Exterior/Public).
 - La sección vieja quedó comentada (`ARCHIVED home services`), incluida su tarjeta Custom artwork; Custom artwork sigue en Servicios y en el formulario.
 - Validación: preview EN/ES escritorio y móvil, fotos cargan, clic en Businesses → Mural + Commercial Space, sin errores ni scroll horizontal.
+- Ajuste pedido por Facundo (mismo día): tarjetas = **Homes / Hogares** (Flower Octopus, Buenos Aires), **Commercial spaces / Espacios comerciales** (Ocean Heart, Acapulco), **Public art / Arte público** (tortuga de Down the Ocean, túnel de Tigre). Recortes verticales 4:5 propios en `images/site/walls/` (`home_flower_octopus`, `commercial_ocean_heart`, `public_down_ocean_turtle`, con -800/-600).
