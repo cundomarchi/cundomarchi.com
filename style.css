@@ -1024,3 +1024,19 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 @media (max-width:900px) { .wall-grid { grid-template-columns:1fr 1fr; } }
 @media (max-width:600px) { .wall-grid { grid-template-columns:1fr; gap:16px; } .wall-card-media { aspect-ratio:4/3; } }
 @media (prefers-reduced-motion:reduce) { .wall-card-media img { transition:none; } }
+
+/* Hero breathing room (2026-11-19): more air between logo and headline,
+   between the text blocks, and before the client logos. */
+.hero { padding-bottom: 88px; }
+.hero .hero-logo { margin-bottom: 36px; }
+.hero .home-headline { margin-bottom: 22px; }
+.hero .sub { margin-bottom: 30px; }
+.hero .hero-proof { margin-bottom: 14px; }
+.hero .hero-location { margin-bottom: 40px; }
+.brands-home { padding-top: 64px; border-top: 1px solid rgba(255,255,255,.08); }
+@media (max-width: 700px) {
+  .hero { padding-bottom: 56px; }
+  .hero .hero-logo { margin-bottom: 26px; }
+  .hero .hero-location { margin-bottom: 30px; }
+  .brands-home { padding-top: 40px; }
+}

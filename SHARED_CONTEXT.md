@@ -100,3 +100,5 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - La sección vieja quedó comentada (`ARCHIVED home services`), incluida su tarjeta Custom artwork; Custom artwork sigue en Servicios y en el formulario.
 - Validación: preview EN/ES escritorio y móvil, fotos cargan, clic en Businesses → Mural + Commercial Space, sin errores ni scroll horizontal.
 - Ajuste pedido por Facundo (mismo día): tarjetas = **Homes / Hogares** (Flower Octopus, Buenos Aires), **Commercial spaces / Espacios comerciales** (Ocean Heart, Acapulco), **Public art / Arte público** (tortuga de Down the Ocean, túnel de Tigre). Recortes verticales 4:5 propios en `images/site/walls/` (`home_flower_octopus`, `commercial_ocean_heart`, `public_down_ocean_turtle`, con -800/-600).
+
+- Espaciado del hero (2026-11-19, pedido "queda muy pegado"): más aire entre logo y título, entre bloques de texto y antes de la franja de logos (+ línea divisoria sutil). Reglas al final de style.css, v=185.
