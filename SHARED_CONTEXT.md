@@ -52,3 +52,13 @@ Validación: comparación visual de ambos archivos, dimensiones con sips, sintax
 - `sitemap.xml` apunta a `laos_california_main.jpg`.
 - Validación: todas las referencias de imagen existen; preview local de la ficha ES: portada 1600 px nítida, 8 fotos de galería cargan, menú presente.
 - Pendiente: commit y push (lo hace Facundo con GitHub Desktop), verificar online.
+
+## Home y formulario — 2026-11-18 (Codex)
+
+Pedido: quitar la frase «Free, no-obligation quote…», corregir textos amontonados del formulario y revisar comunicación/orden de Home con referencias reales. Base Git limpia 3f98fcb al empezar. Cambios locales en index.html, es/index.html y style.css: frase eliminada en ambos idiomas; ayudas sin margen negativo y con aria-describedby; campos con color claro; H1 visible «Murals with a world of their own / Murales con un mundo propio» y explicación concreta de servicios/destinatarios. Home ahora: presentación de oferta → carrusel (Tay primero preservado) → tres servicios → portfolio → bio breve con enlace a Bio completa → formulario. No se modificó Bio completa ni se regeneraron páginas.
+
+Referencias consultadas: https://mrmurals.com/ y /start-a-project/ (obras, acceso directo a contacto y formulario visual); https://www.juddyroller.com.au/ (especialidad, destinatarios, proyectos y prueba social). La estructura propuesta es recomendación adaptada de Codex, no una instrucción literal de Mural Nomad. Se aplicó el principio sintetizado de comunicar valor para el cliente.
+
+Validación: preview existente http://127.0.0.1:8080/ sirve cambios actuales; recorrido mural → presupuesto → detalles → contacto, sin envío; captura de ayudas separadas y color claro en organización; H1 y copy ES comprobados; git diff --check. Capturas tmp/home-communication.png y tmp/quote-spacing.png. No commit ni publicación. Falta revisión responsive específica en móvil. Antes de publicar, revisar copy con Facundo y enlaces de servicios. Medir consultas relevantes recibidas frente a visitas; no asumir mejora de conversión sin datos.
+
+Pendiente anterior: original de Laos & California confirmado a 4032 × 3024 en Desktop/CUNDO/FOTOS MURALES FINAL/California Laos 2024 usa/Cundo_Marchi_Laos&California.jpg. Aún no se sustituyó la portada 1600 px con una exportación de mayor resolución.
