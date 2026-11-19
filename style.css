@@ -1040,3 +1040,28 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
   .hero .hero-location { margin-bottom: 30px; }
   .brands-home { padding-top: 40px; }
 }
+
+/* Hero v3 (2026-11-19): no big logo, the mural photo leads.
+   The hero carries its own, brighter copy of the background photo with a
+   fade only where the text sits; the rest of the home keeps the dim fixed bg. */
+.hero {
+  min-height: 88vh;
+  justify-content: flex-end;
+  padding: 120px 24px 96px;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,.15) 0%, rgba(10,10,10,.25) 40%, rgba(10,10,10,.72) 78%, rgba(10,10,10,.96) 100%),
+    url("images/site/bg_home_maanso.jpg") center 35% / cover no-repeat;
+}
+.hero .home-headline { max-width: 980px; font-size: clamp(34px, 5.4vw, 72px); line-height: 1.04; margin-bottom: 22px; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+.hero .sub { max-width: 720px; color: #e6e6e1; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
+.hero .hero-proof, .hero .hero-location { text-shadow: 0 1px 10px rgba(0,0,0,.5); }
+.brands-home { border-top: 0; }
+@media (max-width: 700px) {
+  .hero {
+    min-height: 92vh;
+    padding: 96px 20px 64px;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,.1) 0%, rgba(10,10,10,.3) 35%, rgba(10,10,10,.8) 70%, rgba(10,10,10,.97) 100%),
+      url("images/site/bg_home_maanso-1200.jpg") 60% 30% / cover no-repeat;
+  }
+}

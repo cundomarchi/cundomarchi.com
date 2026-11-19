@@ -102,3 +102,8 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Ajuste pedido por Facundo (mismo día): tarjetas = **Homes / Hogares** (Flower Octopus, Buenos Aires), **Commercial spaces / Espacios comerciales** (Ocean Heart, Acapulco), **Public art / Arte público** (tortuga de Down the Ocean, túnel de Tigre). Recortes verticales 4:5 propios en `images/site/walls/` (`home_flower_octopus`, `commercial_ocean_heart`, `public_down_ocean_turtle`, con -800/-600).
 
 - Espaciado del hero (2026-11-19, pedido "queda muy pegado"): más aire entre logo y título, entre bloques de texto y antes de la franja de logos (+ línea divisoria sutil). Reglas al final de style.css, v=185.
+
+## Hero v3 (Claude), 2026-11-19 — reemplaza "Bring your walls to life"
+- Pedido de Facundo: sacar el logo grande del hero (queda solo el del menú), que la foto mande (menos oscura) e ir directo al servicio: transformar paredes en landmarks. Referencias: muralnomad.au y mrmurals.com no ponen el logo grande.
+- Título: "Murals that turn walls into landmarks." / "Murales que convierten paredes en íconos." Subtítulo: hogares, negocios y espacios públicos, diseñados para cada lugar y pintados a mano. Se mantienen la línea de prueba (5 continents…), la ubicación y los dos botones.
+- El hero tiene su propia copia de `bg_home_maanso.jpg` (CSS, v=186) con degradado solo abajo; el fondo fijo del resto de la home sigue al 30 %. Logo grande comentado en el HTML.
