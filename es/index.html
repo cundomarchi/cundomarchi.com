@@ -973,10 +973,10 @@
           <option value="" data-en="Select..." data-es="Seleccionar...">Seleccionar...</option>
           <option value="mural" data-en="Mural" data-es="Mural">Mural</option>
           <option value="live" data-en="Live Painting" data-es="Pintura en Vivo">Pintura en Vivo</option>
-          <option value="workshop" data-en="Paint Workshop" data-es="Taller de Pintura">Taller de Pintura</option>
+          <option value="artwork" data-en="Custom Artwork" data-es="Obra por Encargo">Obra por Encargo</option>
         </select>
 
-<div class="quote-choices" role="group" aria-labelledby="quoteStageTitle0"><button type="button" class="quote-choice" data-quote-type="mural" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#mural"/></svg><strong  data-en="Mural" data-es="Mural">Mural</strong><span  data-en="A wall with its own story" data-es="Una pared con historia propia">Una pared con historia propia</span></button><button type="button" class="quote-choice" data-quote-type="live" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#live"/></svg><strong  data-en="Live painting" data-es="Pintura en vivo">Pintura en vivo</strong><span  data-en="Art unfolding at your event" data-es="Arte que sucede en tu evento">Arte que sucede en tu evento</span></button><button type="button" class="quote-choice" data-quote-type="workshop" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#workshop"/></svg><strong  data-en="Workshop" data-es="Taller">Taller</strong><span  data-en="Create something together" data-es="Crear algo juntos">Crear algo juntos</span></button></div>
+<div class="quote-choices" role="group" aria-labelledby="quoteStageTitle0"><button type="button" class="quote-choice" data-quote-type="mural" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#mural"/></svg><strong  data-en="Mural" data-es="Mural">Mural</strong><span  data-en="A wall with its own story" data-es="Una pared con historia propia">Una pared con historia propia</span></button><button type="button" class="quote-choice" data-quote-type="live" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#live"/></svg><strong  data-en="Live painting" data-es="Pintura en vivo">Pintura en vivo</strong><span  data-en="Art unfolding at your event" data-es="Arte que sucede en tu evento">Arte que sucede en tu evento</span></button><button type="button" class="quote-choice" data-quote-type="artwork" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#canvas"/></svg><strong  data-en="Custom artwork" data-es="Obra por encargo">Obra por encargo</strong><span  data-en="Painted panels and objects" data-es="Paneles y objetos pintados">Paneles y objetos pintados</span></button></div>
         <div id="artMuralBlock" style="display:none;">
           <p class="step-label required-label" style="margin-top:14px;" data-en="Type of Wall" data-es="Tipo de Pared">Tipo de Pared</p>
           <select class="field" onchange="chooseWallSelect(this,'wallType')">
@@ -1004,21 +1004,18 @@
           </select>
         </div>
 
-        <div id="artWorkshopBlock" style="display:none;">
-          <p class="step-label" style="margin-top:14px;" data-en="What kind of workshop?" data-es="¿Qué tipo de taller?">¿Qué tipo de taller?</p>
-          <select class="field" onchange="chooseWallSelect(this,'workshopType')">
+        <div id="artArtworkBlock" style="display:none;">
+          <p class="step-label" style="margin-top:14px;" data-en="What would you like painted?" data-es="¿Qué querés que pinte?">¿Qué querés que pinte?</p>
+          <select class="field" onchange="chooseWallSelect(this,'artworkType')">
             <option value="" data-en="Select..." data-es="Seleccionar...">Seleccionar...</option>
-            <option data-en="Community Mural" data-es="Mural Comunitario">Mural Comunitario</option>
-            <option data-en="Individual Canvas" data-es="Lienzo Individual">Lienzo Individual</option>
+            <option data-en="Wood panel" data-es="Panel de madera">Panel de madera</option>
+            <option data-en="Door or furniture" data-es="Puerta o mueble">Puerta o mueble</option>
+            <option data-en="Surfboard or skateboard" data-es="Tabla de surf o skate">Tabla de surf o skate</option>
+            <option data-en="Vehicle" data-es="Vehículo">Vehículo</option>
+            <option data-en="Other object" data-es="Otro objeto">Otro objeto</option>
           </select>
-          <p class="step-label" style="margin-top:14px;" data-en="Group size" data-es="Tamaño del grupo">Tamaño del grupo</p>
-          <select class="field" onchange="chooseWallSelect(this,'groupSize')">
-            <option value="" data-en="Select..." data-es="Seleccionar...">Seleccionar...</option>
-            <option data-en="1 – 10" data-es="1 – 10">1 – 10</option>
-            <option data-en="11 – 25" data-es="11 – 25">11 – 25</option>
-            <option data-en="26 – 50" data-es="26 – 50">26 – 50</option>
-            <option data-en="50+" data-es="50+">50+</option>
-          </select>
+          <label for="w-art-size" class="step-label" style="margin-top:14px;" data-en="Approximate size (optional)" data-es="Medidas aproximadas (opcional)">Medidas aproximadas (opcional)</label>
+          <input class="field" id="w-art-size" data-en-ph="e.g. 120 x 80 cm" data-es-ph="ej. 120 x 80 cm" placeholder="ej. 120 x 80 cm">
         </div>
 
         <div class="quote-input"><label for="w-location" data-en="City and country *" data-es="Ciudad y país *">Ciudad y país *</label><input autocomplete="address-level2" class="field" id="w-location" data-en-ph="e.g. Sydney, Australia" data-es-ph="ej. Buenos Aires, Argentina" placeholder="ej. Buenos Aires, Argentina"></div>
@@ -1141,8 +1138,8 @@
 
 <script src="translations.js?v=1"></script>
 <script>window.__forceLang="es";</script>
-<script src="script.js?v=147"></script>
-<script src="quote-form.js?v=6"></script>
+<script src="script.js?v=148"></script>
+<script src="quote-form.js?v=7"></script>
 
 </body>
 </html>

@@ -43,7 +43,7 @@
   const svg = name => '<svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#' + name + '"/></svg>';
   root.querySelectorAll('select:not([hidden])').forEach(select => {
     const group = document.createElement('div');
-    group.className = 'quote-option-grid' + (select.closest('#wallBudgetBlock') ? ' quote-option-grid--chips' : '');
+    group.className = 'quote-option-grid' + (select.closest('#wallBudgetBlock') || select.closest('#artArtworkBlock') ? ' quote-option-grid--chips' : '');
     group.id = select.id + '-choices';
     group.setAttribute('role', 'group');
     const label = select.previousElementSibling;
@@ -63,7 +63,7 @@
       let icon = 'people';
       if (select.closest('#artMuralBlock')) icon = ['home','shop','wall'][i];
       if (select.closest('#wallBudgetBlock')) icon = '';
-      if (select.closest('#artWorkshopBlock') && choices.filter(x => x.select.closest('#artWorkshopBlock')).length === 0) icon = i ? 'canvas' : 'mural';
+      if (select.closest('#artArtworkBlock')) icon = '';
       button.innerHTML = icon ? svg(icon) : '';
       button.appendChild(labelText);
       button.setAttribute('aria-pressed', String(option.selected));
@@ -92,7 +92,7 @@
   const location = document.getElementById('w-location').closest('.quote-input');
   function reveal() {
     const type = document.getElementById('quoteType').value;
-    const block = type && document.getElementById({mural:'artMuralBlock',live:'artLiveBlock',workshop:'artWorkshopBlock'}[type]);
+    const block = type && document.getElementById({mural:'artMuralBlock',live:'artLiveBlock',artwork:'artArtworkBlock'}[type]);
     let ready = !!type;
     if (block) {
       choices.filter(x => block.contains(x.select)).forEach(item => {
@@ -159,7 +159,7 @@
   // llega un aviso con lo que alcanzo a completar para que puedas escribirle.
   const DRAFT_KEY = 'cmz_quote_draft';
   const DRAFT_DAYS = 7;
-  const fieldIds = ['w-size', 'w-location', 'w-date', 'w-details', 'w-first', 'w-last', 'w-email', 'w-phone', 'w-company'];
+  const fieldIds = ['w-art-size', 'w-size', 'w-location', 'w-date', 'w-details', 'w-first', 'w-last', 'w-email', 'w-phone', 'w-company'];
   const allSelects = [...root.querySelectorAll('select')];
   const typeSelect = document.getElementById('quoteType');
   const confirmBox = document.getElementById('wallFormConfirm');
@@ -218,7 +218,7 @@
     writeDraft(d);
     const a = (typeof wallAnswers !== 'undefined') ? wallAnswers : {};
     const val = id => document.getElementById(id).value.trim();
-    const tipo = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' }[typeSelect.value] || '-';
+    const tipo = { mural: 'Mural', live: 'Live Painting', artwork: 'Custom Artwork' }[typeSelect.value] || '-';
     const nombre = (val('w-first') + ' ' + val('w-last')).trim() || email.value.trim();
     const fd = new FormData();
     fd.append('kind', 'partial');
@@ -228,8 +228,8 @@
     fd.append('wallType', a.wallType || '');
     fd.append('size', val('w-size'));
     fd.append('attendance', a.attendance || '');
-    fd.append('workshopType', a.workshopType || '');
-    fd.append('groupSize', a.groupSize || '');
+    fd.append('artworkType', a.artworkType || '');
+    fd.append('artSize', val('w-art-size'));
     fd.append('budget', a.budget || '');
     fd.append('date', val('w-date'));
     fd.append('details', val('w-details'));

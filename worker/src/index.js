@@ -4,7 +4,7 @@
  * POST /quote  (multipart/form-data)
  *   kind: "full" | "partial"      full = the visitor pressed Send; partial = left with email typed
  *   lang: "en" | "es"
- *   type, location, wallType, size, attendance, workshopType, groupSize,
+ *   type (mural|live|artwork), location, wallType, size, attendance, artworkType, artSize,
  *   budget, date, details, first, last, email, phone, company
  *   photo: optional image file (wall photo)
  *   website: honeypot — must be empty
@@ -13,7 +13,7 @@
  *        2) for "full" only, a branded confirmation to the client from hello@cundomarchi.com
  */
 
-const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' };
+const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', artwork: 'Custom Artwork', workshop: 'Paint Workshop' };
 const MAX_PHOTO_BYTES = 6 * 1024 * 1024;
 
 export default {
@@ -45,7 +45,8 @@ export default {
       kind: f('kind') === 'partial' ? 'partial' : 'full',
       lang: f('lang') === 'es' ? 'es' : 'en',
       type: f('type'), location: f('location'), wallType: f('wallType'), size: f('size'),
-      attendance: f('attendance'), workshopType: f('workshopType'), groupSize: f('groupSize'),
+      attendance: f('attendance'), artworkType: f('artworkType'), artSize: f('artSize'),
+      workshopType: f('workshopType'), groupSize: f('groupSize'),
       budget: f('budget'), date: f('date'), details: f('details'),
       first: f('first'), last: f('last'), email: f('email'), phone: f('phone'), company: f('company')
     };
@@ -114,13 +115,14 @@ function buildNotification(d, env, hasPhoto) {
     ? `[Consulta incompleta] ${type}${where} · ${name}`
     : `[Consulta] ${type}${where} · ${name}`;
 
-  const summary = [type, d.location, d.wallType, d.size, d.attendance, d.workshopType, d.groupSize, d.budget].filter(Boolean).join(' · ');
+  const summary = [type, d.location, d.wallType, d.size, d.attendance, d.artworkType, d.artSize, d.workshopType, d.groupSize, d.budget].filter(Boolean).join(' · ');
   const rows = [];
   const add = (k, v) => { if (v) rows.push([k, v]); };
   add('Trabajo', type);
   add('Ubicación', d.location);
   if (d.type === 'mural') { add('Pared', d.wallType); add('Medidas', d.size); add('Foto', hasPhoto ? 'adjunta en este mail' : 'no adjuntó'); }
   if (d.type === 'live') add('Asistentes', d.attendance);
+  if (d.type === 'artwork') { add('Objeto', d.artworkType); add('Medidas', d.artSize); }
   if (d.type === 'workshop') { add('Taller', d.workshopType); add('Grupo', d.groupSize); }
   add('Presupuesto', d.budget);
   add('Fecha', d.date);
@@ -171,7 +173,7 @@ function buildConfirmation(d, env) {
     ? `Gracias por escribirme sobre tu proyecto de ${type.toLowerCase()}${d.location ? ' en ' + esc(d.location) : ''}. Leí los detalles y te respondo en breve.`
     : `Thanks for getting in touch about your ${type.toLowerCase()} project${d.location ? ' in ' + esc(d.location) : ''}. I have your details and will get back to you shortly.`;
   const summaryLabel = es ? 'Lo que me enviaste' : 'What you sent';
-  const summary = [type, d.location, d.wallType, d.size, d.attendance, d.workshopType, d.groupSize, d.budget, d.date].filter(Boolean).join(' · ');
+  const summary = [type, d.location, d.wallType, d.size, d.attendance, d.artworkType, d.artSize, d.workshopType, d.groupSize, d.budget, d.date].filter(Boolean).join(' · ');
   const replyLine = es
     ? 'Si querés agregar algo, respondé a este mail: llega directo a mí.'
     : 'If you want to add anything, just reply to this email. It comes straight to me.';

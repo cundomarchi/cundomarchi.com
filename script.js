@@ -1196,7 +1196,7 @@ function chooseArtTypeSelect(selectEl) {
   if (window.syncQuoteChoices) window.syncQuoteChoices(type);
   document.getElementById('artMuralBlock').style.display = type === 'mural' ? 'block' : 'none';
   document.getElementById('artLiveBlock').style.display = type === 'live' ? 'block' : 'none';
-  document.getElementById('artWorkshopBlock').style.display = type === 'workshop' ? 'block' : 'none';
+  document.getElementById('artArtworkBlock').style.display = type === 'artwork' ? 'block' : 'none';
 }
 function chooseWall(btn, field) {
   btn.parentElement.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
@@ -1265,7 +1265,7 @@ function submitWallForm() {
   // la foto de la pared es opcional: ayuda a cotizar, pero no frena la consulta
   if (type === 'mural') valid = valid && !!(wallAnswers.wallType && size);
   if (type === 'live') valid = valid && !!wallAnswers.attendance;
-  if (type === 'workshop') valid = valid && !!(wallAnswers.workshopType && wallAnswers.groupSize);
+  if (type === 'artwork') valid = valid && !!wallAnswers.artworkType;
   if (!valid) {
     errorMsg.style.display = 'block';
     return;
@@ -1276,6 +1276,8 @@ function submitWallForm() {
   wallAnswers.email = email;
   wallAnswers.location = location;
   wallAnswers.size = size;
+  const artSizeEl = document.getElementById('w-art-size');
+  wallAnswers.artSize = artSizeEl ? artSizeEl.value.trim() : '';
   wallAnswers.company = document.getElementById('w-company').value.trim();
   wallAnswers.phone = document.getElementById('w-phone').value.trim();
   wallAnswers.date = document.getElementById('w-date').value;
@@ -1292,7 +1294,7 @@ function submitWallForm() {
 const QUOTE_API = 'https://api.cundomarchi.com';
 // Respaldo si el servicio propio no responde.
 const QUOTE_ENDPOINT = 'https://formsubmit.co/cundomarchi@gmail.com';
-const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', workshop: 'Paint Workshop' };
+const TYPE_LABEL = { mural: 'Mural', live: 'Live Painting', artwork: 'Custom Artwork' };
 
 function sendQuoteRequest(photoFile) {
   const btn = document.getElementById('wallSubmitBtn');
@@ -1307,7 +1309,7 @@ function sendQuoteRequest(photoFile) {
   fd.append('lang', lang === 'es' ? 'es' : 'en');
   fd.append('type', a.artType || '');
   [['location', a.location], ['wallType', a.wallType], ['size', a.size], ['attendance', a.attendance],
-   ['workshopType', a.workshopType], ['groupSize', a.groupSize], ['budget', a.budget], ['date', a.date],
+   ['artworkType', a.artworkType], ['artSize', a.artSize], ['budget', a.budget], ['date', a.date],
    ['details', a.details], ['first', a.first], ['last', a.last], ['email', a.email], ['phone', a.phone],
    ['company', a.company]].forEach(([k, v]) => fd.append(k, v || ''));
   const hp = document.getElementById('w-website');
@@ -1356,13 +1358,13 @@ function sendQuoteViaFormSubmit(photoFile) {
     document.body.appendChild(sink);
   }
   form.target = 'quoteSink';
-  const resumen = [type, a.location, a.wallType, a.size, a.attendance, a.workshopType, a.groupSize, a.budget].filter(Boolean).join(' · ');
+  const resumen = [type, a.location, a.wallType, a.size, a.attendance, a.artworkType, a.artSize, a.budget].filter(Boolean).join(' · ');
   campo('Resumen', resumen);
   campo('Trabajo', type);
   campo('Ubicacion', a.location);
   if (a.artType === 'mural') { campo('Pared', a.wallType || '-'); campo('Medidas', a.size || '-'); }
   if (a.artType === 'live') campo('Asistentes', a.attendance || '-');
-  if (a.artType === 'workshop') { campo('Taller', a.workshopType || '-'); campo('Grupo', a.groupSize || '-'); }
+  if (a.artType === 'artwork') { campo('Objeto', a.artworkType || '-'); campo('Medidas', a.artSize || '-'); }
   campo('Presupuesto', a.budget || '-');
   campo('Fecha', a.date || '-');
   campo('Foto', a.photoName ? ('adjunta: ' + a.photoName) : 'sin foto');
@@ -2493,8 +2495,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Las paginas individuales de servicios vuelven al mismo formulario con el
   // tipo de trabajo ya elegido.
   const requestedService = new URLSearchParams(location.search).get('request');
-  if (['mural', 'live', 'workshop'].includes(requestedService)) {
-    requestArt(requestedService);
+  // Los talleres ya no estan en el formulario: su pagina lleva al formulario sin tipo preelegido.
+  if (['mural', 'live', 'artwork', 'workshop'].includes(requestedService)) {
+    if (requestedService !== 'workshop') requestArt(requestedService);
+    else setTimeout(() => document.getElementById('wallFormStep').scrollIntoView({ block: 'center' }), 50);
     try { history.replaceState({}, '', location.pathname + '#quote'); } catch (e) {}
   }
 });

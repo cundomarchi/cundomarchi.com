@@ -67,3 +67,9 @@ Pendiente anterior: original de Laos & California confirmado a 4032 × 3024 en D
 Facundo aprobó «BRING YOUR WALLS TO LIFE», murales para businesses, public spaces y homes (hogares último), y «5 CONTINENTS · 15+ COUNTRIES · PAINTING SINCE 2012». Aplicado a Home EN/ES, con línea de base en Australia/disponibilidad mundial. Se conserva CTA y acceso al portfolio. Sin commit ni push. Su preferencia sigue siendo revisar antes de publicar. Cambio acotado al hero, no al formulario ni a la estructura.
 
 Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, incluidos data-en/data-es, para evitar que el nombre se corte entre líneas.
+
+## Formulario: Custom artwork reemplaza a Workshop (Claude), 2026-11-19
+- Pedido de Facundo: en el formulario "Start a project", la tercera opción pasa de Workshop a **Custom artwork / Obra por encargo** ("Painted panels and objects"). Alcance elegido: **solo el formulario**; la página `services/workshops.html`, el menú y la sección de servicios mantienen los talleres.
+- Nuevo bloque `#artArtworkBlock`: "What would you like painted?" (Wood panel, Door or furniture, Surfboard or skateboard, Vehicle, Other object) como chips, y medidas opcionales `#w-art-size`. Tipo interno `artwork`; campos enviados `artworkType`, `artSize`.
+- Archivos: index.html, es/index.html, script.js, quote-form.js, worker/src/index.js (desplegado; sigue aceptando `workshop` por compatibilidad). `?request=workshop` desde la página de talleres ahora solo lleva al formulario sin tipo preelegido.
+- Validación: preview local ES, flujo completo hasta pantalla de gracias, datos enviados correctos (intercepción local) y un envío real de prueba al Worker → ok.
