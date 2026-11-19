@@ -62,3 +62,8 @@ Referencias consultadas: https://mrmurals.com/ y /start-a-project/ (obras, acces
 Validación: preview existente http://127.0.0.1:8080/ sirve cambios actuales; recorrido mural → presupuesto → detalles → contacto, sin envío; captura de ayudas separadas y color claro en organización; H1 y copy ES comprobados; git diff --check. Capturas tmp/home-communication.png y tmp/quote-spacing.png. No commit ni publicación. Falta revisión responsive específica en móvil. Antes de publicar, revisar copy con Facundo y enlaces de servicios. Medir consultas relevantes recibidas frente a visitas; no asumir mejora de conversión sin datos.
 
 Pendiente anterior: original de Laos & California confirmado a 4032 × 3024 en Desktop/CUNDO/FOTOS MURALES FINAL/California Laos 2024 usa/Cundo_Marchi_Laos&California.jpg. Aún no se sustituyó la portada 1600 px con una exportación de mayor resolución.
+
+## Copy de inicio aprobado — 2026-11-19
+Facundo aprobó «BRING YOUR WALLS TO LIFE», murales para businesses, public spaces y homes (hogares último), y «5 CONTINENTS · 15+ COUNTRIES · PAINTING SINCE 2012». Aplicado a Home EN/ES, con línea de base en Australia/disponibilidad mundial. Se conserva CTA y acceso al portfolio. Sin commit ni push. Su preferencia sigue siendo revisar antes de publicar. Cambio acotado al hero, no al formulario ni a la estructura.
+
+Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, incluidos data-en/data-es, para evitar que el nombre se corte entre líneas.
