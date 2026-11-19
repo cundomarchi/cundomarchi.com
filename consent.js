@@ -24,6 +24,18 @@
   window.gtag('set', 'allow_google_signals', false);
   window.gtag('set', 'allow_ad_personalization_signals', false);
 
+  // Own visits: open any page once with ?internal=1 on each browser/phone you
+  // use (?internal=0 undoes it). From then on that browser's visits carry
+  // traffic_type=internal and the GA4 "Internal Traffic" filter drops them.
+  var internal = false;
+  try {
+    var q = window.location.search;
+    if (/[?&]internal=1(&|$)/.test(q)) localStorage.setItem('cmz_internal', '1');
+    if (/[?&]internal=0(&|$)/.test(q)) localStorage.removeItem('cmz_internal');
+    internal = localStorage.getItem('cmz_internal') === '1';
+  } catch (e) {}
+  if (internal) window.gtag('set', { traffic_type: 'internal' });
+
   function updateConsent(value) {
     saved = value;
     try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}

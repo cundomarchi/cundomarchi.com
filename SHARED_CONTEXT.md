@@ -86,3 +86,9 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - No hay página propia: ambas tarjetas llaman a `requestArt('artwork')` y abren el formulario con Custom artwork preelegido.
 - Texto de Servicios vuelve a "Three ways to work together: … or a custom painted object …" (ES: "Tres formas…").
 - Validación: preview EN/ES escritorio y móvil, clic → formulario con `artwork` seleccionado, sin scroll horizontal.
+
+## Google Analytics: conversión y tráfico propio (Claude), 2026-11-19
+- GA4 (propiedad 274110266, `G-MPKTK5PNK7`): `generate_lead` marcado como **evento clave** (lo dispara el envío exitoso del formulario). Filtro de datos "Internal Traffic" (excluir `traffic_type = internal`) pasado de Prueba a **Activo**.
+- Sitio: `consent.js` lee `?internal=1` / `?internal=0`, guarda `cmz_internal` en localStorage y, si está, hace `gtag('set', {traffic_type:'internal'})` antes del `config`. Cubre todas las páginas porque todas cargan consent.js antes de GA. Versión subida a `consent.js?v=177` en las 73 páginas.
+- Facundo tiene que abrir una vez `https://www.cundomarchi.com/?internal=1` en cada navegador/celular que use.
+- Lectura de los últimos 90 días (21 ago – 18 nov): 194 usuarios, 297 sesiones, 847 vistas; Direct 168, Organic Social 77, Organic Search 52 (la de mejor calidad). EE. UU. 95 usuarios con 3 s de permanencia (probables bots); Australia 44 (incluye visitas propias y pruebas).
