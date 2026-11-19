@@ -80,3 +80,9 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Grillas de servicios pasaron a `auto-fit` para no dejar una columna vacía con 2 tarjetas.
 - Validación: preview EN/ES escritorio y móvil, orden verificado por DOM, JSON-LD y sitemap válidos, sin errores de consola, sin scroll horizontal.
 - Idea pendiente (de la referencia): sección de testimonios entre Portfolio y formulario; hoy no hay testimonios cargados.
+
+## Custom artwork como servicio (Claude), 2026-11-19
+- Tercera tarjeta "Custom artwork / Obra por encargo" en la home ("What we can create") y en Servicios (Service 03), con la foto del parlante pintado para Norths Devils (`images/custom_artwork/norths_devils_speaker{,-800,-600}.jpg`, desde `~/Downloads/IMG_4598 3.HEIC`). En la tarjeta de Servicios: `object-position:50% 80%` para que "Devils" no quede detrás del título.
+- No hay página propia: ambas tarjetas llaman a `requestArt('artwork')` y abren el formulario con Custom artwork preelegido.
+- Texto de Servicios vuelve a "Three ways to work together: … or a custom painted object …" (ES: "Tres formas…").
+- Validación: preview EN/ES escritorio y móvil, clic → formulario con `artwork` seleccionado, sin scroll horizontal.
