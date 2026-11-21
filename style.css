@@ -353,7 +353,7 @@ body.edit-mode .thumb-move-btn { display: block; }
   .lightbox-nav.left { left: 8px; } .lightbox-nav.right { right: 8px; } }
 .compare { position: relative; width: 100%; aspect-ratio: 4/3; max-height: 62vh; overflow: hidden; user-select: none; touch-action: none; background: #000; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; }
-.compare:has(img[data-key="flower_octopus"]) { width:min(100%,760px); height:min(68vh,760px); aspect-ratio:auto; max-height:none; margin-inline:auto; }
+.compare:has(img[data-key="flower_octopus"]) { width:min(100%,620px); height:min(52vh,500px); aspect-ratio:4 / 3; max-height:none; margin-inline:auto; }
 .compare:has(img[data-key="flower_octopus"]) img { object-fit:contain; background:#050505; }
 .compare:has(img[data-key="circle_of_nature"]) { width:min(100%,1000px); aspect-ratio:3 / 2; max-height:none; margin-inline:auto; }
 #before-img { will-change: clip-path; }

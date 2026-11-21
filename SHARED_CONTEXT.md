@@ -117,4 +117,6 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Facundo entregó `AD2.jpg` (4032 × 3024) y se instaló como nueva portada de Laos & California, con variantes 1200/800/600 y `srcset` en las fichas EN/ES. Pendiente publicar y verificar el encuadre online.
 - Se corrigió el comparador de Flower Octopus: las imágenes ya no usan `cover`, que las recortaba y las hacía verse demasiado zoomed; ahora se muestran completas con `contain`.
 - La tarjeta de Custom Artwork (parlante Norths Devils) dejó de recortar la foto vertical con `cover`; ahora usa `contain` para que se vea el parlante completo dentro de la tarjeta, en EN/ES por compartir la misma regla.
+- Se redujo además el tamaño del comparador de Flower Octopus (620 px máximo, proporción 4:3) para evitar que la vista de antes/después ocupe toda la pantalla y parezca zoomed.
+- Laos & California quedó reducido a portada + dos detalles finales, en orden invertido (butterfly primero, bear segundo), tanto en fichas EN/ES como en el portfolio dinámico.
 - Se rediseñó `404.html`: fondo de mural, mensaje más directo, jerarquía visual coherente con la home y CTA actualizado a `Start a project`; el texto cambia correctamente a español según idioma/ruta.
