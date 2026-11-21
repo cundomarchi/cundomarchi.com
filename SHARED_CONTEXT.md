@@ -107,3 +107,10 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Pedido de Facundo: sacar el logo grande del hero (queda solo el del menú), que la foto mande (menos oscura) e ir directo al servicio: transformar paredes en landmarks. Referencias: muralnomad.au y mrmurals.com no ponen el logo grande.
 - Título: "Murals that turn walls into landmarks." / "Murales que convierten paredes en íconos." Subtítulo: hogares, negocios y espacios públicos, diseñados para cada lugar y pintados a mano. Se mantienen la línea de prueba (5 continents…), la ubicación y los dos botones.
 - El hero tiene su propia copia de `bg_home_maanso.jpg` (CSS, v=186) con degradado solo abajo; el fondo fijo del resto de la home sigue al 30 %. Logo grande comentado en el HTML.
+
+## Formulario y ficha The Chef — 2026-11-21 (Codex)
+- Se confirmó que `services/murals.html` y `es/services/murales.html` ya muestran `Start a project / Empezar un proyecto` en el CTA principal y contienen el formulario inline. La captura online de Facundo todavía mostraba `Get a Quote`, por lo que queda pendiente publicar y limpiar caché para verificar el cambio en producción.
+- En `mural/the-chef.html` y `es/mural/the-chef.html` se quitó la imagen hero repetida y agrandada. La secuencia quedó en tres imágenes alineadas (Before/En proceso/After), con proporción visual uniforme; se eliminó la fila adicional con la foto panorámica.
+- Validación: `node --check` pasó para `script.js`, `quote-form.js` y `service-quote.js`. `git diff --check` solo reporta espacios finales preexistentes en páginas modificadas por el trabajo previo. No se hizo commit ni push.
+- El logo grande del hero ya estaba retirado del HTML EN/ES; se eliminaron también las reglas CSS residuales `.hero-logo` para que el único logo de entrada sea la firma del menú. Pendiente publicar para verlo en el dominio.
+- En Laos & California se retiraron de la galería EN/ES y del registro dinámico las vistas del elefante, la casita roja (temple) y la firma; se conservaron portada y demás detalles.

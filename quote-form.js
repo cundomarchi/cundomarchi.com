@@ -40,7 +40,7 @@
   });
   // Visual choices use native selects as the single source for submission.
   const choices = [];
-  const svg = name => '<svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#' + name + '"/></svg>';
+  const svg = name => '<svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="/images/site/quote-icons.svg#' + name + '"/></svg>';
   root.querySelectorAll('select:not([hidden])').forEach(select => {
     const group = document.createElement('div');
     group.className = 'quote-option-grid' + (select.closest('#wallBudgetBlock') || select.closest('#artArtworkBlock') ? ' quote-option-grid--chips' : '');
@@ -157,7 +157,7 @@
   // Lo que el visitante carga se guarda en su navegador: si se va y vuelve,
   // retoma donde dejo. Si llego a cargar su email y se fue sin enviar, te
   // llega un aviso con lo que alcanzo a completar para que puedas escribirle.
-  const DRAFT_KEY = 'cmz_quote_draft';
+  const DRAFT_KEY = 'cmz_quote_draft-two-services';
   const DRAFT_DAYS = 7;
   const fieldIds = ['w-art-size', 'w-size', 'w-location', 'w-date', 'w-details', 'w-first', 'w-last', 'w-email', 'w-phone', 'w-company'];
   const allSelects = [...root.querySelectorAll('select')];

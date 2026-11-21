@@ -183,7 +183,6 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 
 /* HERO */
 .hero { min-height: 78vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 70px 24px 40px; }
-.hero-logo { width: min(420px, 80vw); height: auto; margin-bottom: 20px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .hero h1 { font-family: var(--display); font-size: clamp(26px, 4vw, 40px); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; color: var(--white); }
 .hero .sub { font-size: 15px; color: var(--gray); max-width: 520px; margin-bottom: 32px; }
@@ -770,6 +769,8 @@ footer h2 { font-family: var(--display); font-size: clamp(28px,5vw,46px); text-t
 .mural-detail .detail-ba img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:#000; }
 .mural-detail .detail-ba--full img { aspect-ratio:3/4; object-fit:contain; }
 .mural-detail .detail-ba figcaption { color:var(--gray); font-family:var(--mono); font-size:11px; letter-spacing:.14em; margin-top:8px; text-transform:uppercase; }
+.chef-process-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.chef-process-grid img { aspect-ratio:4/3; object-fit:cover; }
 @media (max-width:640px) { .mural-detail .detail-gallery, .mural-detail .detail-ba { grid-template-columns:1fr; } .mural-detail .detail-gallery .wide { grid-column:auto; } .mural-detail .detail-actions { align-items:flex-start; flex-direction:column; } }
 
 .design-process { margin: 26px 0 34px; padding: 22px; border: 1px solid #292929; background: rgba(8,8,8,.72); }
@@ -1028,7 +1029,6 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 /* Hero breathing room (2026-11-19): more air between logo and headline,
    between the text blocks, and before the client logos. */
 .hero { padding-bottom: 88px; }
-.hero .hero-logo { margin-bottom: 36px; }
 .hero .home-headline { margin-bottom: 22px; }
 .hero .sub { margin-bottom: 30px; }
 .hero .hero-proof { margin-bottom: 14px; }
@@ -1036,7 +1036,6 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 .brands-home { padding-top: 64px; border-top: 1px solid rgba(255,255,255,.08); }
 @media (max-width: 700px) {
   .hero { padding-bottom: 56px; }
-  .hero .hero-logo { margin-bottom: 26px; }
   .hero .hero-location { margin-bottom: 30px; }
   .brands-home { padding-top: 40px; }
 }
@@ -1065,3 +1064,6 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
       url("images/site/bg_home_maanso-1200.jpg") 60% 30% / cover no-repeat;
   }
 }
+
+.quote-choices { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.service-detail-page #quote { scroll-margin-top:90px; }

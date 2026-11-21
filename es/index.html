@@ -72,7 +72,7 @@
       "knowsAbout": [
         "Mural Painting", "Mural Artist", "Wall Art", "Large-Scale Murals", "Commissioned Murals",
         "Street Art", "Graffiti Art", "Spray Paint", "Aerosol Art", "Public Art", "Urban Art",
-        "Live Painting", "Interior Murals", "Exterior Murals", "Commercial Murals",
+        "Interior Murals", "Exterior Murals", "Commercial Murals",
         "Muralismo", "Muralista", "Arte Mural", "Murales por Encargo", "Pintura Mural",
         "Arte Urbano", "Grafiti", "Pintura en Vivo", "Murales Comerciales"
       ],
@@ -107,7 +107,7 @@
         "name": "Services",
         "itemListElement": [
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mural Painting", "description": "Large-scale commissioned murals for home interiors, commercial spaces and exterior or public walls." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Live Painting", "description": "Full pieces painted live at galas, brand activations and public openings." } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "description": "Full pieces painted live at galas, brand activations and public openings." } }
         ]
       }
     }
@@ -116,7 +116,7 @@
 </script>
 
 <!-- Fonts self-hosted below via embedded @font-face (no external dependency) -->
-<link rel="stylesheet" href="style.css?v=186">
+<link rel="stylesheet" href="style.css?v=187">
 </head>
 <body oncontextmenu="return false;">
 
@@ -134,7 +134,7 @@
         <div class="full-menu-services">
           <a onclick="navGo('live')">— Todos los servicios</a>
           <a href="es/services/murales.html">— Murales</a>
-          <a href="es/services/pintura-en-vivo.html">— Pintura en vivo</a>
+          <a href="/es/?request=artwork#quote">Obra por encargo</a>
           <!-- ARCHIVED workshops 2026-11-19: <a href="es/services/talleres.html">— Talleres</a> -->
         </div>
         <a onclick="navGo('shop')" data-en="Shop" data-es="Tienda">Tienda</a>
@@ -149,7 +149,7 @@
         <a onclick="showPage('live')" data-en="Services" data-es="Servicios">Servicios <span aria-hidden="true">▾</span></a>
         <div class="nav-services-menu">
           <a href="es/services/murales.html">Murales</a>
-          <a href="es/services/pintura-en-vivo.html">Pintura en vivo</a>
+          <a href="/es/?request=artwork#quote">Obra por encargo</a>
           <!-- ARCHIVED workshops 2026-11-19: <a href="es/services/talleres.html">Talleres</a> -->
         </div>
       </div>
@@ -811,13 +811,13 @@
   <div class="wrap">
     <span class="eyebrow" data-en="What I Offer" data-es="Lo Que Ofrezco">Lo Que Ofrezco</span>
     <h2 class="section-title" style="font-size:32px;" data-en="Services" data-es="Servicios">Servicios</h2>
-    <p style="color:#d8d8d3; font-size:15px; max-width:640px; margin-bottom:44px;" data-en="Three ways to work together: a mural designed for your wall, a piece painted live in front of your guests, or a custom painted object, anywhere in the world." data-es="Tres formas de trabajar juntos: un mural pensado para tu pared, una obra pintada en vivo frente a tus invitados, o un objeto pintado por encargo, en cualquier parte del mundo.">Tres formas de trabajar juntos: un mural pensado para tu pared, una obra pintada en vivo frente a tus invitados, o un objeto pintado por encargo, en cualquier parte del mundo.</p>
+    <p data-en="Custom murals and original artwork on canvas, panels and objects, made for your space." data-es="Murales por encargo y obras originales sobre lienzo, paneles y objetos, pensadas para tu espacio.">Murales por encargo y obras originales sobre lienzo, paneles y objetos, pensadas para tu espacio.</p>
 
     <div class="service-links-grid">
       <a class="service-link-card" href="es/services/murales.html"><img src="images/flower_octopus/flower_octopus.jpg" alt="Mural Pulpo Flor" loading="lazy" width="1600" height="1088"><div class="service-link-card-body"><span class="eyebrow">Servicio 01</span><h3>Murales</h3><p>Obras para interiores, negocios, fachadas y espacios públicos, creadas a medida para cada lugar.</p><span class="service-link-arrow">Ver murales →</span></div></a>
-      <a class="service-link-card" href="es/services/pintura-en-vivo.html"><img src="images/live-painting/bg_live.jpg" alt="Cundo Marchi pintando en vivo" loading="lazy" width="1360" height="906"><div class="service-link-card-body"><span class="eyebrow">Servicio 02</span><h3>Pintura en vivo</h3><p>Una obra creada frente al público para eventos, galas, aperturas y activaciones de marca.</p><span class="service-link-arrow">Ver pintura en vivo →</span></div></a>
-      <a class="service-link-card" href="#quote" onclick="requestArt('artwork');return false;"><img src="images/custom_artwork/norths_devils_speaker.jpg" srcset="images/custom_artwork/norths_devils_speaker-600.jpg 600w, images/custom_artwork/norths_devils_speaker-800.jpg 800w, images/custom_artwork/norths_devils_speaker.jpg 1200w" sizes="(max-width:800px) 92vw, 33vw" alt="Parlante pintado a mano para Norths Devils por Cundo Marchi" loading="lazy" width="1200" height="1600" style="object-position:50% 80%;"><div class="service-link-card-body"><span class="eyebrow">Servicio 03</span><h3>Obra por encargo</h3><p>Parlantes, paneles, puertas, tablas y otros objetos pintados a mano, por encargo para marcas, equipos y coleccionistas.</p><span class="service-link-arrow">Pedir una obra por encargo →</span></div></a>
-      <!-- ARCHIVED workshops 2026-11-19: <a class="service-link-card" href="es/services/talleres.html"><img src="images/live-painting/workshop_tiktok_3.jpg" alt="Taller de pintura en TikTok Live Fest" loading="lazy" width="739" height="1600"><div class="service-link-card-body"><span class="eyebrow">Servicio 03</span><h3>Talleres</h3><p>Experiencias prácticas de pintura, grafiti y muralismo para empresas, eventos y grupos.</p><span class="service-link-arrow">Ver talleres →</span></div></a> -->
+      
+      <a class="service-link-card" href="#quote" onclick="requestArt('artwork');return false;"><img src="images/custom_artwork/norths_devils_speaker.jpg" srcset="images/custom_artwork/norths_devils_speaker-600.jpg 600w, images/custom_artwork/norths_devils_speaker-800.jpg 800w, images/custom_artwork/norths_devils_speaker.jpg 1200w" sizes="(max-width:800px) 92vw, 33vw" alt="Parlante pintado a mano para Norths Devils por Cundo Marchi" loading="lazy" width="1200" height="1600" style="object-position:50% 80%;"><div class="service-link-card-body"><span class="eyebrow">Servicio 02</span><h3>Obra por encargo</h3><p>Lienzos, parlantes, paneles, puertas, tablas y otros objetos pintados a mano, por encargo para marcas, equipos y coleccionistas.</p><span class="service-link-arrow">Pedir una obra por encargo →</span></div></a>
+      <!-- ARCHIVED workshops 2026-11-19: <a class="service-link-card" href="es/services/talleres.html"><img src="images/live-painting/workshop_tiktok_3.jpg" alt="Taller de pintura en TikTok Live Fest" loading="lazy" width="739" height="1600"><div class="service-link-card-body"><span class="eyebrow">Servicio 02</span><h3>Talleres</h3><p>Experiencias prácticas de pintura, grafiti y muralismo para empresas, eventos y grupos.</p><span class="service-link-arrow">Ver talleres →</span></div></a> -->
     </div>
   </div>
 </section>
@@ -993,11 +993,11 @@
         <select class="field" id="quoteType" hidden aria-hidden="true" tabindex="-1" onchange="chooseArtTypeSelect(this)">
           <option value="" data-en="Select..." data-es="Seleccionar...">Seleccionar...</option>
           <option value="mural" data-en="Mural" data-es="Mural">Mural</option>
-          <option value="live" data-en="Live Painting" data-es="Pintura en Vivo">Pintura en Vivo</option>
+          
           <option value="artwork" data-en="Custom Artwork" data-es="Obra por Encargo">Obra por Encargo</option>
         </select>
 
-<div class="quote-choices" role="group" aria-labelledby="quoteStageTitle0"><button type="button" class="quote-choice" data-quote-type="mural" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#mural"/></svg><strong  data-en="Mural" data-es="Mural">Mural</strong><span  data-en="A wall with its own story" data-es="Una pared con historia propia">Una pared con historia propia</span></button><button type="button" class="quote-choice" data-quote-type="live" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#live"/></svg><strong  data-en="Live painting" data-es="Pintura en vivo">Pintura en vivo</strong><span  data-en="Art unfolding at your event" data-es="Arte que sucede en tu evento">Arte que sucede en tu evento</span></button><button type="button" class="quote-choice" data-quote-type="artwork" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#canvas"/></svg><strong  data-en="Custom artwork" data-es="Obra por encargo">Obra por encargo</strong><span  data-en="Painted panels and objects" data-es="Paneles y objetos pintados">Paneles y objetos pintados</span></button></div>
+<div class="quote-choices" role="group" aria-labelledby="quoteStageTitle0"><button type="button" class="quote-choice" data-quote-type="mural" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#mural"/></svg><strong  data-en="Mural" data-es="Mural">Mural</strong><span  data-en="A wall with its own story" data-es="Una pared con historia propia">Una pared con historia propia</span></button><button type="button" class="quote-choice" data-quote-type="artwork" aria-pressed="false"><svg class="quote-icon" viewBox="0 0 80 80" aria-hidden="true"><use href="images/site/quote-icons.svg#canvas"/></svg><strong  data-en="Custom artwork" data-es="Obra por encargo">Obra por encargo</strong><span  data-en="Canvas, panels and objects" data-es="Lienzos, paneles y objetos">Lienzos, paneles y objetos</span></button></div>
         <div id="artMuralBlock" style="display:none;">
           <p class="step-label required-label" style="margin-top:14px;" data-en="Type of Wall" data-es="Tipo de Pared">Tipo de Pared</p>
           <select class="field" onchange="chooseWallSelect(this,'wallType')">
@@ -1029,6 +1029,7 @@
           <p class="step-label" style="margin-top:14px;" data-en="What would you like painted?" data-es="¿Qué querés que pinte?">¿Qué querés que pinte?</p>
           <select class="field" onchange="chooseWallSelect(this,'artworkType')">
             <option value="" data-en="Select..." data-es="Seleccionar...">Seleccionar...</option>
+            <option data-en="Canvas" data-es="Lienzo">Lienzo</option>
             <option data-en="Wood panel" data-es="Panel de madera">Panel de madera</option>
             <option data-en="Door or furniture" data-es="Puerta o mueble">Puerta o mueble</option>
             <option data-en="Surfboard or skateboard" data-es="Tabla de surf o skate">Tabla de surf o skate</option>
@@ -1159,8 +1160,9 @@
 
 <script src="translations.js?v=1"></script>
 <script>window.__forceLang="es";</script>
-<script src="script.js?v=149"></script>
-<script src="quote-form.js?v=7"></script>
+<script src="quote-submit.js?v=1"></script>
+<script src="script.js?v=150"></script>
+<script src="quote-form.js?v=9"></script>
 
 </body>
 </html>
