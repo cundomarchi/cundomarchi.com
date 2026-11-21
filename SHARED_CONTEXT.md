@@ -114,3 +114,7 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Validación: `node --check` pasó para `script.js`, `quote-form.js` y `service-quote.js`. `git diff --check` solo reporta espacios finales preexistentes en páginas modificadas por el trabajo previo. No se hizo commit ni push.
 - El logo grande del hero ya estaba retirado del HTML EN/ES; se eliminaron también las reglas CSS residuales `.hero-logo` para que el único logo de entrada sea la firma del menú. Pendiente publicar para verlo en el dominio.
 - En Laos & California se retiraron de la galería EN/ES y del registro dinámico las vistas del elefante, la casita roja (temple) y la firma; se conservaron portada y demás detalles.
+- Facundo entregó `AD2.jpg` (4032 × 3024) y se instaló como nueva portada de Laos & California, con variantes 1200/800/600 y `srcset` en las fichas EN/ES. Pendiente publicar y verificar el encuadre online.
+- Se corrigió el comparador de Flower Octopus: las imágenes ya no usan `cover`, que las recortaba y las hacía verse demasiado zoomed; ahora se muestran completas con `contain`.
+- La tarjeta de Custom Artwork (parlante Norths Devils) dejó de recortar la foto vertical con `cover`; ahora usa `contain` para que se vea el parlante completo dentro de la tarjeta, en EN/ES por compartir la misma regla.
+- Se rediseñó `404.html`: fondo de mural, mensaje más directo, jerarquía visual coherente con la home y CTA actualizado a `Start a project`; el texto cambia correctamente a español según idioma/ruta.

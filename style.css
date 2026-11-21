@@ -354,7 +354,7 @@ body.edit-mode .thumb-move-btn { display: block; }
 .compare { position: relative; width: 100%; aspect-ratio: 4/3; max-height: 62vh; overflow: hidden; user-select: none; touch-action: none; background: #000; }
 .compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; }
 .compare:has(img[data-key="flower_octopus"]) { width:min(100%,760px); height:min(68vh,760px); aspect-ratio:auto; max-height:none; margin-inline:auto; }
-.compare:has(img[data-key="flower_octopus"]) img { object-fit:cover; }
+.compare:has(img[data-key="flower_octopus"]) img { object-fit:contain; background:#050505; }
 .compare:has(img[data-key="circle_of_nature"]) { width:min(100%,1000px); aspect-ratio:3 / 2; max-height:none; margin-inline:auto; }
 #before-img { will-change: clip-path; }
 .compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--white); cursor: ew-resize; transform: translateX(-50%); }
@@ -428,6 +428,7 @@ img.lb-thumb, video.lb-thumb { width: 76px; height: 76px; object-fit: cover; cur
 .service-links-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:34px; }
 .service-link-card { min-height:310px; position:relative; overflow:hidden; display:flex; align-items:flex-end; color:#fff; text-decoration:none; border:1px solid rgba(255,255,255,.18); background:#121212; isolation:isolate; }
 .service-link-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; transition:transform .45s ease; }
+.service-link-card:has(img[src*="norths_devils_speaker"]) img { object-fit:contain; object-position:center; background:#101412; }
 .service-link-card::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(to top,rgba(0,0,0,.94) 0%,rgba(0,0,0,.34) 70%,rgba(0,0,0,.12)); }
 .service-link-card:hover img,.service-link-card:focus-visible img { transform:scale(1.035); }
 .service-link-card:focus-visible { outline:2px solid #fff; outline-offset:3px; }

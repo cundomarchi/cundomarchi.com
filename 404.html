@@ -21,13 +21,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/style.css?v=177">
 <style>
-  .nf-wrap{min-height:78vh;display:flex;flex-direction:column;align-items:center;
-    justify-content:center;text-align:center;padding:40px 22px;}
+  .nf-wrap{min-height:calc(100vh - 84px);display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:70px 22px;position:relative;isolation:isolate;overflow:hidden;}
+  .nf-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,.34),rgba(8,8,8,.9)),url('/images/site/bg_home_maanso.jpg') center/cover;z-index:-2;}
+  .nf-wrap::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18);z-index:-1;}
   /* el numero va en gris, no en rojo: la marca es blanco y negro */
   .nf-code{font-family:var(--display);font-size:clamp(72px,18vw,150px);line-height:1;
-    color:#2e2e2c;margin:0;}
-  .nf-title{font-family:var(--display);font-size:clamp(22px,4vw,34px);margin:14px 0 0;}
-  .nf-text{color:var(--gray);font-family:var(--mono);font-size:15px;margin:16px 0 30px;
+    color:rgba(255,255,255,.26);margin:0;letter-spacing:-.06em;}
+  .nf-title{font-family:var(--display);font-size:clamp(26px,4.5vw,52px);margin:14px 0 0;max-width:18ch;}
+  .nf-text{color:#e5e5e0;font-family:var(--mono);font-size:15px;margin:18px 0 34px;
     max-width:46ch;line-height:1.7;}
   .nf-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
   .nf-ghost{border:1px solid #3a3a38;color:var(--white);padding:15px 30px;font-family:var(--mono);
@@ -43,19 +45,19 @@
     <div class="menu-dropdown" style="display:flex;align-items:center;gap:16px;position:relative;">
       <button class="hamburger-btn" type="button" onclick="this.nextElementSibling.nextElementSibling.classList.toggle('open')" aria-label="Menu"><span class="hamburger-icon"><span></span><span></span><span></span></span></button>
       <a href="/#home" aria-label="Home"><img src="/images/site/cmz_logo-400.png" srcset="/images/site/cmz_logo-120.png 120w, /images/site/cmz_logo-400.png 400w" sizes="110px" alt="Cundo Marchi" width="400" height="167" class="nav-logo"></a>
-      <div class="full-menu"><a href="/#home">Home</a><a href="/#bio">Bio</a><a href="/#work">Portfolio</a><a href="/#live">Services</a><a href="/#shop">Shop</a><a href="/#quote">Get a Quote</a></div>
+      <div class="full-menu"><a href="/#home">Home</a><a href="/#bio">Bio</a><a href="/#work">Portfolio</a><a href="/#live">Services</a><a href="/#shop">Shop</a><a href="/#quote">Start a project</a></div>
     </div>
     <div class="nav-links"><a href="/#home">Home</a><a href="/#bio">Bio</a><a href="/#work">Portfolio</a><a href="/#live">Services</a><a href="/#shop">Shop</a></div>
-    <a href="/#quote" class="nav-cta">Get a Quote</a>
+    <a href="/#quote" class="nav-cta">Start a project</a>
     <div class="nav-utils"><div class="lang-dropdown"><button class="lang-current" type="button" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Change language">🇺🇸 EN <span class="lang-arrow">⌄</span></button><div class="lang-menu"><a href="/">🇺🇸 English</a><a href="/es/">🇪🇸 Español</a></div></div></div>
   </div>
 </nav>
 
 <main class="nf-wrap">
   <p class="nf-code">404</p>
-  <h1 class="nf-title" id="t">This wall is still blank</h1>
+  <h1 class="nf-title" id="t">This wall doesn’t exist</h1>
   <p class="nf-text" id="d">
-    The page you were looking for is not here. It may have moved, or the link was mistyped.
+    The page you were looking for isn’t here. Let’s get you back to the walls.
   </p>
   <div class="nf-links">
     <a href="/" class="btn-primary">Go to the site</a>
@@ -70,9 +72,9 @@
   if (es) {
     document.documentElement.lang = 'es';
     document.title = 'Página no encontrada | Cundo Marchi';
-    document.getElementById('t').textContent = 'Esta pared todavía está en blanco';
+    document.getElementById('t').textContent = 'Esta pared no existe';
     document.getElementById('d').textContent =
-      'La página que buscabas no está acá. Puede que se haya movido, o que el link esté mal escrito.';
+      'La página que buscabas no está acá. Volvamos a los murales.';
     document.querySelector('.nf-links .btn-primary').textContent = 'Ir al sitio';
     document.querySelector('.nf-ghost').textContent = 'Ver los murales';
   }
