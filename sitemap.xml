@@ -3,14 +3,14 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://www.cundomarchi.com/</loc><lastmod>2026-09-27</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
+    <loc>https://www.cundomarchi.com/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/"/>
     <image:image><image:loc>https://www.cundomarchi.com/images/site/og_image.jpg</image:loc><image:title>Cundo Marchi mural</image:title></image:image>
   </url>
   <url>
-    <loc>https://www.cundomarchi.com/es/</loc><lastmod>2026-09-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <loc>https://www.cundomarchi.com/es/</loc><lastmod>2026-11-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/"/>
@@ -103,7 +103,7 @@
     <loc>https://www.cundomarchi.com/mural/laos-california.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/laos-california.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/laos-california.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/laos-california.html"/><lastmod>2026-09-03</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/laos-california.html"/><lastmod>2026-11-22</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <image:image><image:loc>https://www.cundomarchi.com/images/laos_california/laos_california_main.jpg</image:loc><image:title>Laos &amp; California mural by Cundo Marchi</image:title></image:image>
   </url>
   <url>
@@ -138,7 +138,7 @@
     <loc>https://www.cundomarchi.com/mural/california-bear.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/california-bear.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/california-bear.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/california-bear.html"/><lastmod>2026-09-03</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/california-bear.html"/><lastmod>2026-11-22</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <image:image><image:loc>https://www.cundomarchi.com/images/bear_virreyes/bear_virreyes.jpg</image:loc><image:title>California Bear mural by Cundo Marchi</image:title></image:image>
   </url>
   <url>
@@ -275,7 +275,7 @@
     <image:image><image:loc>https://www.cundomarchi.com/images/el_eternauta/el_eternauta.jpg</image:loc><image:title>El Eternauta, mural de Cundo Marchi</image:title></image:image>
   </url>
   <url>
-    <loc>https://www.cundomarchi.com/es/mural/laos-california.html</loc><lastmod>2026-09-04</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <loc>https://www.cundomarchi.com/es/mural/laos-california.html</loc><lastmod>2026-11-22</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/laos-california.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/laos-california.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/laos-california.html"/>
@@ -310,7 +310,7 @@
     <image:image><image:loc>https://www.cundomarchi.com/images/you_see/you_see.jpg</image:loc><image:title>Sos Lo Que Ves, mural de Cundo Marchi</image:title></image:image>
   </url>
   <url>
-    <loc>https://www.cundomarchi.com/es/mural/california-bear.html</loc><lastmod>2026-09-04</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <loc>https://www.cundomarchi.com/es/mural/california-bear.html</loc><lastmod>2026-11-22</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/california-bear.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/california-bear.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/california-bear.html"/>
@@ -376,8 +376,8 @@
   <url><loc>https://www.cundomarchi.com/es/mural/sol-de-mayo.html</loc><lastmod>2026-09-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/sol-de-mayo.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/sol-de-mayo.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/sol-de-mayo.html"/></url>
   <url><loc>https://www.cundomarchi.com/mural/universe-citizens.html</loc><lastmod>2026-09-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/universe-citizens.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/universe-citizens.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/universe-citizens.html"/><image:image><image:loc>https://www.cundomarchi.com/images/universe_citizens/universe_citizens.jpg</image:loc><image:title>Universe Citizens mural by Cundo Marchi</image:title></image:image></url>
   <url><loc>https://www.cundomarchi.com/es/mural/universe-citizens.html</loc><lastmod>2026-09-27</lastmod><changefreq>yearly</changefreq><priority>0.7</priority><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/universe-citizens.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/universe-citizens.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/universe-citizens.html"/></url>
-  <url><loc>https://www.cundomarchi.com/services/murals.html</loc><lastmod>2026-10-02</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/services/murals.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/services/murales.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/services/murals.html"/></url>
-  <url><loc>https://www.cundomarchi.com/es/services/murales.html</loc><lastmod>2026-10-02</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/services/murals.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/services/murales.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/services/murals.html"/></url>
+  <url><loc>https://www.cundomarchi.com/services/murals.html</loc><lastmod>2026-11-22</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/services/murals.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/services/murales.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/services/murals.html"/></url>
+  <url><loc>https://www.cundomarchi.com/es/services/murales.html</loc><lastmod>2026-11-22</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/services/murals.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/services/murales.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/services/murals.html"/></url>
   <url><loc>https://www.cundomarchi.com/services/live-painting.html</loc><lastmod>2026-10-02</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/services/live-painting.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/services/pintura-en-vivo.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/services/live-painting.html"/></url>
   <url><loc>https://www.cundomarchi.com/es/services/pintura-en-vivo.html</loc><lastmod>2026-10-02</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/services/live-painting.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/services/pintura-en-vivo.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/services/live-painting.html"/></url>
   <url><loc>https://www.cundomarchi.com/mural/tay.html</loc><lastmod>2026-10-20</lastmod><changefreq>yearly</changefreq><priority>0.7</priority><xhtml:link rel="alternate" hreflang="en" href="https://www.cundomarchi.com/mural/tay.html"/><xhtml:link rel="alternate" hreflang="es" href="https://www.cundomarchi.com/es/mural/tay.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.cundomarchi.com/mural/tay.html"/><image:image><image:loc>https://www.cundomarchi.com/images/tay/tay.jpg</image:loc><image:title>Tay portrait mural by Cundo Marchi</image:title></image:image></url>

@@ -1056,6 +1056,7 @@ body:not(.edit-mode) .mural-photo img.card-main[data-key="tay"] { object-fit: co
 .hero .sub { max-width: 720px; color: #e6e6e1; text-shadow: 0 1px 12px rgba(0,0,0,.5); }
 .hero .hero-proof, .hero .hero-location { text-shadow: 0 1px 10px rgba(0,0,0,.5); }
 .brands-home { border-top: 0; }
+#bg-bio img { opacity:.22; }
 @media (max-width: 700px) {
   .hero {
     min-height: 92vh;

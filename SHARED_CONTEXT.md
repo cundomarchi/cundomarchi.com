@@ -119,4 +119,13 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - La tarjeta de Custom Artwork (parlante Norths Devils) dejó de recortar la foto vertical con `cover`; ahora usa `contain` para que se vea el parlante completo dentro de la tarjeta, en EN/ES por compartir la misma regla.
 - Se redujo además el tamaño del comparador de Flower Octopus (620 px máximo, proporción 4:3) para evitar que la vista de antes/después ocupe toda la pantalla y parezca zoomed.
 - Laos & California quedó reducido a portada + dos detalles finales, en orden invertido (butterfly primero, bear segundo), tanto en fichas EN/ES como en el portfolio dinámico.
+- Inicio EN/ES ajustado según nueva dirección: se retiró el titular y subtítulo grande para que el trabajo lidere; la foto del formulario ahora es el retrato de Cundo (`hero_bio_portrait.jpg`); el fondo de Bio se oscureció a 22% para mejorar lectura. La reorganización completa de secciones (trabajo → bio/mapa/eventos → mural por país → portfolio → paredes → formulario → marcas) queda como siguiente iteración estructural.
 - Se rediseñó `404.html`: fondo de mural, mensaje más directo, jerarquía visual coherente con la home y CTA actualizado a `Start a project`; el texto cambia correctamente a español según idioma/ruta.
+
+## Auditoría SEO técnica — 2026-11-22 (Codex)
+- Se revisó el estado real del sitio: `robots.txt` permite rastreo y apunta a `sitemap.xml`; el sitemap contiene 68 URLs y todas tienen archivo local correspondiente.
+- Las 68 páginas indexables revisadas tienen `canonical` y `meta description`; las páginas privadas, redirecciones y el 404 permanecen fuera del índice de forma intencional.
+- Se actualizó el texto SEO de Home EN/ES (description, Open Graph y Twitter) para vender el foco vigente: murales personalizados para hogares, negocios y espacios públicos en cinco continentes. Se retiró la mención de pintura en vivo del mensaje principal.
+- Se actualizaron en el sitemap las fechas de Home EN/ES, Laos & California EN/ES, California Bear EN/ES y Services/Murals EN/ES a 2026-11-22 porque fueron modificadas.
+- Validación: sitemap sin URLs rotas, `node --check` pasó en `script.js`, `quote-form.js`, `quote-submit.js` y `service-quote.js`, y `git diff --check` sin errores nuevos. No se hizo commit ni push.
+- Pendiente estratégico: decidir si las páginas de Live Painting deben quedar indexables mientras el servicio está pausado; no se cambió automáticamente para no borrar una URL pública sin confirmación.
