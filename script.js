@@ -2247,6 +2247,18 @@ function restoreMuralReturnPosition() {
 }
 window.addEventListener('popstate', () => openPageFromUrl(true));
 document.addEventListener('DOMContentLoaded', () => {
+  // Home order: the work leads, then wall types. Bio and brands stay in their
+  // dedicated sections instead of interrupting the first portfolio view.
+  const home = document.getElementById('page-home');
+  if (home) {
+    const walls = home.querySelector('.home-walls');
+    const carousel = home.querySelector('.carousel-wrap');
+    const preview = home.querySelector('.home-work-preview');
+    if (walls && carousel && preview) {
+      home.insertBefore(carousel, walls);
+      home.insertBefore(preview, walls);
+    }
+  }
   if (location.hash && location.hash !== '#quote') openPageFromUrl(true);
   restoreMuralReturnPosition();
   // Vista privada para revisar el encuadre de todas las portadas sin mostrar

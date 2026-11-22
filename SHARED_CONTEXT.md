@@ -129,3 +129,8 @@ Ajuste solicitado: espacio inseparable en «Cundo Marchi» del texto inicial, in
 - Se actualizaron en el sitemap las fechas de Home EN/ES, Laos & California EN/ES, California Bear EN/ES y Services/Murals EN/ES a 2026-11-22 porque fueron modificadas.
 - Validación: sitemap sin URLs rotas, `node --check` pasó en `script.js`, `quote-form.js`, `quote-submit.js` y `service-quote.js`, y `git diff --check` sin errores nuevos. No se hizo commit ni push.
 - Pendiente estratégico: decidir si las páginas de Live Painting deben quedar indexables mientras el servicio está pausado; no se cambió automáticamente para no borrar una URL pública sin confirmación.
+
+## Orden de Home: trabajo primero — 2026-11-22 (Codex)
+- Se aplicó la estructura pedida: el hero grande sin titular, Bio y la franja de marcas dejan de interrumpir la entrada; el carrusel/preview de trabajos pasa al comienzo, seguido por Portfolio y luego `Which wall is yours?`.
+- La presentación personal queda concentrada en la página Bio, donde ya están el mapa y los eventos. Las marcas siguen en la franja global al final del flujo de contacto.
+- El reordenamiento se hace al cargar la Home para mantener EN/ES sincronizados sin duplicar bloques HTML. `node --check script.js` y `git diff --check` pasaron. Pendiente revisar visualmente en móvil y publicar.
