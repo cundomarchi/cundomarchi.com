@@ -200,7 +200,8 @@ function sendQuoteViaFormSubmit(photoFile) {
     sink.onload = null;
     form.remove();
     if (typeof window.gtag === 'function') {
-      window.gtag('event', 'generate_lead', { currency: 'AUD', lead_source: 'website_quote_form' });
+      // Cross-origin iframe load cannot prove delivery (it may be an error page).
+      window.gtag('event', 'quote_fallback_loaded', { lead_source: 'website_quote_form' });
     }
     showQuoteConfirm(a.first);
   };
@@ -225,11 +226,9 @@ function showQuoteConfirm(name) {
 // Compatibilidad: enlaces viejos con ?enviado=1 todavia muestran el gracias.
 document.addEventListener('DOMContentLoaded', function () {
   if (location.search.indexOf('enviado=1') === -1) return;
-  // Solo considerar el contacto como conversion cuando FormSubmit devuelve al
-  // sitio con confirmacion. Asi los errores de red o envios abortados no
-  // inflan la cantidad de consultas reales.
+  // A query parameter is not proof of delivery; keep it out of conversions.
   if (typeof window.gtag === 'function') {
-    window.gtag('event', 'generate_lead', {
+    window.gtag('event', 'quote_legacy_return', {
       currency: 'AUD',
       lead_source: 'website_quote_form'
     });
@@ -238,5 +237,4 @@ document.addEventListener('DOMContentLoaded', function () {
   // limpiar la direccion para que al recargar no vuelva a mostrarlo
   try { history.replaceState({}, '', location.pathname); } catch (e) {}
 });
-
 

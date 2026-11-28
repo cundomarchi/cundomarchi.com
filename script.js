@@ -993,10 +993,9 @@ function showPage(id, fromHistory) {
 
 // ---- carousel ----
 let slideIdx = 0;
-// Ya no hace falta excluir murales del carrusel: ahora se muestran enteros
-// y centrados, con el fondo desenfocado acompaniando. Solo queda afuera el
-// que tiene la foto en baja calidad.
-let carouselExcluded = { el_nino: true };
+// Curated entry preview; full projects remain available in the portfolio.
+const carouselEditorialExcluded = new Set(['el_nino', 'parma_medusa', 'viking_malmo']);
+let carouselExcluded = {};
 function muralCoverImage(id) {
   const m = MURALS[id];
   if (!m || !m.gallery || !m.gallery.length) return null;
@@ -1005,7 +1004,7 @@ function muralCoverImage(id) {
 }
 function carouselMuralIds() {
   const order = (typeof muralOrder !== 'undefined' && muralOrder.length) ? muralOrder : MURAL_ORDER;
-  return order.filter(id => MURALS[id] && !carouselExcluded[id]);
+  return order.filter(id => MURALS[id] && !carouselEditorialExcluded.has(id) && !carouselExcluded[id]);
 }
 function buildCarousel() {
   const track = document.getElementById('carousel');
@@ -1504,7 +1503,7 @@ function updateCarouselToggleButtons() {
   document.querySelectorAll('.mural-card[data-mural-id]').forEach(card => {
     const id = card.getAttribute('data-mural-id');
     const photo = card.querySelector('.mural-photo');
-    if (!photo) return;
+    if (!photo || carouselEditorialExcluded.has(id)) return;
     if (getComputedStyle(photo).position === 'static') photo.style.position = 'relative';
     const inCarousel = !carouselExcluded[id];
     const btn = document.createElement('button');
